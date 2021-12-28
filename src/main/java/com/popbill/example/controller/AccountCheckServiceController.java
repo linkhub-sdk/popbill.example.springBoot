@@ -80,7 +80,7 @@ public class AccountCheckServiceController {
 
         try {
 
-        	DepositorCheckInfo depositorCheckInfo = accountCheckService.CheckDepositorInfo(testCorpNum, BankCode, AccountNumber, IdentityNumType, IdentityNum);
+            DepositorCheckInfo depositorCheckInfo = accountCheckService.CheckDepositorInfo(testCorpNum, BankCode, AccountNumber, IdentityNumType, IdentityNum);
 
             m.addAttribute("DepositorCheckInfo", depositorCheckInfo);
 
@@ -124,7 +124,7 @@ public class AccountCheckServiceController {
          */
 
         // 서비스 유형, 계좌성명조회 - 성명 , 계좌실명조회 - 실명 	
-    	String ServiceType = "성명";
+        String ServiceType = "성명";
 
         try {
             ChargeInfo chrgInfo = accountCheckService.getChargeInfo(testCorpNum, ServiceType);
