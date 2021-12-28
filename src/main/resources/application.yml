@@ -12,10 +12,3 @@ popbill:
   #로컬시스템 시간 사용여부 true(사용-권장), false(미사용)
   useLocalTimeYn: true
   
-spring:
-  thymeleaf:
-    cache: false
-
-server:
-  port: 10002
-    
