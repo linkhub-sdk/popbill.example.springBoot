@@ -1,0 +1,23 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
+<title>팝빌 SDK SpringBoot Example.</title>
+</head>
+<body>
+    <div id="content">
+        <p class="heading1">Response</p>
+        <br />
+        <fieldset class="fieldset1">
+            <legend th:text="${#request?.requestURL}"></legend>
+            <fieldset class="fieldset2">
+                <ul>
+                    <li>unitCost(단가) : <span th:text="${ChargeInfo.unitCost}"></span></li>
+                    <li>chargeMethod(과금유형) : <span th:text="${ChargeInfo.chargeMethod}"></span></li>
+                    <li>rateSystem(과금제도) : <span th:text="${ChargeInfo.rateSystem}"></span></li>
+                </ul>
+            </fieldset>
+        </fieldset>
+    </div>
+</body>
+</html>

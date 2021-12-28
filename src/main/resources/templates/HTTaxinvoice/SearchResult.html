@@ -1,0 +1,68 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
+<title>팝빌 SDK SpringBoot Example.</title>
+</head>
+<body>
+    <div id="content">
+        <p class="heading1">Response</p>
+        <br />
+        <fieldset class="fieldset1">
+            <legend th:text="${#request?.requestURL}"></legend>
+            <fieldset th:if="${SearchResult}" class="fieldset2">
+                <legend>검색결과 정보</legend>
+                <ul>
+                    <li>code (응답코드) : <span th:text="${SearchResult.code}"></span></li>
+                    <li>message (응답 메시지) : <span th:text="${SearchResult.message}"></span></li>
+                    <li>total (전체 검색개수) : <span th:text="${SearchResult.total}"></span></li>
+                    <li>perPage (페이지당 목록개수) : <span th:text="${SearchResult.perPage}"></span></li>
+                    <li>pageNum (페이지번호) : <span th:text="${SearchResult.pageNum}"></span></li>
+                    <li>pageCount (페이지수) : <span th:text="${SearchResult.pageCount}"></span></li>
+                </ul>
+
+                <fieldset th:each="SearchInfo, index : ${SearchResult.list}" class="fieldset3">
+                    <legend>세금계산서 요약정보[ <span th:text="${index.index + 1}"></span> / <span th:text="${index.size}"></span> ]</legend>
+                    <ul>
+                        <li> ntsconfirmNum (국세청승인번호) : <span th:text="${SearchInfo.ntsconfirmNum}"></span></li>
+                        <li> writeDate (작성일자) : <span th:text="${SearchInfo.writeDate}"></span></li>
+                        <li> issueDate (발행일자) : <span th:text="${SearchInfo.issueDate}"></span></li>
+                        <li> sendDate (전송일자) : <span th:text="${SearchInfo.sendDate}"></span></li>
+                        <li> taxType (과세형태) : <span th:text="${SearchInfo.taxType}"></span></li>
+                        <li> purposeType (영수/청구) : <span th:text="${SearchInfo.purposeType}"></span></li>
+                        <li> supplyCostTotal (공급가액 합계) : <span th:text="${SearchInfo.supplyCostTotal}"></span></li>
+                        <li> taxTotal (세액 합계) : <span th:text="${SearchInfo.totalAmount}"></span></li>
+                        <li> totalAmount (합계금액) : <span th:text="${SearchInfo.totalAmount}"></span></li>
+                        <li> remark1 (비고) : <span th:text="${SearchInfo.remark1}"></span></li>
+                        <li> invoiceType (구분) : <span th:text="${SearchInfo.invoiceType}"></span></li>
+
+                        <li> modifyYN (수정 전자세금계산서 여부) : <span th:text="${SearchInfo.modifyYN}"></span></li>
+                        <li> orgNTSConfirmNum (원본 전자세금계산서 국세청승인번호) : <span th:text="${SearchInfo.orgNTSConfirmNum}"></span></li>
+                        <li> purchaseDate (거래일자) : <span th:text="${SearchInfo.purchaseDate}"></span></li>
+                        <li> itemName (품명) : <span th:text="${SearchInfo.itemName}"></span></li>
+                        <li> spec (규격) : <span th:text="${SearchInfo.spec}"></span></li>
+                        <li> qty (수량) : <span th:text="${SearchInfo.qty}"></span></li>
+                        <li> unitCost (단가) : <span th:text="${SearchInfo.unitCost}"></span></li>
+                        <li> supplyCost (공급가액) : <span th:text="${SearchInfo.supplyCost}"></span></li>
+                        <li> tax (세액) : <span th:text="${SearchInfo.tax}"></span></li>
+                        <li> remark (비고) : <span th:text="${SearchInfo.remark}"></span></li>
+
+                        <li> invoicerCorpNum (공급자 사업자번호) : <span th:text="${SearchInfo.invoicerCorpNum}"></span></li>
+                        <li> invoicerTaxRegID (공급자 종사업장 식별번호) : <span th:text="${SearchInfo.invoicerTaxRegID}"></span></li>
+                        <li> invoicerCorpName (공급자 상호) : <span th:text="${SearchInfo.invoicerCorpName}"></span></li>
+                        <li> invoicerCEOName (공급자 대표자성명) : <span th:text="${SearchInfo.invoicerCEOName}"></span></li>
+                        <li> invoicerEmail (공급자 이메일) : <span th:text="${SearchInfo.invoicerEmail}"></span></li>
+
+                        <li> invoiceeCorpNum (공급받는자 사업자번호) : <span th:text="${SearchInfo.invoiceeCorpNum}"></span></li>
+                        <li> invoiceeType (공급받는자 구분) : <span th:text="${SearchInfo.invoiceeType}"></span></li>
+                        <li> invoiceeTaxRegID (공급받는자 종사업장 식별번호) : <span th:text="${SearchInfo.invoiceeTaxRegID}"></span></li>
+                        <li> invoiceeCorpName (공급받는자 상호) : <span th:text="${SearchInfo.invoiceeCorpName}"></span></li>
+                        <li> invoiceeCEOName (공급받는자 대표자성명) : <span th:text="${SearchInfo.invoiceeCEOName}"></span></li>
+                        <li> invoiceeEmail1 (공급받는자 이메일) : <span th:text="${SearchInfo.invoiceeEmail1}"></span></li>
+                    </ul>
+                </fieldset>
+            </fieldset>
+        </fieldset>
+    </div>
+</body>
+</html>

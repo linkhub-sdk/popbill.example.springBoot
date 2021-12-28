@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
+<title>팝빌 SDK SpringBoot Example.</title>
+</head>
+<body>
+    <div id="content">
+        <p class="heading1">Response</p>
+        <br />
+        <fieldset class="fieldset1">
+            <legend th:text="${#request?.requestURL}"></legend>
+            <ul>
+                <li>bankCode (기관코드) : <span th:text="${Account.bankCode}"></span></li>
+                <li>accountNumber (계좌번호) : <span th:text="${Account.accountNumber}"></span></li>
+                <li>accountName (계좌 별칭) : <span th:text="${Account.accountName}"></span></li>
+                <li>accountType (계좌 유형) : <span th:text="${Account.accountType}"></span></li>
+                <li>state (계좌 정액제 상태) : <span th:text="${Account.state}"></span></li>
+                <li>regDT (등록일시) : <span th:text="${Account.regDT}"></span></li>
+                <li>memo (메모) : <span th:text="${Account.memo}"></span></li>
+                <li>contractDT (정액제 서비스 시작일시) : <span th:text="${Account.contractDT}"></span></li>
+                <li>useEndDate (정액제 서비스 종료일) : <span th:text="${Account.useEndDate}"></span></li>
+                <li>baseDate (자동연장 결제일) : <span th:text="${Account.baseDate}"></span></li>
+                <li>contractState (정액제 서비스 상태) : <span th:text="${Account.contractState}"></span></li>
+                <li>closeRequestYN (정액제 서비스 해지신청 여부) : <span th:text="${Account.closeRequestYN}"></span></li>
+                <li>useRestrictYN (정액제 서비스 사용제한 여부) : <span th:text="${Account.useRestrictYN}"></span></li>
+                <li>closeOnExpired (정액제 서비스 만료 시 해지 여부) : <span th:text="${Account.closeOnExpired}"></span></li>
+                <li>unPaidYN (미수금 보유 여부) : <span th:text="${Account.unPaidYN}"></span></li>
+            </ul>
+        </fieldset>
+    </div>
+</body>
+</html>

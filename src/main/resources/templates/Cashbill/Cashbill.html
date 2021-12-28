@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
+<title>팝빌 SDK SpringBoot Example.</title>
+</head>
+<body>
+    <div id="content">
+        <p class="heading1">Response</p>
+        <br />
+        <fieldset class="fieldset1">
+            <legend th:text="${#request?.requestURL}"></legend>
+            <fieldset class="fieldset2">
+                <legend>Cashbill</legend>
+                <ul>
+                    <li>mgtKey (문서번호) : <span th:text="${Cashbill.mgtKey}"></span></li>
+                    <li>confirmNum (국세청 승인번호) : <span th:text="${Cashbill.confirmNum}"></span></li>
+                    <li>orgConfirmNum (원본 현금영수증 국세청승인번호) : <span th:text="${Cashbill.orgConfirmNum}"></span></li>
+                    <li>orgTradeDate (원본 현금영수증 거래일자) : <span th:text="${Cashbill.orgTradeDate}"></span></li>
+                    <li>tradeDate (거래일자) : <span th:text="${Cashbill.tradeDate}"></span></li>
+                    <li>tradeType (문서형태) : <span th:text="${Cashbill.tradeType}"></span></li>
+                    <li>tradeUsage (거래구분) : <span th:text="${Cashbill.tradeType}"></span></li>
+                    <li>tradeOpt (거래유형) : <span th:text="${Cashbill.tradeOpt}"></span></li>
+                    <li>taxationType (과세형태) : <span th:text="${Cashbill.taxationType}"></span></li>
+                    <li>totalAmount (거래금액) : <span th:text="${Cashbill.totalAmount}"></span></li>
+                    <li>supplyCost (공급가액) : <span th:text="${Cashbill.supplyCost}"></span></li>
+                    <li>tax (부가세) : <span th:text="${Cashbill.tax}"></span></li>
+                    <li>serviceFee (봉사료) : <span th:text="${Cashbill.serviceFee}"></span></li>
+                    <li>franchiseCorpNum (가맹점 사업자번호) : <span th:text="${Cashbill.franchiseCorpNum}"></span></li>
+                    <li>franchiseTaxRegID (가맹점 종사업장 번호) : <span th:text="${Cashbill.franchiseTaxRegID}"></span></li>
+                    <li>franchiseCorpName (가맹점 상호) : <span th:text="${Cashbill.franchiseCorpName}"></span></li>
+                    <li>franchiseCEOName (가맹점 대표자성명) : <span th:text="${Cashbill.franchiseCEOName}"></span></li>
+                    <li>franchiseAddr (가맹점 주소) : <span th:text="${Cashbill.franchiseAddr}"></span></li>
+                    <li>franchiseTEL (가맹점 전화번호) : <span th:text="${Cashbill.franchiseTEL}"></span></li>
+                    <li>identityNum (거래처 식별번호) : <span th:text="${Cashbill.identityNum}"></span></li>
+                    <li>customerName (거래처 고객명) : <span th:text="${Cashbill.customerName}"></span></li>
+                    <li>itemName (거래처 상품명) : <span th:text="${Cashbill.itemName}"></span></li>
+                    <li>orderNumber (거래처 주문번호) : <span th:text="${Cashbill.orderNumber}"></span></li>
+                    <li>email (거래처 이메일) : <span th:text="${Cashbill.email}"></span></li>
+                    <li>hp (거래처 휴대폰) : <span th:text="${Cashbill.hp}"></span></li>
+                    <li>smssendYN (발행시 안내문자 전송여부) : <span th:text="${Cashbill.smssendYN}"></span></li>
+                    <li>cancelType (취소사유) : <span th:text="${Cashbill.cancelType}"></span></li>
+                </ul>
+            </fieldset>
+        </fieldset>
+    </div>
+</body>
+</html>

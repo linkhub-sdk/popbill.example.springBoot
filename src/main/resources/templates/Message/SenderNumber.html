@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
+<title>팝빌 SDK SpringBoot Example.</title>
+</head>
+<body>
+    <div id="content">
+        <p class="heading1">Response</p>
+        <br />
+        <fieldset class="fieldset1">
+            <legend th:text="${#request?.requestURL}"></legend>
+            <fieldset th:each="senderInfo : ${SenderNumberList}" class="fieldset2">
+                <ul>
+                    <li>number (발신번호) : <span th:text="${senderInfo.number}"></span></li>
+                    <li>representYN (대표번호 지정여부) : <span th:text="${senderInfo.representYN }"></span></li>
+                    <li>state (등록상태) : <span th:text="${senderInfo.state}"></span></li>
+                    <li>memo (메모) : <span th:text="${senderInfo.memo}"></span></li>
+                </ul>
+            </fieldset>
+        </fieldset>
+    </div>
+</body>
+</html>

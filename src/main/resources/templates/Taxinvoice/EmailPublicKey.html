@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
+<title>팝빌 SDK SpringBoot Example.</title>
+</head>
+<body>
+    <div id="content">
+        <p class="heading1">Response</p>
+        <br />
+        <fieldset class="fieldset1">
+            <legend th:text="${#request?.requestURL}"></legend>
+            <fieldset th:each="EmailPublicKey : ${EmailPublicKeys}" class="fieldset2">
+                <ul>
+                    <li>ConfirmNum(유통사업자 승인번호) : <span th:text="${EmailPublicKey.confirmNum}"></span></li>
+                    <li>email(유통사업자 이메일) : <span th:text="${EmailPublicKey.email}"></span></li>
+                </ul>
+            </fieldset>
+        </fieldset>
+    </div>
+</body>
+</html>

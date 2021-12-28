@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
+<title>팝빌 SDK SpringBoot Example.</title>
+</head>
+<body>
+    <div id="content">
+        <p class="heading1">Response</p>
+        <br />
+        <fieldset class="fieldset1">
+            <legend th:text="${#request?.requestURL}"></legend>
+            <fieldset class="fieldset2">
+            <legend>템플릿 정보</legend>
+                <ul>
+                    <li>templateCode (템플릿 코드) : <span th:text="${Template.templateCode}"></span></li>
+                    <li>templateName (템플릿 제목) : <span th:text="${Template.templateName}"></span></li>
+                    <li>template (템플릿 내용) : <span th:text="${Template.template}"></span></li>
+                    <li>plusFriendID (카카오톡 채널 아이디) : <span th:text="${Template.plusFriendID}"></span></li>
+                    <li>ads (광고메시지) : <span th:text="${Template.ads}"></span></li>
+                    <li>appendix (부가메시지) : <span th:text="${Template.appendix}"></span></li>
+                </ul>
+                <fieldset th:each="btnInfo, index : ${Template.btns}" class="fieldset3">
+                    <legend>버튼정보 [<span th:text="${index.index +1}"></span> / <span th:text="${index.size}"></span>]</legend>
+                    <ul>
+                        <li>n (버튼명) : <span th:text="${btnInfo.n}"></span></li>
+                        <li>t (버튼유형) : <span th:text="${btnInfo.t}"></span></li>
+                        <li>u1 (버튼링크1) : <span th:text="${btnInfo.u1}"></span></li>
+                        <li>u2 (버튼링크2) : <span th:text="${Template.template}"></span></li>
+                    </ul>
+                </fieldset>
+            </fieldset>
+        </fieldset>
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
+<title>팝빌 SDK SpringBoot Example.</title>
+</head>
+<body>
+    <div id="content">
+        <p class="heading1">Response</p>
+        <br />
+        <fieldset class="fieldset1">
+            <legend th:text="${#request?.requestURL}"></legend>
+            <ul>
+                <li>JobID (작업아이디) : <span th:text="${JobState.jobID}"></span></li>
+                <li>jobState (수집상태) : <span th:text="${JobState.jobState}"></span></li>
+                <li>queryType (수집유형) : <span th:text="${JobState.queryType}"></span></li>
+                <li>queryDateType (일자유형) : <span th:text="${JobState.queryDateType}"></span></li>
+                <li>queryStDate (시작일자) : <span th:text="${JobState.queryStDate}"></span></li>
+                <li>queryEnDate (종료일자) : <span th:text="${JobState.queryEnDate}"></span></li>
+                <li>errorCode (오류코드) : <span th:text="${JobState.errorCode}"></span></li>
+                <li>errorReason (오류메시지) : <span th:text="${JobState.errorReason}"></span></li>
+                <li>jobStartDT (작업 시작일시) : <span th:text="${JobState.jobStartDT}"></span></li>
+                <li>jobEndDT (작업 종료일시) : <span th:text="${JobState.jobEndDT}"></span></li>
+                <li>collectCount (수집개수) : <span th:text="${JobState.collectCount}"></span></li>
+                <li>regDT (수집 요청일시) : <span th:text="${JobState.regDT}"></span></li>
+            </ul>
+        </fieldset>
+    </div>
+</body>
+</html>

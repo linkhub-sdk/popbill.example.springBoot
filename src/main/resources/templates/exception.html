@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/css/main.css" media="screen"/>
+    <title>팝빌 SDK SpringBoot Example.</title>
+</head>
+<body>
+<div id="content">
+    <p class="heading1">Exception Occurred</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend th:text="${#request?.requestURL}"></legend>
+        <ul>
+            <li>Exception.code : <span th:text="${Exception.code}"></span></li>
+            <li>Exception.message : <span th:text="${Exception.message}"></span></li>
+        </ul>
+    </fieldset>
+</div>
+</body>
+</html>

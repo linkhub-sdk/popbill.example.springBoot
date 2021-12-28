@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
+<title>팝빌 SDK SpringBoot Example.</title>
+</head>
+<body>
+    <div id="content">
+        <p class="heading1">Response</p>
+        <br />
+        <fieldset class="fieldset1">
+            <legend th:text="${#request?.requestURL}"></legend>
+            <fieldset th:each="AutoDenyInfo : ${AutoDenyList}" class="fieldset2">
+                <ul>
+                    <li>number(수신거부번호) : <span th:text="${AutoDenyInfo.number}"></span></li>
+                    <li>regDT(등록일시) : <span th:text="${AutoDenyInfo.regDT}"></span></li>
+                </ul>
+            </fieldset>
+        </fieldset>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1688 @@
+package com.popbill.example.controller;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.popbill.api.AttachedFile;
+import com.popbill.api.ChargeInfo;
+import com.popbill.api.EmailSendConfig;
+import com.popbill.api.PopbillException;
+import com.popbill.api.Response;
+import com.popbill.api.SMTIssueResponse;
+import com.popbill.api.StatementService;
+import com.popbill.api.statement.Statement;
+import com.popbill.api.statement.StatementDetail;
+import com.popbill.api.statement.StatementInfo;
+import com.popbill.api.statement.StatementLog;
+import com.popbill.api.statement.StmtSearchResult;
+
+@Controller
+@RequestMapping(value = "StatementService")
+public class StatementServiceController {
+
+    @Autowired
+    private StatementService statementService;
+
+    // 팝빌회원 사업자번호
+    private String testCorpNum = "1234567890";
+
+    // 팝빌회원 아이디
+    private String testUserID = "testkorea";
+
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String home(Locale locale, Model model) {
+        return "Statement/index";
+    }
+
+    @RequestMapping(value = "checkMgtKeyInUse", method = RequestMethod.GET)
+    public String checkMgtKeyInUse(Model m) {
+        /*
+         * 파트너가 전자명세서 관리 목적으로 할당하는 문서번호의 사용여부를 확인합니다.
+         * - 최대 24자, 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+         * - https://docs.popbill.com/statement/java/api#CheckMgtKeyInUse
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        String mgtKey = "20210701-01";
+        String isUseStr;
+
+        try {
+            boolean IsUse = statementService.checkMgtKeyInUse(testCorpNum, itemCode, mgtKey);
+
+            isUseStr = (IsUse) ? "사용중" : "미사용중";
+
+            m.addAttribute("Result", isUseStr);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "result";
+    }
+
+    @RequestMapping(value = "registIssue", method = RequestMethod.GET)
+    public String registIssue(Model m) {
+        /*
+         * 작성된 전자명세서 데이터를 팝빌에 저장과 동시에 발행하여, "발행완료" 상태로 처리합니다.
+         * - 팝빌 사이트 [전자명세서] > [환경설정] > [전자명세서 관리] 메뉴의 발행시 자동승인 옵션 설정을 통해 전자명세서를 "발행완료" 상태가 아닌 "승인대기" 상태로 발행 처리 할 수 있습니다.
+         * - https://docs.popbill.com/statement/java/api#RegistIssue
+         */
+
+        String Memo = "전자명세서 즉시발행 메모";
+        
+        // 발행안내 메일 제목, 미기재시 기본양식으로 메일 전송 
+        String emailSubject = "";
+        
+        //  전자명세서 정보 객체
+        Statement statement = new Statement();
+
+        // [필수] 작성일자, 형태 yyyyMMdd
+        statement.setWriteDate("20211123");
+
+        // [필수] {영수, 청구} 중 기재
+        statement.setPurposeType("영수");
+
+        // [필수] {과세, 영세, 면세} 중 기재
+        statement.setTaxType("과세");
+
+        // 맞춤양식코드, 미기재시 기본양식으로 처리
+        statement.setFormCode("");
+
+        // [필수] 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        statement.setItemCode((short) 121);
+
+        // [필수] 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        statement.setMgtKey("20211123-003");
+
+
+        /*********************************************************************
+         *                              발신자 정보
+         *********************************************************************/
+
+        // [필수] 발신자 사업자번호
+        statement.setSenderCorpNum("1234567890");
+
+        // [필수] 발신자 상호
+        statement.setSenderCorpName("발신자 상호");
+
+        // 발신자 주소
+        statement.setSenderAddr("발신자 주소");
+
+        // [필수] 발신자 대표자 성명
+        statement.setSenderCEOName("발신자 대표자 성명");
+
+        // 발신자 종사업장 식별번호, 숫자 4자리, 필요시 기재
+        statement.setSenderTaxRegID("");
+
+        // 발신자 종목
+        statement.setSenderBizClass("업종");
+
+        // 발신자 업태
+        statement.setSenderBizType("업태");
+
+        // 발신자 담당자명
+        statement.setSenderContactName("발신자 담당자명");
+
+        // 발신자 담당자 메일주소
+        statement.setSenderEmail("test@test.com");
+
+        // 발신자 담당자 연락처
+        statement.setSenderTEL("070-7070-0707");
+
+        // 발신자 담당자 휴대폰번호
+        statement.setSenderHP("010-000-2222");
+
+
+        /*********************************************************************
+         *                          수신자 정보
+         *********************************************************************/
+
+        // [필수] 수신자 사업자번호
+        statement.setReceiverCorpNum("8888888888");
+
+        // [필수] 수신자 상호
+        statement.setReceiverCorpName("수신자 상호");
+
+        // [필수] 수신자 대표자명
+        statement.setReceiverCEOName("수신자 대표자 성명");
+
+        // 수신자 주소
+        statement.setReceiverAddr("수신자 주소");
+
+        // 수신자 종목
+        statement.setReceiverBizClass("수신자 종목");
+
+        // 수신자 업태
+        statement.setReceiverBizType("수신자 업태");
+
+        // 수신자 담당자명
+        statement.setReceiverContactName("수신자 담당자명");
+
+        // 수신자 메일주소
+        // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        // 실제 거래처의 메일주소가 기재되지 않도록 주의
+        statement.setReceiverEmail("");
+
+
+        /*********************************************************************
+         *                          전자명세서 기재정보
+         *********************************************************************/
+
+        // 공급가액 합계
+        statement.setSupplyCostTotal("400000");
+
+        // 세액 합계
+        statement.setTaxTotal("40000");
+
+        // 합계금액.  공급가액 + 세액
+        statement.setTotalAmount("440000");
+
+        // 기재상 일련번호 항목
+        statement.setSerialNum("123");
+
+        // 기재상 비고 항목
+        statement.setRemark1("비고1");
+        statement.setRemark2("비고2");
+        statement.setRemark3("비고3");
+
+        // 사업자등록증 이미지 첨부여부
+        statement.setBusinessLicenseYN(false);
+
+        // 통장사본 이미지 첨부여부
+        statement.setBankBookYN(false);
+
+
+        /*********************************************************************
+         *                          전자명세서 품목항목
+         *********************************************************************/
+
+        statement.setDetailList(new ArrayList<StatementDetail>());
+
+        StatementDetail detail = new StatementDetail();        // 상세항목(품목) 배열
+
+        detail.setSerialNum((short) 1);                    // 일련번호, 1부터 순차기재
+        detail.setItemName("품명");                        // 품목명
+        detail.setPurchaseDT("20211123");                // 거래일자
+        detail.setQty("1");                                // 수량
+        detail.setSupplyCost("200000");                    // 공급가액
+        detail.setTax("20000");                            // 세액
+
+        statement.getDetailList().add(detail);
+
+        detail = new StatementDetail();                    // 상세항목(품목) 배열
+        detail.setSerialNum((short) 2);                    // 일련번호 1부터 순차기재
+        detail.setItemName("품명");                        // 품목명
+        detail.setPurchaseDT("20211123");                // 거래일자
+        detail.setQty("1");                                // 수량
+        detail.setSupplyCost("200000");                    // 공급가액
+        detail.setTax("20000");                            // 세액
+
+        statement.getDetailList().add(detail);
+
+
+        /*********************************************************************
+         *                           전자명세서 추가속성
+         * - 추가속성에 관한 자세한 사항은 "[전자명세서 API 연동매뉴얼] > 5.2. 기본양식 추가속성 테이블"을 참조하시기 바랍니다.
+         *********************************************************************/
+
+        Map<String, String> propertyBag = new HashMap<String, String>();
+
+        propertyBag.put("Balance", "15000");            // 전잔액
+        propertyBag.put("Deposit", "5000");                // 입금액
+        propertyBag.put("CBalance", "20000");            // 현잔액
+
+        statement.setPropertyBag(propertyBag);
+
+        try {
+            SMTIssueResponse response = statementService.registIssue(testCorpNum, statement, Memo, testUserID, emailSubject);
+
+            m.addAttribute("Response", response);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "Statement/issueResponse";
+    }
+
+    @RequestMapping(value = "register", method = RequestMethod.GET)
+    public String register(Model m) {
+        /*
+         * 작성된 전자명세서 데이터를 팝빌에 저장합니다.
+         * - https://docs.popbill.com/statement/java/api#Register
+         */
+
+        //  전자명세서 정보 객체
+        Statement statement = new Statement();
+
+        // [필수] 작성일자, 형태 yyyyMMdd
+        statement.setWriteDate("20211123");
+
+        // [필수] {영수, 청구} 중 기재
+        statement.setPurposeType("영수");
+
+        // [필수] {과세, 영세, 면세} 중 기재
+        statement.setTaxType("과세");
+
+        // 맞춤양식코드, 미기재시 기본양식으로 처리
+        statement.setFormCode("");
+
+        // [필수] 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        statement.setItemCode((short) 121);
+
+        // [필수] 문서번호, 최대 24자리 영문 대소문자, 숫자, 특수문자('-','_')만 이용 가능
+        statement.setMgtKey("20211123-Register002");
+
+
+        /*********************************************************************
+         *                              발신자 정보
+         *********************************************************************/
+
+        // [필수] 발신자 사업자번호
+        statement.setSenderCorpNum("1234567890");
+
+        // [필수] 발신자 상호
+        statement.setSenderCorpName("발신자 상호");
+
+        // 발신자 주소
+        statement.setSenderAddr("발신자 주소");
+
+        // [필수] 발신자 대표자 성명
+        statement.setSenderCEOName("발신자 대표자 성명");
+
+        // 발신자 종사업장 식별번호, 숫자 4자리, 필요시 기재
+        statement.setSenderTaxRegID("");
+
+        // 발신자 종목
+        statement.setSenderBizClass("업종");
+
+        // 발신자 업태
+        statement.setSenderBizType("업태");
+
+        // 발신자 담당자명
+        statement.setSenderContactName("발신자 담당자명");
+
+        // 발신자 담당자 메일주소
+        statement.setSenderEmail("test@test.com");
+
+        // 발신자 담당자 연락처
+        statement.setSenderTEL("070-7070-0707");
+
+        // 발신자 담당자 휴대폰번호
+        statement.setSenderHP("010-000-2222");
+
+
+        /*********************************************************************
+         *                          수신자 정보
+         *********************************************************************/
+
+        // [필수] 수신자 사업자번호
+        statement.setReceiverCorpNum("8888888888");
+
+        // [필수] 수신자 상호
+        statement.setReceiverCorpName("수신자 상호");
+
+        // [필수] 수신자 대표자명
+        statement.setReceiverCEOName("수신자 대표자 성명");
+
+        // 수신자 주소
+        statement.setReceiverAddr("수신자 주소");
+
+        // 수신자 종목
+        statement.setReceiverBizClass("수신자 종목");
+
+        // 수신자 업태
+        statement.setReceiverBizType("수신자 업태");
+
+        // 수신자 담당자명
+        statement.setReceiverContactName("수신자 담당자명");
+
+        // 수신자 메일주소
+        // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        // 실제 거래처의 메일주소가 기재되지 않도록 주의
+        statement.setReceiverEmail("test@receiver.com");
+
+
+        /*********************************************************************
+         *                          전자명세서 기재정보
+         *********************************************************************/
+
+        // 공급가액 합계
+        statement.setSupplyCostTotal("400000");
+
+        // 세액 합계
+        statement.setTaxTotal("40000");
+
+        // 합계금액.  공급가액 + 세액
+        statement.setTotalAmount("440000");
+
+        // 기재상 일련번호 항목
+        statement.setSerialNum("123");
+
+        // 기재상 비고 항목
+        statement.setRemark1("비고1");
+        statement.setRemark2("비고2");
+        statement.setRemark3("비고3");
+
+        // 사업자등록증 이미지 첨부여부
+        statement.setBusinessLicenseYN(false);
+
+        // 통장사본 이미지 첨부여부
+        statement.setBankBookYN(false);
+
+
+        /*********************************************************************
+         *                          전자명세서 품목항목
+         *********************************************************************/
+
+        statement.setDetailList(new ArrayList<StatementDetail>());
+
+        StatementDetail detail = new StatementDetail();        // 상세항목(품목) 배열
+
+        detail.setSerialNum((short) 1);                    // 일련번호, 1부터 순차기재
+        detail.setItemName("품명");                        // 품목명
+        detail.setPurchaseDT("20211123");                // 거래일자
+        detail.setQty("1");                                // 수량
+        detail.setSupplyCost("200000");                    // 공급가액
+        detail.setTax("20000");                            // 세액
+
+        statement.getDetailList().add(detail);
+
+        detail = new StatementDetail();                    // 상세항목(품목) 배열
+        detail.setSerialNum((short) 2);                    // 일련번호 1부터 순차기재
+        detail.setItemName("품명");                        // 품목명
+        detail.setPurchaseDT("20211123");                // 거래일자
+        detail.setQty("1");                                // 수량
+        detail.setSupplyCost("200000");                    // 공급가액
+        detail.setTax("20000");                            // 세액
+
+        statement.getDetailList().add(detail);
+
+
+        /*********************************************************************
+         *                           전자명세서 추가속성
+         * - 추가속성에 관한 자세한 사항은 "[전자명세서 API 연동매뉴얼] > 5.2. 기본양식 추가속성 테이블"을 참조하시기 바랍니다.
+         *********************************************************************/
+
+        Map<String, String> propertyBag = new HashMap<String, String>();
+
+        propertyBag.put("Balance", "15000");            // 전잔액
+        propertyBag.put("Deposit", "5000");                // 입금액
+        propertyBag.put("CBalance", "20000");            // 현잔액
+
+        statement.setPropertyBag(propertyBag);
+
+
+        try {
+
+            Response response = statementService.register(testCorpNum, statement);
+
+            m.addAttribute("Response", response);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "response";
+    }
+
+    @RequestMapping(value = "update", method = RequestMethod.GET)
+    public String update(Model m) {
+        /*
+         * "임시저장" 상태의 전자명세서를 수정합니다.건의 전자명세서를 [수정]합니다.
+         * - https://docs.popbill.com/statement/java/api#Update
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        String mgtKey = "20211123-Register001";
+
+        //  전자명세서 정보 객체
+        Statement statement = new Statement();
+
+        // [필수] 작성일자, 형태 yyyyMmdd
+        statement.setWriteDate("20211123");
+
+        // [필수] {영수, 청구} 중 기재
+        statement.setPurposeType("영수");
+
+        // [필수] {과세, 영세, 면세} 중 기재
+        statement.setTaxType("과세");
+
+        // 맞춤양식코드, 미기재시 기본양식으로 처리
+        statement.setFormCode("");
+
+        // [필수] 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        statement.setItemCode((short) 121);
+
+        // [필수] 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        statement.setMgtKey(mgtKey);
+
+
+        /*********************************************************************
+         *                              발신자 정보
+         *********************************************************************/
+
+        // [필수] 발신자 사업자번호
+        statement.setSenderCorpNum("1234567890");
+
+        // [필수] 발신자 상호
+        statement.setSenderCorpName("발신자 상호");
+
+        // 발신자 주소
+        statement.setSenderAddr("발신자 주소_수정");
+
+        // [필수] 발신자 대표자 성명
+        statement.setSenderCEOName("발신자 대표자 성명_수정");
+
+        // 발신자 종사업장 식별번호, 숫자 4자리, 필요시 기재
+        statement.setSenderTaxRegID("");
+
+        // 발신자 종목
+        statement.setSenderBizClass("업종");
+
+        // 발신자 업태
+        statement.setSenderBizType("업태");
+
+        // 발신자 담당자명
+        statement.setSenderContactName("발신자 담당자명");
+
+        // 발신자 담당자 메일주소
+        statement.setSenderEmail("test@test.com");
+
+        // 발신자 담당자 연락처
+        statement.setSenderTEL("070-7070-0707");
+
+        // 발신자 담당자 휴대폰번호
+        statement.setSenderHP("010-000-2222");
+
+
+        /*********************************************************************
+         *                          수신자 정보
+         *********************************************************************/
+
+        // [필수] 수신자 사업자번호
+        statement.setReceiverCorpNum("8888888888");
+
+        // [필수] 수신자 상호
+        statement.setReceiverCorpName("수신자 상호");
+
+        // [필수] 수신자 대표자명
+        statement.setReceiverCEOName("수신자 대표자 성명");
+
+        // 수신자 주소
+        statement.setReceiverAddr("수신자 주소");
+
+        // 수신자 종목
+        statement.setReceiverBizClass("수신자 종목");
+
+        // 수신자 업태
+        statement.setReceiverBizType("수신자 업태");
+
+        // 수신자 담당자명
+        statement.setReceiverContactName("수신자 담당자명");
+
+        // 수신자 메일주소
+        // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        // 실제 거래처의 메일주소가 기재되지 않도록 주의
+        statement.setReceiverEmail("test@receiver.com");
+
+
+        /*********************************************************************
+         *                          전자명세서 기재정보
+         *********************************************************************/
+
+        // 공급가액 합계
+        statement.setSupplyCostTotal("400000");
+
+        // 세액 합계
+        statement.setTaxTotal("40000");
+
+        // 합계금액.  공급가액 + 세액
+        statement.setTotalAmount("440000");
+
+        // 기재상 일련번호 항목
+        statement.setSerialNum("123");
+
+        // 기재상 비고 항목
+        statement.setRemark1("비고1");
+        statement.setRemark2("비고2");
+        statement.setRemark3("비고3");
+
+        // 사업자등록증 이미지 첨부여부
+        statement.setBusinessLicenseYN(false);
+
+        // 통장사본 이미지 첨부여부
+        statement.setBankBookYN(false);
+
+
+        /*********************************************************************
+         *                          전자명세서 품목항목
+         *********************************************************************/
+
+        statement.setDetailList(new ArrayList<StatementDetail>());
+
+        StatementDetail detail = new StatementDetail();        // 상세항목(품목) 배열
+
+        detail.setSerialNum((short) 1);                    // 일련번호, 1부터 순차기재
+        detail.setItemName("품명");                        // 품목명
+        detail.setPurchaseDT("20211122");                // 거래일자
+        detail.setQty("1");                                // 수량
+        detail.setSupplyCost("200000");                    // 공급가액
+        detail.setTax("20000");                            // 세액
+
+        statement.getDetailList().add(detail);
+
+        detail = new StatementDetail();                    // 상세항목(품목) 배열
+        detail.setSerialNum((short) 2);                    // 일련번호 1부터 순차기재
+        detail.setItemName("품명");                        // 품목명
+        detail.setPurchaseDT("20211122");                // 거래일자
+        detail.setQty("1");                                // 수량
+        detail.setSupplyCost("200000");                    // 공급가액
+        detail.setTax("20000");                            // 세액
+
+        statement.getDetailList().add(detail);
+
+
+        /*********************************************************************
+         *                           전자명세서 추가속성
+         * - 추가속성에 관한 자세한 사항은 "[전자명세서 API 연동매뉴얼] > 5.2. 기본양식 추가속성 테이블"을 참조하시기 바랍니다.
+         *********************************************************************/
+
+        Map<String, String> propertyBag = new HashMap<String, String>();
+
+        propertyBag.put("Balance", "15000");            // 전잔액
+        propertyBag.put("Deposit", "5000");                // 입금액
+        propertyBag.put("CBalance", "20000");            // 현잔액
+
+        statement.setPropertyBag(propertyBag);
+
+        try {
+
+            Response response = statementService.update(testCorpNum, itemCode,
+                    mgtKey, statement);
+
+            m.addAttribute("Response", response);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "response";
+    }
+
+    @RequestMapping(value = "issue", method = RequestMethod.GET)
+    public String issue(Model m) {
+        /*
+         * "임시저장" 상태의 전자명세서를 발행하여, "발행완료" 상태로 처리합니다.
+         * - 팝빌 사이트 [전자명세서] > [환경설정] > [전자명세서 관리] 메뉴의 발행시 자동승인 옵션 설정을 통해 전자명세서를 "발행완료" 상태가 아닌 "승인대기" 상태로 발행 처리 할 수 있습니다.
+         * - 전자명세서 발행 함수 호출시 포인트가 과금되며, 수신자에게 발행 안내 메일이 발송됩니다.
+         * - https://docs.popbill.com/statement/java/api#StmIssue
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        String mgtKey = "20211123-Register001";
+
+        // 메모
+        String memo = "발행메모";
+
+        try {
+
+            Response response = statementService.issue(testCorpNum, itemCode,
+                    mgtKey, memo);
+            
+            m.addAttribute("Response", response);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "response";
+    }
+
+    @RequestMapping(value = "cancelIssue", method = RequestMethod.GET)
+    public String cancelIssue(Model m) {
+        /*
+         * 발신자가 발행한 전자명세서를 발행취소합니다.
+         * - https://docs.popbill.com/statement/java/api#Cancel
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        String mgtKey = "20211123-Register001";
+
+        // 메모
+        String memo = "발행취소 메모";
+
+        try {
+
+            Response response = statementService.cancel(testCorpNum, itemCode,
+                    mgtKey, memo);
+
+            m.addAttribute("Response", response);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "response";
+    }
+
+    @RequestMapping(value = "delete", method = RequestMethod.GET)
+    public String delete(Model m) {
+        /*
+         * 삭제 가능한 상태의 전자명세서를 삭제합니다.
+         * - 삭제 가능한 상태: "임시저장", "취소", "승인거부", "발행취소"
+         * - 전자명세서를 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
+         * - https://docs.popbill.com/statement/java/api#Delete
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        String mgtKey = "20211123-Register001";
+
+        try {
+
+            Response response = statementService.delete(testCorpNum, itemCode, mgtKey);
+
+            m.addAttribute("Response", response);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "response";
+    }
+
+    @RequestMapping(value = "getInfo", method = RequestMethod.GET)
+    public String getInfo(Model m) {
+        /*
+         * 전자명세서의 1건의 상태 및 요약정보 확인합니다.
+         * - https://docs.popbill.com/statement/java/api#GetInfo
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        String mgtKey = "20211123-003";
+
+        try {
+
+            StatementInfo statementInfo = statementService.getInfo(testCorpNum,
+                    itemCode, mgtKey);
+
+            m.addAttribute("StatementInfo", statementInfo);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "Statement/StatementInfo";
+    }
+
+    @RequestMapping(value = "getInfos", method = RequestMethod.GET)
+    public String getInfos(Model m) {
+        /*
+         * 다수건의 전자명세서 상태/요약 정보를 확인합니다.
+         * - https://docs.popbill.com/statement/java/api#GetInfos
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 전자명세서 문서번호 배열(최대 1000건)
+        String[] MgtKeyList = new String[]{"20211123-003", "20211123-001", "20211123-002"};
+
+        try {
+
+            StatementInfo[] statementInfos = statementService.getInfos(testCorpNum,
+                    itemCode, MgtKeyList);
+
+            m.addAttribute("StatementInfos", statementInfos);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "Statement/StatementInfo";
+    }
+
+    @RequestMapping(value = "getDetailInfo", method = RequestMethod.GET)
+    public String getDetailInfo(Model m) {
+        /*
+         * 전자명세서 1건의 상세정보 확인합니다.
+         * - https://docs.popbill.com/statement/java/api#GetDetailInfo
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        String mgtKey = "20211123-003";
+
+        try {
+
+            Statement statement = statementService.getDetailInfo(testCorpNum,
+                    itemCode, mgtKey);
+
+            m.addAttribute("Statement", statement);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "Statement/Statement";
+    }
+
+    @RequestMapping(value = "search", method = RequestMethod.GET)
+    public String search(Model m) {
+        /*
+         * 검색조건에 해당하는 세금계산서를 조회합니다. (조회기간 단위 : 최대 6개월)
+         * - https://docs.popbill.com/statement/java/api#Search
+         */
+
+        // 일자유형, R-등록일자, W-작성일자, I-발행일자
+        String DType = "W";
+
+        // 시작일자, 날짜형식(yyyyMMdd)
+        String SDate = "20211101";
+
+        // 종료일자, 날짜형식(yyyyMMdd)
+        String EDate = "20211123";
+
+        // 전자명세서 상태코드 배열, 2,3번째 자리에 와일드카드(*) 사용 가능
+        String[] State = {"100", "2**", "3**", "4**"};
+
+        // 전자명세서 코드, 121-명세서, 122-청구서, 123-견적서, 124-발주서, 125-입금표, 126-영수증
+        int[] ItemCode = {121, 122, 123, 124, 125, 126};
+
+        // 통합검색어, 거래처 상호명 또는 거래처 사업자번호로 조회, 공백처리시 전체조회
+        String QString = "";
+
+        // 페이지 번호
+        int Page = 1;
+
+        // 페이지당 목록개수, 최대 1000건
+        int PerPage = 20;
+
+        // 정렬방향, A-오름차순,  D-내림차순
+        String Order = "D";
+
+        try {
+
+            StmtSearchResult searchResult = statementService.search(testCorpNum,
+                    DType, SDate, EDate, State, ItemCode, QString, Page, PerPage, Order);
+
+            m.addAttribute("SearchResult", searchResult);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "Statement/SearchResult";
+    }
+
+    @RequestMapping(value = "getLogs", method = RequestMethod.GET)
+    public String getLogs(Model m) {
+        /*
+         * 전자명세서의 상태에 대한 변경이력을 확인합니다.
+         * - https://docs.popbill.com/statement/java/api#GetLogs
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        String mgtKey = "20211123-003";
+
+        try {
+
+            StatementLog[] statementLogs = statementService.getLogs(testCorpNum,
+                    itemCode, mgtKey);
+
+            m.addAttribute("StatementLogs", statementLogs);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "Statement/StatementLog";
+    }
+
+    @RequestMapping(value = "getURL", method = RequestMethod.GET)
+    public String getURL(Model m) {
+        /*
+         * 로그인 상태로 팝빌 사이트의 전자명세서 문서함 메뉴에 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://docs.popbill.com/statement/java/api#GetURL
+         */
+
+        // TBOX : 임시문서함 , SBOX : 매출문서함
+        String TOGO = "SBOX";
+
+        try {
+
+            String url = statementService.getURL(testCorpNum, TOGO);
+
+            m.addAttribute("Result", url);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "result";
+    }
+
+    @RequestMapping(value = "getPopUpURL", method = RequestMethod.GET)
+    public String getPopUpURL(Model m) {
+        /*
+         * 팝빌 사이트와 동일한 전자명세서 1건의 상세 정보 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://docs.popbill.com/statement/java/api#GetPopUpURL
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 전자명세서 문서번호
+        String mgtKey = "20211123-003";
+
+        try {
+
+            String url = statementService.getPopUpURL(testCorpNum, itemCode,
+                    mgtKey);
+
+            m.addAttribute("Result", url);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "result";
+    }
+    
+    @RequestMapping(value = "getViewURL", method = RequestMethod.GET)
+    public String getViewURL(Model m) {
+        /*
+         * 팝빌 사이트와 동일한 전자명세서 1건의 상세 정보 페이지(사이트 상단, 좌측 메뉴 및 버튼 제외)의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://docs.popbill.com/statement/java/api#GetViewURL
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 전자명세서 문서번호
+        String mgtKey = "20211123-003";
+
+        try {
+
+            String url = statementService.getViewURL(testCorpNum, itemCode,
+                    mgtKey);
+
+            m.addAttribute("Result", url);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "result";
+    }
+    
+    
+    @RequestMapping(value = "getPrintURL", method = RequestMethod.GET)
+    public String getPrintURL(Model m) {
+        /*
+         * 전자명세서 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환하며, 페이지내에서 인쇄 설정값을 "공급자" / "공급받는자" / "공급자+공급받는자"용 중 하나로 지정할 수 있습니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://docs.popbill.com/statement/java/api#GetPrintURL
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 전자명세서 문서번호
+        String mgtKey = "20211123-003";
+
+        try {
+
+            String url = statementService.getPrintURL(testCorpNum, itemCode,
+                    mgtKey);
+
+            m.addAttribute("Result", url);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "result";
+    }
+
+    @RequestMapping(value = "getEPrintURL", method = RequestMethod.GET)
+    public String getEPrintURL(Model m) {
+        /*
+         * "공급받는자" 용 세금계산서 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://docs.popbill.com/statement/java/api#GetEPrintURL
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 전자명세서 문서번호
+        String mgtKey = "20211123-003";
+
+        try {
+
+            String url = statementService.getEPrintURL(testCorpNum, itemCode,
+                    mgtKey);
+
+            m.addAttribute("Result", url);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "result";
+    }
+
+    @RequestMapping(value = "getMassPrintURL", method = RequestMethod.GET)
+    public String getMassPrintURL(Model m) {
+        /*
+         * 다수건의 전자명세서를 인쇄하기 위한 페이지의 팝업 URL을 반환합니다. (최대 100건)
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://docs.popbill.com/statement/java/api#GetMassPrintURL
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 문서번호 배열, 최대 100건
+        String[] mgtKeyList = new String[]{"20211123-003", "20211123-002", "20211123-001", "20211123-004"};
+
+        try {
+
+            String url = statementService.getMassPrintURL(testCorpNum, itemCode,
+                    mgtKeyList);
+
+            m.addAttribute("Result", url);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "result";
+    }
+
+    @RequestMapping(value = "getMailURL", method = RequestMethod.GET)
+    public String getMailURL(Model m) {
+        /*
+         * 안내메일과 관련된 전자명세서를 확인 할 수 있는 상세 페이지의 팝업 URL을 반환하며, 해당 URL은 메일 하단의 파란색 버튼의 링크와 같습니다.
+         * - 함수 호출로 반환 받은 URL에는 유효시간이 없습니다.
+         * - https://docs.popbill.com/statement/java/api#GetMailURL
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 전자명세서 문서번호
+        String mgtKey = "20211123-003";
+
+        try {
+            String url = statementService.getMailURL(testCorpNum, itemCode, mgtKey);
+
+            m.addAttribute("Result", url);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "result";
+    }
+
+    @RequestMapping(value = "getSealURL", method = RequestMethod.GET)
+    public String getSealURL(Model m) {
+        /*
+         * 전자명세서에 첨부할 인감, 사업자등록증, 통장사본을 등록하는 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://docs.popbill.com/statement/java/api#GetSealURL
+         */
+
+        try {
+
+            String url = statementService.getSealURL(testCorpNum, testUserID);
+
+            m.addAttribute("Result", url);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "result";
+    }
+
+    @RequestMapping(value = "attachFile", method = RequestMethod.GET)
+    public String attachFile(Model m) {
+        /*
+         * "임시저장" 상태의 명세서에 1개의 파일을 첨부합니다. (최대 5개)
+         * - https://docs.popbill.com/statement/java/api#AttachFile
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        String mgtKey = "20211123-Register002";
+
+        // 첨부파일 표시명
+        String displayName = "첨부파일.jpg";
+
+        //첨부할 파일의 InputStream. 예제는 resource에 테스트파일을 참조함.
+        //FileInputStream으로 처리하는 것을 권함.
+        InputStream stream = getClass().getClassLoader().getResourceAsStream("static/image/test.jpg");
+    
+        try {
+
+            Response response = statementService.attachFile(testCorpNum, itemCode,
+                    mgtKey, displayName, stream);
+
+            m.addAttribute("Response", response);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        } finally {
+            if (stream != null)
+                try {
+                    stream.close();
+                } catch (IOException e) {
+                }
+        }
+
+
+        return "response";
+    }
+
+    @RequestMapping(value = "deleteFile", method = RequestMethod.GET)
+    public String deleteFile(Model m) {
+        /*
+         * "임시저장" 상태의 전자명세서에 첨부된 1개의 파일을 삭제합니다.
+         * - 파일을 식별하는 파일아이디는 첨부파일 목록(GetFiles API) 의 응답항목 중 파일아이디(AttachedFile) 값을 통해 확인할 수 있습니다.
+         * - https://docs.popbill.com/statement/java/api#DeleteFile
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        String mgtKey = "20211123-Register002";
+
+        // getFiles()로 해당 파일의 attachedFile 필드값 기재.
+        String FileID = "21C39C6C-59AD-4E4F-A44A-D0C5F06F3C41.PBF";
+
+        try {
+
+            Response response = statementService.deleteFile(testCorpNum, itemCode,
+                    mgtKey, FileID);
+
+            m.addAttribute("Response", response);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "response";
+    }
+
+    @RequestMapping(value = "getFiles", method = RequestMethod.GET)
+    public String getFiles(Model m) {
+        /*
+         * 전자명세서에 첨부된 파일목록을 확인합니다.
+         * - 응답항목 중 파일아이디(AttachedFile) 항목은 파일삭제(DeleteFile API) 호출시 이용할 수 있습니다.
+         * - https://docs.popbill.com/statement/java/api#GetFiles
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        String mgtKey = "20211123-Register002";
+
+        try {
+
+            AttachedFile[] attachedFiles = statementService.getFiles(testCorpNum,
+                    itemCode, mgtKey);
+
+            m.addAttribute("AttachedFiles", attachedFiles);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "Statement/AttachedFile";
+    }
+
+    @RequestMapping(value = "sendEmail", method = RequestMethod.GET)
+    public String sendEmail(Model m) {
+        /*
+         * "승인대기", "발행완료" 상태의 전자명세서와 관련된 발행 안내 메일을 재전송 합니다.
+         * - https://docs.popbill.com/statement/java/api#SendEmail
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 전자명세서 문서번호
+        String mgtKey = "20210701-001";
+
+        // 수신자 이메일주소
+        String receiver = "test@test.com";
+
+        try {
+
+            Response response = statementService.sendEmail(testCorpNum, itemCode,
+                    mgtKey, receiver);
+
+            m.addAttribute("Response", response);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "response";
+    }
+
+    @RequestMapping(value = "sendSMS", method = RequestMethod.GET)
+    public String sendSMS(Model m) {
+        /*
+         * 전자명세서와 관련된 안내 SMS(단문) 문자를 재전송하는 함수로, 팝빌 사이트 [문자·팩스] > [문자] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
+         * - 메시지는 최대 90byte까지 입력 가능하고, 초과한 내용은 자동으로 삭제되어 전송합니다. (한글 최대 45자)
+         * - 함수 호출시 포인트가 과금됩니다.
+         * - https://docs.popbill.com/statement/java/api#SendSMS
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 전자명세서 문서번호
+        String mgtKey = "20210701-001";
+
+        // 발신번호
+        String sender = "07043042991";
+
+        // 수신번호
+        String receiver = "010111222";
+
+        // 문자 전송 내용 (90Byte 초과시 길이가 조정되어 전송)
+        String contents = "전자명세서 문자메시지 전송 테스트입니다.";
+
+        try {
+
+            Response response = statementService.sendSMS(testCorpNum, itemCode,
+                    mgtKey, sender, receiver, contents);
+
+            m.addAttribute("Response", response);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "response";
+    }
+
+    @RequestMapping(value = "sendFAX", method = RequestMethod.GET)
+    public String sendFAX(Model m) {
+        /*
+         * 전자명세서를 팩스로 전송하는 함수로, 팝빌 사이트 [문자·팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
+         * - 함수 호출시 포인트가 과금됩니다.
+         * - https://docs.popbill.com/statement/java/api#SendFAX
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        // 전자명세서 문서번호
+        String mgtKey = "20210701-001";
+
+        // 발신자 번호
+        String sender = "07043042991";
+
+        // 수신자 팩스번호
+        String receiver = "070111222";
+
+        try {
+
+            Response response = statementService.sendFAX(testCorpNum, itemCode,
+                    mgtKey, sender, receiver);
+
+            m.addAttribute("Response", response);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "response";
+    }
+
+    @RequestMapping(value = "FAXSend", method = RequestMethod.GET)
+    public String FAXSend(Model m) {
+        /*
+         * 전자명세서를 팩스로 전송하는 함수로, 팝빌에 데이터를 저장하는 과정이 없습니다.
+         * - 팝빌 사이트 [문자·팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
+         * - 함수 호출시 포인트가 과금됩니다.
+         * - 팩스 발행 요청시 작성한 문서번호는 팩스전송 파일명으로 사용됩니다.
+         * - 팩스 전송결과를 확인하기 위해서는 선팩스 전송 요청 시 반환받은 접수번호를 이용하여 팩스 API의 전송결과 확인 (GetFaxDetail) API를 이용하면 됩니다.
+         * - https://docs.popbill.com/statement/java/api#FAXSend
+         */
+
+        // 팩스전송 발신번호
+        String sendNum = "07043042991";
+
+        // 수신팩스번호
+        String receiveNum = "00111222";
+
+        //  전자명세서 정보 객체
+        Statement statement = new Statement();
+
+        // [필수] 작성일자, 형태 yyyyMmdd
+        statement.setWriteDate("20210701");
+
+        // [필수] {영수, 청구} 중 기재
+        statement.setPurposeType("영수");
+
+        // [필수] {과세, 영세, 면세} 중 기재
+        statement.setTaxType("과세");
+
+        // 맞춤양식코드, 미기재시 기본양식으로 처리
+        statement.setFormCode("");
+
+        // [필수] 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        statement.setItemCode((short) 121);
+
+        // [필수] 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
+        statement.setMgtKey("20191004-100");
+
+
+        /*********************************************************************
+         *                              발신자 정보
+         *********************************************************************/
+
+        // [필수] 발신자 사업자번호
+        statement.setSenderCorpNum("1234567890");
+
+        // [필수] 발신자 상호
+        statement.setSenderCorpName("발신자 상호");
+
+        // 발신자 주소
+        statement.setSenderAddr("발신자 주소");
+
+        // [필수] 발신자 대표자 성명
+        statement.setSenderCEOName("발신자 대표자 성명");
+
+        // 발신자 종사업장 식별번호, 숫자 4자리, 필요시 기재
+        statement.setSenderTaxRegID("");
+
+        // 발신자 종목
+        statement.setSenderBizClass("업종");
+
+        // 발신자 업태
+        statement.setSenderBizType("업태");
+
+        // 발신자 담당자명
+        statement.setSenderContactName("발신자 담당자명");
+
+        // 발신자 담당자 메일주소
+        statement.setSenderEmail("test@test.com");
+
+        // 발신자 담당자 연락처
+        statement.setSenderTEL("070-7070-0707");
+
+        // 발신자 담당자 휴대폰번호
+        statement.setSenderHP("010-000-2222");
+
+
+        /*********************************************************************
+         *                          수신자 정보
+         *********************************************************************/
+
+        // [필수] 수신자 사업자번호
+        statement.setReceiverCorpNum("8888888888");
+
+        // [필수] 수신자 상호
+        statement.setReceiverCorpName("수신자 상호");
+
+        // [필수] 수신자 대표자명
+        statement.setReceiverCEOName("수신자 대표자 성명");
+
+        // 수신자 주소
+        statement.setReceiverAddr("수신자 주소");
+
+        // 수신자 종목
+        statement.setReceiverBizClass("수신자 종목");
+
+        // 수신자 업태
+        statement.setReceiverBizType("수신자 업태");
+
+        // 수신자 담당자명
+        statement.setReceiverContactName("수신자 담당자명");
+
+        // 수신자 메일주소
+        // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        // 실제 거래처의 메일주소가 기재되지 않도록 주의
+        statement.setReceiverEmail("test@receiver.com");
+
+
+        /*********************************************************************
+         *                          전자명세서 기재정보
+         *********************************************************************/
+
+        // 공급가액 합계
+        statement.setSupplyCostTotal("400000");
+
+        // 세액 합계
+        statement.setTaxTotal("40000");
+
+        // 합계금액.  공급가액 + 세액
+        statement.setTotalAmount("440000");
+
+        // 기재상 일련번호 항목
+        statement.setSerialNum("123");
+
+        // 기재상 비고 항목
+        statement.setRemark1("비고1");
+        statement.setRemark2("비고2");
+        statement.setRemark3("비고3");
+
+        // 사업자등록증 이미지 첨부여부
+        statement.setBusinessLicenseYN(false);
+
+        // 통장사본 이미지 첨부여부
+        statement.setBankBookYN(false);
+
+
+        /*********************************************************************
+         *                          전자명세서 품목항목
+         *********************************************************************/
+
+        statement.setDetailList(new ArrayList<StatementDetail>());
+
+        StatementDetail detail = new StatementDetail();        // 상세항목(품목) 배열
+
+        detail.setSerialNum((short) 1);                    // 일련번호, 1부터 순차기재
+        detail.setItemName("품명");                        // 품목명
+        detail.setPurchaseDT("20210701");                // 거래일자
+        detail.setQty("1");                                // 수량
+        detail.setSupplyCost("200000");                    // 공급가액
+        detail.setTax("20000");                            // 세액
+
+        statement.getDetailList().add(detail);
+
+        detail = new StatementDetail();                    // 상세항목(품목) 배열
+        detail.setSerialNum((short) 2);                    // 일련번호 1부터 순차기재
+        detail.setItemName("품명");                        // 품목명
+        detail.setPurchaseDT("20210701");                // 거래일자
+        detail.setQty("1");                                // 수량
+        detail.setSupplyCost("200000");                    // 공급가액
+        detail.setTax("20000");                            // 세액
+
+        statement.getDetailList().add(detail);
+
+
+        /*********************************************************************
+         *                           전자명세서 추가속성
+         * - 추가속성에 관한 자세한 사항은 "[전자명세서 API 연동매뉴얼] >
+         *   5.2. 기본양식 추가속성 테이블"을 참조하시기 바랍니다.
+         *********************************************************************/
+
+        Map<String, String> propertyBag = new HashMap<String, String>();
+
+        propertyBag.put("Balance", "15000");            // 전잔액
+        propertyBag.put("Deposit", "5000");                // 입금액
+        propertyBag.put("CBalance", "20000");            // 현잔액
+
+        statement.setPropertyBag(propertyBag);
+
+
+        try {
+
+            String receiptNum = statementService.FAXSend(testCorpNum, statement,
+                    sendNum, receiveNum);
+
+            m.addAttribute("Result", receiptNum);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+        return "result";
+    }
+
+    @RequestMapping(value = "attachStatement", method = RequestMethod.GET)
+    public String attachStatement(Model m) {
+        /*
+         * 하나의 전자명세서에 다른 전자명세서를 첨부합니다.
+         * - https://docs.popbill.com/statement/java/api#AttachStatement
+         */
+
+        // 전자명세서 코드
+        int itemCode = 121;
+
+        // 전자명세서 문서번호
+        String mgtKey = "20210701-001";
+
+
+        // 첨부할 전자명세서 코드
+        int subItemCode = 121;
+
+        // 첨부할 전자명세서 문서번호
+        String subMgtKey = "20210701-002";
+
+        try {
+
+            Response response = statementService.attachStatement(testCorpNum,
+                    itemCode, mgtKey, subItemCode, subMgtKey);
+
+            m.addAttribute("Response", response);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "response";
+    }
+
+    @RequestMapping(value = "detachStatement", method = RequestMethod.GET)
+    public String detachStatement(Model m) {
+        /*
+         * 하나의 전자명세서에 첨부된 다른 전자명세서를 해제합니다.
+         * - https://docs.popbill.com/statement/java/api#DetachStatement
+         */
+
+        // 전자명세서 코드
+        int itemCode = 121;
+
+        // 전자명세서 문서번호
+        String mgtKey = "20210701-001";
+
+
+        // 첨부해제할 전자명세서 코드
+        int subItemCode = 121;
+
+        // 첨부해제할 전자명세서 문서번호
+        String subMgtKey = "20210701-002";
+
+        try {
+
+            Response response = statementService.detachStatement(testCorpNum,
+                    itemCode, mgtKey, subItemCode, subMgtKey);
+
+            m.addAttribute("Response", response);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "response";
+    }
+
+    @RequestMapping(value = "listEmailConfig", method = RequestMethod.GET)
+    public String listEmailConfig(Model m) {
+        /*
+         * 전자명세서 관련 메일 항목에 대한 발송설정을 확인합니다.
+         * - https://docs.popbill.com/statement/java/api#ListEmailConfig
+         */
+        Map<String, Boolean> emailSendConfigs = new HashMap<String, Boolean>();
+        
+        try {
+
+            EmailSendConfig[] Configs = statementService.listEmailConfig(testCorpNum);
+            
+            for(EmailSendConfig emailSendConfig : Configs) {
+                emailSendConfigs.put(emailSendConfig.getEmailType(), emailSendConfig.getSendYN());
+            }
+            
+            m.addAttribute("EmailSendConfigs", emailSendConfigs);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "Statement/EmailSendConfig";
+    }
+
+    @RequestMapping(value = "updateEmailConfig", method = RequestMethod.GET)
+    public String updateEmailConfig(Model m) {
+        /*
+         * 전자명세서 관련 메일 항목에 대한 발송설정을 수정합니다.
+         * - https://docs.popbill.com/statement/java/api#UpdateEmailConfig
+         *
+         * 메일전송유형
+         * SMT_ISSUE : 수신자에게 전자명세서가 발행 되었음을 알려주는 메일입니다.
+         * SMT_ACCEPT : 발신자에게 전자명세서가 승인 되었음을 알려주는 메일입니다.
+         * SMT_DENY : 발신자에게 전자명세서가 거부 되었음을 알려주는 메일입니다.
+         * SMT_CANCEL : 수신자에게 전자명세서가 취소 되었음을 알려주는 메일입니다.
+         * SMT_CANCEL_ISSUE : 수신자에게 전자명세서가 발행취소 되었음을 알려주는 메일입니다.
+         */
+
+        // 메일 전송 유형
+        String emailType = "SMT_ISSUE";
+
+        // 전송 여부 (true = 전송, false = 미전송)
+        Boolean sendYN = true;
+
+        try {
+
+            Response response = statementService.updateEmailConfig(testCorpNum,
+                    emailType, sendYN);
+
+            m.addAttribute("Response", response);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "response";
+    }
+
+    @RequestMapping(value = "getUnitCost", method = RequestMethod.GET)
+    public String getUnitCost(Model m) {
+        /*
+         * 전자명세서 발행시 과금되는 포인트 단가를 확인합니다.
+         * - https://docs.popbill.com/statement/java/api#GetUnitCost
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        try {
+
+            float unitCost = statementService.getUnitCost(testCorpNum, itemCode);
+
+            m.addAttribute("Result", unitCost);
+
+        } catch (PopbillException e) {
+
+            m.addAttribute("Exception", e);
+
+            return "exception";
+        }
+
+        return "result";
+    }
+
+    @RequestMapping(value = "getChargeInfo", method = RequestMethod.GET)
+    public String chargeInfo(Model m) {
+        /*
+         * 팝빌 전자명세서 API 서비스 과금정보를 확인합니다.
+         * - https://docs.popbill.com/statement/java/api#GetChargeInfo
+         */
+
+        // 명세서 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        int itemCode = 121;
+
+        try {
+
+            ChargeInfo chrgInfo = statementService.getChargeInfo(testCorpNum, itemCode);
+
+            m.addAttribute("ChargeInfo", chrgInfo);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "getChargeInfo";
+    }
+}

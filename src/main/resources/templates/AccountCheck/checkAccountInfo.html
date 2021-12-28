@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
+<title>팝빌 SDK SpringBoot Example.</title>
+</head>
+<body>
+    <div id="content">
+        <p class="heading1">Response</p>
+        <br />
+        <fieldset class="fieldset1">
+            <legend th:text="${#request?.requestURL}"></legend>
+            <ul>
+
+                <li>bankCode (기관코드) : <span th:text="${AccountInfo.bankCode}"></span></li>
+                <li>accountNumber (계좌번호) : <span th:text="${AccountInfo.accountNumber}"></span></li>
+                <li>accountName (예금주 성명) : <span th:text="${AccountInfo.accountName}"></span></li>
+                <li>checkDate (확인일시) : <span th:text="${AccountInfo.checkDate}"></span></li>
+                <li>resultCode (응답코드) : <span th:text="${AccountInfo.resultCode}"></span></li>
+                <li>resultMessage (응답메시지) : <span th:text="${AccountInfo.resultMessage}"></span></li>
+            </ul>
+        </fieldset>
+    </div>
+</body>
+</html>

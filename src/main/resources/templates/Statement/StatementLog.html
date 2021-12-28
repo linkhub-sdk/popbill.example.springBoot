@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
+<title>팝빌 SDK SpringBoot Example.</title>
+</head>
+<body>
+    <div id="content">
+        <p class="heading1">Response</p>
+        <br />
+        <fieldset class="fieldset1">
+            <legend th:text="${#request?.requestURL}"></legend>
+            <fieldset th:each="StatementLog, index : ${StatementLogs}" class="fieldset2">
+                <legend>[<span th:text="${index.index + 1}"></span>/<span th:text="${index.size}"></span>]</legend>
+                <ul>
+                    <li>docLogType(로그타입) : <span th:text="${StatementLog.docLogType}"></span></li>
+                    <li>log(이력정보) : <span th:text="${StatementLog.log}"></span></li>
+                    <li>procType(처리형태) : <span th:text="${StatementLog.procType}"></span></li>
+                    <li>procCorpName(처리회사명) : <span th:text="${StatementLog.procCorpName}"></span></li>
+                    <li>procContactName(처리담당자) : <span th:text="${StatementLog.procContactName}"></span></li>
+                    <li>procMemo(처리메모) : <span th:text="${StatementLog.procMemo}"></span></li>
+                    <li>regDT(등록일시) : <span th:text="${StatementLog.regDT}"></span></li>
+                    <li>ip(아이피) : <span th:text="${StatementLog.ip}"></span></li>
+                </ul>
+            </fieldset>
+        </fieldset>
+    </div>
+</body>
+</html>

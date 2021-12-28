@@ -1,0 +1,47 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
+<title>팝빌 SDK SpringBoot Example.</title>
+</head>
+<body>
+    <div id="content">
+        <p class="heading1">Response</p>
+        <br />
+        <fieldset class="fieldset1">
+            <legend th:text="${#request?.requestURL}"></legend>
+            <fieldset th:if="${SearchResult}" class="fieldset2">
+                <legend>거래내역 검색결과 정보</legend>
+                <ul>
+                    <li>code(응답코드) : <span th:text="${SearchResult.code}"></span></li>
+                    <li>message(응답 메시지) : <span th:text="${SearchResult.message}"></span></li>
+                    <li>total(전체 검색개수) : <span th:text="${SearchResult.total}"></span></li>
+                    <li>perPage(페이지당 목록개수) : <span th:text="${SearchResult.perPage}"></span></li>
+                    <li>pageNum(페이지번호) : <span th:text="${SearchResult.pageNum}"></span></li>
+                    <li>pageCount(페이지수) : <span th:text="${SearchResult.pageCount}"></span></li>
+                    <li>lastScrapDT (최종 조회일시) : <span th:text="${SearchResult.lastScrapDT}"></span></li>
+                </ul>
+
+                <fieldset th:each="SearchInfo, index : ${SearchResult.list}" class="fieldset3">
+                    <legend>거래내역 [<span th:text="${index.index + 1}"></span>/ <span th:text="${index.size}"></span>]</legend>
+                    <ul>
+                        <li>trdate (거래일자) : <span th:text="${SearchInfo.trdate}"></span></li>
+                        <li>trdt (거래일시) : <span th:text="${SearchInfo.trdt}"></span></li>
+                        <li>accIn (입금액) : <span th:text="${SearchInfo.accIn}"></span></li>
+                        <li>accOut (출금액) : <span th:text="${SearchInfo.accOut}"></span></li>
+                        <li>balance (잔액) : <span th:text="${SearchInfo.balance}"></span></li>
+                        <li>remark1 (비고 1) : <span th:text="${SearchInfo.remark1}"></span></li>
+                        <li>remark2 (비고 2) : <span th:text="${SearchInfo.remark2}"></span></li>
+                        <li>remark3 (비고 3) : <span th:text="${SearchInfo.remark3}"></span></li>
+                        <li>remark4 (비고 4) : <span th:text="${SearchInfo.remark4}"></span></li>
+                        <li>regDT (등록일시) : <span th:text="${SearchInfo.regDT}"></span></li>
+                        <li>memo (메모) : <span th:text="${SearchInfo.memo}"></span></li>
+                        <li>tid (거래내역 아이디) : <span th:text="${SearchInfo.tid}"></span></li>
+                        <li>trserial (거래일련번호) : <span th:text="${SearchInfo.trserial}"></span></li>
+                    </ul>
+                </fieldset>
+            </fieldset>
+        </fieldset>
+    </div>
+</body>
+</html>

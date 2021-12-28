@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
+<title>팝빌 SDK SpringBoot Example.</title>
+</head>
+<body>
+    <div id="content">
+        <p class="heading1">Response</p>
+        <br />
+        <fieldset class="fieldset1">
+            <legend th:text="${#request?.requestURL}"></legend>
+            <ul>
+                <li>ntsConfig : <span th:text="${NTSConfig}"></span></li>
+                <li>(true)-발행 즉시 전송 (false)-익일 자동 전송</li>
+            </ul>
+        </fieldset>
+    </div>
+</body>
+</html>
