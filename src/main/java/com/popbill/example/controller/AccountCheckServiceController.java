@@ -95,13 +95,13 @@ public class AccountCheckServiceController {
     @RequestMapping(value = "getUnitCost", method = RequestMethod.GET)
     public String getUnitCost(Model m) {
         /*
-         * 예금주 조회시 과금되는 포인트 단가를 확인합니다. 
+         * 예금주조회시 과금되는 포인트 단가를 확인합니다. 
          * - https://docs.popbill.com/accountcheck/java/api#GetUnitCost
          */
 
-        // 서비스 유형, 계좌성명조회 - 성명 , 계좌실명조회 - 실명 	
-    	String ServiceType = "성명";
-    	
+        // 서비스 유형, 계좌성명조회일 때는 "성명"을 입력하고, 계좌실명조회일 때는 "실명"을 입력합니다.
+        String ServiceType = "성명";
+
         try {
 
             float unitCost = accountCheckService.getUnitCost(testCorpNum,ServiceType);
@@ -123,7 +123,7 @@ public class AccountCheckServiceController {
          * - https://docs.popbill.com/accountcheck/java/api#GetChargeInfo
          */
 
-        // 서비스 유형, 계좌성명조회 - 성명 , 계좌실명조회 - 실명 	
+        // 서비스 유형, 계좌성명조회일 때는 "성명"을 입력하고, 계좌실명조회일 때는 "실명"을 입력합니다.
         String ServiceType = "성명";
 
         try {

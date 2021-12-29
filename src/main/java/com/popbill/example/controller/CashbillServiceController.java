@@ -738,7 +738,7 @@ public class CashbillServiceController {
         String Order = "D";
 
         // 가맹점 종사업장 번호 조회
-        // └ 다수건 검색시 콤마(",")로 구분. 예) 1234,1000
+        // └ 다수건 검색시 콤마(",")로 구분. 예) "1234,1000"
         String FranchiseTaxRegID = "";
 
         try {
