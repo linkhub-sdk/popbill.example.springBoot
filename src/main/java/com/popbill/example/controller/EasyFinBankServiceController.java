@@ -47,24 +47,24 @@ public class EasyFinBankServiceController {
         // 계좌정보 클래스 인스턴스 생성
         EasyFinBankAccountForm bankInfo = new EasyFinBankAccountForm();
 
-        // [필수] 기관코드
+        // 기관코드
         // 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
         // SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
         // 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
         bankInfo.setBankCode("");
 
-        // [필수] 계좌번호 하이픈('-') 제외
+        // 계좌번호 하이픈('-') 제외
         bankInfo.setAccountNumber("");
 
-        // [필수] 계좌비밀번호
+        // 계좌비밀번호
         bankInfo.setAccountPWD("");
 
-        // [필수] 계좌유형, "법인" 또는 "개인" 입력
+        // 계좌유형, "법인" 또는 "개인" 입력
         bankInfo.setAccountType("");
 
-        // [필수] 예금주 식별정보 (‘-‘ 제외)
-        // 계좌유형이 “법인”인 경우 : 사업자번호(10자리)
-        // 계좌유형이 “개인”인 경우 : 예금주 생년월일 (6자리-YYMMDD)
+        // 예금주 식별정보 ('-' 제외)
+        // 계좌유형이 "법인"인 경우 : 사업자번호(10자리)
+        // 계좌유형이 "개인"인 경우 : 예금주 생년월일 (6자리-YYMMDD)
         bankInfo.setIdentityNumber("");
 
         // 계좌 별칭
@@ -76,10 +76,10 @@ public class EasyFinBankServiceController {
         // 조회전용 계정 아이디 (대구은행, 신협, 신한은행 필수)
         bankInfo.setFastID("");
 
-        // 조회전용 계정 비밀번호 (대구은행, 신협, 신한은행 필수
+        // 조회전용 계정 비밀번호 (대구은행, 신협, 신한은행 필수)
         bankInfo.setFastPWD("");
 
-        // 결제기간(개월), 1~12 입력가능, 미기재시 기본값(1) 처리
+        // 정액제 이용할 개월수, 1~12 입력가능, 미기재시 기본값(1) 처리
         // - 파트너 과금방식의 경우 입력값에 관계없이 1개월 처리
         bankInfo.setUsePeriod(1);
 
@@ -111,16 +111,16 @@ public class EasyFinBankServiceController {
         // 계좌정보 클래스 인스턴스 생성
         EasyFinBankAccountForm bankInfo = new EasyFinBankAccountForm();
 
-        // [필수] 기관코드
+        // 기관코드
         // 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
         // SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
         // 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
         bankInfo.setBankCode("");
 
-        // [필수] 계좌번호 하이픈('-') 제외
+        // 계좌번호 하이픈('-') 제외
         bankInfo.setAccountNumber("");
 
-        // [필수] 계좌비밀번호
+        // 계좌비밀번호
         bankInfo.setAccountPWD("");
 
         // 계좌 별칭
@@ -132,7 +132,7 @@ public class EasyFinBankServiceController {
         // 조회전용 계정 아이디 (대구은행, 신협, 신한은행 필수)
         bankInfo.setFastID("");
 
-        // 조회전용 계정 비밀번호 (대구은행, 신협, 신한은행 필수
+        // 조회전용 계정 비밀번호 (대구은행, 신협, 신한은행 필수)
         bankInfo.setFastPWD("");
 
         // 메모
@@ -159,14 +159,14 @@ public class EasyFinBankServiceController {
         * - https://docs.popbill.com/easyfinbank/java/api#GetBankAccountInfo
         */
 
-        // [필수] 기관코드
+        // 기관코드
         // 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
         // SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
         // 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
         String BankCode = "0003";
 
-        // [필수] 계좌번호 하이픈('-') 제외
-        String AccountNumber = "47906631701015";
+        // 계좌번호 하이픈('-') 제외
+        String AccountNumber = "";
 
         try {
 
@@ -185,7 +185,7 @@ public class EasyFinBankServiceController {
    @RequestMapping(value = "listBankAccount", method = RequestMethod.GET)
     public String listBankAccount(Model m) {
        /*
-        * 팝빌에 등록된 은행계좌 목록을 반환한다.
+        * 팝빌에 등록된 은행계좌 목록을 반환합니다.
         * - https://docs.popbill.com/easyfinbank/java/api#ListBankAccount
         */
         try {
@@ -230,18 +230,18 @@ public class EasyFinBankServiceController {
          */
 
 
-        // [필수] 기관코드
+        // 기관코드
         // 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
         // SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
         // 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
         String BankCode = "";
 
-        // [필수] 계좌번호 하이픈('-') 제외
+        // 계좌번호 하이픈('-') 제외
         String AccountNumber = "";
 
-        // [필수] 해지유형, “일반”, “중도” 중 선택 기재
-        // 일반해지 – 이용중인 정액제 사용기간까지 이용후 정지
-        // 중도해지 – 요청일 기준으로 정지, 정액제 잔여기간은 일할로 계산되어 포인트 환불 (무료 이용기간 중 중도해지 시 전액 환불)
+        // 해지유형, “일반”, “중도” 중 선택 기재
+        // 일반해지 – 이용중인 정액제 기간 만료 후 해지
+        // 중도해지 – 요청일 기준으로 정지되고 팝빌 담당자가 승인시 해지, 정액제 잔여기간은 일할로 계산되어 포인트 환불 (무료 이용기간 중 중도해지 시 전액 환불)
         String CloseType = "중도";
 
         try {
@@ -265,13 +265,13 @@ public class EasyFinBankServiceController {
          * - https://docs.popbill.com/easyfinbank/java/api#RevokeCloseBankAccount
          */
 
-        // [필수] 기관코드
+        // 기관코드
         // 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
         // SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
         // 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
         String BankCode = "";
 
-        // [필수] 계좌번호 하이픈('-') 제외
+        // 계좌번호 하이픈('-') 제외
         String AccountNumber = "";
 
         try {
@@ -293,16 +293,17 @@ public class EasyFinBankServiceController {
        /*
         * 등록된 계좌를 삭제합니다.
         * - 정액제가 아닌 종량제 이용 시에만 등록된 계좌를 삭제할 수 있습니다.
+        * - 정액제 이용 시 CloseBankAccount 함수를 사용하여 정액제를 해제할 수 있습니다.
         * - https://docs.popbill.com/easyfinbank/java/api#DeleteBankAccount
         */
 
-        // [필수] 기관코드
+        // 기관코드
         // 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
         // SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
         // 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
         String BankCode = "";
 
-        // [필수] 계좌번호 하이픈('-') 제외
+        // 계좌번호 하이픈('-') 제외
         String AccountNumber = "";
 
         try {
@@ -329,16 +330,16 @@ public class EasyFinBankServiceController {
         */
 
         // 기관코드
-        String BankCode = "0003";
+        String BankCode = "0034";
 
         // 계좌번호
-        String AccountNumber = "47906631701015";
+        String AccountNumber = "";
 
         // 시작일자, 날짜형식(yyyyMMdd)
-        String SDate = "20211010";
+        String SDate = "20211211";
 
         // 종료일자, 닐짜형식(yyyyMMdd)
-        String EDate = "20211119";
+        String EDate = "20220110";
 
         try {
 
@@ -356,12 +357,18 @@ public class EasyFinBankServiceController {
     @RequestMapping(value = "getJobState", method = RequestMethod.GET)
     public String getJobState(Model m) {
         /*
-         * RequestJob(수집 요청)를 통해 반환 받은 작업아이디의 상태를 확인합니다.
+         * 수집 요청(RequestJob API) 함수를 통해 반환 받은 작업 아이디의 상태를 확인합니다.
+         * - 거래 내역 조회(Search API) 함수 또는 거래 요약 정보 조회(Summary API) 함수를 사용하기 전에
+         *   수집 작업의 진행 상태, 수집 작업의 성공 여부를 확인해야 합니다.
+         * - 작업 상태(jobState) = 3(완료)이고 수집 결과 코드(errorCode) = 1(수집성공)이면
+         *   거래 내역 조회(Search) 또는 거래 요약 정보 조회(Summary) 를 해야합니다.
+         * - 작업 상태(jobState)가 3(완료)이지만 수집 결과 코드(errorCode)가 1(수집성공)이 아닌 경우에는
+         *   오류메시지(errorReason)로 수집 실패에 대한 원인을 파악할 수 있습니다.
          * - https://docs.popbill.com/easyfinbank/java/api#GetJobState
          */
 
         // 수집요청(requestJob)시 반환받은 작업아이디
-        String jobID = "021111917000000017";
+        String jobID = "022011014000000010";
 
         try {
             EasyFinBankJobState jobState = easyFinBankService.getJobState(testCorpNum, jobID);
@@ -399,14 +406,15 @@ public class EasyFinBankServiceController {
     @RequestMapping(value = "search", method = RequestMethod.GET)
     public String search(Model m) {
         /*
-         * GetJobState(수집 상태 확인)를 통해 상태 정보가 확인된 작업아이디를 활용하여 계좌 거래 내역을 조회합니다.
+         * 수집 상태 확인(GetJobState API) 함수를 통해 상태 정보가 확인된 작업아이디를 활용하여 계좌 거래 내역을 조회합니다.
          * - https://docs.popbill.com/easyfinbank/java/api#Search
          */
 
         // 수집 요청시 발급받은 작업아이디
-        String jobID = "021112219000000029";
+        String jobID = "022011014000000010";
 
-        // 거래유형, I-입금, O-출금
+        // 거래유형 배열 ("I" 와 "O" 중 선택, 다중 선택 가능)
+        // └ I = 입금 , O = 출금 , 미입력 시 전체조회
         String[] TradeType = {"I", "O"};
 
         // 페이지번호
@@ -418,7 +426,10 @@ public class EasyFinBankServiceController {
         // 정렬방향 D-내림차순, A-오름차순
         String Order = "D";
 
-        // 조회 검색어, 입금/출금액, 메모, 적요 like 검색
+        // "입·출금액" / "메모" / "비고" 중 검색하고자 하는 값 입력
+        // - 메모 = 거래내역 메모저장(SaveMemo)을 사용하여 저장한 값
+        // - 비고 = EasyFinBankSearchDetail의 remark1, remark2, remark3 값
+        // - 미입력시 전체조회
         String SearchString = "";
 
         try {
@@ -438,17 +449,21 @@ public class EasyFinBankServiceController {
     @RequestMapping(value = "summary", method = RequestMethod.GET)
     public String summary(Model m) {
         /*
-         * GetJobState(수집 상태 확인)를 통해 상태 정보가 확인된 작업아이디를 활용하여 계좌 거래내역의 요약 정보를 조회합니다.
+         * 수집 상태 확인(GetJobState API) 함수를 통해 상태 정보가 확인된 작업아이디를 활용하여 계좌 거래내역의 요약 정보를 조회합니다.
          * - https://docs.popbill.com/easyfinbank/java/api#Summary
          */
 
         // 수집 요청시 발급받은 작업아이디
-        String jobID = "021112219000000029";
+        String jobID = "022011014000000010";
 
-        // 거래유형, I-입금, O-출금
+        // 거래유형 배열 ("I" 와 "O" 중 선택, 다중 선택 가능)
+        // └ I = 입금 , O = 출금 , 미입력 시 전체조회
         String[] TradeType = {"I", "O"};
 
-        // 조회 검색어, 입금/출금액, 메모, 적요 like 검색
+        // "입·출금액" / "메모" / "비고" 중 검색하고자 하는 값 입력
+        // - 메모 = 거래내역 메모저장(SaveMemo)을 사용하여 저장한 값
+        // - 비고 = EasyFinBankSearchDetail의 remark1, remark2, remark3 값
+        // - 미입력시 전체조회
         String SearchString = "";
 
         try {
@@ -474,10 +489,10 @@ public class EasyFinBankServiceController {
         */
 
         // 거래내역 아이디, SeachAPI 응답항목 중 tid
-        String TID = "02111121500000000120211119000001";
+        String TID = "02110251200000000420211231000001";
 
         // 메모
-        String Memo = "211122-TEST";
+        String Memo = "220104-TEST";
 
         try {
 
@@ -526,7 +541,7 @@ public class EasyFinBankServiceController {
         String BankCode = "0003";
 
         // 계좌번호
-        String AccountNumber = "47906631701015";
+        String AccountNumber = "";
 
         try {
 

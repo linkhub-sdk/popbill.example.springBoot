@@ -1,3 +1,15 @@
+# 팝빌 Java SDK SpringBoot Example
+#
+# - SpringBoot SDK 연동환경 설정방법 안내 : https://docs.popbill.com/taxinvoice/tutorial/springboot
+# - 업데이트 일자 : 2022-01-10
+# - 연동 기술지원 연락처 : 1600-9854
+# - 연동 기술지원 이메일 : code@linkhubcorp.com
+#
+# <테스트 연동개발 준비사항>
+# 1) 15번 17번 라인에 선언된 링크아이디(LinkID)와 비밀키(SecretKey)를
+#    연동 신청시 메일로 발급받은 인증정보를 참조하여 변경합니다.
+#
+
 popbill:
   #링크아이디
   linkId: TESTER
@@ -11,4 +23,3 @@ popbill:
   useStaticIp: false
   #로컬시스템 시간 사용여부 true(사용-권장), false(미사용)
   useLocalTimeYn: true
-  
