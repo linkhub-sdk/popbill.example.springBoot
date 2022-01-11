@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.popbill.api.ChargeInfo;
+import com.popbill.api.FlatRateState;
 import com.popbill.api.HTCashbillService;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
@@ -77,7 +79,7 @@ public class HTCashbillServiceController {
          */
 
         // 수집요청(requestJob)시 반환받은 작업아이디
-        String jobID = "022011014000000001";
+        String jobID = "022011111000000004";
 
         try {
             HTCashbillJobState jobState = htCashbillService.getJobState(testCorpNum, jobID);
@@ -119,7 +121,7 @@ public class HTCashbillServiceController {
          */
 
         // 수집 요청시 발급받은 작업아이디
-        String jobID = "022011014000000001";
+        String jobID = "022011111000000004";
 
         // 거래구분 배열 ("P" 와 "C" 중 선택, 다중 선택 가능)
         // └ P = 소득공제용 , C = 지출증빙용 , 미입력 시 전체조회
@@ -159,7 +161,7 @@ public class HTCashbillServiceController {
          */
 
         // 수집 요청시 발급받은 작업아이디
-        String jobID = "022011014000000001";
+        String jobID = "022011111000000004";
 
         // 거래구분 배열 ("P" 와 "C" 중 선택, 다중 선택 가능)
         // └ P = 소득공제용 , C = 지출증빙용 , 미입력 시 전체조회
@@ -329,4 +331,66 @@ public class HTCashbillServiceController {
         return "response";
     }
 
+    @RequestMapping(value = "getChargeInfo", method = RequestMethod.GET)
+    public String chargeInfo(Model m) {
+        /*
+         * 팝빌 홈택스연동(현금영수증) API 서비스 과금정보를 확인합니다.
+         * - https://docs.popbill.com/httaxinvoice/java/api#GetChargeInfo
+         */
+
+        try {
+
+            ChargeInfo chrgInfo = htCashbillService.getChargeInfo(testCorpNum);
+            m.addAttribute("ChargeInfo", chrgInfo);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "getChargeInfo";
+    }
+
+    @RequestMapping(value = "getFlatRatePopUpURL", method = RequestMethod.GET)
+    public String getFlatRatePopUpURL(Model m) {
+        /*
+         * 홈택스연동 정액제 서비스 신청 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://docs.popbill.com/httaxinvoice/java/api#GetFlatRatePopUpURL
+         */
+
+        try {
+
+            String url = htCashbillService.getFlatRatePopUpURL(testCorpNum);
+
+            m.addAttribute("Result", url);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "result";
+    }
+
+    @RequestMapping(value = "getFlatRateState", method = RequestMethod.GET)
+    public String getFlatRateState(Model m) {
+        /*
+         * 홈택스연동 정액제 서비스 상태를 확인합니다.
+         * - https://docs.popbill.com/httaxinvoice/java/api#GetFlatRateState
+         */
+
+        try {
+
+            FlatRateState flatRateInfo = htCashbillService.getFlatRateState(testCorpNum);
+
+            m.addAttribute("State", flatRateInfo);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "HTTaxinvoice/GetFlatRateState";
+    }
 }
