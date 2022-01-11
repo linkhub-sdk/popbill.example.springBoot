@@ -13,12 +13,12 @@
             <fieldset th:if="${SearchResult}" class="fieldset2">
                 <legend>검색결과 정보</legend>
                 <ul>
-                    <li>code(응답코드) : <span th:text="${SearchResult.code}"></span></li>
-                    <li>message(응답 메시지) : <span th:text="${SearchResult.message}"></span></li>
-                    <li>total(전체 검색개수) : <span th:text="${SearchResult.total}"></span></li>
-                    <li>perPage(페이지당 목록개수) : <span th:text="${SearchResult.perPage}"></span></li>
-                    <li>pageNum(페이지번호) : <span th:text="${SearchResult.pageNum}"></span></li>
-                    <li>pageCount(페이지수) : <span th:text="${SearchResult.pageCount}"></span></li>
+                    <li>code (응답코드) : <span th:text="${SearchResult.code}"></span></li>
+                    <li>message (응답 메시지) : <span th:text="${SearchResult.message}"></span></li>
+                    <li>total (전체 검색개수) : <span th:text="${SearchResult.total}"></span></li>
+                    <li>perPage (페이지당 목록개수) : <span th:text="${SearchResult.perPage}"></span></li>
+                    <li>pageNum (페이지번호) : <span th:text="${SearchResult.pageNum}"></span></li>
+                    <li>pageCount (페이지수) : <span th:text="${SearchResult.pageCount}"></span></li>
                 </ul>
 
                 <fieldset th:each="msgInfo, index : ${SearchResult.list}" class="fieldset3">

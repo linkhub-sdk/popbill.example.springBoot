@@ -869,7 +869,7 @@ public class KakaoServiceController {
         KakaoButton[] btns = new KakaoButton[2];
 
         KakaoButton button = new KakaoButton();
-        button.setN("버튼명");                   // 버튼명
+        button.setN("버튼명");                    // 버튼명
         button.setT("WL");                       // 버튼타입
         button.setU1("http://www.popbill.com");  // 버튼링크1
         button.setU2("http://test.popbill.com"); // 버튼링크2
