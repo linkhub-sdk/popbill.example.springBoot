@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
@@ -106,8 +108,14 @@ public class FaxServiceController {
             throw e1;
         }
 
-        // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
         Date reserveDT = null;
+//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+//        try {
+//            reserveDT = format.parse("20220201140000");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         // 광고팩스 전송여부
         Boolean adsYN = false;
@@ -168,8 +176,14 @@ public class FaxServiceController {
             throw e1;
         }
 
-        // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
         Date reserveDT = null;
+//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+//        try {
+//            reserveDT = format.parse("20220201140000");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         // 광고팩스 전송여부
         Boolean adsYN = false;
@@ -236,8 +250,14 @@ public class FaxServiceController {
 
         fileList[0] = uf;
 
-        // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
         Date reserveDT = null;
+//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+//        try {
+//            reserveDT = format.parse("20220201140000");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         // 광고팩스 전송여부
         Boolean adsYN = false;
@@ -310,8 +330,14 @@ public class FaxServiceController {
 
         fileList[0] = uf;
 
-        // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
         Date reserveDT = null;
+//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+//        try {
+//            reserveDT = format.parse("20220201140000");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         // 광고팩스 전송여부
         Boolean adsYN = false;
@@ -363,8 +389,14 @@ public class FaxServiceController {
         // 수신자명, 공백처리시 기존전송정보로 재전송
         String receiveName = "";
 
-        // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
         Date reserveDT = null;
+//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+//        try {
+//            reserveDT = format.parse("20220201140000");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         // 팩스 제목
         String title = "팩스 재전송 제목";
@@ -424,8 +456,14 @@ public class FaxServiceController {
 //      receiver2.setReceiveNum("010333444");     // 수신팩스번호
 //      receivers[1] = receiver1;
 
-        // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
         Date reserveDT = null;
+//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+//        try {
+//            reserveDT = format.parse("20220201140000");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         // 팩스제목
         String title = "팩스 재전송(동보) 제목";
@@ -478,8 +516,14 @@ public class FaxServiceController {
         // 수신자명, 공백처리시 기존전송정보로 재전송
         String receiveName = "";
 
-        // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
         Date reserveDT = null;
+//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+//        try {
+//            reserveDT = format.parse("20220201140000");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         // 팩스 제목
         String title = "팩스 재전송 제목";
@@ -539,8 +583,14 @@ public class FaxServiceController {
 //      receiver2.setReceiveNum("010333444");     // 수신팩스번호
 //      receivers[1] = receiver1;
 
-        // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
         Date reserveDT = null;
+//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+//        try {
+//            reserveDT = format.parse("20220201140000");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         // 팩스제목
         String title = "팩스 재전송(동보) 제목";

@@ -1,6 +1,8 @@
 package com.popbill.example.controller;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
@@ -98,6 +100,12 @@ public class MessageServiceController {
 
         // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
         Date reserveDT = null;
+//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+//        try {
+//            reserveDT = format.parse("20220201140000");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         // 광고문자 전송여부
         Boolean adsYN = false;
@@ -157,6 +165,12 @@ public class MessageServiceController {
 
         // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
         Date reserveDT = null;
+//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+//        try {
+//            reserveDT = format.parse("20220201140000");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         // 광고문자 전송여부
         Boolean adsYN = false;
@@ -204,6 +218,12 @@ public class MessageServiceController {
 
         // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
         Date reserveDT = null;
+//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+//        try {
+//            reserveDT = format.parse("20220201140000");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         // 광고문자 전송여부
         Boolean adsYN = false;
@@ -268,6 +288,12 @@ public class MessageServiceController {
 
         // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
         Date reserveDT = null;
+//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+//        try {
+//            reserveDT = format.parse("20220201140000");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         // 광고문자 전송여부
         Boolean adsYN = false;
@@ -320,6 +346,12 @@ public class MessageServiceController {
 
         // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
         Date reserveDT = null;
+//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+//        try {
+//            reserveDT = format.parse("20220201140000");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         // 광고문자 전송여부
         Boolean adsYN = false;
@@ -389,6 +421,12 @@ public class MessageServiceController {
 
         // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
         Date reserveDT = null;
+//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+//        try {
+//            reserveDT = format.parse("20220201140000");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         // 광고문자 전송여부
         Boolean adsYN = false;
@@ -435,6 +473,12 @@ public class MessageServiceController {
 
         // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
         Date reserveDT = null;
+//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+//        try {
+//            reserveDT = format.parse("20220201140000");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         // 광고문자 전송여부
         Boolean adsYN = false;
@@ -494,8 +538,14 @@ public class MessageServiceController {
         msg2.setContent("메시지 내용2");
         messages[1] = msg1;
 
-        // 예약전송 일시
+        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
         Date reserveDT = null;
+//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+//        try {
+//            reserveDT = format.parse("20220201140000");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         // 광고문자 전송여부
         Boolean adsYN = true;

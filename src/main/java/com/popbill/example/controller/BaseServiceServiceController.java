@@ -27,7 +27,7 @@ public class BaseServiceServiceController {
     private String testUserID = "testkorea";
 
     // 링크아이디
-    private String testLinkID;
+    private String testLinkID = "TESTER";
 
     @RequestMapping(value = "checkIsMember", method = RequestMethod.GET)
     public String checkIsMember(Model m) throws PopbillException {
