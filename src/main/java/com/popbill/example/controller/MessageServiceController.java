@@ -161,7 +161,7 @@ public class MessageServiceController {
         msg2.setReceiver("010333444");
         msg2.setReceiverName("수신자2");
         msg2.setContent("메시지 내용2");
-        messages[1] = msg1;
+        messages[1] = msg2;
 
         // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
         Date reserveDT = null;
@@ -284,7 +284,7 @@ public class MessageServiceController {
         msg2.setReceiverName("수신자2");
         msg2.setSubject("장문 메시지 제목");
         msg2.setContent("메시지 내용2");
-        messages[1] = msg1;
+        messages[1] = msg2;
 
         // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
         Date reserveDT = null;

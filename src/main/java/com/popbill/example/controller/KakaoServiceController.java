@@ -463,12 +463,12 @@ public class KakaoServiceController {
         button.setU2("http://test.popbill.com"); // 버튼링크2
         btns[0] = button;
 
-        button = new KakaoButton();
-        button.setN("버튼명2");
-        button.setT("WL");
-        button.setU1("http://www.popbill.com");
-        button.setU2("http://test.popbill.com");
-        btns[1] = button;
+        KakaoButton button2 = new KakaoButton();
+        button2.setN("버튼명2");
+        button2.setT("WL");
+        button2.setU1("http://www.popbill.com");
+        button2.setU2("http://test.popbill.com");
+        btns[1] = button2;
 
         // 전송요청번호
         // 파트너가 전송 건에 대해 관리번호를 구성하여 관리하는 경우 사용.
@@ -613,12 +613,12 @@ public class KakaoServiceController {
         button.setU2("http://test.popbill.com"); // 버튼링크2
         btns[0] = button;
 
-        button = new KakaoButton();
-        button.setN("버튼명2");
-        button.setT("WL");
-        button.setU1("http://www.popbill.com");
-        button.setU2("http://test.popbill.com");
-        btns[1] = button;
+        KakaoButton button2 = new KakaoButton();
+        button2.setN("버튼명2");
+        button2.setT("WL");
+        button2.setU1("http://www.popbill.com");
+        button2.setU2("http://test.popbill.com");
+        btns[1] = button2;
 
         // 전송요청번호
         // 파트너가 전송 건에 대해 관리번호를 구성하여 관리하는 경우 사용.
@@ -687,12 +687,12 @@ public class KakaoServiceController {
         button.setU2("http://test.popbill.com"); // 버튼링크2
         btns[0] = button;
 
-        button = new KakaoButton();
-        button.setN("버튼명2");
-        button.setT("WL");
-        button.setU1("http://www.popbill.com");
-        button.setU2("http://test.popbill.com");
-        btns[1] = button;
+        KakaoButton button2 = new KakaoButton();
+        button2.setN("버튼명2");
+        button2.setT("WL");
+        button2.setU1("http://www.popbill.com");
+        button2.setU2("http://test.popbill.com");
+        btns[1] = button2;
 
         // 첨부이미지 파일 경로
         // 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
@@ -789,12 +789,12 @@ public class KakaoServiceController {
         button.setU2("http://test.popbill.com"); // 버튼링크2
         btns[0] = button;
 
-        button = new KakaoButton();
-        button.setN("버튼명2");
-        button.setT("WL");
-        button.setU1("http://www.popbill.com");
-        button.setU2("http://test.popbill.com");
-        btns[1] = button;
+        KakaoButton button2 = new KakaoButton();
+        button2.setN("버튼명2");
+        button2.setT("WL");
+        button2.setU1("http://www.popbill.com");
+        button2.setU2("http://test.popbill.com");
+        btns[1] = button2;
 
         // 첨부이미지 파일 경로
         // 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
@@ -875,12 +875,12 @@ public class KakaoServiceController {
         button.setU2("http://test.popbill.com"); // 버튼링크2
         btns[0] = button;
 
-        button = new KakaoButton();
-        button.setN("버튼명2");
-        button.setT("WL");
-        button.setU1("http://www.popbill.com");
-        button.setU2("http://test.popbill.com");
-        btns[1] = button;
+        KakaoButton button2 = new KakaoButton();
+        button2.setN("버튼명2");
+        button2.setT("WL");
+        button2.setU1("http://www.popbill.com");
+        button2.setU2("http://test.popbill.com");
+        btns[1] = button2;
 
         // 첨부이미지 파일 경로
         // 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능

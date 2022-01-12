@@ -165,7 +165,7 @@ public class FaxServiceController {
         Receiver receiver2 = new Receiver();
         receiver2.setReceiveName("수신자2");  // 수신자명
         receiver2.setReceiveNum("010333444"); // 수신팩스번호
-        receivers[1] = receiver1;
+        receivers[1] = receiver2;
 
         File[] files = new File[2];
         try {
@@ -307,7 +307,7 @@ public class FaxServiceController {
         Receiver receiver2 = new Receiver();
         receiver2.setReceiveName("수신자2");  // 수신자명
         receiver2.setReceiveNum("010333444"); // 수신팩스번호
-        receivers[1] = receiver1;
+        receivers[1] = receiver2;
 
         File file = new File("/Users/John/Desktop/test.pdf");
         InputStream targetStream = null;
@@ -454,7 +454,7 @@ public class FaxServiceController {
 //      Receiver receiver2 = new Receiver();
 //      receiver2.setReceiveName("수신자2");       // 수신자명
 //      receiver2.setReceiveNum("010333444");     // 수신팩스번호
-//      receivers[1] = receiver1;
+//      receivers[1] = receiver2;
 
         // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
         Date reserveDT = null;
@@ -581,7 +581,7 @@ public class FaxServiceController {
 //      Receiver receiver2 = new Receiver();
 //      receiver2.setReceiveName("수신자2");       // 수신자명
 //      receiver2.setReceiveNum("010333444");     // 수신팩스번호
-//      receivers[1] = receiver1;
+//      receivers[1] = receiver2;
 
         // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
         Date reserveDT = null;
