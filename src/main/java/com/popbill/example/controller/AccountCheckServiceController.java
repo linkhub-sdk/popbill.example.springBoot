@@ -80,7 +80,7 @@ public class AccountCheckServiceController {
          * - IdentityNumType 값이 "B" 인 경우 (사업자번호(10)자리 입력)
          * - IdentityNumType 값이 "P" 인 경우 (생년월일(6)자리 입력 (형식 : YYMMDD))
          */
-        String IdentityNum = "901112";
+        String IdentityNum = "";
 
         try {
 

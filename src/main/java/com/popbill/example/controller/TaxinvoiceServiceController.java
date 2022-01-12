@@ -1661,8 +1661,8 @@ public class TaxinvoiceServiceController {
          // 세금계산서 유형 (SELL-매출, BUY-매입, TRUSTEE-위수탁)
          MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-         // 일자 유형 ("R" , "T" , "I" 중 택 1)
-         // └ R = 등록일자 , T = 거래일자 , I = 발행일자
+         // 일자 유형 ("R" , "W" , "I" 중 택 1)
+         // └ R = 등록일자 , W = 작성일자 , I = 발행일자
          String DType = "W";
 
          // 시작일자, 날짜형식(yyyyMMdd)

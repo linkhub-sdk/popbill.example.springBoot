@@ -522,7 +522,7 @@ public class KakaoServiceController {
             message.setReceiverName("수신자명" + i);             // 수신자명
             message.setMessage("친구톡 개별내용" + i);           // 친구톡 내용, 최대 1000자
             message.setAltMessage("대체문자 개별내용" + i);      // 대체문자 내용
-            message.setInterOPRefKey("referenceKey-" + i);      // 파트너 지정키, 대량 접수시 수신자 구별용 메모.
+            message.setInterOPRefKey("");      // 파트너 지정키, 대량 접수시 수신자 구별용 메모.
 
             KakaoButton button = new KakaoButton();
             button.setN("타입1 버튼명" + i);                     // 버튼명

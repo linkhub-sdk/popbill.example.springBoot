@@ -47,10 +47,10 @@ public class HTCashbillServiceController {
         // 현금영수증 유형, SELL-매출, BUY-매입
         QueryType TIType = QueryType.SELL;
 
-        // 시작일자, 표시형식(yyyyMMdd)
+        // 시작일자, 날짜형식(yyyyMMdd)
         String SDate = "20211220";
 
-        // 종료일자, 표시형식(yyyyMMdd)
+        // 종료일자, 날짜형식(yyyyMMdd)
         String EDate = "20220110";
 
         try {
