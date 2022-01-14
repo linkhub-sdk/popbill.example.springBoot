@@ -601,7 +601,7 @@ public class MessageServiceController {
          */
 
         // 예약문자 전송요청 시 파트너가 할당한 전송요청 번호
-        String requestNum = "20220110-001";
+        String requestNum = "";
 
         try {
             Response response = messageService.cancelReserveRN(testCorpNum, requestNum);
@@ -648,7 +648,7 @@ public class MessageServiceController {
          */
 
         // 문자 전송요청시 파트너가 할당한 전송요청 번호
-        String requestNum = "20220110-100";
+        String requestNum = "";
 
         try {
 

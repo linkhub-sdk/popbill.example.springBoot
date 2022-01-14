@@ -942,7 +942,7 @@ public class KakaoServiceController {
          */
 
         // 카카오톡 예약전송 접수시 파트너가 할당한 전송요청 번호
-        String requestNum = "20220110-001";
+        String requestNum = "";
 
         try {
             Response response = kakaoService.cancelReserveRN(testCorpNum, requestNum);
@@ -989,7 +989,7 @@ public class KakaoServiceController {
          */
 
         // 카카오톡 전송 접수시 파트너가 할당한 전송요청 번호
-        String requestNum = "20220110-001";
+        String requestNum = "";
 
         try {
 

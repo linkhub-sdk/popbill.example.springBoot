@@ -529,7 +529,7 @@ public class FaxServiceController {
         String title = "팩스 재전송 제목";
 
         // 원본 팩스 전송시 할당한 전송요청번호(requestNum)
-        String orgRequestNum = "20220110-001";
+        String orgRequestNum = "";
 
         try {
 
@@ -596,7 +596,7 @@ public class FaxServiceController {
         String title = "팩스 재전송(동보) 제목";
 
         // 원본 팩스 전송시 할당한 전송요청번호(requestNum)
-        String orgRequestNum = "20220110-001";
+        String orgRequestNum = "";
 
         try {
 
@@ -644,7 +644,7 @@ public class FaxServiceController {
          */
 
         // 예약팩스 전송요청시 파트너가 할당한 전송요청번호
-        String requestNum = "20220104-001";
+        String requestNum = "";
 
         try {
             Response response = faxService.cancelReserveRN(testCorpNum, requestNum);
@@ -690,7 +690,7 @@ public class FaxServiceController {
          */
 
         // 팩스 전송요청시 파트너가 할당한 전송요청번호
-        String requestNum = "20220110-0011";
+        String requestNum = "";
 
         try {
             FaxResult[] faxResults = faxService.getFaxResultRN(testCorpNum, requestNum);

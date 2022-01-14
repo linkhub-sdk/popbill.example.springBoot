@@ -225,7 +225,7 @@ public class BaseServiceServiceController {
         // 종목, 최대 100자
         joinInfo.setBizClass("종목");
 
-        // 아이디, 6자 이상 50자 미만
+        // 아이디, 6자 이상 50자 이하
         joinInfo.setID("testkorea0328");
 
         // 팝빌회원 비밀번호 (8자 이상 20자 이하) 영문, 숫자 ,특수문자 조합
@@ -306,7 +306,7 @@ public class BaseServiceServiceController {
 
         ContactInfo contactInfo = new ContactInfo();
 
-        // 담당자 아이디, 6자 이상 50자 미만
+        // 담당자 아이디, 6자 이상 50자 이하
         contactInfo.setId("testid");
 
         // 담당자 성명, 최대 100자
@@ -349,10 +349,11 @@ public class BaseServiceServiceController {
 
         ContactInfo contactInfo = new ContactInfo();
 
-        // 담당자 아이디, 6자 이상 50자 미만
+        // 담당자 아이디, 6자 이상 50자 이하
         contactInfo.setId("testid");
 
-        // 담당자 비밀번호 (8자 이상 20자 이하) 영문, 숫자 ,특수문자 조합
+        // 담당자 비밀번호 (8자 이상 20자 이하)
+        // - 영문, 숫자 ,특수문자 조합
         contactInfo.setPassword("password123!@#");
 
         // 담당자 성명, 최대 100자

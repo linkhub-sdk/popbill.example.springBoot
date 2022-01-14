@@ -40,7 +40,7 @@ public class AccountCheckServiceController {
          */
 
         // 조회할 기관코드
-        String BankCode = "0004";
+        String BankCode = "";
 
         // 조회할 기관의 계좌번호 (하이픈 '-' 제외 8자리 이상 14자리 이하)
         String AccountNumber = "";
@@ -72,13 +72,15 @@ public class AccountCheckServiceController {
         // 조회할 기관의 계좌번호 (하이픈 '-' 제외 8자리 이상 14자리 이하)
         String AccountNumber = "";
 
-        // 등록번호 유형 ( P / B 중 택 1 , P = 개인, B = 사업자)
+        // 등록번호 유형 ("P" , "B" 중 택 1)
+        // - P = 개인 , B = 사업자
         String IdentityNumType ="P";
 
         /*
          * 등록번호
          * - IdentityNumType 값이 "B" 인 경우 (사업자번호(10)자리 입력)
          * - IdentityNumType 값이 "P" 인 경우 (생년월일(6)자리 입력 (형식 : YYMMDD))
+         * - 하이픈 '-' 제외하고 입력
          */
         String IdentityNum = "";
 
@@ -103,7 +105,8 @@ public class AccountCheckServiceController {
          * - https://docs.popbill.com/accountcheck/java/api#GetUnitCost
          */
 
-        // 서비스 유형 ("성명" / "실명" 중 택 1 , 성명 = 예금주성명조회, 실명 = 예금주실명조회)
+        // 서비스 유형 ("성명" , "실명" 중 택 1)
+        // - 성명 = 예금주성명조회 , 실명 = 예금주실명조회
         String ServiceType = "성명";
 
         try {
@@ -127,7 +130,8 @@ public class AccountCheckServiceController {
          * - https://docs.popbill.com/accountcheck/java/api#GetChargeInfo
          */
 
-        // 서비스 유형 ("성명" / "실명" 중 택 1 , 성명 = 예금주성명조회, 실명 = 예금주실명조회)
+        // 서비스 유형 ("성명" , "실명" 중 택 1)
+        // - 성명 = 예금주성명조회 , 실명 = 예금주실명조회
         String ServiceType = "성명";
 
         try {
