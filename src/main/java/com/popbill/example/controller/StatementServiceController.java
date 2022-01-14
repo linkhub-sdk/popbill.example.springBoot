@@ -446,7 +446,7 @@ public class StatementServiceController {
     @RequestMapping(value = "update", method = RequestMethod.GET)
     public String update(Model m) {
         /*
-         * "임시저장" 상태의 전자명세서를 수정합니다.건의 전자명세서를 [수정]합니다.
+         * "임시저장" 상태의 전자명세서를 수정합니다.
          * - https://docs.popbill.com/statement/java/api#Update
          */
 
@@ -669,6 +669,7 @@ public class StatementServiceController {
     public String cancelIssue(Model m) {
         /*
          * 발신자가 발행한 전자명세서를 발행취소합니다.
+         * - "발행취소" 상태의 전자명세서를 삭제(Delete API) 함수를 이용하면, 전자명세서 관리를 위해 부여했던 문서번호를 재사용 할 수 있습니다.
          * - https://docs.popbill.com/statement/java/api#Cancel
          */
 
