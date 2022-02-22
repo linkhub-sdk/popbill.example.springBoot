@@ -4,7 +4,7 @@ popbill.example.springBoot
 팝빌 통합 SDK Example for Java springBoot version.
 
 requirements
- * jdk 1.6+
+ * jdk 1.8+
 
 reference
  * https://github.com/linkhub-sdk/popbill.springBoot
