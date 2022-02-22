@@ -48,10 +48,10 @@ public class HTCashbillServiceController {
         QueryType TIType = QueryType.SELL;
 
         // 시작일자, 날짜형식(yyyyMMdd)
-        String SDate = "20211220";
+        String SDate = "20220201";
 
         // 종료일자, 날짜형식(yyyyMMdd)
-        String EDate = "20220110";
+        String EDate = "20220228";
 
         try {
             String jobID = htCashbillService.requestJob(testCorpNum, TIType, SDate, EDate, testUserID);
@@ -79,7 +79,7 @@ public class HTCashbillServiceController {
          */
 
         // 수집요청(requestJob)시 반환받은 작업아이디
-        String jobID = "022011111000000004";
+        String jobID = "";
 
         try {
             HTCashbillJobState jobState = htCashbillService.getJobState(testCorpNum, jobID);
@@ -120,24 +120,27 @@ public class HTCashbillServiceController {
          * - https://docs.popbill.com/htcashbill/java/api#Search
          */
 
-        // 수집 요청시 발급받은 작업아이디
-        String jobID = "022011111000000004";
+        // 수집요청(requestJob API) 함수 호출 시 반환받은 작업아이디
+        String jobID = "";
 
         // 거래구분 배열 ("P" 와 "C" 중 선택, 다중 선택 가능)
-        // └ P = 소득공제용 , C = 지출증빙용 , 미입력 시 전체조회
-        String[] TradeUsage = { "P", "C" };
+        // └ P = 소득공제용 , C = 지출증빙용
+        // - 미입력 시 전체조회
+        String[] TradeUsage = {"P", "C"};
 
         // 문서형태 배열 ("N" 와 "C" 중 선택, 다중 선택 가능)
-        // └ N = 일반 현금영수증 , C = 취소현금영수증 , 미입력 시 전체조회
-        String[] TradeType = { "N", "C" };
+        // └ N = 일반 현금영수증 , C = 취소현금영수증
+        // - 미입력 시 전체조회
+        String[] TradeType = {"N", "C"};
 
-        // 페이지번호
+        // 페이지번호 (기본값 = 1)
         int Page = 1;
 
-        // 페이지당 목록개수
+        // 페이지당 목록개수 (기본값 = 500 , 최대 = 1000)
         int PerPage = 10;
 
-        // 정렬방향 D-내림차순, A-오름차순
+        // 정렬방향, "D" / "A" 중 택 1
+        // └ D = 내림차순(기본값) , A = 오름차순
         String Order = "D";
 
         try {
@@ -157,18 +160,21 @@ public class HTCashbillServiceController {
     public String summary(Model m) {
         /*
          * 수집 상태 확인(GetJobState API) 함수를 통해 상태 정보가 확인된 작업아이디를 활용하여 수집된 현금영수증 매입/매출 내역의 요약 정보를 조회합니다.
+         * - 요약 정보 : 현금영수증 수집 건수, 공급가액 합계, 세액 합계, 봉사료 합계, 합계 금액
          * - https://docs.popbill.com/htcashbill/java/api#Summary
          */
 
-        // 수집 요청시 발급받은 작업아이디
-        String jobID = "022011111000000004";
+        // 수집요청(requestJob API) 함수 호출 시 반환받은 작업아이디
+        String jobID = "";
 
         // 거래구분 배열 ("P" 와 "C" 중 선택, 다중 선택 가능)
-        // └ P = 소득공제용 , C = 지출증빙용 , 미입력 시 전체조회
-        String[] TradeUsage = { "P", "C" };
+        // └ P = 소득공제용 , C = 지출증빙용
+        // - 미입력 시 전체조회
+        String[] TradeUsage = {"P", "C"};
 
         // 문서형태 배열 ("N" 와 "C" 중 선택, 다중 선택 가능)
-        // └ N = 일반 현금영수증 , C = 취소현금영수증 , 미입력 시 전체조회
+        // └ N = 일반 현금영수증 , C = 취소현금영수증
+        // - 미입력 시 전체조회
         String[] TradeType = { "N", "C" };
 
         try {

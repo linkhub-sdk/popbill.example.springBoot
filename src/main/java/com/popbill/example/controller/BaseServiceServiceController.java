@@ -204,6 +204,12 @@ public class BaseServiceServiceController {
 
         JoinForm joinInfo = new JoinForm();
 
+        // 아이디, 6자 이상 50자 미만
+        joinInfo.setID("testkorea0328");
+
+        // 팝빌회원 비밀번호 (8자 이상 20자 이하) 영문, 숫자, 특수문자 조합
+        joinInfo.setPassword("password123!@#");
+
         // 연동신청 시 팝빌에서 발급받은 링크아이디
         joinInfo.setLinkID(testLinkID);
 
@@ -213,8 +219,8 @@ public class BaseServiceServiceController {
         // 대표자 성명, 최대 100자
         joinInfo.setCEOName("대표자 성명");
 
-        // 상호, 최대 200자
-        joinInfo.setCorpName("상호");
+        // 회사명, 최대 200자
+        joinInfo.setCorpName("회사명");
 
         // 사업장 주소, 최대 300자
         joinInfo.setAddr("주소");
@@ -224,12 +230,6 @@ public class BaseServiceServiceController {
 
         // 종목, 최대 100자
         joinInfo.setBizClass("종목");
-
-        // 아이디, 6자 이상 50자 이하
-        joinInfo.setID("testkorea0328");
-
-        // 팝빌회원 비밀번호 (8자 이상 20자 이하) 영문, 숫자 ,특수문자 조합
-        joinInfo.setPassword("password123!@#");
 
         // 담당자 성명, 최대 100자
         joinInfo.setContactName("담당자 성명");
@@ -324,7 +324,7 @@ public class BaseServiceServiceController {
         // 담당자 이메일, 최대 100자
         contactInfo.setEmail("test1234@test.com");
 
-        // 담당자 조회권한 1 - 개인권한 / 2 - 읽기권한 / 3 - 회사권한
+        // 담당자 조회권한, 1 - 개인권한 / 2 - 읽기권한 / 3 - 회사권한
         contactInfo.setSearchRole(3);
 
         try {
@@ -352,8 +352,7 @@ public class BaseServiceServiceController {
         // 담당자 아이디, 6자 이상 50자 이하
         contactInfo.setId("testid");
 
-        // 담당자 비밀번호 (8자 이상 20자 이하)
-        // - 영문, 숫자 ,특수문자 조합
+        // 담당자 비밀번호 (8자 이상 20자 이하) 영문, 숫자, 특수문자 조합
         contactInfo.setPassword("password123!@#");
 
         // 담당자 성명, 최대 100자
@@ -371,7 +370,7 @@ public class BaseServiceServiceController {
         // 담당자 이메일, 최대 100자
         contactInfo.setEmail("test1234@test.com");
 
-        // 담당자 조회권한 1 - 개인권한 / 2 - 읽기권한 / 3 - 회사권한
+        // 담당자 조회권한, 1 - 개인권한 / 2 - 읽기권한 / 3 - 회사권한
         contactInfo.setSearchRole(3);
 
         try {
@@ -434,8 +433,8 @@ public class BaseServiceServiceController {
         // 대표자 성명, 최대 100자
         corpInfo.setCeoname("대표자 성명 수정 테스트");
 
-        // 상호, 최대 200자
-        corpInfo.setCorpName("상호 수정 테스트");
+        // 회사명, 최대 200자
+        corpInfo.setCorpName("회사명 수정 테스트");
 
         // 주소, 최대 300자
         corpInfo.setAddr("주소 수정 테스트");

@@ -254,7 +254,7 @@ public class FaxServiceController {
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
-//            reserveDT = format.parse("20220201140000");
+//            reserveDT = format.parse("20220218140000");
 //        } catch (ParseException e) {
 //            e.printStackTrace();
 //        }
@@ -334,7 +334,7 @@ public class FaxServiceController {
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
-//            reserveDT = format.parse("20220201140000");
+//            reserveDT = format.parse("20220218140000");
 //        } catch (ParseException e) {
 //            e.printStackTrace();
 //        }
@@ -371,11 +371,12 @@ public class FaxServiceController {
          * 팝빌에서 반환받은 접수번호를 통해 팩스 1건을 재전송합니다.
          * - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
          * - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
+         * - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
          * - https://docs.popbill.com/fax/java/api#ResendFAX
          */
 
         // 원본 팩스 접수번호
-        String orgReceiptNum = "021112319124600001";
+        String orgReceiptNum = "022021803102600001";
 
         // 발신번호, 공백처리시 기존전송정보로 재전송
         String sendNum = "07043042991";
@@ -393,7 +394,7 @@ public class FaxServiceController {
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
-//            reserveDT = format.parse("20220201140000");
+//            reserveDT = format.parse("20220218140000");
 //        } catch (ParseException e) {
 //            e.printStackTrace();
 //        }
@@ -404,7 +405,6 @@ public class FaxServiceController {
         // 재전송 팩스의 전송요청번호
         // 파트너가 전송 건에 대해 관리번호를 구성하여 관리하는 경우 사용.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
-        // 재전송 팩스의 전송상태확인(getFaxResultRN) / 예약전송취소(cancelReserveRN) 에 이용됩니다.
         String requestNum = "";
 
         try {
@@ -428,11 +428,12 @@ public class FaxServiceController {
          * 동일한 팩스파일을 다수의 수신자에게 전송하기 위해 팝빌에 접수합니다. (최대 전송파일 개수: 20개) (최대 1,000건)
          * - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
          * - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
+         * - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
          * - https://docs.popbill.com/fax/java/api#ResendFAX_Multi
          */
 
         // 원본 팩스 접수번호
-        String orgReceiptNum = "021112319124600001";
+        String orgReceiptNum = "022021803102600001";
 
         // 발신번호, 공백처리시 기존전송정보로 재전송
         String sendNum = "07043042991";
@@ -460,7 +461,7 @@ public class FaxServiceController {
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
-//            reserveDT = format.parse("20220201140000");
+//            reserveDT = format.parse("20220218140000");
 //        } catch (ParseException e) {
 //            e.printStackTrace();
 //        }
@@ -471,7 +472,6 @@ public class FaxServiceController {
         // 재전송 팩스의 전송요청번호
         // 파트너가 전송 건에 대해 관리번호를 구성하여 관리하는 경우 사용.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
-        // 재전송 팩스의 전송상태확인(getFaxResultRN) / 예약전송취소(cancelReserveRN) 에 이용됩니다.
         String requestNum = "";
 
         try {
@@ -495,13 +495,13 @@ public class FaxServiceController {
          * 파트너가 할당한 전송요청 번호를 통해 팩스 1건을 재전송합니다.
          * - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
          * - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
+         * - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
          * - https://docs.popbill.com/fax/java/api#ResendFAXRN
          */
 
         // 재전송 팩스의 전송요청번호
         // 파트너가 전송 건에 대해 관리번호를 구성하여 관리하는 경우 사용.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
-        // 재전송 팩스의 전송상태확인(getFaxResultRN) / 예약전송취소(cancelReserveRN) 에 이용됩니다.
         String requestNum = "";
 
         // 발신번호, 공백처리시 기존전송정보로 재전송
@@ -520,7 +520,7 @@ public class FaxServiceController {
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
-//            reserveDT = format.parse("20220201140000");
+//            reserveDT = format.parse("20220218140000");
 //        } catch (ParseException e) {
 //            e.printStackTrace();
 //        }
@@ -552,13 +552,13 @@ public class FaxServiceController {
          * 파트너가 할당한 전송요청 번호를 통해 다수건의 팩스를 재전송합니다. (최대 전송파일 개수: 20개) (최대 1,000건)
          * - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
          * - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
+         * - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
          * - https://docs.popbill.com/fax/java/api#ResendFAXRN_Multi
          */
 
         // 재전송 팩스의 전송요청번호
         // 파트너가 전송 건에 대해 관리번호를 구성하여 관리하는 경우 사용.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
-        // 재전송 팩스의 전송상태확인(getFaxResultRN) / 예약전송취소(cancelReserveRN) 에 이용됩니다.
         String requestNum = "";
 
         // 발신번호, 공백처리시 기존전송정보로 재전송
@@ -587,7 +587,7 @@ public class FaxServiceController {
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
-//            reserveDT = format.parse("20220201140000");
+//            reserveDT = format.parse("20220218140000");
 //        } catch (ParseException e) {
 //            e.printStackTrace();
 //        }
@@ -621,7 +621,7 @@ public class FaxServiceController {
          */
 
         // 예약팩스 전송요청시 팝빌로부터 반환 받은 접수번호
-        String receiptNum = "021010414344900001";
+        String receiptNum = "022021803102600001";
 
         try {
             Response response = faxService.cancelReserve(testCorpNum, receiptNum);
@@ -667,7 +667,7 @@ public class FaxServiceController {
          */
 
         // 팩스 전송요청시 발급받은 접수번호
-        String receiptNum = "021111909011900001";
+        String receiptNum = "022021803102600001";
 
         try {
             FaxResult[] faxResults = faxService.getFaxResult(testCorpNum, receiptNum);
@@ -714,13 +714,14 @@ public class FaxServiceController {
          */
 
         // 시작일자, 날짜형식(yyyyMMdd)
-        String SDate = "20211220";
+        String SDate = "20220201";
 
         // 종료일자, 날짜형식(yyyyMMdd)
-        String EDate = "20220102";
+        String EDate = "20220218";
 
         // 전송상태 배열 ("1" , "2" , "3" , "4" 중 선택, 다중 선택 가능)
-        // └ 1 = 대기 , 2 = 성공 , 3 = 실패 , 4 = 취소 , 미입력 시 전체조회
+        // └ 1 = 대기 , 2 = 성공 , 3 = 실패 , 4 = 취소
+        // - 미입력 시 전체조회
         String[] State = { "1", "2", "3", "4" };
 
         // 예약여부 (false , true 중 택 1)
@@ -792,7 +793,7 @@ public class FaxServiceController {
         try {
 
             // 팩스 접수번호
-            String receiptNum = "021010414350900001";
+            String receiptNum = "022021803102600001";
 
             String url = faxService.getPreviewURL(testCorpNum, receiptNum);
 

@@ -48,6 +48,7 @@ public class StatementServiceController {
     public String checkMgtKeyInUse(Model m) {
         /*
          * 파트너가 전자명세서 관리 목적으로 할당하는 문서번호의 사용여부를 확인합니다.
+         * - 이미 사용 중인 문서번호는 중복 사용이 불가하고, 전자명세서가 삭제된 경우에만 문서번호의 재사용이 가능합니다.
          * - https://docs.popbill.com/statement/java/api#CheckMgtKeyInUse
          */
 
@@ -55,7 +56,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        String mgtKey = "20220110-01";
+        String mgtKey = "20220218-BOOT001";
         String isUseStr;
 
         try {
@@ -83,14 +84,15 @@ public class StatementServiceController {
 
         String Memo = "전자명세서 즉시발행 메모";
 
-        // 발행안내 메일 제목, 미기재시 기본양식으로 메일 전송
+        // 발행 안내 메일 제목
+        // - 미입력 시 팝빌에서 지정한  이메일 제목으로 전송
         String emailSubject = "";
 
         // 전자명세서 정보 객체
         Statement statement = new Statement();
 
         // 작성일자, 형태 yyyyMMdd
-        statement.setWriteDate("20220105");
+        statement.setWriteDate("20220218");
 
         // {영수, 청구, 없음} 중 기재
         statement.setPurposeType("영수");
@@ -105,7 +107,7 @@ public class StatementServiceController {
         statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        statement.setMgtKey("20220105-003");
+        statement.setMgtKey("20220218-BOOT001");
 
 
         /*********************************************************************
@@ -198,10 +200,14 @@ public class StatementServiceController {
         statement.setRemark2("비고2");
         statement.setRemark3("비고3");
 
-        // 사업자등록증 이미지 첨부여부
+        // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        // └ true = 첨부 , false = 미첨부(기본값)
+        // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBusinessLicenseYN(false);
 
-        // 통장사본 이미지 첨부여부
+        // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        // └ true = 첨부 , false = 미첨부(기본값)
+        // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBankBookYN(false);
 
 
@@ -215,7 +221,7 @@ public class StatementServiceController {
 
         detail.setSerialNum((short) 1);                    // 일련번호, 1부터 순차기재
         detail.setItemName("품명");                        // 품목명
-        detail.setPurchaseDT("20220105");                  // 거래일자
+        detail.setPurchaseDT("20220218");                  // 거래일자
         detail.setQty("1");                                // 수량
         detail.setSupplyCost("200000");                    // 공급가액
         detail.setTax("20000");                            // 세액
@@ -225,7 +231,7 @@ public class StatementServiceController {
         detail = new StatementDetail();                    // 상세항목(품목) 배열
         detail.setSerialNum((short) 2);                    // 일련번호 1부터 순차기재
         detail.setItemName("품명");                        // 품목명
-        detail.setPurchaseDT("20220105");                  // 거래일자
+        detail.setPurchaseDT("20220218");                  // 거래일자
         detail.setQty("1");                                // 수량
         detail.setSupplyCost("200000");                    // 공급가액
         detail.setTax("20000");                            // 세액
@@ -264,6 +270,7 @@ public class StatementServiceController {
     public String register(Model m) {
         /*
          * 작성된 전자명세서 데이터를 팝빌에 저장합니다.
+         * - "임시저장" 상태의 전자명세서는 발행(Issue API) 함수를 호출하여 "발행완료"처리한 경우에만 수신자에게 발행 안내 메일이 발송됩니다.
          * - https://docs.popbill.com/statement/java/api#Register
          */
 
@@ -271,7 +278,7 @@ public class StatementServiceController {
         Statement statement = new Statement();
 
         // 작성일자, 형태 yyyyMMdd
-        statement.setWriteDate("20220105");
+        statement.setWriteDate("20220218");
 
         // {영수, 청구, 없음} 중 기재
         statement.setPurposeType("영수");
@@ -286,7 +293,7 @@ public class StatementServiceController {
         statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        statement.setMgtKey("20220105-Register002");
+        statement.setMgtKey("20220218-BOOT002");
 
 
         /*********************************************************************
@@ -379,10 +386,14 @@ public class StatementServiceController {
         statement.setRemark2("비고2");
         statement.setRemark3("비고3");
 
-        // 사업자등록증 이미지 첨부여부
+        // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        // └ true = 첨부 , false = 미첨부(기본값)
+        // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBusinessLicenseYN(false);
 
-        // 통장사본 이미지 첨부여부
+        // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        // └ true = 첨부 , false = 미첨부(기본값)
+        // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBankBookYN(false);
 
 
@@ -396,7 +407,7 @@ public class StatementServiceController {
 
         detail.setSerialNum((short) 1);                    // 일련번호, 1부터 순차기재
         detail.setItemName("품명");                        // 품목명
-        detail.setPurchaseDT("20220105");                  // 거래일자
+        detail.setPurchaseDT("20220218");                  // 거래일자
         detail.setQty("1");                                // 수량
         detail.setSupplyCost("200000");                    // 공급가액
         detail.setTax("20000");                            // 세액
@@ -406,7 +417,7 @@ public class StatementServiceController {
         detail = new StatementDetail();                    // 상세항목(품목) 배열
         detail.setSerialNum((short) 2);                    // 일련번호 1부터 순차기재
         detail.setItemName("품명");                        // 품목명
-        detail.setPurchaseDT("20220105");                  // 거래일자
+        detail.setPurchaseDT("20220218");                  // 거래일자
         detail.setQty("1");                                // 수량
         detail.setSupplyCost("200000");                    // 공급가액
         detail.setTax("20000");                            // 세액
@@ -454,7 +465,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        String mgtKey = "20220105-Register002";
+        String mgtKey = "20220218-BOOT002";
 
         // 전자명세서 정보 객체
         Statement statement = new Statement();
@@ -568,10 +579,14 @@ public class StatementServiceController {
         statement.setRemark2("비고2");
         statement.setRemark3("비고3");
 
-        // 사업자등록증 이미지 첨부여부
+        // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        // └ true = 첨부 , false = 미첨부(기본값)
+        // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBusinessLicenseYN(false);
 
-        // 통장사본 이미지 첨부여부
+        // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        // └ true = 첨부 , false = 미첨부(기본값)
+        // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBankBookYN(false);
 
 
@@ -585,7 +600,7 @@ public class StatementServiceController {
 
         detail.setSerialNum((short) 1);                    // 일련번호, 1부터 순차기재
         detail.setItemName("품명");                        // 품목명
-        detail.setPurchaseDT("20220101");                  // 거래일자
+        detail.setPurchaseDT("20220218");                  // 거래일자
         detail.setQty("1");                                // 수량
         detail.setSupplyCost("200000");                    // 공급가액
         detail.setTax("20000");                            // 세액
@@ -595,7 +610,7 @@ public class StatementServiceController {
         detail = new StatementDetail();                    // 상세항목(품목) 배열
         detail.setSerialNum((short) 2);                    // 일련번호 1부터 순차기재
         detail.setItemName("품명");                        // 품목명
-        detail.setPurchaseDT("20220101");                  // 거래일자
+        detail.setPurchaseDT("20220218");                  // 거래일자
         detail.setQty("1");                                // 수량
         detail.setSupplyCost("200000");                    // 공급가액
         detail.setTax("20000");                            // 세액
@@ -645,7 +660,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20220105-Register002";
+        String mgtKey = "20220218-BOOT002";
 
         // 메모
         String memo = "발행메모";
@@ -677,7 +692,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20220105-Register002";
+        String mgtKey = "20220218-BOOT002";
 
         // 메모
         String memo = "발행취소 메모";
@@ -710,7 +725,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20220105-Register002";
+        String mgtKey = "20220218-BOOT002";
 
         try {
 
@@ -737,7 +752,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20220105-003";
+        String mgtKey = "20220218-BOOT001";
 
         try {
 
@@ -765,7 +780,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호 배열(최대 1000건)
-        String[] MgtKeyList = new String[]{"20220105-003", "20220105-001", "20220105-002"};
+        String[] MgtKeyList = new String[]{"20220218-BOOT001", "20220218-BOOT002"};
 
         try {
 
@@ -793,7 +808,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20220105-003";
+        String mgtKey = "20220218-BOOT001";
 
         try {
 
@@ -817,14 +832,15 @@ public class StatementServiceController {
          * - https://docs.popbill.com/statement/java/api#Search
          */
 
-        // 일자유형, R-등록일자, W-작성일자, I-발행일자
+        // 일자 유형 ("R" , "W" , "I" 중 택 1)
+        // └ R = 등록일자 , W = 작성일자 , I = 발행일자
         String DType = "W";
 
         // 시작일자, 날짜형식(yyyyMMdd)
-        String SDate = "20211101";
+        String SDate = "20220201";
 
         // 종료일자, 날짜형식(yyyyMMdd)
-        String EDate = "20220105";
+        String EDate = "20220228";
 
         // 전자명세서 상태코드 배열 (2,3번째 자리에 와일드카드(*) 사용 가능)
         // - 미입력시 전체조회
@@ -874,7 +890,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20220105-003";
+        String mgtKey = "20220218-BOOT001";
 
         try {
 
@@ -899,7 +915,7 @@ public class StatementServiceController {
          * - https://docs.popbill.com/statement/java/api#GetURL
          */
 
-        // TBOX : 임시문서함 , SBOX : 매출문서함
+        // TBOX : 임시문서함 , SBOX : 발행문서함
         String TOGO = "SBOX";
 
         try {
@@ -919,7 +935,7 @@ public class StatementServiceController {
     @RequestMapping(value = "getPopUpURL", method = RequestMethod.GET)
     public String getPopUpURL(Model m) {
         /*
-         * 팝빌 사이트와 동일한 전자명세서 1건의 상세 정보 페이지의 팝업 URL을 반환합니다.
+         * 전자명세서 1건의 상세 정보 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/statement/java/api#GetPopUpURL
          */
@@ -928,7 +944,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20220105-003";
+        String mgtKey = "20220218-BOOT001";
 
         try {
 
@@ -957,7 +973,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20220105-003";
+        String mgtKey = "20220218-BOOT001";
 
         try {
 
@@ -988,7 +1004,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20220105-003";
+        String mgtKey = "20220218-BOOT001";
 
         try {
 
@@ -1018,7 +1034,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20220105-003";
+        String mgtKey = "20220218-BOOT001";
 
         try {
 
@@ -1047,7 +1063,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 문서번호 배열, 최대 100건
-        String[] mgtKeyList = new String[]{"20220105-001", "20220105-002", "20220105-003"};
+        String[] mgtKeyList = new String[]{"20220218-BOOT001", "20220218-BOOT002"};
 
         try {
 
@@ -1076,7 +1092,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20220105-003";
+        String mgtKey = "20220218-BOOT001";
 
         try {
             String url = statementService.getMailURL(testCorpNum, itemCode, mgtKey);
@@ -1124,7 +1140,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20220105-Register002";
+        String mgtKey = "20220218-BOOT002";
 
         // 첨부파일 표시명
         String displayName = "첨부파일.jpg";
@@ -1167,10 +1183,10 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20220105-Register002";
+        String mgtKey = "20220218-BOOT002";
 
         // getFiles()로 해당 파일의 attachedFile 필드값 기재.
-        String FileID = "21C39C6C-59AD-4E4F-A44A-D0C5F06F3C41.PBF";
+        String FileID = "";
 
         try {
 
@@ -1199,7 +1215,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20220105-Register002";
+        String mgtKey = "20220218-BOOT002";
 
         try {
 
@@ -1227,7 +1243,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20220105-003";
+        String mgtKey = "20220218-BOOT001";
 
         // 수신자 이메일주소
         String receiver = "test@test.com";
@@ -1260,7 +1276,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20220105-003";
+        String mgtKey = "20220218-BOOT001";
 
         // 발신번호
         String sender = "07043042991";
@@ -1298,7 +1314,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20220105-003";
+        String mgtKey = "20220218-BOOT001";
 
         // 발신자 번호
         String sender = "07043042991";
@@ -1342,7 +1358,7 @@ public class StatementServiceController {
         Statement statement = new Statement();
 
         // 작성일자, 형태 yyyyMmdd
-        statement.setWriteDate("20220105");
+        statement.setWriteDate("20220218");
 
         // {영수, 청구, 없음} 중 기재
         statement.setPurposeType("영수");
@@ -1357,7 +1373,7 @@ public class StatementServiceController {
         statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        statement.setMgtKey("20220105-100");
+        statement.setMgtKey("20220218-BOOT003");
 
 
         /*********************************************************************
@@ -1450,10 +1466,14 @@ public class StatementServiceController {
         statement.setRemark2("비고2");
         statement.setRemark3("비고3");
 
-        // 사업자등록증 이미지 첨부여부
+        // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        // └ true = 첨부 , false = 미첨부(기본값)
+        // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBusinessLicenseYN(false);
 
-        // 통장사본 이미지 첨부여부
+        // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        // └ true = 첨부 , false = 미첨부(기본값)
+        // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBankBookYN(false);
 
 
@@ -1467,7 +1487,7 @@ public class StatementServiceController {
 
         detail.setSerialNum((short) 1);                    // 일련번호, 1부터 순차기재
         detail.setItemName("품명");                        // 품목명
-        detail.setPurchaseDT("20220103");                  // 거래일자
+        detail.setPurchaseDT("20220218");                  // 거래일자
         detail.setQty("1");                                // 수량
         detail.setSupplyCost("200000");                    // 공급가액
         detail.setTax("20000");                            // 세액
@@ -1477,7 +1497,7 @@ public class StatementServiceController {
         detail = new StatementDetail();                    // 상세항목(품목) 배열
         detail.setSerialNum((short) 2);                    // 일련번호 1부터 순차기재
         detail.setItemName("품명");                        // 품목명
-        detail.setPurchaseDT("20220103");                  // 거래일자
+        detail.setPurchaseDT("20220218");                  // 거래일자
         detail.setQty("1");                                // 수량
         detail.setSupplyCost("200000");                    // 공급가액
         detail.setTax("20000");                            // 세액
@@ -1525,14 +1545,14 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20220105-003";
+        String mgtKey = "20220218-BOOT001";
 
 
         // 첨부할 전자명세서 유형 코드
         int subItemCode = 121;
 
         // 첨부할 전자명세서 문서번호
-        String subMgtKey = "20220105-002";
+        String subMgtKey = "20220218-BOOT002";
 
         try {
 
@@ -1560,14 +1580,14 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20220105-003";
+        String mgtKey = "20220218-BOOT001";
 
 
         // 첨부해제할 전자명세서 유형 코드
         int subItemCode = 121;
 
         // 첨부해제할 전자명세서 문서번호
-        String subMgtKey = "20220105-002";
+        String subMgtKey = "20220218-BOOT002";
 
         try {
 

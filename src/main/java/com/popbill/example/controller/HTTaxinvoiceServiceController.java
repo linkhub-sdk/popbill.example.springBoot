@@ -43,6 +43,7 @@ public class HTTaxinvoiceServiceController {
     public String requestJob(Model m) {
         /*
          * 홈택스에 신고된 전자세금계산서 매입/매출 내역 수집을 팝빌에 요청합니다. (조회기간 단위 : 최대 3개월)
+         * 주기적으로 자체 DB에 세금계산서 정보를 INSERT 하는 경우, 조회할 일자 유형(DType) 값을 "S"로 하는 것을 권장합니다.
          * - https://docs.popbill.com/httaxinvoice/java/api#RequestJob
          */
 
@@ -55,10 +56,10 @@ public class HTTaxinvoiceServiceController {
         String DType = "S";
 
         // 시작일자, 날짜형식(yyyyMMdd)
-        String SDate = "20211110";
+        String SDate = "20220201";
 
         // 종료일자, 닐짜형식(yyyyMMdd)
-        String EDate = "20220110";
+        String EDate = "20220228";
 
         try {
             String jobID = htTaxinvoiceService.requestJob(testCorpNum, TIType, DType, SDate, EDate);
@@ -86,7 +87,7 @@ public class HTTaxinvoiceServiceController {
          */
 
         // 수집요청(requestJob)시 반환받은 작업아이디
-        String jobID = "022011014000000002";
+        String jobID = "";
 
         try {
             HTTaxinvoiceJobState jobState = htTaxinvoiceService.getJobState(testCorpNum, jobID);
@@ -128,7 +129,7 @@ public class HTTaxinvoiceServiceController {
          */
 
         // 수집 요청시 발급받은 작업아이디
-        String jobID = "022011014000000002";
+        String jobID = "";
 
         // 문서형태 배열 ("N" 와 "M" 중 선택, 다중 선택 가능)
         // └ N = 일반 , M = 수정 , 미입력 시 전체조회
@@ -187,11 +188,12 @@ public class HTTaxinvoiceServiceController {
     public String summary(Model m) {
         /*
          * 수집 상태 확인(GetJobState API) 함수를 통해 상태 정보가 확인된 작업아이디를 활용하여 수집된 전자세금계산서 매입/매출 내역의 요약 정보를 조회합니다.
+         * - 요약 정보 : 전자세금계산서 수집 건수, 공급가액 합계, 세액 합계, 합계 금액
          * - https://docs.popbill.com/httaxinvoice/java/api#Summary
          */
 
-        // 수집 요청시 발급받은 작업아이디
-        String jobID = "022011014000000002";
+        // 수집요청(requestJob API) 함수 호출 시 반환받은 작업아이디
+        String jobID = "";
 
         // 문서형태 배열 ("N" 와 "M" 중 선택, 다중 선택 가능)
         // └ N = 일반 , M = 수정 , 미입력 시 전체조회

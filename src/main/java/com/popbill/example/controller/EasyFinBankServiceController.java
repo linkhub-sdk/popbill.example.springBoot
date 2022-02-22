@@ -79,7 +79,8 @@ public class EasyFinBankServiceController {
         // 조회전용 계정 비밀번호 (대구은행, 신협, 신한은행 필수)
         bankInfo.setFastPWD("");
 
-        // 정액제 이용할 개월수, 1~12 입력가능, 미기재시 기본값(1) 처리
+        // 정액제 이용할 개월수, 1~12 입력가능
+        // - 미입력시 기본값 1개월 처리
         // - 파트너 과금방식의 경우 입력값에 관계없이 1개월 처리
         bankInfo.setUsePeriod(1);
 
@@ -163,7 +164,7 @@ public class EasyFinBankServiceController {
         // 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
         // SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
         // 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
-        String BankCode = "0003";
+        String BankCode = "";
 
         // 계좌번호 하이픈('-') 제외
         String AccountNumber = "";
@@ -185,7 +186,7 @@ public class EasyFinBankServiceController {
    @RequestMapping(value = "listBankAccount", method = RequestMethod.GET)
     public String listBankAccount(Model m) {
        /*
-        * 팝빌에 등록된 은행계좌 목록을 반환합니다.
+        * 팝빌에 등록된 계좌정보 목록을 반환합니다.
         * - https://docs.popbill.com/easyfinbank/java/api#ListBankAccount
         */
         try {
@@ -239,9 +240,10 @@ public class EasyFinBankServiceController {
         // 계좌번호 하이픈('-') 제외
         String AccountNumber = "";
 
-        // 해지유형, “일반”, “중도” 중 선택 기재
-        // 일반해지 – 이용중인 정액제 기간 만료 후 해지
-        // 중도해지 – 요청일 기준으로 정지되고 팝빌 담당자가 승인시 해지, 정액제 잔여기간은 일할로 계산되어 포인트 환불 (무료 이용기간 중 중도해지 시 전액 환불)
+        // 해지유형, "일반", "중도" 중 택 1
+        // 일반(일반해지) – 이용중인 정액제 기간 만료 후 해지
+        // 중도(중도해지) – 해지 요청일 기준으로 정지되고 팝빌 담당자가 승인시 해지
+        // └ 중도일 경우, 정액제 잔여기간은 일할로 계산되어 포인트 환불 (무료 이용기간 중 해지하면 전액 환불)
         String CloseType = "중도";
 
         try {
@@ -293,7 +295,7 @@ public class EasyFinBankServiceController {
        /*
         * 등록된 계좌를 삭제합니다.
         * - 정액제가 아닌 종량제 이용 시에만 등록된 계좌를 삭제할 수 있습니다.
-        * - 정액제 이용 시 CloseBankAccount 함수를 사용하여 정액제를 해제할 수 있습니다.
+        * - 정액제 이용 시 정액제 해지요청(CloseBankAccount API) 함수를 사용하여 정액제를 해제할 수 있습니다.
         * - https://docs.popbill.com/easyfinbank/java/api#DeleteBankAccount
         */
 
@@ -330,16 +332,16 @@ public class EasyFinBankServiceController {
         */
 
         // 기관코드
-        String BankCode = "0034";
+        String BankCode = "";
 
         // 계좌번호
         String AccountNumber = "";
 
         // 시작일자, 날짜형식(yyyyMMdd)
-        String SDate = "20211211";
+        String SDate = "20220201";
 
         // 종료일자, 닐짜형식(yyyyMMdd)
-        String EDate = "20220110";
+        String EDate = "20220228";
 
         try {
 
@@ -368,7 +370,7 @@ public class EasyFinBankServiceController {
          */
 
         // 수집요청(requestJob)시 반환받은 작업아이디
-        String jobID = "022011014000000010";
+        String jobID = "022021814000000010";
 
         try {
             EasyFinBankJobState jobState = easyFinBankService.getJobState(testCorpNum, jobID);
@@ -385,7 +387,7 @@ public class EasyFinBankServiceController {
     @RequestMapping(value = "listActiveJob", method = RequestMethod.GET)
     public String listActiveJob(Model m) {
         /*
-         * RequestJob(수집 요청)를 통해 반환 받은 작업아이디의 목록을 확인합니다.
+         * 수집 요청(RequestJob API) 함수를 통해 반환 받은 작업아이디의 목록을 확인합니다.
          * - 수집 요청 후 1시간이 경과한 수집 요청건은 상태정보가 반환되지 않습니다.
          * - https://docs.popbill.com/easyfinbank/java/api#ListActiveJob
          */
@@ -411,7 +413,7 @@ public class EasyFinBankServiceController {
          */
 
         // 수집 요청시 발급받은 작업아이디
-        String jobID = "022011014000000010";
+        String jobID = "022021814000000010";
 
         // 거래유형 배열 ("I" 와 "O" 중 선택, 다중 선택 가능)
         // └ I = 입금 , O = 출금 , 미입력 시 전체조회
@@ -450,11 +452,12 @@ public class EasyFinBankServiceController {
     public String summary(Model m) {
         /*
          * 수집 상태 확인(GetJobState API) 함수를 통해 상태 정보가 확인된 작업아이디를 활용하여 계좌 거래내역의 요약 정보를 조회합니다.
+         * - 요약 정보는 입·출금액 합계, 입·출 거래 건수를 가리킵니다.
          * - https://docs.popbill.com/easyfinbank/java/api#Summary
          */
 
         // 수집 요청시 발급받은 작업아이디
-        String jobID = "022011014000000010";
+        String jobID = "022021814000000010";
 
         // 거래유형 배열 ("I" 와 "O" 중 선택, 다중 선택 가능)
         // └ I = 입금 , O = 출금 , 미입력 시 전체조회
@@ -488,11 +491,12 @@ public class EasyFinBankServiceController {
         * - https://docs.popbill.com/easyfinbank/java/api#SaveMemo
         */
 
-        // 거래내역 아이디, SeachAPI 응답항목 중 tid
+        // 메모를 저장할 거래내역 아이디
+        // └ 거래내역 조회(Seach API) 함수의 반환값인 EasyFinBankSearchDetail 의 tid를 통해 확인 가능
         String TID = "02110251200000000420211231000001";
 
         // 메모
-        String Memo = "220104-TEST";
+        String Memo = "Memo테스트";
 
         try {
 
@@ -538,7 +542,7 @@ public class EasyFinBankServiceController {
         */
 
         // 기관코드
-        String BankCode = "0003";
+        String BankCode = "";
 
         // 계좌번호
         String AccountNumber = "";

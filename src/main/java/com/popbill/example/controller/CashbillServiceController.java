@@ -48,7 +48,7 @@ public class CashbillServiceController {
          */
 
         // 현금영수증 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        String mgtKey = "20220103-001";
+        String mgtKey = "20220218-BOOT001";
 
         String isUseStr;
 
@@ -76,36 +76,32 @@ public class CashbillServiceController {
          * - https://docs.popbill.com/cashbill/java/api#RegistIssue
          */
 
-        // 메모
+        // 현금영수증 상태 이력을 관리하기 위한 메모
         String Memo = "현금영수증 즉시발행 메모";
 
         // 현금영수증 정보 객체
         Cashbill cashbill = new Cashbill();
 
         // 현금영수증 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        cashbill.setMgtKey("202201031437");
+        cashbill.setMgtKey("20220218-BOOT001");
 
-        // 문서형태, {승인거래, 취소거래} 중 기재
+        // 문서형태, 승인거래 기재
         cashbill.setTradeType("승인거래");
-
-        // 취소거래시 기재, 원본 현금영수증 국세청 승인번호
-        cashbill.setOrgConfirmNum("");
-
-        // 취소거래시 기재, 원본 현금영수증 거래일자
-        cashbill.setOrgTradeDate("");
 
         // 과세형태, {과세, 비과세} 중 기재
         cashbill.setTaxationType("과세");
 
-        // 식별번호, 거래유형에 따라 작성
-        // 소득공제용 - 주민등록/휴대폰/카드번호 기재가능
-        // 지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호 기재가능
+        // 식별번호, 거래구분에 따라 작성
+        // └ 소득공제용 - 주민등록/휴대폰/카드번호(현금영수증 카드)/자진발급용 번호(010-000-1234) 기재가능
+        // └ 지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호(현금영수증 카드) 기재가능
+        // └ 주민등록번호 13자리, 휴대폰번호 10~11자리, 카드번호 13~19자리, 사업자번호 10자리 입력 가능
         cashbill.setIdentityNum("0101112222");
 
         // 거래구분, {소득공제용, 지출증빙용} 중 기재
         cashbill.setTradeUsage("소득공제용");
 
         // 거래유형, {일반, 도서공연, 대중교통} 중 기재
+        // - 미입력시 기본값 "일반" 처리
         cashbill.setTradeOpt("대중교통");
 
         // 공급가액, 숫자만 가능
@@ -186,7 +182,7 @@ public class CashbillServiceController {
         Cashbill cashbill = new Cashbill();
 
         // 현금영수증 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        cashbill.setMgtKey("20220105-030");
+        cashbill.setMgtKey("20220218-BOOT002");
 
         // 문서형태, {승인거래, 취소거래} 중 기재
         cashbill.setTradeType("승인거래");
@@ -197,18 +193,19 @@ public class CashbillServiceController {
         // 거래유형, {일반, 도서공연, 대중교통} 중 기재
         cashbill.setTradeOpt("일반");
 
-        // 취소거래시 기재, 원본 현금영수증 국세청 승인번호 - getInfo API를 통해 confirmNum 값 기재
+        // 취소거래시 기재, 원본 현금영수증 국세청 승인번호 - 상태확인(getInfo API) 함수를 통해 confirmNum 값 기재
         cashbill.setOrgConfirmNum("");
 
-        // 취소거래시 기재, 원본 현금영수증 거래일자 - getInfo API를 통해 tradeDate 값 기재
+        // 취소거래시 기재, 원본 현금영수증 거래일자 - 상태확인(getInfo API) 함수를 통해 tradeDate 값 기재
         cashbill.setOrgTradeDate("");
 
         // 과세형태, {과세, 비과세} 중 기재
         cashbill.setTaxationType("과세");
 
-        // 거래처 식별번호, 거래유형에 따라 작성
-        // 소득공제용 - 주민등록/휴대폰/카드번호 기재가능
-        // 지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호 기재가능
+        // 식별번호, 거래구분에 따라 작성
+        // └ 소득공제용 - 주민등록/휴대폰/카드번호(현금영수증 카드)/자진발급용 번호(010-000-1234) 기재가능
+        // └ 지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호(현금영수증 카드) 기재가능
+        // └ 주민등록번호 13자리, 휴대폰번호 10~11자리, 카드번호 13~19자리, 사업자번호 10자리 입력 가능
         cashbill.setIdentityNum("01011112222");
 
         // 공급가액, 숫자만 가능
@@ -281,7 +278,7 @@ public class CashbillServiceController {
          */
 
         // 수정할 현금영수증 문서번호
-        String mgtKey = "202201031440";
+        String mgtKey = "20220218-BOOT002";
 
         // 현금영수증 정보 객체
         Cashbill cashbill = new Cashbill();
@@ -292,15 +289,19 @@ public class CashbillServiceController {
         // 문서형태, {승인거래, 취소거래} 중 기재
         cashbill.setTradeType("승인거래");
 
-        // 취소거래시 기재, 원본현금영수증 국세청 승인번호 - getInfo API를 통해 confirmNum 값 기재
-        // cashbill.setOrgConfirmNum("");
+        // 취소거래시 기재, 원본 현금영수증 국세청 승인번호 - 상태확인(getInfo API) 함수를 통해 confirmNum 값 기재
+        cashbill.setOrgConfirmNum("");
+
+        // 취소거래시 기재, 원본 현금영수증 거래일자 - 상태확인(getInfo API) 함수를 통해 tradeDate 값 기재
+        cashbill.setOrgTradeDate("");
 
         // 과세형태, {과세, 비과세} 중 기재
         cashbill.setTaxationType("과세");
 
-        // 거래처 식별번호, 거래유형에 따라 작성
-        // 소득공제용 - 주민등록/휴대폰/카드번호 기재가능
-        // 지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호 기재가능
+        // 식별번호, 거래구분에 따라 작성
+        // └ 소득공제용 - 주민등록/휴대폰/카드번호(현금영수증 카드)/자진발급용 번호(010-000-1234) 기재가능
+        // └ 지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호(현금영수증 카드) 기재가능
+        // └ 주민등록번호 13자리, 휴대폰번호 10~11자리, 카드번호 13~19자리, 사업자번호 10자리 입력 가능
         cashbill.setIdentityNum("01011112222");
 
         // 거래구분, {소득공제용, 지출증빙용} 중 기재
@@ -379,7 +380,7 @@ public class CashbillServiceController {
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "202112271840";
+        String mgtKey = "20220218-BOOT002";
 
         // 메모
         String memo = "발행메모";
@@ -407,7 +408,7 @@ public class CashbillServiceController {
          */
 
         // 문서번호
-        String mgtKey = "20220110-001";
+        String mgtKey = "20220218-BOOT001";
 
         // 메모
         String memo = "발행취소 메모";
@@ -430,12 +431,12 @@ public class CashbillServiceController {
         /*
          * 삭제 가능한 상태의 세금계산서를 삭제합니다.
          * - 삭제 가능한 상태: "임시저장", "발행취소", "전송실패"
-         * - 삭제처리된 현금영수증의 문서번호는 재사용이 가능합니다.
+         * - 현금영수증을 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
          * - https://docs.popbill.com/cashbill/java/api#Delete
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220110-001";
+        String mgtKey = "20220218-BOOT001";
 
         try {
 
@@ -459,13 +460,13 @@ public class CashbillServiceController {
          */
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        String mgtKey = "20220104-001";
+        String mgtKey = "20220218-BOOT003";
 
         // 원본 현금영수증 국세청 승인번호
         String orgConfirmNum = "820116333";
 
         // 원본 현금영수증 거래일자
-        String orgTradeDate = "20220102";
+        String orgTradeDate = "20220217";
 
         try {
 
@@ -489,45 +490,47 @@ public class CashbillServiceController {
          */
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        String mgtKey = "20220106-001";
+        String mgtKey = "20220218-BOOT004";
 
-        // 원본 현금영수증 국세청 승인번호
+        // 원본 현금영수증 국세청 승인번호 - 상태확인(getInfo API) 함수를 통해 confirmNum 값 기재
         String orgConfirmNum = "820116333";
 
-        // 원본 현금영수증 거래일자
-        String orgTradeDate = "20220104";
+        // 원본 현금영수증 거래일자 - 상태확인(getInfo API) 함수를 통해 tradeDate 값 기재
+        String orgTradeDate = "20220217";
 
-        // 안내 문자 전송여부
+        // 안내 문자 전송여부 , true / false 중 택 1
+        // └ true = 전송 , false = 미전송
+        // └ 원본 현금영수증의 구매자(고객)의 휴대폰번호 문자 전송
         Boolean smssendYN = false;
 
-        // 취소유형 (true , false 중 택 1)
-        // - true = 부분 취소 , false = 전체 취소
-        // - 미입력 시 기본값 false 처리
+        // 현금영수증 취소유형 , true / false 중 택 1
+        // └ true = 부분 취소 , false = 전체 취소
+        // └ 미입력시 기본값 false 처리
         Boolean isPartCancel = true;
 
-        // 취소사유 (1 , 2 , 3 중 택 1 / Integer타입)
-        // - 1 = 거래취소 , 2 = 오류발급취소 , 3 = 기타
-        // - 미입력 시 기본값 1 처리
+        // 취소사유 , 1 / 2 / 3 중 택 1
+        // └ 1 = 거래취소 , 2 = 오류발급취소 , 3 = 기타
+        // └ 미입력시 기본값 1 처리
         Integer cancelType = 1;
 
-        // 공급가액
-        // - isPartCancel 값이 true 인 경우 취소할 공급가액 입력
-        // - isPartCancel 값이 false 인 경우 미입력
+        // [취소] 공급가액
+        // - 현금영수증 취소유형이 true 인 경우 취소할 공급가액 입력
+        // - 현금영수증 취소유형이 false 인 경우 미입력
         String supplyCost = "3000";
 
-        // 부가세
-        // - isPartCancel 값이 true 인 경우 취소할 부가세 입력
-        // - isPartCancel 값이 false 인 경우 미입력
+        // [취소] 부가세
+        // - 현금영수증 취소유형이 true 인 경우 취소할 부가세 입력
+        // - 현금영수증 취소유형이 false 인 경우 미입력
         String tax = "300";
 
-        // 봉사료
-        // - isPartCancel 값이 true 인 경우 취소할 봉사료 입력
-        // - isPartCancel 값이 false 인 경우 미입력
+        // [취소] 봉사료
+        // - 현금영수증 취소유형이 true 인 경우 취소할 봉사료 입력
+        // - 현금영수증 취소유형이 false 인 경우 미입력
         String serviceFee = "0";
 
-        // 합계금액
-        // - isPartCancel 값이 true 인 경우 취소할 거래금액 입력
-        // - isPartCancel 값이 false 인 경우 미입력
+        // [취소] 거래금액 (공급가액+부가세+봉사료)
+        // - 현금영수증 취소유형이 true 인 경우 취소할 거래금액 입력
+        // - 현금영수증 취소유형이 false 인 경우 미입력
         String totalAmount = "3300";
 
         try {
@@ -545,6 +548,7 @@ public class CashbillServiceController {
         return "response";
     }
 
+
     @RequestMapping(value = "revokeRegistIssue", method = RequestMethod.GET)
     public String revokeRegistIssue(Model m) {
         /*
@@ -555,13 +559,13 @@ public class CashbillServiceController {
          */
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        String mgtKey = "20220107-001";
+        String mgtKey = "20220218-BOOT005";
 
-        // 원본 현금영수증 국세청 승인번호
+        // 원본 현금영수증 국세청 승인번호 - 상태확인(getInfo API) 함수를 통해 confirmNum 값 기재
         String orgConfirmNum = "820116333";
 
-        // 원본 현금영수증 거래일자
-        String orgTradeDate = "20220103";
+        // 원본 현금영수증 거래일자 - 상태확인(getInfo API) 함수를 통해 tradeDate 값 기재
+        String orgTradeDate = "20220217";
 
         try {
 
@@ -574,7 +578,7 @@ public class CashbillServiceController {
             return "exception";
         }
 
-        return "response";
+        return "Cashbill/issueResponse";
     }
 
     @RequestMapping(value = "revokeRegistIssue_part", method = RequestMethod.GET)
@@ -588,48 +592,50 @@ public class CashbillServiceController {
          */
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        String mgtKey = "20220110-001";
+        String mgtKey = "20220218-BOOT006";
 
-        // 원본현금영수증 국세청 승인번호
+        // 원본 현금영수증 국세청 승인번호 - 상태확인(getInfo API) 함수를 통해 confirmNum 값 기재
         String orgConfirmNum = "820116333";
 
-        // 원본 현금영수증 거래일자
-        String orgTradeDate = "20220107";
+        // 원본 현금영수증 거래일자 - 상태확인(getInfo API) 함수를 통해 tradeDate 값 기재
+        String orgTradeDate = "20220217";
 
-        // 안내문자 전송여부
+        // 안내 문자 전송여부 , true / false 중 택 1
+        // └ true = 전송 , false = 미전송
+        // └ 원본 현금영수증의 구매자(고객)의 휴대폰번호 문자 전송
         Boolean smssendYN = false;
 
         // 발행 메모
         String memo = "취소 현금영수증 발행 메모";
 
-        // 취소유형 (true , false 중 택 1)
-        // - true = 부분 취소 , false = 전체 취소
-        // - 미입력 시 기본값 false 처리
+        // 현금영수증 취소유형 , true / false 중 택 1
+        // └ true = 부분 취소 , false = 전체 취소
+        // └ 미입력시 기본값 false 처리
         Boolean isPartCancel = true;
 
-        // 취소사유 (1 , 2 , 3 중 택 1 / Integer타입)
-        // - 1 = 거래취소 , 2 = 오류발급취소 , 3 = 기타
-        // - 미입력 시 기본값 1 처리
+        // 취소사유 , 1 / 2 / 3 중 택 1
+        // └ 1 = 거래취소 , 2 = 오류발급취소 , 3 = 기타
+        // └ 미입력시 기본값 1 처리
         Integer cancelType = 1;
 
-        // 공급가액
-        // - isPartCancel 값이 true 인 경우 취소할 공급가액 입력
-        // - isPartCancel 값이 false 인 경우 미입력
+        // [취소] 공급가액
+        // - 현금영수증 취소유형이 true 인 경우 취소할 공급가액 입력
+        // - 현금영수증 취소유형이 false 인 경우 미입력
         String supplyCost = "3000";
 
-        // 부가세
-        // - isPartCancel 값이 true 인 경우 취소할 부가세 입력
-        // - isPartCancel 값이 false 인 경우 미입력
+        // [취소] 부가세
+        // - 현금영수증 취소유형이 true 인 경우 취소할 부가세 입력
+        // - 현금영수증 취소유형이 false 인 경우 미입력
         String tax = "300";
 
-        // 봉사료
-        // - isPartCancel 값이 true 인 경우 취소할 봉사료 입력
-        // - isPartCancel 값이 false 인 경우 미입력
+        // [취소] 봉사료
+        // - 현금영수증 취소유형이 true 인 경우 취소할 봉사료 입력
+        // - 현금영수증 취소유형이 false 인 경우 미입력
         String serviceFee = "0";
 
-        // 합계금액
-        // - isPartCancel 값이 true 인 경우 취소할 거래금액 입력
-        // - isPartCancel 값이 false 인 경우 미입력
+        // [취소] 거래금액 (공급가액+부가세+봉사료)
+        // - 현금영수증 취소유형이 true 인 경우 취소할 거래금액 입력
+        // - 현금영수증 취소유형이 false 인 경우 미입력
         String totalAmount = "3300";
 
         try {
@@ -644,7 +650,7 @@ public class CashbillServiceController {
             return "exception";
         }
 
-        return "response";
+        return "Cashbill/issueResponse";
     }
 
     @RequestMapping(value = "getInfo", method = RequestMethod.GET)
@@ -657,7 +663,7 @@ public class CashbillServiceController {
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220110-001";
+        String mgtKey = "20220218-BOOT002";
 
         try {
 
@@ -682,8 +688,8 @@ public class CashbillServiceController {
          * - https://docs.popbill.com/cashbill/java/api#GetInfos
          */
 
-        // 현금영수증 문서번호 배열 최대(1000건)
-        String[] mgtKeyList = new String[] { "20220110-001", "20220110-002", "20220110-003" };
+        // 현금영수증 문서번호 배열 (최대 1000건)
+        String[] mgtKeyList = new String[] { "20220218-BOOT003", "20220218-BOOT004", "20220218-BOOT005" };
 
         try {
 
@@ -702,12 +708,12 @@ public class CashbillServiceController {
     @RequestMapping(value = "getDetailInfo", method = RequestMethod.GET)
     public String getDetailInfo(Model m) {
         /*
-         * 현금영수증 1건의 상세정보를 확인합니다
+         * 현금영수증 1건의 상세정보를 확인합니다.
          * - https://docs.popbill.com/cashbill/java/api#GetDetailInfo
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "202112271839";
+        String mgtKey = "20220218-BOOT006";
 
         try {
 
@@ -738,14 +744,14 @@ public class CashbillServiceController {
         String SDate = "20220101";
 
         // 종료일자, 날짜형식(yyyyMMdd)
-        String EDate = "20220106";
+        String EDate = "20220228";
 
         // 상태코드 배열 (2,3번째 자리에 와일드카드(*) 사용 가능)
         // - 미입력시 전체조회
         String[] State = { "100", "3**", "4**" };
 
         // 문서형태 배열 ("N" , "C" 중 선택, 다중 선택 가능)
-        // - N = 승인거래 , C = 취소거래
+        // - N = 일반 현금영수증 , C = 취소 현금영수증
         // - 미입력시 전체조회
         String[] TradeType = { "N", "C" };
 
@@ -764,8 +770,13 @@ public class CashbillServiceController {
         // - 미입력시 전체조회
         String[] TaxationType = { "T", "N" };
 
-        // 식별번호 조회, 미기재시 전체조회
+        // 식별번호 조회 (미기재시 전체조회)
         String QString = "";
+
+        // 가맹점 종사업장 번호
+        // └ 다수건 검색시 콤마(",")로 구분. 예) "1234,1000"
+        // └ 미입력시 전제조회
+        String FranchiseTaxRegID = "";
 
         // 페이지 번호
         int Page = 1;
@@ -775,10 +786,6 @@ public class CashbillServiceController {
 
         // 정렬방향, A-오름차순, D-내림차순
         String Order = "D";
-
-        // 가맹점 종사업장 번호
-        // └ 다수건 검색시 콤마(",")로 구분. 예) "1234,1000"
-        String FranchiseTaxRegID = "";
 
         try {
 
@@ -803,7 +810,7 @@ public class CashbillServiceController {
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220110-001";
+        String mgtKey = "20220218-BOOT002";
 
         try {
             CashbillLog[] cashbillLogs = cashbillService.getLogs(testCorpNum, mgtKey);
@@ -821,12 +828,12 @@ public class CashbillServiceController {
     @RequestMapping(value = "getURL", method = RequestMethod.GET)
     public String getURL(Model m) {
         /*
-         * 팝빌 현금영수증 문서함 팝업 URL을 반환합니다.
+         * 로그인 상태로 팝빌 사이트의 현금영수증 문서함 메뉴에 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/cashbill/java/api#GetURL
          */
 
-        // TBOX : 임시문서함 , PBOX : 매출문서함, WRITE : 현금영수증 작성
+        // TBOX : 임시문서함 , PBOX : 발행문서함, WRITE : 현금영수증 작성
         String TOGO = "WRITE";
 
         try {
@@ -846,13 +853,13 @@ public class CashbillServiceController {
     @RequestMapping(value = "getPopUpURL", method = RequestMethod.GET)
     public String getPopUpURL(Model m) {
         /*
-         * 팝빌 사이트와 동일한 현금영수증 1건의 상세 정보 페이지의 URL을 반환합니다.
+         * 현금영수증 1건의 상세 정보 페이지의 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/cashbill/java/api#GetPopUpURL
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220110-001";
+        String mgtKey = "20220218-BOOT002";
 
         try {
 
@@ -871,13 +878,13 @@ public class CashbillServiceController {
     @RequestMapping(value = "getViewURL", method = RequestMethod.GET)
     public String getViewURL(Model m) {
         /*
-         * 팝빌 사이트와 동일한 현금영수증 1건의 상세 정보 페이지(사이트 상단, 좌측 메뉴 및 버튼 제외)의 URL을 반환합니다.
+         * 현금영수증 1건의 상세 정보 페이지(사이트 상단, 좌측 메뉴 및 버튼 제외)의 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/cashbill/java/api#GetViewURL
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220110-001";
+        String mgtKey = "20220218-BOOT002";
 
         try {
 
@@ -902,7 +909,7 @@ public class CashbillServiceController {
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220110-001";
+        String mgtKey = "20220218-BOOT002";
 
         try {
 
@@ -926,7 +933,7 @@ public class CashbillServiceController {
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220104-001";
+        String mgtKey = "20220218-BOOT002";
 
         try {
 
@@ -951,7 +958,7 @@ public class CashbillServiceController {
          */
 
         // 문서번호 배열, 최대 100건
-        String[] mgtKeyList = new String[] { "20220110-001", "20220110-002", "20220110-003" };
+        String[] mgtKeyList = new String[] { "20220218-BOOT002", "20220218-BOOT003", "20220218-BOOT004" };
 
         try {
 
@@ -976,7 +983,7 @@ public class CashbillServiceController {
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220110-001";
+        String mgtKey = "20220218-BOOT002";
 
         try {
 
@@ -1001,7 +1008,7 @@ public class CashbillServiceController {
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220110-001";
+        String mgtKey = "20220218-BOOT002";
 
         try {
 
@@ -1025,7 +1032,7 @@ public class CashbillServiceController {
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220110-001";
+        String mgtKey = "20220218-BOOT002";
 
         // 수신자 메일주소
         String receiver = "test@test.com";
@@ -1047,12 +1054,13 @@ public class CashbillServiceController {
     public String sendSMS(Model m) {
         /*
          * 현금영수증과 관련된 안내 SMS(단문) 문자를 재전송하는 함수로, 팝빌 사이트 [문자·팩스] > [문자] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
-         * - 알림문자 전송시 포인트가 차감됩니다. (전송실패시 환불처리)
+         * - 메시지는 최대 90byte까지 입력 가능하고, 초과한 내용은 자동으로 삭제되어 전송합니다. (한글 최대 45자)
+         * - 함수 호출 시 포인트가 과금됩니다. (전송실패시 환불처리)
          * - https://docs.popbill.com/cashbill/java/api#SendSMS
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220110-001";
+        String mgtKey = "20220218-BOOT002";
 
         // 발신번호
         String sender = "07043042991";
@@ -1081,12 +1089,12 @@ public class CashbillServiceController {
     public String sendFAX(Model m) {
         /*
          * 현금영수증을 팩스로 전송하는 함수로, 팝빌 사이트 [문자·팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
-         * - 팩스 전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
+         * - 함수 호출 시 포인트가 과금됩니다. (전송실패시 환불처리)
          * - https://docs.popbill.com/cashbill/java/api#SendFAX
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220110-001";
+        String mgtKey = "20220218-BOOT002";
 
         // 발신자 번호
         String sender = "07043042991";
@@ -1115,11 +1123,11 @@ public class CashbillServiceController {
          * - https://docs.popbill.com/cashbill/java/api#AssignMgtKey
          */
 
-        // 현금영수증 팝빌번호, 문서 목록조회(Search API) 함수의 반환항목중 ItemKey 참조
-        String itemKey = "021111513394300001";
+        // 현금영수증 팝빌번호, 문서 목록조회(Search API) 함수의 반환항목 중 ItemKey 참조
+        String itemKey = "021080716195300001";
 
         // 현금영수증 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        String mgtKey = "20220105-Asign001";
+        String mgtKey = "20220218-BOOT007";
 
         try {
 
