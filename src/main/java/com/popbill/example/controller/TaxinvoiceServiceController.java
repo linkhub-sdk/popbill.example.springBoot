@@ -22,6 +22,7 @@ import com.popbill.api.EmailSendConfig;
 import com.popbill.api.IssueResponse;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
+import com.popbill.api.TaxinvoiceCertificate;
 import com.popbill.api.TaxinvoiceService;
 import com.popbill.api.taxinvoice.BulkTaxinvoiceResult;
 import com.popbill.api.taxinvoice.EmailPublicKey;
@@ -2627,6 +2628,25 @@ public class TaxinvoiceServiceController {
         }
 
         return "response";
+    }
+
+    @RequestMapping(value = "getTaxCertInfo", method = RequestMethod.GET)
+    public String getTaxCertInfo(Model m) {
+        /*
+         * 팝빌 인증서버에 등록된 인증서의 정보를 확인합니다.
+         * - https://docs.popbill.com/taxinvoice/java/api#GetTaxCertInfo
+         */
+
+        try {
+            TaxinvoiceCertificate taxinvoiceCertificate = taxinvoiceService.getTaxCertInfo(testCorpNum, testUserID);
+
+            m.addAttribute("TaxinvoiceCertificate", taxinvoiceCertificate);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+        return "Taxinvoice/TaxinvoiceCertificate";
     }
 
     @RequestMapping(value = "getUnitCost", method = RequestMethod.GET)
