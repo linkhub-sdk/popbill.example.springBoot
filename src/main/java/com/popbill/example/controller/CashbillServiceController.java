@@ -1,6 +1,8 @@
 package com.popbill.example.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -10,12 +12,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.popbill.api.BulkResponse;
 import com.popbill.api.CBIssueResponse;
 import com.popbill.api.CashbillService;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.EmailSendConfig;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
+import com.popbill.api.cashbill.BulkCashbillResult;
 import com.popbill.api.cashbill.CBSearchResult;
 import com.popbill.api.cashbill.Cashbill;
 import com.popbill.api.cashbill.CashbillInfo;
@@ -169,6 +173,140 @@ public class CashbillServiceController {
         }
 
         return "Cashbill/issueResponse";
+    }
+
+    @RequestMapping(value = "bulkSubmit", method = RequestMethod.GET)
+    public String bulkSubmit(Model m) {
+        /*
+         * 최대 100건의 현금영수증 발행을 한번의 요청으로 접수합니다.
+         * - 현금영수증 발행 시 포인트가 과금되며 구매자에게 발행 메일이 발송됩니다.
+         * - https://docs.popbill.com/cashbill/java/api#BulkSubmit
+         */
+
+        // 제출아이디, 대량 발행 접수를 구별하는 식별키
+        // └ 최대 36자리 영문, 숫자, '-' 조합으로 구성
+        String SubmitID = "20220218-BOOT-BULK";
+
+        List<Cashbill> bulkCash = new ArrayList<Cashbill>();
+
+        for (int i = 0 ; i < 5; i++) {
+
+            // 현금영수증 정보 객체
+            Cashbill cashbill = new Cashbill();
+
+            // 현금영수증 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
+            cashbill.setMgtKey(SubmitID + "-" + String.valueOf(i + 1));
+
+            // 문서형태, 승인거래 기재
+            cashbill.setTradeType("승인거래");
+
+            // 과세형태, {과세, 비과세} 중 기재
+            cashbill.setTaxationType("과세");
+
+            // 식별번호, 거래구분에 따라 작성
+            // └ 소득공제용 - 주민등록/휴대폰/카드번호(현금영수증 카드)/자진발급용 번호(010-000-1234) 기재가능
+            // └ 지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호(현금영수증 카드) 기재가능
+            // └ 주민등록번호 13자리, 휴대폰번호 10~11자리, 카드번호 13~19자리, 사업자번호 10자리 입력 가능
+            cashbill.setIdentityNum("0101112222");
+
+            // 거래구분, {소득공제용, 지출증빙용} 중 기재
+            cashbill.setTradeUsage("소득공제용");
+
+            // 거래유형, {일반, 도서공연, 대중교통} 중 기재
+            // - 미입력시 기본값 "일반" 처리
+            cashbill.setTradeOpt("대중교통");
+
+            // 공급가액, 숫자만 가능
+            cashbill.setSupplyCost("10000");
+
+            // 부가세, 숫자만 가능
+            cashbill.setTax("1000");
+
+            // 봉사료, 숫자만 가능
+            cashbill.setServiceFee("0");
+
+            // 합계금액, 숫자만 가능, 봉사료 + 공급가액 + 부가세
+            cashbill.setTotalAmount("11000");
+
+            // 가맹점 사업자번호, '-'제외 10자리
+            cashbill.setFranchiseCorpNum("1234567890");
+
+            // 가맹점 종사업장 번호
+            cashbill.setFranchiseTaxRegID("");
+
+            // 가맹점 상호
+            cashbill.setFranchiseCorpName("가맹점 상호");
+
+            // 가맹점 대표자 성명
+            cashbill.setFranchiseCEOName("가맹점 대표자");
+
+            // 가맹점 주소
+            cashbill.setFranchiseAddr("가맹점 주소");
+
+            // 가맹점 연락처
+            cashbill.setFranchiseTEL("07043042991");
+
+            // 발행 안내 문자 전송여부
+            cashbill.setSmssendYN(false);
+
+            // 구매자 성명
+            cashbill.setCustomerName("고객명");
+
+            // 주문상품명
+            cashbill.setItemName("상품명");
+
+            // 주문번호
+            cashbill.setOrderNumber("주문번호");
+
+            // 구매자 이메일
+            // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+            // 실제 거래처의 메일주소가 기재되지 않도록 주의
+            cashbill.setEmail("test@test.com");
+
+            // 구매자 휴대폰
+            cashbill.setHp("010111222");
+
+            bulkCash.add(cashbill);
+
+        }
+
+        try {
+
+            BulkResponse response = cashbillService.bulkSubmit(testCorpNum, SubmitID, bulkCash);
+
+            m.addAttribute("Response", response);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "bulkSubmitResponse";
+    }
+
+    @RequestMapping(value = "getBulkResult", method = RequestMethod.GET)
+    public String getBulkResult(Model m) {
+        /*
+         * 접수시 기재한 SubmitID를 사용하여 현금영수증 접수결과를 확인합니다.
+         * - 개별 현금영수증 처리상태는 접수상태(txState)가 완료(2) 시 반환됩니다.
+         * - https://docs.popbill.com/cashbill/java/api#GetBulkResult
+         */
+
+        // 초대량 발행 접수 시 기재한 제출아이디
+        String SubmitID = "20220218-BOOT-BULK";
+
+        try {
+
+            BulkCashbillResult bulkResult = cashbillService.getBulkResult(testCorpNum, SubmitID);
+
+            m.addAttribute("BulkResult", bulkResult);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "Cashbill/GetBulkResult";
     }
 
     @RequestMapping(value = "register", method = RequestMethod.GET)

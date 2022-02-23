@@ -632,7 +632,7 @@ public class TaxinvoiceServiceController {
             return "exception";
         }
 
-        return "Taxinvoice/bulkSubmitResponse";
+        return "bulkSubmitResponse";
     }
 
     @RequestMapping(value = "getBulkResult", method = RequestMethod.GET)
