@@ -879,7 +879,7 @@ public class CashbillServiceController {
         String DType = "T";
 
         // 시작일자, 날짜형식(yyyyMMdd)
-        String SDate = "20220101";
+        String SDate = "20220201";
 
         // 종료일자, 날짜형식(yyyyMMdd)
         String EDate = "20220228";
