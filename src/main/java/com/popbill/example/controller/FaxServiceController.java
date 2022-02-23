@@ -44,6 +44,28 @@ public class FaxServiceController {
         return "Fax/index";
     }
 
+    @RequestMapping(value = "checkSenderNumber", method = RequestMethod.GET)
+    public String checkSenderNumber(Model m) {
+        /*
+         * 팩스 발신번호 등록여부를 확인합니다.
+         * - https://docs.popbill.com/fax/java/api#CheckSenderNumber
+         */
+
+        String Sender = "070-4304-2991";
+        try {
+
+            Response response = faxService.checkSenderNumber(testCorpNum, Sender);
+
+            m.addAttribute("Response", response);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "response";
+    }
+
     @RequestMapping(value = "getSenderNumberMgtURL", method = RequestMethod.GET)
     public String getSenderNumberMgtURL(Model m) {
         /*
