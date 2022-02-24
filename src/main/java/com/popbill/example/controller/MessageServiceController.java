@@ -48,7 +48,9 @@ public class MessageServiceController {
          * - https://docs.popbill.com/message/java/api#CheckSenderNumber
          */
 
+        // 확인할 발신번호
         String Sender = "070-4304-2991";
+
         try {
 
             Response response = messageService.checkSenderNumber(testCorpNum, Sender);

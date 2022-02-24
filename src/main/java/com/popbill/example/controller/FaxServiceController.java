@@ -51,7 +51,9 @@ public class FaxServiceController {
          * - https://docs.popbill.com/fax/java/api#CheckSenderNumber
          */
 
+        // 확인할 발신번호
         String Sender = "070-4304-2991";
+
         try {
 
             Response response = faxService.checkSenderNumber(testCorpNum, Sender);
