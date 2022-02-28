@@ -122,7 +122,7 @@ public class MessageServiceController {
         // 메시지 내용, 90byte 초과된 내용은 삭제되어 전송
         String content = "문자메시지\r내용";
 
-        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
@@ -189,7 +189,7 @@ public class MessageServiceController {
         msg2.setContent("메시지 내용2");
         messages[1] = msg2;
 
-        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
@@ -244,7 +244,7 @@ public class MessageServiceController {
         // └ 한글, 한자, 특수문자 2byte / 영문, 숫자, 공백 1byte
         String content = "장문 문자메시지 내용";
 
-        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
@@ -316,7 +316,7 @@ public class MessageServiceController {
         msg2.setContent("메시지 내용2");
         messages[1] = msg2;
 
-        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
@@ -376,7 +376,7 @@ public class MessageServiceController {
         // 전송할 이미지 파일 경로
         File file = new File("C:/test.jpg");
 
-        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
@@ -453,7 +453,7 @@ public class MessageServiceController {
         // 전송할 이미지 파일 경로
         File file = new File("C:/test.jpg");
 
-        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
@@ -507,7 +507,7 @@ public class MessageServiceController {
         // └ 한글, 한자, 특수문자 2byte / 영문, 숫자, 공백 1byte
         String content = "문자메시지 내용";
 
-        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
@@ -575,7 +575,7 @@ public class MessageServiceController {
         msg2.setContent("메시지 내용2");
         messages[1] = msg2;
 
-        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {

@@ -132,7 +132,7 @@ public class FaxServiceController {
             throw e1;
         }
 
-        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
@@ -200,7 +200,7 @@ public class FaxServiceController {
             throw e1;
         }
 
-        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
@@ -274,7 +274,7 @@ public class FaxServiceController {
 
         fileList[0] = uf;
 
-        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
@@ -354,7 +354,7 @@ public class FaxServiceController {
 
         fileList[0] = uf;
 
-        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
@@ -414,7 +414,7 @@ public class FaxServiceController {
         // 수신자명, 공백처리시 기존전송정보로 재전송
         String receiveName = "";
 
-        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
@@ -481,7 +481,7 @@ public class FaxServiceController {
 //      receiver2.setReceiveNum("010333444");     // 수신팩스번호
 //      receivers[1] = receiver2;
 
-        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
@@ -540,7 +540,7 @@ public class FaxServiceController {
         // 수신자명, 공백처리시 기존전송정보로 재전송
         String receiveName = "";
 
-        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
@@ -607,7 +607,7 @@ public class FaxServiceController {
 //      receiver2.setReceiveNum("010333444");     // 수신팩스번호
 //      receivers[1] = receiver2;
 
-        // 전송예약일시(yyyyMMddHHmmss), null인 경우 즉시전송
+        // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
 //        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
 //        try {
