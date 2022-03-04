@@ -138,9 +138,6 @@ public class CashbillServiceController {
         // 가맹점 연락처
         cashbill.setFranchiseTEL("07043042991");
 
-        // 발행 안내 문자 전송여부
-        cashbill.setSmssendYN(false);
-
         // 구매자
         cashbill.setCustomerName("고객명");
 
@@ -155,8 +152,12 @@ public class CashbillServiceController {
         // 실제 거래처의 메일주소가 기재되지 않도록 주의
         cashbill.setEmail("test@test.com");
 
+        // 발행 안내 문자 전송여부
+        cashbill.setSmssendYN(false);
+
         // 구매자 휴대폰
-        cashbill.setHp("010111222");
+        // - {smssendYN} 의 값이 true 인 경우 아래 휴대폰번호로 안내 문자 전송
+        cashbill.setHp("");
 
         // 발행 안내 메일제목, 미기재시 기본 양식으로 메일 전송
         String emailSubject = "";
@@ -179,7 +180,6 @@ public class CashbillServiceController {
     public String bulkSubmit(Model m) {
         /*
          * 최대 100건의 현금영수증 발행을 한번의 요청으로 접수합니다.
-         * - 현금영수증 발행 시 구매자에게 발행 메일이 발송됩니다.
          * - https://docs.popbill.com/cashbill/java/api#BulkSubmit
          */
 
@@ -188,7 +188,7 @@ public class CashbillServiceController {
         String SubmitID = "20220218-BOOT-BULK";
 
         // 최대 100건
-        List<Cashbill> bulkCash = new ArrayList<Cashbill>();
+        List<Cashbill> cashbillList = new ArrayList<Cashbill>();
 
         for (int i = 0 ; i < 5; i++) {
 
@@ -247,9 +247,6 @@ public class CashbillServiceController {
             // 가맹점 연락처
             cashbill.setFranchiseTEL("07043042991");
 
-            // 발행 안내 문자 전송여부
-            cashbill.setSmssendYN(false);
-
             // 구매자 성명
             cashbill.setCustomerName("고객명");
 
@@ -264,16 +261,20 @@ public class CashbillServiceController {
             // 실제 거래처의 메일주소가 기재되지 않도록 주의
             cashbill.setEmail("");
 
-            // 구매자 휴대폰
-            cashbill.setHp("010111222");
+            // 발행 안내 문자 전송여부
+            cashbill.setSmssendYN(false);
 
-            bulkCash.add(cashbill);
+            // 구매자 휴대폰
+            // - {smssendYN} 의 값이 true 인 경우 아래 휴대폰번호로 안내 문자 전송
+            cashbill.setHp("");
+
+            cashbillList.add(cashbill);
 
         }
 
         try {
 
-            BulkResponse response = cashbillService.bulkSubmit(testCorpNum, SubmitID, bulkCash);
+            BulkResponse response = cashbillService.bulkSubmit(testCorpNum, SubmitID, cashbillList);
 
             m.addAttribute("Response", response);
 
@@ -377,9 +378,6 @@ public class CashbillServiceController {
         // 가맹점 연락처
         cashbill.setFranchiseTEL("07043042991");
 
-        // 발행 안내 문자 전송여부
-        cashbill.setSmssendYN(false);
-
         // 구매자 성명
         cashbill.setCustomerName("고객명");
 
@@ -392,8 +390,12 @@ public class CashbillServiceController {
         // 구매자 이메일
         cashbill.setEmail("test@test.com");
 
+        // 발행 안내 문자 전송여부
+        cashbill.setSmssendYN(false);
+
         // 구매자 휴대폰
-        cashbill.setHp("010111222");
+        // - {smssendYN} 의 값이 true 인 경우 아래 휴대폰번호로 안내 문자 전송
+        cashbill.setHp("");
 
         try {
 
@@ -428,6 +430,9 @@ public class CashbillServiceController {
         // 문서형태, {승인거래, 취소거래} 중 기재
         cashbill.setTradeType("승인거래");
 
+        // 거래구분, {소득공제용, 지출증빙용} 중 기재
+        cashbill.setTradeUsage("소득공제용");
+
         // 취소거래시 기재, 원본 현금영수증 국세청 승인번호 - 상태확인(getInfo API) 함수를 통해 confirmNum 값 기재
         cashbill.setOrgConfirmNum("");
 
@@ -442,9 +447,6 @@ public class CashbillServiceController {
         // └ 지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호(현금영수증 카드) 기재가능
         // └ 주민등록번호 13자리, 휴대폰번호 10~11자리, 카드번호 13~19자리, 사업자번호 10자리 입력 가능
         cashbill.setIdentityNum("01011112222");
-
-        // 거래구분, {소득공제용, 지출증빙용} 중 기재
-        cashbill.setTradeUsage("소득공제용");
 
         // 거래유형, {일반, 도서공연, 대중교통} 중 기재
         // - 미입력시 기본값 "일반" 처리
@@ -480,9 +482,6 @@ public class CashbillServiceController {
         // 가맹점 연락처
         cashbill.setFranchiseTEL("07043042991");
 
-        // 발행 안내 문자 전송여부
-        cashbill.setSmssendYN(false);
-
         // 구매자 성명
         cashbill.setCustomerName("고객명");
 
@@ -495,8 +494,12 @@ public class CashbillServiceController {
         // 구매자 이메일
         cashbill.setEmail("test@test.com");
 
+        // 발행 안내 문자 전송여부
+        cashbill.setSmssendYN(false);
+
         // 구매자 휴대폰
-        cashbill.setHp("010111222");
+        // - {smssendYN} 의 값이 true 인 경우 아래 휴대폰번호로 안내 문자 전송
+        cashbill.setHp("");
 
         try {
 
@@ -542,7 +545,7 @@ public class CashbillServiceController {
     public String cancelIssue(Model m) {
         /*
          * 국세청 전송 이전 "발행완료" 상태의 현금영수증을 "발행취소"하고 국세청 전송 대상에서 제외합니다.
-         * - Delete(삭제)함수를 호출하여 "발행취소" 상태의 현금영수증을 삭제하면, 문서번호 재사용이 가능합니다.
+         * - 삭제(Delete API) 함수를 호출하여 "발행취소" 상태의 현금영수증을 삭제하면, 문서번호 재사용이 가능합니다.
          * - https://docs.popbill.com/cashbill/java/api#CancelIssue
          */
 
@@ -1068,7 +1071,7 @@ public class CashbillServiceController {
     public String getEPrintURL(Model m) {
         /*
          * 현금영수증 인쇄(공급받는자) URL을 반환합니다.
-         * - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다
          */
 
         // 현금영수증 문서번호

@@ -651,8 +651,9 @@ public class StatementServiceController {
     public String issue(Model m) {
         /*
          * "임시저장" 상태의 전자명세서를 발행하여, "발행완료" 상태로 처리합니다.
-         * - 팝빌 사이트 [전자명세서] > [환경설정] > [전자명세서 관리] 메뉴의 발행시 자동승인 옵션 설정을 통해 전자명세서를 "발행완료" 상태가 아닌 "승인대기" 상태로 발행 처리 할 수 있습니다.
-         * - 전자명세서 발행 함수 호출시 포인트가 과금되며, 수신자에게 발행 안내 메일이 발송됩니다.
+         * - 팝빌 사이트 [전자명세서] > [환경설정] > [전자명세서 관리] 메뉴의 발행시 자동승인 옵션 설정을 통해
+         * - 전자명세서를 "발행완료" 상태가 아닌 "승인대기" 상태로 발행 처리 할 수 있습니다.
+         * - 전자명세서 발행 함수 호출시 수신자에게 발행 안내 메일이 발송됩니다.
          * - https://docs.popbill.com/statement/java/api#StmIssue
          */
 
@@ -772,7 +773,7 @@ public class StatementServiceController {
     @RequestMapping(value = "getInfos", method = RequestMethod.GET)
     public String getInfos(Model m) {
         /*
-         * 다수건의 전자명세서 상태/요약 정보를 확인합니다.
+         * 다수건의 전자명세서 상태 및 요약 정보를 확인합니다. (1회 호출 시 최대 1,000건 확인 가능)
          * - https://docs.popbill.com/statement/java/api#GetInfos
          */
 
@@ -996,7 +997,7 @@ public class StatementServiceController {
         /*
          * 전자명세서 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환하며, 페이지내에서 인쇄 설정값을 "공급자" / "공급받는자" / "공급자+공급받는자"용 중 하나로 지정할 수 있습니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - 전자명세서의 공급자는 "발신자", 공급받는자느 "수신자"를 나타내는 용어입니다.
+         * - 전자명세서의 공급자는 "발신자", 공급받는자는 "수신자"를 나타내는 용어입니다.
          * - https://docs.popbill.com/statement/java/api#GetPrintURL
          */
 
