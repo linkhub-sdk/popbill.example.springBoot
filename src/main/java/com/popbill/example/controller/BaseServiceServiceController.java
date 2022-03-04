@@ -240,12 +240,6 @@ public class BaseServiceServiceController {
         // 담당자 연락처, 최대 20자
         joinInfo.setContactTEL("02-999-9999");
 
-        // 담당자 휴대폰번호, 최대 20자
-        joinInfo.setContactHP("010-111-222");
-
-        // 담당자 팩스번호, 최대 20자
-        joinInfo.setContactFAX("02-000-111");
-
         try {
 
             Response response = taxinvoiceService.joinMember(joinInfo);
@@ -315,12 +309,6 @@ public class BaseServiceServiceController {
         // 담당자 연락처, 최대 20자
         contactInfo.setTel("070-1234-1234");
 
-        // 담당자 휴대폰번호, 최대 20자
-        contactInfo.setHp("010-1234-1234");
-
-        // 담당자 팩스번호, 최대 20자
-        contactInfo.setFax("070-4304-2991");
-
         // 담당자 이메일, 최대 100자
         contactInfo.setEmail("test1234@test.com");
 
@@ -360,12 +348,6 @@ public class BaseServiceServiceController {
 
         // 담당자 연락처, 최대 20자
         contactInfo.setTel("070-1234-1234");
-
-        // 담당자 휴대폰번호, 최대 20자
-        contactInfo.setHp("010-1234-1234");
-
-        // 담당자 팩스번호, 최대 20자
-        contactInfo.setFax("070-4304-2991");
 
         // 담당자 이메일, 최대 100자
         contactInfo.setEmail("test1234@test.com");
