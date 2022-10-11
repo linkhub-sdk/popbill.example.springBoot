@@ -32,6 +32,7 @@
                 <legend>issueResult[<span th:text="${index.index + 1}"></span> / <span th:text="${index.size}"></span>]</legend>
                 <ul>
                     <li>code (응답코드) : <span th:text="${CashbillInfo.code}"></span></li>
+                    <li>message (응답메시지) : <span th:text="${CashbillInfo.message}"></span></li>
                     <li>mgtKey (문서번호) : <span th:text="${CashbillInfo.mgtKey}"></span></li>
                     <li>confirmNum (국세청 승인번호) : <span th:text="${CashbillInfo.confirmNum}"></span></li>
                     <li>tradeDate (거래일자) : <span th:text="${CashbillInfo.tradeDate}"></span></li>
