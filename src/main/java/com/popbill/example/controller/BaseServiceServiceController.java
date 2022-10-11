@@ -9,9 +9,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.popbill.api.ContactInfo;
 import com.popbill.api.CorpInfo;
 import com.popbill.api.JoinForm;
+import com.popbill.api.PaymentForm;
+import com.popbill.api.PaymentHistory;
+import com.popbill.api.PaymentHistoryResult;
+import com.popbill.api.PaymentResponse;
 import com.popbill.api.PopbillException;
+import com.popbill.api.RefundForm;
+import com.popbill.api.RefundHistoryResult;
 import com.popbill.api.Response;
 import com.popbill.api.TaxinvoiceService;
+import com.popbill.api.UseHistoryResult;
 
 @Controller
 @RequestMapping("BaseService")
@@ -90,6 +97,154 @@ public class BaseServiceServiceController {
         }
 
         return "result";
+    }
+
+    @RequestMapping(value = "getUseHistory", method = RequestMethod.GET)
+    public String getUseHistory(Model m) throws PopbillException {
+        /*
+         * 포인트 사용내역을 확인합니다.
+         */
+
+        String SDate = "20220901";
+        String EDate = "20220930";
+        Integer Page = 1;
+        Integer PerPage = 100;
+        String Order = "D";
+
+        try {
+            UseHistoryResult useHistoryResult = taxinvoiceService.getUseHistory(testCorpNum, SDate, EDate, Page, PerPage, Order);
+
+            m.addAttribute("UseHistoryResult", useHistoryResult);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "useHistoryResult";
+    }
+
+    @RequestMapping(value = "getPaymentHistory", method = RequestMethod.GET)
+    public String getPaymentHistory(Model m) throws PopbillException {
+        /*
+         * 포인트 결제내역을 확인합니다.
+         */
+
+        String SDate = "20220901";
+        String EDate = "20220930";
+        Integer Page = 1;
+        Integer PerPage = 100;
+
+        try {
+            PaymentHistoryResult paymentHistoryResult = taxinvoiceService.getPaymentHistory(testCorpNum, SDate, EDate, Page, PerPage);
+
+            m.addAttribute("PaymentHistoryResult", paymentHistoryResult);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "paymentHistoryResult";
+    }
+
+    @RequestMapping(value = "getRefundHistory", method = RequestMethod.GET)
+    public String getRefundHistory(Model m) throws PopbillException {
+        /*
+         * 환불 신청내역을 확인합니다.
+         */
+
+        Integer Page = 1;
+        Integer PerPage = 100;
+
+        try {
+            RefundHistoryResult refundHistoryResult = taxinvoiceService.getRefundHistory(testCorpNum, Page, PerPage);
+
+            m.addAttribute("RefundHistoryResult", refundHistoryResult);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "refundHistoryResult";
+    }
+
+    @RequestMapping(value = "refund", method = RequestMethod.GET)
+    public String refund(Model m) throws PopbillException {
+        /*
+         * 환불을 신청합니다.
+         */
+
+        RefundForm refundForm = new RefundForm();
+
+        refundForm.setContactName("담당자명");
+        refundForm.setTel("01077777777");
+        refundForm.setRequestPoint("10");
+        refundForm.setAccountBank("국민");
+        refundForm.setAccountNum("123123123-123");
+        refundForm.setAccountName("예금주명");
+        refundForm.setReason("환불사유");
+
+        try {
+            Response response = taxinvoiceService.refund(testCorpNum, refundForm);
+
+            m.addAttribute("Response", response);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "response";
+    }
+
+    @RequestMapping(value = "paymentRequest", method = RequestMethod.GET)
+    public String paymentRequest(Model m) throws PopbillException {
+        /*
+         * 무통장 입금을 신청합니다.
+         */
+
+        PaymentForm paymentForm = new PaymentForm();
+
+        paymentForm.setSettlerName("담당자명");
+        paymentForm.setSettlerEmail("test@test.com");
+        paymentForm.setSettlerHP("01012341234");
+        paymentForm.setPaymentName("입금자명");
+        paymentForm.setSettleCost("11000");
+
+        try {
+            PaymentResponse paymentResponse = taxinvoiceService.paymentRequest(testCorpNum, paymentForm);
+
+            m.addAttribute("PaymentResponse", paymentResponse);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "paymentResponse";
+    }
+
+    @RequestMapping(value = "getSettleResult", method = RequestMethod.GET)
+    public String getSettleResult(Model m) throws PopbillException {
+        /*
+         * 무통장 입금신청한 건의 정보를 확인합니다.
+         */
+
+        String settleCode = "202210040000000070";
+
+        try {
+            PaymentHistory paymentHistory = taxinvoiceService.getSettleResult(testCorpNum, settleCode);
+
+            m.addAttribute("PaymentHistory", paymentHistory);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "paymentHistory";
     }
 
     @RequestMapping(value = "getPartnerURL", method = RequestMethod.GET)

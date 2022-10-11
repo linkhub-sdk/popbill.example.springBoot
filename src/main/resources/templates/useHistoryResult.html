@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
+<title>팝빌 SDK SpringBoot Example.</title>
+</head>
+<body>
+    <div id="content">
+        <p class="heading1">UseHistoryResult</p>
+        <br />
+        <fieldset class="fieldset1">
+            <legend th:text="${#request?.requestURL}"></legend>
+            <fieldset th:if="${SearchResult}" class="fieldset2">
+                <legend>사용내역 목록</legend>
+                <ul>
+                    <li>code (응답코드) : <span th:text="${UseHistoryResult.code}"></span></li>
+                    <li>total (전체 검색개수) : <span th:text="${UseHistoryResult.total}"></span></li>
+                    <li>perPage (페이지당 목록개수) : <span th:text="${UseHistoryResult.perPage}"></span></li>
+                    <li>pageNum (페이지번호) : <span th:text="${UseHistoryResult.pageNum}"></span></li>
+                    <li>pageCount (페이지수) : <span th:text="${UseHistoryResult.pageCount}"></span></li>
+                </ul>
+
+                <fieldset th:each="UseHistory, index : ${UseHistoryResult.list}" class="fieldset3">
+                    <legend>사용내역 정보[ <span th:text="${index.index + 1}"></span> / <span th:text="${index.size}"></span> ]</legend>
+                    <ul>
+                        <li>itemCode (서비스 코드) : <span th:text="${UseHistory.itemCode}"></span></li>
+                        <li>txType (포인트 증감 유형) : <span th:text="${UseHistory.txType}"></span></li>
+                        <li>balance (증감 포인트) : <span th:text="${UseHistory.balance}"></span></li>
+                        <li>txDT (포인트 증감 일시) : <span th:text="${UseHistory.txDT}"></span></li>
+                        <li>userID (담당자 아이디) : <span th:text="${UseHistory.userID}"></span></li>
+                        <li>userName (담당자명) : <span th:text="${UseHistory.userName}"></span></li>
+                    </ul>
+                </fieldset>
+            </fieldset>
+        </fieldset>
+    </div>
+</body>
+</html>
