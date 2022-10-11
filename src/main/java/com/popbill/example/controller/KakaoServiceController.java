@@ -176,7 +176,7 @@ public class KakaoServiceController {
 
         try {
 
-            ATSTemplate response = kakaoService.getATSTemplate(testCorpNum, templateCode, testUserID);
+            ATSTemplate response = kakaoService.getATSTemplate(testCorpNum, templateCode);
 
             m.addAttribute("Template", response);
 
@@ -222,7 +222,10 @@ public class KakaoServiceController {
         //   팝빌사이트에서 승인된 알림톡 템플릿 코드를  확인 가능.
         String templateCode = "022070000338";
 
-        // 발신번호 (팝빌에 등록된 발신번호만 이용가능)
+        // 팝빌에 사전 등록된 발신번호
+        // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
+        // altSendType = '' 일 경우, null 또는 공백 처리
+        // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
         String senderNum = "07043042991";
 
         // 알림톡 내용 (최대 1000자)
@@ -303,7 +306,10 @@ public class KakaoServiceController {
         //   팝빌사이트에서 승인된 알림톡 템플릿 코드를  확인 가능.
         String templateCode = "022070000338";
 
-        // 발신번호 (팝빌에 등록된 발신번호만 이용가능)
+        // 팝빌에 사전 등록된 발신번호
+        // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
+        // altSendType = '' 일 경우, null 또는 공백 처리
+        // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
         String senderNum = "07043042991";
 
         // 대체문자 유형 (null , "C" , "A" 중 택 1)
@@ -397,7 +403,10 @@ public class KakaoServiceController {
         //   팝빌사이트에서 승인된 알림톡 템플릿 코드를  확인 가능.
         String templateCode = "022070000338";
 
-        // 발신번호 (팝빌에 등록된 발신번호만 이용가능)
+        // 팝빌에 사전 등록된 발신번호
+        // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
+        // altSendType = '' 일 경우, null 또는 공백 처리
+        // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
         String senderNum = "07043042991";
 
         // 알림톡 내용 (최대 1000자)
@@ -477,7 +486,10 @@ public class KakaoServiceController {
         // 팝빌에 등록된 카카오톡 채널 아이디
         String plusFriendID = "@팝빌";
 
-        // 발신번호 (팝빌에 등록된 발신번호만 이용가능)
+        // 팝빌에 사전 등록된 발신번호
+        // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
+        // altSendType = '' 일 경우, null 또는 공백 처리
+        // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
         String senderNum = "07043042991";
 
         // 친구톡 내용 (최대 1000자)
@@ -566,7 +578,10 @@ public class KakaoServiceController {
         // 팝빌에 등록된 카카오톡 채널 아이디
         String plusFriendID = "@팝빌";
 
-        // 발신번호 (팝빌에 등록된 발신번호만 이용가능)
+        // 팝빌에 사전 등록된 발신번호
+        // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
+        // altSendType = '' 일 경우, null 또는 공백 처리
+        // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
         String senderNum = "07043042991";
 
         // 대체문자 유형 (null , "C" , "A" 중 택 1)
@@ -653,7 +668,10 @@ public class KakaoServiceController {
         // 팝빌에 등록된 카카오톡 채널 아이디
         String plusFriendID = "@팝빌";
 
-        // 발신번호 (팝빌에 등록된 발신번호만 이용가능)
+        // 팝빌에 사전 등록된 발신번호
+        // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
+        // altSendType = '' 일 경우, null 또는 공백 처리
+        // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
         String senderNum = "07043042991";
 
         // 친구톡 내용 (최대 1000자)
@@ -746,7 +764,10 @@ public class KakaoServiceController {
         // 팝빌에 등록된 카카오톡 채널 아이디
         String plusFriendID = "@팝빌";
 
-        // 발신번호 (팝빌에 등록된 발신번호만 이용가능)
+        // 팝빌에 사전 등록된 발신번호
+        // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
+        // altSendType = '' 일 경우, null 또는 공백 처리
+        // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
         String senderNum = "07043042991";
 
         // 친구톡 내용 (최대 400자)
@@ -845,7 +866,10 @@ public class KakaoServiceController {
         // 팝빌에 등록된 카카오톡 채널 아이디
         String plusFriendID = "@팝빌";
 
-        // 발신번호 (팝빌에 등록된 발신번호만 이용가능)
+        // 팝빌에 사전 등록된 발신번호
+        // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
+        // altSendType = '' 일 경우, null 또는 공백 처리
+        // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
         String senderNum = "07043042991";
 
         // 대체문자 유형 (null , "C" , "A" 중 택 1)
@@ -960,7 +984,10 @@ public class KakaoServiceController {
         // 팝빌에 등록된 카카오톡 채널 아이디
         String plusFriendID = "@팝빌";
 
-        // 발신번호 (팝빌에 등록된 발신번호만 이용가능)
+        // 팝빌에 사전 등록된 발신번호
+        // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
+        // altSendType = '' 일 경우, null 또는 공백 처리
+        // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
         String senderNum = "07043042991";
 
         // 친구톡 내용 (최대 400자)
