@@ -1,8 +1,6 @@
 package com.popbill.example.controller;
 
 import java.io.File;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
@@ -120,16 +118,11 @@ public class MessageServiceController {
         String receiverName = "수신자명";
 
         // 메시지 내용, 90byte 초과된 내용은 삭제되어 전송
+        // └ 한글, 한자, 특수문자 2byte / 영문, 숫자, 공백 1byte
         String content = "문자메시지\r내용";
 
         // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
-//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-//        try {
-//            reserveDT = format.parse("20220201140000");
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
 
         // 광고 메시지 여부 ( true , false 중 택 1)
         // └ true = 광고 , false = 일반
@@ -142,8 +135,8 @@ public class MessageServiceController {
 
         try {
 
-            String receiptNum = messageService.sendSMS(testCorpNum, sender, receiver, receiverName, content, reserveDT,
-                    adsYN, testUserID, requestNum);
+            String receiptNum = messageService.sendSMS(testCorpNum, sender, receiver,
+                    receiverName, content, reserveDT, adsYN, testUserID, requestNum);
 
             m.addAttribute("Result", receiptNum);
 
@@ -174,11 +167,12 @@ public class MessageServiceController {
         Message[] messages = new Message[2];
 
         Message msg1 = new Message();
-        msg1.setSender("07043042991");   // 발신번호
-        msg1.setSenderName("발신자1");   // 발신자명
-        msg1.setReceiver("010111222");   // 수신번호
-        msg1.setReceiverName("수신자1"); // 수신자명
-        msg1.setContent("메시지 내용1"); // 메시지내용
+        msg1.setSender("07043042991");    // 발신번호
+        msg1.setSenderName("발신자1");    // 발신자명
+        msg1.setReceiver("010111222");    // 수신번호
+        msg1.setReceiverName("수신자1");    // 수신자명
+        msg1.setContent("메시지 내용1");    // 메시지내용
+        msg1.setInterOPRefKey("20221006-SMS001");    // 파트너 지정키
         messages[0] = msg1;
 
         Message msg2 = new Message();
@@ -187,16 +181,11 @@ public class MessageServiceController {
         msg2.setReceiver("010333444");
         msg2.setReceiverName("수신자2");
         msg2.setContent("메시지 내용2");
+        msg2.setInterOPRefKey("20221006-SMS002");
         messages[1] = msg2;
 
         // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
-//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-//        try {
-//            reserveDT = format.parse("20220201140000");
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
 
         // 광고 메시지 여부 ( true , false 중 택 1)
         // └ true = 광고 , false = 일반
@@ -208,8 +197,8 @@ public class MessageServiceController {
         String requestNum = "";
 
         try {
-            String receiptNum = messageService.sendSMS(testCorpNum, sender, content, messages, reserveDT, adsYN,
-                    testUserID, requestNum);
+            String receiptNum = messageService.sendSMS(testCorpNum, sender, content,
+                    messages, reserveDT, adsYN, testUserID, requestNum);
 
             m.addAttribute("Result", receiptNum);
 
@@ -246,12 +235,6 @@ public class MessageServiceController {
 
         // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
-//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-//        try {
-//            reserveDT = format.parse("20220201140000");
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
 
         // 광고 메시지 여부 ( true , false 중 택 1)
         // └ true = 광고 , false = 일반
@@ -264,8 +247,8 @@ public class MessageServiceController {
 
         try {
 
-            String receiptNum = messageService.sendLMS(testCorpNum, sender, receiver, receiverName, subject, content,
-                    reserveDT, adsYN, testUserID, requestNum);
+            String receiptNum = messageService.sendLMS(testCorpNum, sender, receiver,
+                    receiverName, subject, content, reserveDT, adsYN, testUserID, requestNum);
 
             m.addAttribute("Result", receiptNum);
 
@@ -300,11 +283,12 @@ public class MessageServiceController {
 
         Message msg1 = new Message();
         msg1.setSender("07043042991");       // 발신번호
-        msg1.setSenderName("발신자1");       // 발신자명
+        msg1.setSenderName("발신자1");         // 발신자명
         msg1.setReceiver("010111222");       // 수신번호
-        msg1.setReceiverName("수신자1");     // 수신자명
-        msg1.setSubject("장문 메시지 제목"); // 문자제목
-        msg1.setContent("메시지 내용1");     // 메시지내용
+        msg1.setReceiverName("수신자1");       // 수신자명
+        msg1.setSubject("장문 메시지 제목");      // 문자제목
+        msg1.setContent("메시지 내용1");        // 메시지내용
+        msg1.setInterOPRefKey("20221006-LMS001");    // 파트너 지정키
         messages[0] = msg1;
 
         Message msg2 = new Message();
@@ -314,16 +298,11 @@ public class MessageServiceController {
         msg2.setReceiverName("수신자2");
         msg2.setSubject("장문 메시지 제목");
         msg2.setContent("메시지 내용2");
+        msg2.setInterOPRefKey("20221006-LMS002");
         messages[1] = msg2;
 
         // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
-//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-//        try {
-//            reserveDT = format.parse("20220201140000");
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
 
         // 광고 메시지 여부 ( true , false 중 택 1)
         // └ true = 광고 , false = 일반
@@ -336,8 +315,8 @@ public class MessageServiceController {
 
         try {
 
-            String receiptNum = messageService.sendLMS(testCorpNum, sender, subject, content, messages, reserveDT,
-                    adsYN, testUserID, requestNum);
+            String receiptNum = messageService.sendLMS(testCorpNum, sender, subject,
+                    content, messages, reserveDT, adsYN, testUserID, requestNum);
 
             m.addAttribute("Result", receiptNum);
 
@@ -378,26 +357,20 @@ public class MessageServiceController {
 
         // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
-//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-//        try {
-//            reserveDT = format.parse("20220201140000");
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
 
         // 광고 메시지 여부 ( true , false 중 택 1)
         // └ true = 광고 , false = 일반
         Boolean adsYN = false;
 
         // 전송요청번호
-        // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호..
+        // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
 
         try {
 
-            String receiptNum = messageService.sendMMS(testCorpNum, sender, receiver, receiverName, subject, content,
-                    file, reserveDT, adsYN, testUserID, requestNum);
+            String receiptNum = messageService.sendMMS(testCorpNum, sender, receiver,
+                    receiverName, subject, content, file, reserveDT, adsYN, testUserID, requestNum);
 
             m.addAttribute("Result", receiptNum);
 
@@ -428,7 +401,7 @@ public class MessageServiceController {
         // └ 한글, 한자, 특수문자 2byte / 영문, 숫자, 공백 1byte
         String content = "대량전송 메시지 내용";
 
-        // 수신정보배열, 최대 1000건.
+        // 전송 정보 배열, 최대 1000건.
         Message[] messages = new Message[2];
 
         Message msg1 = new Message();
@@ -438,7 +411,7 @@ public class MessageServiceController {
         msg1.setReceiverName("수신자1");     // 수신자명
         msg1.setSubject("멀티 메시지 제목"); // 문자제목
         msg1.setContent("메시지 내용1");     // 메시지내용
-
+        msg1.setInterOPRefKey("20221006-MMS001");    // 파트너 지정키
         messages[0] = msg1;
 
         Message msg2 = new Message();
@@ -448,6 +421,7 @@ public class MessageServiceController {
         msg2.setReceiverName("수신자2");
         msg2.setSubject("멀티 메시지 제목");
         msg2.setContent("메시지 내용2");
+        msg2.setInterOPRefKey("20221006-MMS001");
         messages[1] = msg2;
 
         // 전송할 이미지 파일 경로
@@ -455,12 +429,6 @@ public class MessageServiceController {
 
         // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
-//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-//        try {
-//            reserveDT = format.parse("20220201140000");
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
 
         // 광고 메시지 여부 ( true , false 중 택 1)
         // └ true = 광고 , false = 일반
@@ -472,8 +440,8 @@ public class MessageServiceController {
         String requestNum = "";
 
         try {
-            String receiptNum = messageService.sendMMS(testCorpNum, sender, subject, content, messages, file, reserveDT,
-                    adsYN, testUserID, requestNum);
+            String receiptNum = messageService.sendMMS(testCorpNum, sender, subject,
+                    content, messages, file, reserveDT, adsYN, testUserID, requestNum);
 
             m.addAttribute("Result", receiptNum);
 
@@ -503,18 +471,12 @@ public class MessageServiceController {
         // 문자메시지 제목
         String subject = "장문문자 제목";
 
-        // 문자메시지 내용, 90Byte를 기준으로 단문과 장문을 자동인식하여 전송
+        // 문자메시지 내용, 90Byte를 기준으로 단문과 장문을 자동인식하여 전송.
         // └ 한글, 한자, 특수문자 2byte / 영문, 숫자, 공백 1byte
         String content = "문자메시지 내용";
 
         // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
-//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-//        try {
-//            reserveDT = format.parse("20220201140000");
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
 
         // 광고 메시지 여부 ( true , false 중 택 1)
         // └ true = 광고 , false = 일반
@@ -527,8 +489,8 @@ public class MessageServiceController {
 
         try {
 
-            String receiptNum = messageService.sendXMS(testCorpNum, sender, receiver, receiverName, subject, content,
-                    reserveDT, adsYN, testUserID, requestNum);
+            String receiptNum = messageService.sendXMS(testCorpNum, sender, receiver,
+                    receiverName, subject, content, reserveDT, adsYN, testUserID, requestNum);
 
             m.addAttribute("Result", receiptNum);
 
@@ -553,18 +515,19 @@ public class MessageServiceController {
         // [동보전송시 필수] 문자메시지 제목, 개별 전송정보에 메시지 제목이 없는 경우 적용
         String subject = "장문문자 제목";
 
-        // [동보전송시 필수] 문자메시지 내용, 90Byte를 기준으로 단문과 장문을 자동인식하여 전송됨.
+        // [동보전송시 필수] 문자메시지 내용, 개별 전송정보에 메시지 내용이 없는 경우 적용
         String content = "문자메시지 내용";
 
-        // 수신정보배열, 최대 1000건.
+        // 전송 정보 배열, 최대 1000건.
         Message[] messages = new Message[2];
 
         Message msg1 = new Message();
-        msg1.setSender("07043042991");   // 발신번호
-        msg1.setSenderName("발신자1");   // 발신자명
-        msg1.setReceiver("010111222");   // 수신번호
-        msg1.setReceiverName("수신자1"); // 수신자명
-        msg1.setContent("메시지 내용1"); // 메시지내용
+        msg1.setSender("07043042991");      // 발신번호
+        msg1.setSenderName("발신자1");      // 발신자명
+        msg1.setReceiver("010111222");      // 수신번호
+        msg1.setReceiverName("수신자1");    // 수신자명
+        msg1.setContent("메시지 내용1");    // 메시지내용
+        msg1.setInterOPRefKey("20221006-XMS001");   // 파트너 지정키
         messages[0] = msg1;
 
         Message msg2 = new Message();
@@ -573,16 +536,11 @@ public class MessageServiceController {
         msg2.setReceiver("010333444");
         msg2.setReceiverName("수신자2");
         msg2.setContent("메시지 내용2");
+        msg2.setInterOPRefKey("20221006-XMS001");
         messages[1] = msg2;
 
         // 전송예약일시, null인 경우 즉시전송
         Date reserveDT = null;
-//        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-//        try {
-//            reserveDT = format.parse("20220201140000");
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
 
         // 광고 메시지 여부 ( true , false 중 택 1)
         // └ true = 광고 , false = 일반
@@ -595,8 +553,8 @@ public class MessageServiceController {
 
         try {
 
-            String receiptNum = messageService.sendXMS(testCorpNum, sender, subject, content, messages, reserveDT,
-                    adsYN, testUserID, requestNum);
+            String receiptNum = messageService.sendXMS(testCorpNum, sender, subject,
+                    content, messages, reserveDT, adsYN, testUserID, requestNum);
 
             m.addAttribute("Result", receiptNum);
 
@@ -662,7 +620,7 @@ public class MessageServiceController {
          */
 
         // 문자 전송요청 시 팝빌로부터 반환 받은 접수번호
-        String receiptNum = "022022111000000012";
+        String receiptNum = "022100616000000003";
 
         try {
 
@@ -711,30 +669,30 @@ public class MessageServiceController {
          */
 
         // 시작일자, 날짜형식(yyyyMMdd)
-        String SDate = "20220201";
+        String SDate = "20221001";
 
         // 종료일자, 날짜형식(yyyyMMdd)
-        String EDate = "20220228";
+        String EDate = "20221006";
 
         // 전송상태 배열 ("1" , "2" , "3" , "4" 중 선택, 다중 선택 가능)
         // └ 1 = 대기 , 2 = 성공 , 3 = 실패 , 4 = 취소
         // - 미입력 시 전체조회
-        String[] State = { "1", "2", "3", "4" };
+        String[] State = {"1", "2", "3", "4"};
 
         // 검색대상 배열 ("SMS" , "LMS" , "MMS" 중 선택, 다중 선택 가능)
         // └ SMS = 단문 , LMS = 장문 , MMS = 포토문자
         // - 미입력 시 전체조회
-        String[] Item = { "SMS", "LMS", "MMS" };
+        String[] Item = {"SMS", "LMS", "MMS"};
 
         // 예약여부 (false , true 중 택 1)
-        // false = 전체조회, true = 예약전송건 조회
-        // 미입력시 기본값 false 처리
+        // └ false = 전체조회, true = 예약전송건 조회
+        // - 미입력시 기본값 false 처리
         Boolean ReserveYN = false;
 
         // 개인조회 여부 (false , true 중 택 1)
-        // false = 접수한 문자 전체 조회 (관리자권한)
-        // true = 해당 담당자 계정으로 접수한 문자만 조회 (개인권한)
-        // 미입력시 기본값 false 처리
+        // └ false = 접수한 문자 전체 조회 (관리자권한)
+        // └ true = 해당 담당자 계정으로 접수한 문자만 조회 (개인권한)
+        // - 미입력시 기본값 false 처리
         Boolean SenderYN = false;
 
         // 페이지 번호
@@ -743,7 +701,8 @@ public class MessageServiceController {
         // 페이지당 목록개수 (최대 1000건)
         int PerPage = 20;
 
-        // 정렬방향 D-내림차순, A-오름차순
+        // 문자 접수일시를 기준으로 하는 목록 정렬 방향 ("D" , "A" 중 택 1)
+        // └ D = 내림차순(기본값) , A = 오름차순
         String Order = "D";
 
         // 조회하고자 하는 발신자명 또는 수신자명
@@ -752,8 +711,8 @@ public class MessageServiceController {
 
         try {
 
-            MSGSearchResult response = messageService.search(testCorpNum, SDate, EDate, State, Item, ReserveYN,
-                    SenderYN, Page, PerPage, Order, QString);
+            MSGSearchResult response = messageService.search(testCorpNum, SDate,
+                    EDate, State, Item, ReserveYN, SenderYN, Page, PerPage, Order, QString);
 
             m.addAttribute("SearchResult", response);
 
