@@ -54,7 +54,7 @@ public class HTCashbillServiceController {
         String EDate = "20220228";
 
         try {
-            String jobID = htCashbillService.requestJob(testCorpNum, TIType, SDate, EDate, testUserID);
+            String jobID = htCashbillService.requestJob(testCorpNum, TIType, SDate, EDate);
             m.addAttribute("Result", jobID);
 
         } catch (PopbillException e) {
@@ -198,7 +198,7 @@ public class HTCashbillServiceController {
 
         try {
 
-            String url = htCashbillService.getCertificatePopUpURL(testCorpNum);
+            String url = htCashbillService.getCertificatePopUpURL(testCorpNum, testUserID);
 
             m.addAttribute("Result", url);
 
@@ -367,7 +367,7 @@ public class HTCashbillServiceController {
 
         try {
 
-            String url = htCashbillService.getFlatRatePopUpURL(testCorpNum);
+            String url = htCashbillService.getFlatRatePopUpURL(testCorpNum, testUserID);
 
             m.addAttribute("Result", url);
 

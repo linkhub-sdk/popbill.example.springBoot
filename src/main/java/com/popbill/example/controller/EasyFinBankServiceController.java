@@ -436,7 +436,7 @@ public class EasyFinBankServiceController {
 
         try {
             EasyFinBankSearchResult searchInfo = easyFinBankService.search(testCorpNum,
-                    jobID, TradeType, SearchString, Page, PerPage, Order, testUserID);
+                    jobID, TradeType, SearchString, Page, PerPage, Order);
             m.addAttribute("SearchResult", searchInfo);
 
         } catch (PopbillException e) {
@@ -472,7 +472,7 @@ public class EasyFinBankServiceController {
         try {
 
             EasyFinBankSummary summaryInfo = easyFinBankService.summary(testCorpNum,
-                    jobID, TradeType, SearchString, testUserID);
+                    jobID, TradeType, SearchString);
             m.addAttribute("SummaryResult", summaryInfo);
 
         } catch (PopbillException e) {

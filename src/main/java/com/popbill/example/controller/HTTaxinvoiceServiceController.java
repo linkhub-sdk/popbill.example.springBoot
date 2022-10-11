@@ -297,7 +297,7 @@ public class HTTaxinvoiceServiceController {
 
         try {
 
-            String url = htTaxinvoiceService.getPopUpURL(testCorpNum, NTSConfirmNum);
+            String url = htTaxinvoiceService.getPopUpURL(testCorpNum, NTSConfirmNum, testUserID);
 
             m.addAttribute("Result", url);
 
@@ -322,7 +322,7 @@ public class HTTaxinvoiceServiceController {
 
         try {
 
-            String url = htTaxinvoiceService.getPrintURL(testCorpNum, NTSConfirmNum);
+            String url = htTaxinvoiceService.getPrintURL(testCorpNum, NTSConfirmNum, testUserID);
 
             m.addAttribute("Result", url);
 
@@ -344,7 +344,7 @@ public class HTTaxinvoiceServiceController {
 
         try {
 
-            String url = htTaxinvoiceService.getCertificatePopUpURL(testCorpNum);
+            String url = htTaxinvoiceService.getCertificatePopUpURL(testCorpNum, testUserID);
 
             m.addAttribute("Result", url);
 
@@ -518,7 +518,7 @@ public class HTTaxinvoiceServiceController {
 
         try {
 
-            String url = htTaxinvoiceService.getFlatRatePopUpURL(testCorpNum);
+            String url = htTaxinvoiceService.getFlatRatePopUpURL(testCorpNum, testUserID);
 
             m.addAttribute("Result", url);
 

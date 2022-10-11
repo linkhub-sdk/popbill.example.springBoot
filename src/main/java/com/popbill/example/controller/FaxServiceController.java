@@ -795,7 +795,7 @@ public class FaxServiceController {
             // 팩스 접수번호
             String receiptNum = "022021803102600001";
 
-            String url = faxService.getPreviewURL(testCorpNum, receiptNum);
+            String url = faxService.getPreviewURL(testCorpNum, receiptNum, testUserID);
 
             m.addAttribute("Result", url);
 

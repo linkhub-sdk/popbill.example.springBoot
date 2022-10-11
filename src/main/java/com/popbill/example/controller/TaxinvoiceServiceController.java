@@ -1514,7 +1514,7 @@ public class TaxinvoiceServiceController {
 
         try {
 
-            Response response = taxinvoiceService.registRequest(testCorpNum, taxinvoice, Memo, testUserID);
+            Response response = taxinvoiceService.registRequest(testCorpNum, taxinvoice, Memo);
 
             m.addAttribute("Response", response);
 
@@ -1910,7 +1910,7 @@ public class TaxinvoiceServiceController {
 
         try {
 
-            String url = taxinvoiceService.getURL(testCorpNum, TOGO);
+            String url = taxinvoiceService.getURL(testCorpNum, testUserID, TOGO);
 
             m.addAttribute("Result", url);
 
@@ -1938,7 +1938,7 @@ public class TaxinvoiceServiceController {
 
         try {
 
-            String url = taxinvoiceService.getPopUpURL(testCorpNum, mgtKeyType, mgtKey);
+            String url = taxinvoiceService.getPopUpURL(testCorpNum, mgtKeyType, mgtKey, testUserID);
 
             m.addAttribute("Result", url);
 
@@ -1966,7 +1966,7 @@ public class TaxinvoiceServiceController {
 
         try {
 
-            String url = taxinvoiceService.getViewURL(testCorpNum, mgtKeyType, mgtKey);
+            String url = taxinvoiceService.getViewURL(testCorpNum, mgtKeyType, mgtKey, testUserID);
 
             m.addAttribute("Result", url);
 
@@ -1994,7 +1994,7 @@ public class TaxinvoiceServiceController {
 
         try {
 
-            String url = taxinvoiceService.getPrintURL(testCorpNum, mgtKeyType, mgtKey);
+            String url = taxinvoiceService.getPrintURL(testCorpNum, mgtKeyType, mgtKey, testUserID);
 
             m.addAttribute("Result", url);
 
@@ -2022,7 +2022,7 @@ public class TaxinvoiceServiceController {
 
         try {
 
-            String url = taxinvoiceService.getOldPrintURL(testCorpNum, mgtKeyType, mgtKey);
+            String url = taxinvoiceService.getOldPrintURL(testCorpNum, mgtKeyType, mgtKey, testUserID);
 
             m.addAttribute("Result", url);
 
@@ -2051,7 +2051,7 @@ public class TaxinvoiceServiceController {
 
         try {
 
-            String url = taxinvoiceService.getEPrintURL(testCorpNum, mgtKeyType, mgtKey);
+            String url = taxinvoiceService.getEPrintURL(testCorpNum, mgtKeyType, mgtKey, testUserID);
 
             m.addAttribute("Result", url);
 
@@ -2079,7 +2079,7 @@ public class TaxinvoiceServiceController {
 
         try {
 
-            String url = taxinvoiceService.getMassPrintURL(testCorpNum, mgtKeyType, MgtKeyList);
+            String url = taxinvoiceService.getMassPrintURL(testCorpNum, mgtKeyType, MgtKeyList, testUserID);
 
             m.addAttribute("Result", url);
 
@@ -2107,7 +2107,7 @@ public class TaxinvoiceServiceController {
 
         try {
 
-            String url = taxinvoiceService.getMailURL(testCorpNum, mgtKeyType, mgtKey);
+            String url = taxinvoiceService.getMailURL(testCorpNum, mgtKeyType, mgtKey, testUserID);
 
             m.addAttribute("Result", url);
 
@@ -2135,7 +2135,7 @@ public class TaxinvoiceServiceController {
 
         try {
 
-            String url = taxinvoiceService.getPDFURL(testCorpNum, mgtKeyType, mgtKey);
+            String url = taxinvoiceService.getPDFURL(testCorpNum, mgtKeyType, mgtKey, testUserID);
 
             m.addAttribute("Result", url);
 
@@ -2664,7 +2664,7 @@ public class TaxinvoiceServiceController {
          */
 
         try {
-            TaxinvoiceCertificate taxinvoiceCertificate = taxinvoiceService.getTaxCertInfo(testCorpNum, testUserID);
+            TaxinvoiceCertificate taxinvoiceCertificate = taxinvoiceService.getTaxCertInfo(testCorpNum);
 
             m.addAttribute("TaxinvoiceCertificate", taxinvoiceCertificate);
 

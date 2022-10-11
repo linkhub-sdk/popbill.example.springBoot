@@ -921,7 +921,7 @@ public class StatementServiceController {
 
         try {
 
-            String url = statementService.getURL(testCorpNum, TOGO);
+            String url = statementService.getURL(testCorpNum, testUserID, TOGO);
 
             m.addAttribute("Result", url);
 
@@ -949,8 +949,7 @@ public class StatementServiceController {
 
         try {
 
-            String url = statementService.getPopUpURL(testCorpNum, itemCode,
-                    mgtKey);
+            String url = statementService.getPopUpURL(testCorpNum, itemCode, mgtKey, testUserID);
 
             m.addAttribute("Result", url);
 
@@ -978,8 +977,7 @@ public class StatementServiceController {
 
         try {
 
-            String url = statementService.getViewURL(testCorpNum, itemCode,
-                    mgtKey);
+            String url = statementService.getViewURL(testCorpNum, itemCode, mgtKey, testUserID);
 
             m.addAttribute("Result", url);
 
@@ -1009,8 +1007,7 @@ public class StatementServiceController {
 
         try {
 
-            String url = statementService.getPrintURL(testCorpNum, itemCode,
-                    mgtKey);
+            String url = statementService.getPrintURL(testCorpNum, itemCode, mgtKey, testUserID);
 
             m.addAttribute("Result", url);
 
@@ -1039,8 +1036,7 @@ public class StatementServiceController {
 
         try {
 
-            String url = statementService.getEPrintURL(testCorpNum, itemCode,
-                    mgtKey);
+            String url = statementService.getEPrintURL(testCorpNum, itemCode, mgtKey, testUserID);
 
             m.addAttribute("Result", url);
 
@@ -1068,8 +1064,7 @@ public class StatementServiceController {
 
         try {
 
-            String url = statementService.getMassPrintURL(testCorpNum, itemCode,
-                    mgtKeyList);
+            String url = statementService.getMassPrintURL(testCorpNum, itemCode, mgtKeyList, testUserID);
 
             m.addAttribute("Result", url);
 
@@ -1096,7 +1091,7 @@ public class StatementServiceController {
         String mgtKey = "20220218-BOOT001";
 
         try {
-            String url = statementService.getMailURL(testCorpNum, itemCode, mgtKey);
+            String url = statementService.getMailURL(testCorpNum, itemCode, mgtKey, testUserID);
 
             m.addAttribute("Result", url);
 

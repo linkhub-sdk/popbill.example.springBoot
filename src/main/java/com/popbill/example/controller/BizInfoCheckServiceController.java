@@ -25,9 +25,6 @@ public class BizInfoCheckServiceController {
     // 팝빌회원 사업자번호
     private String testCorpNum = "1234567890";
 
-    // 팝빌회원 아이디
-    private String testUserID = "testkorea";
-
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String home(Locale locale, Model model) {
         return "BizInfoCheck/index";
