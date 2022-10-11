@@ -8,11 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.popbill.api.AccountCheckInfo;
 import com.popbill.api.BizCheckInfo;
 import com.popbill.api.BizInfoCheckService;
 import com.popbill.api.ChargeInfo;
-import com.popbill.api.DepositorCheckInfo;
 import com.popbill.api.PopbillException;
 
 @Controller
