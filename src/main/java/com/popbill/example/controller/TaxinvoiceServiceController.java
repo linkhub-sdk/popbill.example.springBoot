@@ -33,6 +33,7 @@ import com.popbill.api.taxinvoice.TaxinvoiceAddContact;
 import com.popbill.api.taxinvoice.TaxinvoiceDetail;
 import com.popbill.api.taxinvoice.TaxinvoiceInfo;
 import com.popbill.api.taxinvoice.TaxinvoiceLog;
+import com.popbill.api.taxinvoice.TaxinvoiceXML;
 
 @Controller
 @RequestMapping(value = "TaxinvoiceService")
@@ -1733,6 +1734,33 @@ public class TaxinvoiceServiceController {
         }
 
         return "Taxinvoice/Taxinvoice";
+    }
+
+    @RequestMapping(value = "getXML", method = RequestMethod.GET)
+    public String getXML(Model m) {
+        /*
+         * 세금계산서 1건의 상세정보를 XML로 반환합니다.
+         * - https://docs.popbill.com/taxinvoice/java/api#GetXML
+         */
+
+        // 세금계산서 유형 (SELL-매출, BUY-매입, TRUSTEE-위수탁)
+        MgtKeyType mgtKeyType = MgtKeyType.SELL;
+
+        // 세금계산서 문서번호
+        String mgtKey = "20220218-BOOT002";
+
+        try {
+
+            TaxinvoiceXML taxinvoiceXML = taxinvoiceService.getXML(testCorpNum, mgtKeyType, mgtKey);
+
+            m.addAttribute("TaxinvoiceXML", taxinvoiceXML);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "Taxinvoice/TaxinvoiceXML";
     }
 
     @RequestMapping(value = "search", method = RequestMethod.GET)
