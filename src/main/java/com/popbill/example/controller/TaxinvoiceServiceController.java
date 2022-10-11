@@ -1905,7 +1905,8 @@ public class TaxinvoiceServiceController {
          * - https://docs.popbill.com/taxinvoice/java/api#GetURL
          */
 
-        // TBOX : 임시문서함 , SBOX : 매출문서함 , PBOX : 매입문서함 , WRITE : 매출작성
+        // TBOX : 임시문서함 , SBOX : 매출문서함 , PBOX : 매입문서함 , 
+        // SWBOX : 매출발행 대기함 , PWBOX : 매입발행 대기함 , WRITE : 매출작성
         String TOGO = "SBOX";
 
         try {
