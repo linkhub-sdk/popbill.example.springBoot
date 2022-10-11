@@ -172,7 +172,7 @@ public class KakaoServiceController {
          */
 
         // 확인할 알림톡 템플릿 코드
-        String templateCode = "021010000076";
+        String templateCode = "022070000353";
 
         try {
 

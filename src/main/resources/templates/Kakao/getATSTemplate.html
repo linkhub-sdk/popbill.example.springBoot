@@ -19,6 +19,9 @@
                     <li>plusFriendID (카카오톡 채널 아이디) : <span th:text="${Template.plusFriendID}"></span></li>
                     <li>ads (광고메시지) : <span th:text="${Template.ads}"></span></li>
                     <li>appendix (부가메시지) : <span th:text="${Template.appendix}"></span></li>
+                    <li>secureYN (보안템플릿 여부) : <span th:text="${Template.secureYN}"></span></li>
+                    <li>state (템플릿 상태) : <span th:text="${Template.state}"></span></li>
+                    <li>stateDT (템플릿 상태 일시) : <span th:text="${Template.stateDT}"></span></li>
                 </ul>
                 <fieldset th:each="btnInfo, index : ${Template.btns}" class="fieldset3">
                     <legend>버튼정보 [<span th:text="${index.index +1}"></span> / <span th:text="${index.size}"></span>]</legend>
