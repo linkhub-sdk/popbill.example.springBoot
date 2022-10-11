@@ -816,7 +816,10 @@ public class FaxServiceController {
 
         try {
 
-            float unitCost = faxService.getUnitCost(testCorpNum);
+             // 수신번호 유형, 일반 / 지능 중 택 1
+            String receiveNumType = "지능";
+
+            float unitCost = faxService.getUnitCost(testCorpNum, receiveNumType);
 
             m.addAttribute("Result", unitCost);
 
@@ -837,7 +840,10 @@ public class FaxServiceController {
 
         try {
 
-            ChargeInfo chrgInfo = faxService.getChargeInfo(testCorpNum);
+            // 수신번호 유형, 일반 / 지능 중 택 1
+            String receiveNumType = "일반";
+
+            ChargeInfo chrgInfo = faxService.getChargeInfo(testCorpNum, receiveNumType);
 
             m.addAttribute("ChargeInfo", chrgInfo);
 
