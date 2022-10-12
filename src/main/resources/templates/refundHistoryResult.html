@@ -10,7 +10,7 @@
         <br />
         <fieldset class="fieldset1">
             <legend th:text="${#request?.requestURL}"></legend>
-            <fieldset th:if="${SearchResult}" class="fieldset2">
+            <fieldset th:if="${RefundHistoryResult}" class="fieldset2">
                 <legend>환불신청내역 목록</legend>
                 <ul>
                     <li>code (응답코드) : <span th:text="${RefundHistoryResult.code}"></span></li>

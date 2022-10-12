@@ -250,7 +250,7 @@ public class FaxServiceController {
         String receiveName = "수신자 명칭";
 
         // 전송할 File InputStream 생성을 위한 샘플코드.
-        File file = new File("/Users/John/Desktop/test.pdf");
+        File file = new File(getClass().getClassLoader().getResource("static/image/nonbg_statement.pdf").toURI());
         InputStream targetStream = null;
         try {
             targetStream = new FileInputStream(file);
@@ -364,7 +364,7 @@ public class FaxServiceController {
         // 전송요청번호
         // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
-        String requestNum = "20221006-request";
+        String requestNum = "20221012-request";
 
         try {
 
