@@ -611,6 +611,57 @@ public class MessageServiceController {
 
         return "response";
     }
+    @RequestMapping(value = "cancelReservebyRCV", method = RequestMethod.GET)
+    public String cancelReservebyRCV(Model m) {
+        /*
+         * 팝빌에서 반환받은 접수번호와 수신번호를 통해 예약접수된 문자 메시지 전송을 취소합니다. (예약시간 10분 전까지 가능)
+         * - https://docs.popbill.com/message/java/api#CancelReservebyRCV
+         */
+        
+        // 예약문자 전송요청 시 팝빌로부터 반환 받은 접수번호
+        String receiptNum = "022022111000000012";
+        // 예약문자 전송요청 시 파트너가 요청한 수신번호
+        String receiveNum = "";
+        
+        
+        try {
+            Response response = messageService.cancelReservebyRCV(testCorpNum, receiptNum, receiveNum);
+            
+            m.addAttribute("Response", response);
+            
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+        
+        return "response";
+    }
+    
+    @RequestMapping(value = "cancelReserveRNbyRCV", method = RequestMethod.GET)
+    public String cancelReserveRNbyRCV(Model m) {
+        /*
+         * 파트너가 할당한 전송요청 번호와 수신번호를 통해 예약접수된 문자 전송을 취소합니다. (예약시간 10분 전까지 가능)
+         * - https://docs.popbill.com/message/java/api#CancelReserveRNbyRCV
+         */
+        
+        // 예약문자 전송요청 시 파트너가 할당한 전송요청 번호
+        String requestNum = "";
+        // 예약문자 전송요청 시 파트너가 요청한 수신번호
+        String receiveNum = "";
+        
+        
+        try {
+            Response response = messageService.cancelReserveRNbyRCV(testCorpNum, requestNum, receiveNum);
+            
+            m.addAttribute("Response", response);
+            
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+        
+        return "response";
+    }
 
     @RequestMapping(value = "getMessages", method = RequestMethod.GET)
     public String getMessages(Model m) {
