@@ -75,7 +75,6 @@ public class CashbillServiceController {
         /*
          * 작성된 현금영수증 데이터를 팝빌에 저장과 동시에 발행하여 "발행완료" 상태로 처리합니다.
          * - 현금영수증 국세청 전송 정책 [https://docs.popbill.com/cashbill/ntsSendPolicy?lang=java]
-         * - "발행완료"된 현금영수증은 국세청 전송 이전에 발행취소(CancelIssue API) 함수로 국세청 신고 대상에서 제외할 수 있습니다.
          * - https://docs.popbill.com/cashbill/java/api#RegistIssue
          */
 
@@ -310,38 +309,11 @@ public class CashbillServiceController {
         return "Cashbill/GetBulkResult";
     }
 
-    @RequestMapping(value = "cancelIssue", method = RequestMethod.GET)
-    public String cancelIssue(Model m) {
-        /*
-         * 국세청 전송 이전 "발행완료" 상태의 현금영수증을 "발행취소"하고 국세청 전송 대상에서 제외합니다.
-         * - 삭제(Delete API) 함수를 호출하여 "발행취소" 상태의 현금영수증을 삭제하면, 문서번호 재사용이 가능합니다.
-         * - https://docs.popbill.com/cashbill/java/api#CancelIssue
-         */
-
-        // 문서번호
-        String mgtKey = "20220218-BOOT001";
-
-        // 메모
-        String memo = "발행취소 메모";
-
-        try {
-            Response response = cashbillService.cancelIssue(testCorpNum, mgtKey, memo);
-
-            m.addAttribute("Response", response);
-
-        } catch (PopbillException e) {
-            m.addAttribute("Exception", e);
-            return "exception";
-        }
-
-        return "response";
-    }
-
     @RequestMapping(value = "delete", method = RequestMethod.GET)
     public String delete(Model m) {
         /*
          * 삭제 가능한 상태의 현금영수증을 삭제합니다.
-         * - 삭제 가능한 상태: "임시저장", "발행취소", "전송실패"
+         * - 삭제 가능한 상태: "전송실패"
          * - 현금영수증을 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
          * - https://docs.popbill.com/cashbill/java/api#Delete
          */
@@ -368,7 +340,6 @@ public class CashbillServiceController {
         /*
          * 취소 현금영수증 데이터를 팝빌에 저장과 동시에 발행하여 "발행완료" 상태로 처리합니다.
          * - 현금영수증 국세청 전송 정책 [https://docs.popbill.com/cashbill/ntsSendPolicy?lang=java]
-         * - "발행완료"된 취소 현금영수증은 국세청 전송 이전에 발행취소(cancelIssue API) 함수로 국세청 신고 대상에서 제외할 수 있습니다.
          * - https://docs.popbill.com/cashbill/java/api#RevokeRegistIssue
          */
 
@@ -401,7 +372,6 @@ public class CashbillServiceController {
          * 작성된 (부분)취소 현금영수증 데이터를 팝빌에 저장과 동시에 발행하여 "발행완료" 상태로 처리합니다.
          * - 취소 현금영수증의 금액은 원본 금액을 넘을 수 없습니다.
          * - 현금영수증 국세청 전송 정책 [https://docs.popbill.com/cashbill/ntsSendPolicy?lang=java]
-         * - "발행완료"된 취소 현금영수증은 국세청 전송 이전에 발행취소(cancelIssue API) 함수로 국세청 신고 대상에서 제외할 수 있습니다.
          * - https://docs.popbill.com/cashbill/java/api#RevokeRegistIssue
          */
 
@@ -562,7 +532,7 @@ public class CashbillServiceController {
 
         // 상태코드 배열 (2,3번째 자리에 와일드카드(*) 사용 가능)
         // - 미입력시 전체조회
-        String[] State = { "100", "3**", "4**" };
+        String[] State = { "3**"};
 
         // 문서형태 배열 ("N" , "C" 중 선택, 다중 선택 가능)
         // - N = 일반 현금영수증 , C = 취소 현금영수증
