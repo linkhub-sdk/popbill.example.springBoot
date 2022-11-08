@@ -85,7 +85,7 @@ public class CashbillServiceController {
         Cashbill cashbill = new Cashbill();
 
         // 현금영수증 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        cashbill.setMgtKey("20220218-BOOT001");
+        cashbill.setMgtKey("20221108-BOOT002");
 
         // 문서형태, 승인거래 기재
         cashbill.setTradeType("승인거래");
@@ -157,8 +157,13 @@ public class CashbillServiceController {
         // - {smssendYN} 의 값이 true 인 경우 아래 휴대폰번호로 안내 문자 전송
         cashbill.setHp("");
 
+        // 거래일시, 날짜(yyyyMMddHHmmss)
+        // 당일, 전일만 가능
+        cashbill.setTradeDT("20221108000000");
+        
         // 발행 안내 메일제목, 미기재시 기본 양식으로 메일 전송
         String emailSubject = "";
+        
 
         try {
 
@@ -183,7 +188,7 @@ public class CashbillServiceController {
 
         // 제출아이디, 대량 발행 접수를 구별하는 식별키
         // └ 최대 36자리 영문, 숫자, '-' 조합으로 구성
-        String SubmitID = "20220218-BOOT-BULK";
+        String SubmitID = "20221108-BOOT-BULK";
 
         // 최대 100건
         List<Cashbill> cashbillList = new ArrayList<Cashbill>();
@@ -266,6 +271,10 @@ public class CashbillServiceController {
             // - {smssendYN} 의 값이 true 인 경우 아래 휴대폰번호로 안내 문자 전송
             cashbill.setHp("");
 
+            // 거래일시, 날짜(yyyyMMddHHmmss)
+            // 당일, 전일만 가능
+            cashbill.setTradeDT("20221108000000");
+            
             cashbillList.add(cashbill);
 
         }
@@ -293,7 +302,7 @@ public class CashbillServiceController {
          */
 
         // 초대량 발행 접수 시 기재한 제출아이디
-        String SubmitID = "20220218-BOOT-BULK";
+        String SubmitID = "20221108-BOOT-BULK";
 
         try {
 
@@ -473,7 +482,7 @@ public class CashbillServiceController {
          */
 
         // 현금영수증 문서번호 배열 (최대 1000건)
-        String[] mgtKeyList = new String[] { "20220218-BOOT003", "20220218-BOOT004", "20220218-BOOT005" };
+        String[] mgtKeyList = new String[] { "20221108-BOOT002", "20220218-BOOT004", "20220218-BOOT005" };
 
         try {
 
@@ -525,10 +534,10 @@ public class CashbillServiceController {
         String DType = "T";
 
         // 시작일자, 날짜형식(yyyyMMdd)
-        String SDate = "20220201";
+        String SDate = "20221108";
 
         // 종료일자, 날짜형식(yyyyMMdd)
-        String EDate = "20220228";
+        String EDate = "20221108";
 
         // 상태코드 배열 (2,3번째 자리에 와일드카드(*) 사용 가능)
         // - 미입력시 전체조회
