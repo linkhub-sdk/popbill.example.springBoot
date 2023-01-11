@@ -43,7 +43,7 @@ public class MessageServiceController {
     public String checkSenderNumber(Model m) {
         /*
          * 문자 발신번호 등록여부를 확인합니다.
-         * - https://docs.popbill.com/message/java/api#CheckSenderNumber
+         * - https://developers.popbill.com/message/java/api#CheckSenderNumber
          */
 
         // 확인할 발신번호
@@ -68,7 +68,7 @@ public class MessageServiceController {
         /*
          * 발신번호를 등록하고 내역을 확인하는 문자 발신번호 관리 페이지 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/message/java/api#GetSenderNumberMgtURL
+         * - https://developers.popbill.com/message/java/api#GetSenderNumberMgtURL
          */
         try {
 
@@ -88,7 +88,7 @@ public class MessageServiceController {
     public String getSenderNumberList(Model m) {
         /*
          * 팝빌에 등록한 연동회원의 문자 발신번호 목록을 확인합니다.
-         * - https://docs.popbill.com/message/java/api#GetSenderNumberList
+         * - https://developers.popbill.com/message/java/api#GetSenderNumberList
          */
 
         try {
@@ -105,7 +105,7 @@ public class MessageServiceController {
     public String sendSMS(Model m) {
         /*
          * 최대 90byte의 단문(SMS) 메시지 1건 전송을 팝빌에 접수합니다.
-         * - https://docs.popbill.com/message/java/api#SendSMS
+         * - https://developers.popbill.com/message/java/api#SendSMS
          */
 
         // 발신번호 (팝빌에 등록된 발신번호만 이용가능)
@@ -153,7 +153,7 @@ public class MessageServiceController {
         /*
          * 최대 90byte의 단문(SMS) 메시지 다수건 전송을 팝빌에 접수합니다. (최대 1,000건)
          * - 모든 수신자에게 동일한 내용을 전송하거나(동보전송), 수신자마다 개별 내용을 전송할 수 있습니다(대량전송).
-         * - https://docs.popbill.com/message/java/api#SendSMS_Multi
+         * - https://developers.popbill.com/message/java/api#SendSMS_Multi
          */
 
         // [동보전송시 필수] 발신번호, 개별문자 전송정보에 발신자번호 없는 경우 적용
@@ -214,7 +214,7 @@ public class MessageServiceController {
     public String sendLMS(Model m) {
         /*
          * 최대 2,000byte의 장문(LMS) 메시지 1건 전송을 팝빌에 접수합니다.
-         * - https://docs.popbill.com/message/java/api#SendLMS
+         * - https://developers.popbill.com/message/java/api#SendLMS
          */
 
         // 발신번호 (팝빌에 등록된 발신번호만 이용가능)
@@ -265,7 +265,7 @@ public class MessageServiceController {
         /*
          * 최대 2,000byte의 장문(LMS) 메시지 다수건 전송을 팝빌에 접수합니다. (최대 1,000건)
          * - 모든 수신자에게 동일한 내용을 전송하거나(동보전송), 수신자마다 개별 내용을 전송할 수 있습니다(대량전송).
-         * - https://docs.popbill.com/message/java/api#SendLMS_Multi
+         * - https://developers.popbill.com/message/java/api#SendLMS_Multi
          */
 
         // [동보전송시 필수] 발신번호, 개별 전송정보의 발신번호가 없는 경우 적용
@@ -333,7 +333,7 @@ public class MessageServiceController {
         /*
          * 최대 2,000byte의 메시지와 이미지로 구성된 포토문자(MMS) 1건 전송을 팝빌에 접수합니다.
          * - 이미지 파일 포맷/규격 : 최대 300Kbyte(JPEG, JPG), 가로/세로 1,000px 이하 권장
-         * - https://docs.popbill.com/message/java/api#SendMMS
+         * - https://developers.popbill.com/message/java/api#SendMMS
          */
 
         // 발신번호 (팝빌에 등록된 발신번호만 이용가능)
@@ -388,7 +388,7 @@ public class MessageServiceController {
          * 최대 2,000byte의 메시지와 이미지로 구성된 포토문자(MMS) 다수건 전송을 팝빌에 접수합니다. (최대 1,000건)
          * - 모든 수신자에게 동일한 내용을 전송하거나(동보전송), 수신자마다 개별 내용을 전송할 수 있습니다(대량전송).
          * - 이미지 파일 포맷/규격 : 최대 300Kbyte(JPEG), 가로/세로 1,000px 이하 권장
-         * - https://docs.popbill.com/message/java/api#SendMMS_Multi
+         * - https://developers.popbill.com/message/java/api#SendMMS_Multi
          */
 
         // [동보전송시 필수] 발신번호, 개별 전송정보의 발신번호가 없는 경우 적용
@@ -457,7 +457,7 @@ public class MessageServiceController {
     public String sendXMS(Model m) {
         /*
          * 메시지 길이(90byte)에 따라 단문/장문(SMS/LMS)을 자동으로 인식하여 1건의 메시지를 전송을 팝빌에 접수합니다.
-         * - https://docs.popbill.com/message/java/api#SendXMS
+         * - https://developers.popbill.com/message/java/api#SendXMS
          */
         // 발신번호 (팝빌에 등록된 발신번호만 이용가능)
         String sender = "07043042991";
@@ -506,7 +506,7 @@ public class MessageServiceController {
     public String sendXMS_Multi(Model m) {
         /*
          * 메시지 길이(90byte)에 따라 단문/장문(SMS/LMS)을 자동으로 인식하여 다수건의 메시지 전송을 팝빌에 접수합니다. (최대 1,000건)
-         * - https://docs.popbill.com/message/java/api#SendXMS_Multi
+         * - https://developers.popbill.com/message/java/api#SendXMS_Multi
          */
 
         // [동보전송시 필수] 발신번호, 개별 전송정보에 발신번호가 없는 경우 적용
@@ -570,7 +570,7 @@ public class MessageServiceController {
     public String cancelReserve(Model m) {
         /*
          * 팝빌에서 반환받은 접수번호를 통해 예약접수된 문자 메시지 전송을 취소합니다. (예약시간 10분 전까지 가능)
-         * - https://docs.popbill.com/message/java/api#CancelReserve
+         * - https://developers.popbill.com/message/java/api#CancelReserve
          */
 
         // 예약문자 전송요청 시 팝빌로부터 반환 받은 접수번호
@@ -593,7 +593,7 @@ public class MessageServiceController {
     public String cancelReserveRN(Model m) {
         /*
          * 파트너가 할당한 전송요청 번호를 통해 예약접수된 문자 전송을 취소합니다. (예약시간 10분 전까지 가능)
-         * - https://docs.popbill.com/message/java/api#CancelReserveRN
+         * - https://developers.popbill.com/message/java/api#CancelReserveRN
          */
 
         // 예약문자 전송요청 시 파트너가 할당한 전송요청 번호
@@ -615,7 +615,7 @@ public class MessageServiceController {
     public String cancelReservebyRCV(Model m) {
         /*
          * 팝빌에서 반환받은 접수번호와 수신번호를 통해 예약접수된 문자 메시지 전송을 취소합니다. (예약시간 10분 전까지 가능)
-         * - https://docs.popbill.com/message/java/api#CancelReservebyRCV
+         * - https://developers.popbill.com/message/java/api#CancelReservebyRCV
          */
         
         // 예약문자 전송요청 시 팝빌로부터 반환 받은 접수번호
@@ -641,7 +641,7 @@ public class MessageServiceController {
     public String cancelReserveRNbyRCV(Model m) {
         /*
          * 파트너가 할당한 전송요청 번호와 수신번호를 통해 예약접수된 문자 전송을 취소합니다. (예약시간 10분 전까지 가능)
-         * - https://docs.popbill.com/message/java/api#CancelReserveRNbyRCV
+         * - https://developers.popbill.com/message/java/api#CancelReserveRNbyRCV
          */
         
         // 예약문자 전송요청 시 파트너가 할당한 전송요청 번호
@@ -667,7 +667,7 @@ public class MessageServiceController {
     public String getMessages(Model m) {
         /*
          * 팝빌에서 반환받은 접수번호를 통해 문자 전송상태 및 결과를 확인합니다.
-         * - https://docs.popbill.com/message/java/api#GetMessages
+         * - https://developers.popbill.com/message/java/api#GetMessages
          */
 
         // 문자 전송요청 시 팝빌로부터 반환 받은 접수번호
@@ -691,7 +691,7 @@ public class MessageServiceController {
     public String getMessagesRN(Model m) {
         /*
          * 파트너가 할당한 전송요청 번호를 통해 문자 전송상태 및 결과를 확인합니다.
-         * - https://docs.popbill.com/message/java/api#GetMessagesRN
+         * - https://developers.popbill.com/message/java/api#GetMessagesRN
          */
 
         // 문자 전송요청시 파트너가 할당한 전송요청 번호
@@ -716,7 +716,7 @@ public class MessageServiceController {
         /*
          * 검색조건에 해당하는 문자 전송내역을 조회합니다. (조회기간 단위 : 최대 2개월)
          * - 문자 접수일시로부터 6개월 이내 접수건만 조회할 수 있습니다.
-         * - https://docs.popbill.com/message/java/api#Search
+         * - https://developers.popbill.com/message/java/api#Search
          */
 
         // 시작일자, 날짜형식(yyyyMMdd)
@@ -779,7 +779,7 @@ public class MessageServiceController {
         /*
          * 문자 전송내역 확인 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/message/java/api#GetSentListURL
+         * - https://developers.popbill.com/message/java/api#GetSentListURL
          */
         try {
 
@@ -799,7 +799,7 @@ public class MessageServiceController {
     public String getAutoDenyList(Model m) {
         /*
          * 전용 080 번호에 등록된 수신거부 목록을 반환합니다.
-         * - https://docs.popbill.com/message/java/api#GetAutoDenyList
+         * - https://developers.popbill.com/message/java/api#GetAutoDenyList
          */
 
         try {
@@ -816,7 +816,7 @@ public class MessageServiceController {
     public String getUnitCost(Model m) {
         /*
          * 문자 전송시 과금되는 포인트 단가를 확인합니다.
-         * - https://docs.popbill.com/message/java/api#GetUnitCost
+         * - https://developers.popbill.com/message/java/api#GetUnitCost
          */
 
         // 문자 메시지 유형, SMS-단문, LMS-장문, MMS-포토
@@ -840,7 +840,7 @@ public class MessageServiceController {
     public String chargeInfo(Model m) {
         /*
          * 팝빌 문자 API 서비스 과금정보를 확인합니다.
-         * - https://docs.popbill.com/message/java/api#GetChargeInfo
+         * - https://developers.popbill.com/message/java/api#GetChargeInfo
          */
 
         // 문자 메시지 유형, SMS-단문, LMS-장문, MMS-포토

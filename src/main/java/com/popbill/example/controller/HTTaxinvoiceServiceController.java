@@ -44,7 +44,7 @@ public class HTTaxinvoiceServiceController {
         /*
          * 홈택스에 신고된 전자세금계산서 매입/매출 내역 수집을 팝빌에 요청합니다. (조회기간 단위 : 최대 3개월)
          * 주기적으로 자체 DB에 세금계산서 정보를 INSERT 하는 경우, 조회할 일자 유형(DType) 값을 "S"로 하는 것을 권장합니다.
-         * - https://docs.popbill.com/httaxinvoice/java/api#RequestJob
+         * - https://developers.popbill.com/httaxinvoice/java/api#RequestJob
          */
 
         // 전자세금계산서 유형 (SELL , BUY , TRUSTEE 중 택 1)
@@ -83,7 +83,7 @@ public class HTTaxinvoiceServiceController {
          *   수집 결과 내역 조회(Search) 또는 수집 결과 요약 정보 조회(Summary) 를 해야합니다.
          * - 작업 상태(jobState)가 3(완료)이지만 수집 결과 코드(errorCode)가 1(수집성공)이 아닌 경우에는
          *   오류메시지(errorReason)로 수집 실패에 대한 원인을 파악할 수 있습니다.
-         * - https://docs.popbill.com/httaxinvoice/java/api#GetJobState
+         * - https://developers.popbill.com/httaxinvoice/java/api#GetJobState
          */
 
         // 수집요청(requestJob)시 반환받은 작업아이디
@@ -106,7 +106,7 @@ public class HTTaxinvoiceServiceController {
         /*
          * 전자세금계산서 매입/매출 내역 수집요청에 대한 상태 목록을 확인합니다.
          * - 수집 요청 후 1시간이 경과한 수집 요청건은 상태정보가 반환되지 않습니다.
-         * - https://docs.popbill.com/httaxinvoice/java/api#ListActiveJob
+         * - https://developers.popbill.com/httaxinvoice/java/api#ListActiveJob
          */
 
         try {
@@ -125,7 +125,7 @@ public class HTTaxinvoiceServiceController {
     public String search(Model m) {
         /*
          * 수집 상태 확인(GetJobState API) 함수를 통해 상태 정보가 확인된 작업아이디를 활용하여 수집된 전자세금계산서 매입/매출 내역을 조회합니다.
-         * - https://docs.popbill.com/httaxinvoice/java/api#Search
+         * - https://developers.popbill.com/httaxinvoice/java/api#Search
          */
 
         // 수집 요청시 발급받은 작업아이디
@@ -189,7 +189,7 @@ public class HTTaxinvoiceServiceController {
         /*
          * 수집 상태 확인(GetJobState API) 함수를 통해 상태 정보가 확인된 작업아이디를 활용하여 수집된 전자세금계산서 매입/매출 내역의 요약 정보를 조회합니다.
          * - 요약 정보 : 전자세금계산서 수집 건수, 공급가액 합계, 세액 합계, 합계 금액
-         * - https://docs.popbill.com/httaxinvoice/java/api#Summary
+         * - https://developers.popbill.com/httaxinvoice/java/api#Summary
          */
 
         // 수집요청(requestJob API) 함수 호출 시 반환받은 작업아이디
@@ -242,7 +242,7 @@ public class HTTaxinvoiceServiceController {
     public String getTaxinvoice(Model m) {
         /*
          * 국세청 승인번호를 통해 수집한 전자세금계산서 1건의 상세정보를 반환합니다.
-         * - https://docs.popbill.com/httaxinvoice/java/api#GetTaxinvoice
+         * - https://developers.popbill.com/httaxinvoice/java/api#GetTaxinvoice
          */
 
         // 전자세금계산서 국세청 승인번호
@@ -265,7 +265,7 @@ public class HTTaxinvoiceServiceController {
     public String getXML(Model m) {
         /*
          * 국세청 승인번호를 통해 수집한 전자세금계산서 1건의 상세정보를 XML 형태의 문자열로 반환합니다.
-         * - https://docs.popbill.com/httaxinvoice/java/api#GetXML
+         * - https://developers.popbill.com/httaxinvoice/java/api#GetXML
          */
 
         // 전자세금계산서 국세청 승인번호
@@ -289,7 +289,7 @@ public class HTTaxinvoiceServiceController {
         /*
          * 수집된 전자세금계산서 1건의 상세내역을 확인하는 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/httaxinvoice/java/api#GetPopUpURL
+         * - https://developers.popbill.com/httaxinvoice/java/api#GetPopUpURL
          */
 
         // 조회할 전자세금계산서 국세청 승인번호
@@ -314,7 +314,7 @@ public class HTTaxinvoiceServiceController {
         /*
          * 수집된 전자세금계산서 1건의 상세내역을 인쇄하는 페이지의 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/httaxinvoice/java/api#GetPrintURL
+         * - https://developers.popbill.com/httaxinvoice/java/api#GetPrintURL
          */
 
         // 조회할 전자세금계산서 국세청 승인번호
@@ -339,7 +339,7 @@ public class HTTaxinvoiceServiceController {
         /*
          * 홈택스연동 인증정보를 관리하는 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/httaxinvoice/java/api#GetCertificatePopUpURL
+         * - https://developers.popbill.com/httaxinvoice/java/api#GetCertificatePopUpURL
          */
 
         try {
@@ -360,7 +360,7 @@ public class HTTaxinvoiceServiceController {
     public String getCertificateExpireDate(Model m) {
         /*
          * 팝빌에 등록된 인증서 만료일자를 확인합니다.
-         * - https://docs.popbill.com/httaxinvoice/java/api#GetCertificateExpireDate
+         * - https://developers.popbill.com/httaxinvoice/java/api#GetCertificateExpireDate
          */
 
         try {
@@ -381,7 +381,7 @@ public class HTTaxinvoiceServiceController {
     public String checkCertValidation(Model m) {
         /*
          * 팝빌에 등록된 인증서로 홈택스 로그인 가능 여부를 확인합니다.
-         * - https://docs.popbill.com/httaxinvoice/java/api#CheckCertValidation
+         * - https://developers.popbill.com/httaxinvoice/java/api#CheckCertValidation
          */
 
         try {
@@ -402,7 +402,7 @@ public class HTTaxinvoiceServiceController {
     public String registDeptUser(Model m) {
         /*
          * 홈택스연동 인증을 위해 팝빌에 전자세금계산서용 부서사용자 계정을 등록합니다.
-         * - https://docs.popbill.com/httaxinvoice/java/api#RegistDeptUser
+         * - https://developers.popbill.com/httaxinvoice/java/api#RegistDeptUser
          */
 
         // 홈택스에서 생성한 전자세금계산서 부서사용자 아이디
@@ -429,7 +429,7 @@ public class HTTaxinvoiceServiceController {
     public String checkDeptUser(Model m) {
         /*
          * 홈택스연동 인증을 위해 팝빌에 등록된 전자세금계산서용 부서사용자 계정을 확인합니다.
-         * - https://docs.popbill.com/httaxinvoice/java/api#CheckDeptUser
+         * - https://developers.popbill.com/httaxinvoice/java/api#CheckDeptUser
          */
 
         try {
@@ -450,7 +450,7 @@ public class HTTaxinvoiceServiceController {
     public String checkLoginDeptUser(Model m) {
         /*
          * 팝빌에 등록된 전자세금계산서용 부서사용자 계정 정보로 홈택스 로그인 가능 여부를 확인합니다.
-         * - https://docs.popbill.com/httaxinvoice/java/api#CheckLoginDeptUser
+         * - https://developers.popbill.com/httaxinvoice/java/api#CheckLoginDeptUser
          */
 
         try {
@@ -471,7 +471,7 @@ public class HTTaxinvoiceServiceController {
     public String deleteDeptUser(Model m) {
         /*
          * 팝빌에 등록된 홈택스 전자세금계산서용 부서사용자 계정을 삭제합니다.
-         * - https://docs.popbill.com/httaxinvoice/java/api#DeleteDeptUser
+         * - https://developers.popbill.com/httaxinvoice/java/api#DeleteDeptUser
          */
 
         try {
@@ -492,7 +492,7 @@ public class HTTaxinvoiceServiceController {
     public String chargeInfo(Model m) {
         /*
          * 팝빌 홈택스연동(세금) API 서비스 과금정보를 확인합니다.
-         * - https://docs.popbill.com/httaxinvoice/java/api#GetChargeInfo
+         * - https://developers.popbill.com/httaxinvoice/java/api#GetChargeInfo
          */
 
         try {
@@ -513,7 +513,7 @@ public class HTTaxinvoiceServiceController {
         /*
          * 홈택스연동 정액제 서비스 신청 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/httaxinvoice/java/api#GetFlatRatePopUpURL
+         * - https://developers.popbill.com/httaxinvoice/java/api#GetFlatRatePopUpURL
          */
 
         try {
@@ -534,7 +534,7 @@ public class HTTaxinvoiceServiceController {
     public String getFlatRateState(Model m) {
         /*
          * 홈택스연동 정액제 서비스 상태를 확인합니다.
-         * - https://docs.popbill.com/httaxinvoice/java/api#GetFlatRateState
+         * - https://developers.popbill.com/httaxinvoice/java/api#GetFlatRateState
          */
 
         try {
