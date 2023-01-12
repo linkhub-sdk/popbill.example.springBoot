@@ -41,7 +41,7 @@ public class HTCashbillServiceController {
     public String requestJob(Model m) {
         /*
          * 홈택스에 신고된 현금영수증 매입/매출 내역 수집을 팝빌에 요청합니다. (조회기간 단위 : 최대 3개월)
-         * - https://developers.popbill.com/htcashbill/java/api#RequestJob
+         * - https://developers.popbill.com/reference/htcashbill/java/api/job#RequestJob
          */
 
         // 현금영수증 유형, SELL-매출, BUY-매입
@@ -75,7 +75,7 @@ public class HTCashbillServiceController {
          *   수집 결과 조회(Search) 또는 수집 결과 요약 정보 조회(Summary) 를 해야합니다.
          * - 작업 상태(jobState)가 3(완료)이지만 수집 결과 코드(errorCode)가 1(수집성공)이 아닌 경우에는
          *   오류메시지(errorReason)로 수집 실패에 대한 원인을 파악할 수 있습니다.
-         * - https://developers.popbill.com/htcashbill/java/api#GetJobState
+         * - https://developers.popbill.com/reference/htcashbill/java/api/job#GetJobState
          */
 
         // 수집요청(requestJob)시 반환받은 작업아이디
@@ -98,7 +98,7 @@ public class HTCashbillServiceController {
         /*
          * 현금영수증 매입/매출 내역 수집요청에 대한 상태 목록을 확인합니다.
          * - 수집 요청 후 1시간이 경과한 수집 요청건은 상태정보가 반환되지 않습니다.
-         * - https://developers.popbill.com/htcashbill/java/api#ListActiveJob
+         * - https://developers.popbill.com/reference/htcashbill/java/api/job#ListActiveJob
          */
 
         try {
@@ -117,7 +117,7 @@ public class HTCashbillServiceController {
     public String search(Model m) {
         /*
          * 수집 상태 확인(GetJobState API) 함수를 통해 상태 정보 확인된 작업아이디를 활용하여 현금영수증 매입/매출 내역을 조회합니다.
-         * - https://developers.popbill.com/htcashbill/java/api#Search
+         * - https://developers.popbill.com/reference/htcashbill/java/api/search#Search
          */
 
         // 수집요청(requestJob API) 함수 호출 시 반환받은 작업아이디
@@ -161,7 +161,7 @@ public class HTCashbillServiceController {
         /*
          * 수집 상태 확인(GetJobState API) 함수를 통해 상태 정보가 확인된 작업아이디를 활용하여 수집된 현금영수증 매입/매출 내역의 요약 정보를 조회합니다.
          * - 요약 정보 : 현금영수증 수집 건수, 공급가액 합계, 세액 합계, 봉사료 합계, 합계 금액
-         * - https://developers.popbill.com/htcashbill/java/api#Summary
+         * - https://developers.popbill.com/reference/htcashbill/java/api/search#Summary
          */
 
         // 수집요청(requestJob API) 함수 호출 시 반환받은 작업아이디
@@ -193,7 +193,7 @@ public class HTCashbillServiceController {
         /*
          * 홈택스연동 인증정보를 관리하는 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://developers.popbill.com/htcashbill/java/api#GetCertificatePopUpURL
+         * - https://developers.popbill.com/reference/htcashbill/java/api/cert#GetCertificatePopUpURL
          */
 
         try {
@@ -214,7 +214,7 @@ public class HTCashbillServiceController {
     public String getCertificateExpireDate(Model m) {
         /*
          * 팝빌에 등록된 인증서 만료일자를 확인합니다.
-         * - https://developers.popbill.com/htcashbill/java/api#GetCertificateExpireDate
+         * - https://developers.popbill.com/reference/htcashbill/java/api/cert#GetCertificateExpireDate
          */
         try {
 
@@ -234,7 +234,7 @@ public class HTCashbillServiceController {
     public String checkCertValidation(Model m) {
         /*
          * 팝빌에 등록된 인증서로 홈택스 로그인 가능 여부를 확인합니다.
-         * - https://developers.popbill.com/htcashbill/java/api#CheckCertValidation
+         * - https://developers.popbill.com/reference/htcashbill/java/api/cert#CheckCertValidation
          */
         try {
 
@@ -254,7 +254,7 @@ public class HTCashbillServiceController {
     public String registDeptUser(Model m) {
         /*
          * 홈택스연동 인증을 위해 팝빌에 현금영수증 자료조회 부서사용자 계정을 등록합니다.
-         * - https://developers.popbill.com/htcashbill/java/api#RegistDeptUser
+         * - https://developers.popbill.com/reference/htcashbill/java/api/cert#RegistDeptUser
          */
 
         // 홈택스에서 생성한 현금영수증 부서사용자 아이디
@@ -281,7 +281,7 @@ public class HTCashbillServiceController {
     public String checkDeptUser(Model m) {
         /*
          * 홈택스연동 인증을 위해 팝빌에 등록된 현금영수증 자료조회 부서사용자 계정을 확인합니다.
-         * - https://developers.popbill.com/htcashbill/java/api#CheckDeptUser
+         * - https://developers.popbill.com/reference/htcashbill/java/api/cert#CheckDeptUser
          */
         try {
 
@@ -301,7 +301,7 @@ public class HTCashbillServiceController {
     public String checkLoginDeptUser(Model m) {
         /*
          * 팝빌에 등록된 현금영수증 자료조회 부서사용자 계정 정보로 홈택스 로그인 가능 여부를 확인합니다.
-         * - https://developers.popbill.com/htcashbill/java/api#CheckLoginDeptUser
+         * - https://developers.popbill.com/reference/htcashbill/java/api/cert#CheckLoginDeptUser
          */
         try {
 
@@ -321,7 +321,7 @@ public class HTCashbillServiceController {
     public String deleteDeptUser(Model m) {
         /*
          * 팝빌에 등록된 홈택스 현금영수증 자료조회 부서사용자 계정을 삭제합니다.
-         * - https://developers.popbill.com/htcashbill/java/api#DeleteDeptUser
+         * - https://developers.popbill.com/reference/htcashbill/java/api/cert#DeleteDeptUser
          */
         try {
 
@@ -341,7 +341,7 @@ public class HTCashbillServiceController {
     public String chargeInfo(Model m) {
         /*
          * 팝빌 홈택스연동(현금영수증) API 서비스 과금정보를 확인합니다.
-         * - https://developers.popbill.com/htcashbill/java/api#GetChargeInfo
+         * - https://developers.popbill.com/reference/htcashbill/java/api/point#GetChargeInfo
          */
 
         try {
@@ -362,7 +362,7 @@ public class HTCashbillServiceController {
         /*
          * 홈택스연동 정액제 서비스 신청 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://developers.popbill.com/htcashbill/java/api#GetFlatRatePopUpURL
+         * - https://developers.popbill.com/reference/htcashbill/java/api/point#GetFlatRatePopUpURL
          */
 
         try {
@@ -383,7 +383,7 @@ public class HTCashbillServiceController {
     public String getFlatRateState(Model m) {
         /*
          * 홈택스연동 정액제 서비스 상태를 확인합니다.
-         * - https://developers.popbill.com/htcashbill/java/api#GetFlatRateState
+         * - https://developers.popbill.com/reference/htcashbill/java/api/point#GetFlatRateState
          */
 
         try {

@@ -33,7 +33,7 @@ public class ClosedownServiceController {
     public String checkCorpNum(@RequestParam(required = false) String CorpNum, Model m) {
         /*
          * 사업자번호 1건에 대한 휴폐업정보를 확인합니다.
-         * - https://developers.popbill.com/closedown/java/api#CheckCorpNum
+         * - https://developers.popbill.com/reference/closedown/java/api/check#CheckCorpNum
          */
 
         if (CorpNum != null && !CorpNum.equals("")) {
@@ -59,7 +59,7 @@ public class ClosedownServiceController {
     public String checkCorpNums(Model m) {
         /*
          * 다수건의 사업자번호에 대한 휴폐업정보를 확인합니다. (최대 1,000건)
-         * - https://developers.popbill.com/closedown/java/api#CheckCorpNums
+         * - https://developers.popbill.com/reference/closedown/java/api/check#CheckCorpNums
          */
 
         // 조회할 사업자번호 배열, 최대 1000건
@@ -83,7 +83,7 @@ public class ClosedownServiceController {
     public String getUnitCost(Model m) {
         /*
          * 휴폐업 조회시 과금되는 포인트 단가를 확인합니다.
-         * - https://developers.popbill.com/closedown/java/api#GetUnitCost
+         * - https://developers.popbill.com/reference/closedown/java/api/point#GetUnitCost
          */
 
         try {
@@ -104,7 +104,7 @@ public class ClosedownServiceController {
     public String chargeInfo(Model m) {
         /*
          * 팝빌 휴폐업조회 API 서비스 과금정보를 확인합니다.
-         * - https://developers.popbill.com/closedown/java/api#GetChargeInfo
+         * - https://developers.popbill.com/reference/closedown/java/api/point#GetChargeInfo
          */
 
         try {

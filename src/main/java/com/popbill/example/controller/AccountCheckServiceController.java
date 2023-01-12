@@ -33,7 +33,7 @@ public class AccountCheckServiceController {
     public String checkAccountInfo(Model m) {
         /*
          * 1건의 예금주성명을 조회합니다.
-         * - https://developers.popbill.com/accountcheck/java/api#CheckAccountInfo
+         * - https://developers.popbill.com/reference/accountcheck/java/api/check#CheckAccountInfo
          */
 
         // 조회할 기관코드
@@ -60,7 +60,7 @@ public class AccountCheckServiceController {
     public String checkDepositorInfo(Model m) {
         /*
          * 1건의 예금주실명을 조회합니다.
-         * - https://developers.popbill.com/accountcheck/java/api#CheckDepositorInfo
+         * - https://developers.popbill.com/reference/accountcheck/java/api/check#CheckDepositorInfo
          */
 
         // 조회할 기관코드
@@ -99,7 +99,7 @@ public class AccountCheckServiceController {
     public String getUnitCost(Model m) {
         /*
          * 예금주조회시 과금되는 포인트 단가를 확인합니다.
-         * - https://developers.popbill.com/accountcheck/java/api#GetUnitCost
+         * - https://developers.popbill.com/reference/accountcheck/java/api/point#GetUnitCost
          */
 
         // 서비스 유형 ("성명" , "실명" 중 택 1)
@@ -124,7 +124,7 @@ public class AccountCheckServiceController {
     public String chargeInfo(Model m) {
         /*
          * 팝빌 예금주조회 API 서비스 과금정보를 확인합니다.
-         * - https://developers.popbill.com/accountcheck/java/api#GetChargeInfo
+         * - https://developers.popbill.com/reference/accountcheck/java/api/point#GetChargeInfo
          */
 
         // 서비스 유형 ("성명" , "실명" 중 택 1)

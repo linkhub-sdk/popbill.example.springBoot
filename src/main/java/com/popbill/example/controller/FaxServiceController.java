@@ -46,7 +46,7 @@ public class FaxServiceController {
     public String checkSenderNumber(Model m) {
         /*
          * 팩스 발신번호 등록여부를 확인합니다.
-         * - https://developers.popbill.com/fax/java/api#CheckSenderNumber
+         * - https://developers.popbill.com/reference/fax/java/api/sendnum#CheckSenderNumber
          */
 
         // 확인할 발신번호
@@ -71,7 +71,7 @@ public class FaxServiceController {
         /*
          * 발신번호를 등록하고 내역을 확인하는 팩스 발신번호 관리 페이지 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://developers.popbill.com/fax/java/api#GetSenderNumberMgtURL
+         * - https://developers.popbill.com/reference/fax/java/api/sendnum#GetSenderNumberMgtURL
          */
         try {
 
@@ -91,7 +91,7 @@ public class FaxServiceController {
     public String getSenderNumberList(Model m) {
         /*
          * 팝빌에 등록한 연동회원의 팩스 발신번호 목록을 확인합니다.
-         * - https://developers.popbill.com/fax/java/api#GetSenderNumberList
+         * - https://developers.popbill.com/reference/fax/java/api/sendnum#GetSenderNumberList
          */
 
         try {
@@ -108,7 +108,7 @@ public class FaxServiceController {
     public String sendFAX(Model m) throws URISyntaxException {
         /*
          * 팩스 1건을 전송합니다. (최대 전송파일 개수: 20개)
-         * - https://developers.popbill.com/fax/java/api#SendFAX
+         * - https://developers.popbill.com/reference/fax/java/api/send#SendFAX
          */
 
         // 발신번호
@@ -169,7 +169,7 @@ public class FaxServiceController {
     public String sendFAX_Multi(Model m) throws URISyntaxException {
         /*
          * 동일한 팩스파일을 다수의 수신자에게 전송하기 위해 팝빌에 접수합니다. (최대 전송파일 개수 : 20개) (최대 1,000건)
-         * - https://developers.popbill.com/fax/java/api#SendFAX_Multi
+         * - https://developers.popbill.com/reference/fax/java/api/send#SendFAXMulti
          */
 
         // 발신번호
@@ -236,7 +236,7 @@ public class FaxServiceController {
     public String sendFAXBinary(Model m) throws URISyntaxException {
         /*
          * 전송할 파일의 바이너리 데이터를 팩스 1건 전송합니다. (최대 전송파일 개수: 20개)
-         * - https://developers.popbill.com/fax/java/api#SendFAXBinary
+         * - https://developers.popbill.com/reference/fax/java/api/send#SendFAXBinary
          */
 
         // 발신번호
@@ -306,7 +306,7 @@ public class FaxServiceController {
     public String sendFAXBinary_Multi(Model m) throws URISyntaxException {
         /*
          * 동일한 파일의 바이너리 데이터를 다수의 수신자에게 전송하기 위해 팝빌에 접수합니다. (최대 전송파일 개수 : 20개) (최대 1,000건)
-         * - https://developers.popbill.com/fax/java/api#SendFAXBinary_multi
+         * - https://developers.popbill.com/reference/fax/java/api/send#SendFAXBinaryMulti
          */
 
         // 발신번호
@@ -390,7 +390,7 @@ public class FaxServiceController {
          * - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
          * - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
          * - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
-         * - https://developers.popbill.com/fax/java/api#ResendFAX
+         * - https://developers.popbill.com/reference/fax/java/api/send#ResendFAX
          */
 
         // 원본 팩스 접수번호
@@ -441,7 +441,7 @@ public class FaxServiceController {
          * - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
          * - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
          * - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
-         * - https://developers.popbill.com/fax/java/api#ResendFAX_Multi
+         * - https://developers.popbill.com/reference/fax/java/api/send#ResendFAXMulti
          */
 
         // 원본 팩스 접수번호
@@ -504,7 +504,7 @@ public class FaxServiceController {
          * - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
          * - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
          * - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
-         * - https://developers.popbill.com/fax/java/api#ResendFAXRN
+         * - https://developers.popbill.com/reference/fax/java/api/send#ResendFAXRN
          */
 
         // 재전송 팩스의 전송요청번호
@@ -555,7 +555,7 @@ public class FaxServiceController {
          * - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
          * - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
          * - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
-         * - https://developers.popbill.com/fax/java/api#ResendFAXRN_Multi
+         * - https://developers.popbill.com/reference/fax/java/api/send#ResendFAXRNMulti
          */
 
         // 재전송 팩스의 전송요청번호
@@ -615,7 +615,7 @@ public class FaxServiceController {
     public String cancelReserve(Model m) {
         /*
          * 팝빌에서 반환받은 접수번호를 통해 예약접수된 팩스 전송을 취소합니다. (예약시간 10분 전까지 가능)
-         * - https://developers.popbill.com/fax/java/api#CancelReserve
+         * - https://developers.popbill.com/reference/fax/java/api/send#CancelReserve
          */
 
         // 예약팩스 전송요청시 팝빌로부터 반환 받은 접수번호
@@ -638,7 +638,7 @@ public class FaxServiceController {
     public String cancelReserveRN(Model m) {
         /*
          * 파트너가 할당한 전송요청 번호를 통해 예약접수된 팩스 전송을 취소합니다. (예약시간 10분 전까지 가능)
-         * - https://developers.popbill.com/fax/java/api#CancelReserveRN
+         * - https://developers.popbill.com/reference/fax/java/api/send#CancelReserveRN
          */
 
         // 예약팩스 전송요청시 파트너가 할당한 전송요청번호
@@ -661,7 +661,7 @@ public class FaxServiceController {
     public String getFaxResult(Model m) {
         /*
          * 팝빌에서 반환 받은 접수번호를 통해 팩스 전송상태 및 결과를 확인합니다.
-         * - https://developers.popbill.com/fax/java/api#GetFaxResult
+         * - https://developers.popbill.com/reference/fax/java/api/info#GetFaxResult
          */
 
         // 팩스 전송요청시 발급받은 접수번호
@@ -684,7 +684,7 @@ public class FaxServiceController {
     public String getFaxResultRN(Model m) {
         /*
          * 파트너가 할당한 전송요청 번호를 통해 팩스 전송상태 및 결과를 확인합니다.
-         * - https://developers.popbill.com/fax/java/api#GetFaxResultRN
+         * - https://developers.popbill.com/reference/fax/java/api/info#GetFaxResultRN
          */
 
         // 팩스 전송요청시 파트너가 할당한 전송요청번호
@@ -708,7 +708,7 @@ public class FaxServiceController {
         /*
          * 검색조건에 해당하는 팩스 전송내역 목록을 조회합니다. (조회기간 단위 : 최대 2개월)
          * - 팩스 접수일시로부터 2개월 이내 접수건만 조회할 수 있습니다.
-         * - https://developers.popbill.com/fax/java/api#Search
+         * - https://developers.popbill.com/reference/fax/java/api/info#Search
          */
 
         // 시작일자, 날짜형식(yyyyMMdd)
@@ -765,7 +765,7 @@ public class FaxServiceController {
         /*
          * 팩스 전송내역 확인 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://developers.popbill.com/fax/java/api#GetSentListURL
+         * - https://developers.popbill.com/reference/fax/java/api/info#GetSentListURL
          */
         try {
 
@@ -786,7 +786,7 @@ public class FaxServiceController {
         /*
          * 팩스 미리보기 팝업 URL을 반환하며, 팩스전송을 위한 TIF 포맷 변환 완료 후 호출 할 수 있습니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://developers.popbill.com/fax/java/api#GetPreviewURL
+         * - https://developers.popbill.com/reference/fax/java/api/info#GetPreviewURL
          */
         try {
 
@@ -809,7 +809,7 @@ public class FaxServiceController {
     public String getUnitCost(Model m) {
         /*
          * 팩스 전송시 과금되는 포인트 단가를 확인합니다.
-         * - https://developers.popbill.com/fax/java/api#GetUnitCost
+         * - https://developers.popbill.com/reference/fax/java/api/point#GetUnitCost
          */
 
         try {
@@ -833,7 +833,7 @@ public class FaxServiceController {
     public String chargeInfo(Model m) {
         /*
          * 팝빌 팩스 API 서비스 과금정보를 확인합니다.
-         * - https://developers.popbill.com/fax/java/api#GetChargeInfo
+         * - https://developers.popbill.com/reference/fax/java/api/point#GetChargeInfo
          */
 
         try {

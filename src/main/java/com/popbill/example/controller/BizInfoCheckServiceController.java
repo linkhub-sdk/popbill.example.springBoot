@@ -32,7 +32,7 @@ public class BizInfoCheckServiceController {
     public String checkBizInfo(Model m) {
         /*
          * 사업자번호 1건에 대한 기업정보를 확인합니다.
-         * - https://developers.popbill.com/bizinfocheck/java/api#CheckBizInfo
+         * - https://developers.popbill.com/reference/bizinfocheck/java/api/check#CheckBizInfo
          */
 
         // 조회할 사업자번호
@@ -55,7 +55,7 @@ public class BizInfoCheckServiceController {
     public String getUnitCost(Model m) {
         /*
          * 기업정보조회 시 과금되는 포인트 단가를 확인합니다.
-         * - https://developers.popbill.com/bizinfocheck/java/api#GetUnitCost
+         * - https://developers.popbill.com/reference/bizinfocheck/java/api/point#GetUnitCost
          */
 
         try {
@@ -76,7 +76,7 @@ public class BizInfoCheckServiceController {
     public String chargeInfo(Model m) {
         /*
          * 팝빌 기업정보조회 API 서비스 과금정보를 확인합니다.
-         * - https://developers.popbill.com/bizinfocheck/java/api#GetChargeInfo
+         * - https://developers.popbill.com/reference/bizinfocheck/java/api/point#GetChargeInfo
          */
 
         try {
