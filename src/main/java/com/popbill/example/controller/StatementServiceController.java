@@ -272,7 +272,7 @@ public class StatementServiceController {
         Statement statement = new Statement();
 
         // 작성일자, 형태 yyyyMMdd
-        statement.setWriteDate("20220218");
+        statement.setWriteDate("20230116");
 
         // {영수, 청구, 없음} 중 기재
         statement.setPurposeType("영수");
@@ -287,7 +287,7 @@ public class StatementServiceController {
         statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        statement.setMgtKey("20220218-BOOT002");
+        statement.setMgtKey("20230116-BOOT002");
 
 
         /*********************************************************************
@@ -356,7 +356,7 @@ public class StatementServiceController {
         // 수신자 메일주소
         // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         // 실제 거래처의 메일주소가 기재되지 않도록 주의
-        statement.setReceiverEmail("test@receiver.com");
+        statement.setReceiverEmail("");
 
 
         /*********************************************************************
@@ -643,15 +643,18 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20220218-BOOT002";
+        String mgtKey = "20230116-BOOT002";
 
         // 메모
         String memo = "발행메모";
+        
+        // 전자명세서 발행 안내메일 제목
+        String emailSubject = "테스트";
 
         try {
 
             Response response = statementService.issue(testCorpNum, itemCode,
-                    mgtKey, memo);
+                    mgtKey, memo, emailSubject, null);
 
             m.addAttribute("Response", response);
 
