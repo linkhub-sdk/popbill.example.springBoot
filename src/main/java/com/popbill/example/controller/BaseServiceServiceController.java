@@ -209,7 +209,7 @@ public class BaseServiceServiceController {
 
         paymentForm.setSettlerName("담당자명");
         paymentForm.setSettlerEmail("test@test.com");
-        paymentForm.setSettlerHP("01012341234");
+        paymentForm.setNotifyHP("01012341234");
         paymentForm.setPaymentName("입금자명");
         paymentForm.setSettleCost("11000");
 
@@ -232,7 +232,7 @@ public class BaseServiceServiceController {
          * 무통장 입금신청한 건의 정보를 확인합니다.
          */
 
-        String settleCode = "202210040000000070";
+        String settleCode = "202301160000000010";
 
         try {
             PaymentHistory paymentHistory = taxinvoiceService.getSettleResult(testCorpNum, settleCode);
