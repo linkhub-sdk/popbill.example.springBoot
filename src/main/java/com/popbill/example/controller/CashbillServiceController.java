@@ -85,7 +85,7 @@ public class CashbillServiceController {
         Cashbill cashbill = new Cashbill();
 
         // 현금영수증 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        cashbill.setMgtKey("20221108-BOOT002");
+        cashbill.setMgtKey("20230116-BOOT001");
 
         // 문서형태, 승인거래 기재
         cashbill.setTradeType("승인거래");
@@ -159,7 +159,7 @@ public class CashbillServiceController {
 
         // 거래일시, 날짜(yyyyMMddHHmmss)
         // 당일, 전일만 가능
-        cashbill.setTradeDT("20221108000000");
+        cashbill.setTradeDT("20230116180000");
         
         // 발행 안내 메일제목, 미기재시 기본 양식으로 메일 전송
         String emailSubject = "";
