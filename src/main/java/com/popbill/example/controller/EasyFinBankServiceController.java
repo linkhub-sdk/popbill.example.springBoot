@@ -332,16 +332,16 @@ public class EasyFinBankServiceController {
         */
 
         // 기관코드
-        String BankCode = "";
+        String BankCode = "0039";
 
         // 계좌번호
-        String AccountNumber = "";
+        String AccountNumber = "2070064401302";
 
         // 시작일자, 날짜형식(yyyyMMdd)
-        String SDate = "20220201";
+        String SDate = "20221216";
 
         // 종료일자, 닐짜형식(yyyyMMdd)
-        String EDate = "20220228";
+        String EDate = "20230116";
 
         try {
 
@@ -404,7 +404,6 @@ public class EasyFinBankServiceController {
         return "EasyFinBank/ListActiveJob";
     }
 
-
     @RequestMapping(value = "search", method = RequestMethod.GET)
     public String search(Model m) {
         /*
@@ -413,7 +412,7 @@ public class EasyFinBankServiceController {
          */
 
         // 수집 요청시 발급받은 작업아이디
-        String jobID = "022021814000000010";
+        String jobID = "023011609000000019";
 
         // 거래유형 배열 ("I" 와 "O" 중 선택, 다중 선택 가능)
         // └ I = 입금 , O = 출금 , 미입력 시 전체조회
@@ -446,7 +445,6 @@ public class EasyFinBankServiceController {
 
         return "EasyFinBank/SearchResult";
     }
-
 
     @RequestMapping(value = "summary", method = RequestMethod.GET)
     public String summary(Model m) {
