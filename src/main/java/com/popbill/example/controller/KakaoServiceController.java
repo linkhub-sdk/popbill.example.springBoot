@@ -249,19 +249,19 @@ public class KakaoServiceController {
         String altSendType = "C";
 
         // 수신번호
-        String receiverNum = "010111222";
+        String receiverNum = "";
 
         // 수신자명
         String receiverName = "수신자명";
 
         // 예약전송일시, 형태(yyyyMMddHHmmss)
         // - 분단위 전송, 미입력 시 즉시 전송
-        String sndDT = "";
+        String sndDT = "20230116180000";
 
         // 전송요청번호
         // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
-        String requestNum = "";
+        String requestNum = "20230116_ats_02";
 
         // 알림톡 버튼정보를 템플릿 신청시 기재한 버튼정보와 동일하게 전송하는 경우 null 처리.
         KakaoButton[] btns = null;
@@ -1099,6 +1099,32 @@ public class KakaoServiceController {
 
         return "response";
     }
+    
+    @RequestMapping(value = "cancelReservebyRCV", method = RequestMethod.GET)
+	public String cancelReservebyRCV(Model m) {
+		/*
+		 * 팝빌에서 반환받은 접수번호와 수신번호를 통해 예약접수된 카카오톡을 취소합니다. (예약시간 10분 전까지 가능)
+		 * https://developers.popbill.com/reference/kakaotalk/java/api/send#CancelReservebyRCV
+		 * cancelReservebyRCV
+		 */
+
+		// 카카오톡 예약전송 접수시 팝빌로부터 반환 받은 접수번호
+		String receiptNum = "023011611093900001";
+
+		// 카카오톡 예약전송 접수시 팝빌로 요청한 수신번호
+        String receiveNum = "";
+
+		try {
+			Response response = kakaoService.cancelReservebyRCV(testCorpNum, receiptNum, receiveNum);
+
+			m.addAttribute("Response", response);
+		} catch (PopbillException e) {
+			m.addAttribute("Exception", e);
+			return "exception";
+		}
+
+		return "response";
+	}
 
     @RequestMapping(value = "cancelReserveRN", method = RequestMethod.GET)
     public String cancelReserveRN(Model m) {
@@ -1122,6 +1148,32 @@ public class KakaoServiceController {
 
         return "response";
     }
+    
+    @RequestMapping(value = "cancelReserveRNbyRCV", method = RequestMethod.GET)
+	public String cancelReserveRNbyRCV(Model m) {
+		/*
+		 * 파트너가 할당한 전송요청 번호와 수신번호를 통해 예약접수된 카카오톡을 취소합니다. (예약시간 10분 전까지 가능)
+		 * https://developers.popbill.com/reference/kakaotalk/java/api/send#CancelReserveRNbyRCV
+		 * CancelReserveRNbyRCV
+		 */
+
+		// 카카오톡 예약전송 접수시 파트너가 할당한 전송요청 번호
+		String requestNum = "20230116_ats_02";
+		
+		// 카카오톡 예약전송 접수시 팝빌로 요청한 수신번호
+        String receiveNum = "";
+
+		try {
+			Response response = kakaoService.cancelReserveRNbyRCV(testCorpNum, requestNum, receiveNum);
+
+			m.addAttribute("Response", response);
+		} catch (PopbillException e) {
+			m.addAttribute("Exception", e);
+			return "exception";
+		}
+
+		return "response";
+	}
 
     @RequestMapping(value = "getMessages", method = RequestMethod.GET)
     public String getMessages(Model m) {
