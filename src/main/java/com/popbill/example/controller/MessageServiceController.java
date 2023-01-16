@@ -15,6 +15,7 @@ import com.popbill.api.MessageService;
 import com.popbill.api.PopbillException;
 import com.popbill.api.Response;
 import com.popbill.api.message.AutoDeny;
+import com.popbill.api.message.AutoDenyNumberInfo;
 import com.popbill.api.message.MSGSearchResult;
 import com.popbill.api.message.Message;
 import com.popbill.api.message.MessageType;
@@ -809,7 +810,24 @@ public class MessageServiceController {
             m.addAttribute("Exception", e);
             return "exception";
         }
-        return "Message/AutoDeny";
+        return "Message/AutoDenyList";
+    }
+    
+    @RequestMapping(value = "checkAutoDenyNumber", method = RequestMethod.GET)
+    public String checkAutoDenyNumber(Model m) {
+        /*
+         * 팝빌회원에 등록된 080 수신거부 번호 정보를 확인합니다.
+         * - https://developers.popbill.com/reference/sms/java/api/info#CheckAutoDenyNumber
+         */
+    	
+        try {
+        	AutoDenyNumberInfo checkAutoDeny = messageService.checkAutoDenyNumber(testCorpNum);
+            m.addAttribute("CheckAutoDeny", checkAutoDeny);
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+        return "Message/CheckAutoDeny";
     }
 
     @RequestMapping(value = "getUnitCost", method = RequestMethod.GET)
