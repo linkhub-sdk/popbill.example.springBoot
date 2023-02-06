@@ -105,10 +105,22 @@ public class BaseServiceServiceController {
          * 포인트 사용내역을 확인합니다.
          */
 
+    	// 조회 기간의 시작일자 (형식 : yyyyMMdd)
         String SDate = "20220901";
+        
+        // 조회 기간의 종료일자 (형식 : yyyyMMdd)
         String EDate = "20220930";
+        
+        // 목록 페이지번호 (기본값 1)
         Integer Page = 1;
+        
+        // 페이지당 표시할 목록 개수 (기본값 500, 최대 1,000)
         Integer PerPage = 100;
+        
+        // 거래일자를 기준으로 하는 목록 정렬 방향 : "D" / "A" 중 택 1
+        // └ "D" : 내림차순
+        // └ "A" : 오름차순
+        // ※ 미입력시 기본값 "D" 처리
         String Order = "D";
 
         try {
@@ -130,9 +142,16 @@ public class BaseServiceServiceController {
          * 포인트 결제내역을 확인합니다.
          */
 
+    	// 조회 기간의 시작일자 (형식 : yyyyMMdd)
         String SDate = "20220901";
+        
+        // 조회 기간의 종료일자 (형식 : yyyyMMdd)
         String EDate = "20220930";
+        
+        // 목록 페이지번호 (기본값 1)
         Integer Page = 1;
+        
+        // 	페이지당 표시할 목록 개수 (기본값 500, 최대 1,000)
         Integer PerPage = 100;
 
         try {
@@ -154,7 +173,10 @@ public class BaseServiceServiceController {
          * 환불 신청내역을 확인합니다.
          */
 
+    	// 목록 페이지번호 (기본값 1)
         Integer Page = 1;
+        
+        // 페이지당 표시할 목록 개수 (기본값 500, 최대 1,000)
         Integer PerPage = 100;
 
         try {
@@ -178,12 +200,25 @@ public class BaseServiceServiceController {
 
         RefundForm refundForm = new RefundForm();
 
+        // 담당자명
         refundForm.setContactName("담당자명");
+        
+        // 담당자 연락처
         refundForm.setTel("01077777777");
+        
+        // 환불 신청 포인트
         refundForm.setRequestPoint("10");
+        
+        // 은행명
         refundForm.setAccountBank("국민");
+        
+        // 계좌번호
         refundForm.setAccountNum("123123123-123");
+        
+        // 예금주명
         refundForm.setAccountName("예금주명");
+        
+        // 환불사유
         refundForm.setReason("환불사유");
 
         try {
@@ -207,10 +242,20 @@ public class BaseServiceServiceController {
 
         PaymentForm paymentForm = new PaymentForm();
 
+        // 담당자명
         paymentForm.setSettlerName("담당자명");
+        
+        // 담당자 이메일
         paymentForm.setSettlerEmail("test@test.com");
+        
+        // 담당자 휴대폰
+        // └ 무통장 입금 승인 알림톡이 전송될 번호
         paymentForm.setNotifyHP("01012341234");
+        
+        // 입금자명
         paymentForm.setPaymentName("입금자명");
+        
+        // 결제금액
         paymentForm.setSettleCost("11000");
 
         try {
@@ -232,6 +277,7 @@ public class BaseServiceServiceController {
          * 무통장 입금신청한 건의 정보를 확인합니다.
          */
 
+    	// 정산코드
         String settleCode = "202301160000000010";
 
         try {
