@@ -41,6 +41,7 @@ public class BaseServiceServiceController {
         /*
          * 사업자번호를 조회하여 연동회원 가입여부를 확인합니다.
          * - LinkID는 연동신청 시 팝빌에서 발급받은 링크아이디 값입니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/member#CheckIsMember
          */
 
         // 조회할 사업자번호, '-' 제외 10자리
@@ -64,6 +65,7 @@ public class BaseServiceServiceController {
         /*
          * 연동회원의 잔여포인트를 확인합니다.
          * - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/point#GetBalance
          */
 
         try {
@@ -84,6 +86,7 @@ public class BaseServiceServiceController {
         /*
          * 파트너의 잔여포인트를 확인합니다.
          * - 과금방식이 연동과금인 경우 연동회원 잔여포인트 조회(GetBalance API) 함수를 이용하시기 바랍니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/point#GetPartnerBalance
          */
 
         try {
@@ -103,6 +106,7 @@ public class BaseServiceServiceController {
     public String getUseHistory(Model m) throws PopbillException {
         /*
          * 포인트 사용내역을 확인합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/point#GetUseHistory
          */
 
     	// 조회 기간의 시작일자 (형식 : yyyyMMdd)
@@ -140,6 +144,7 @@ public class BaseServiceServiceController {
     public String getPaymentHistory(Model m) throws PopbillException {
         /*
          * 포인트 결제내역을 확인합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/point#GetPaymentHistory
          */
 
     	// 조회 기간의 시작일자 (형식 : yyyyMMdd)
@@ -171,6 +176,7 @@ public class BaseServiceServiceController {
     public String getRefundHistory(Model m) throws PopbillException {
         /*
          * 환불 신청내역을 확인합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/point#GetRefundHistory
          */
 
     	// 목록 페이지번호 (기본값 1)
@@ -196,6 +202,7 @@ public class BaseServiceServiceController {
     public String refund(Model m) throws PopbillException {
         /*
          * 환불을 신청합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/point#Refund
          */
 
         RefundForm refundForm = new RefundForm();
@@ -238,6 +245,7 @@ public class BaseServiceServiceController {
     public String paymentRequest(Model m) throws PopbillException {
         /*
          * 무통장 입금을 신청합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/point#PaymentRequest
          */
 
         PaymentForm paymentForm = new PaymentForm();
@@ -275,6 +283,7 @@ public class BaseServiceServiceController {
     public String getSettleResult(Model m) throws PopbillException {
         /*
          * 무통장 입금신청한 건의 정보를 확인합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/point#GetSettleResult
          */
 
     	// 정산코드
@@ -298,6 +307,7 @@ public class BaseServiceServiceController {
         /*
          * 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/point#GetPartnerURL
          */
 
         // CHRG : 포인트 충전
@@ -322,6 +332,7 @@ public class BaseServiceServiceController {
         /*
          * 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/member#GetAccessURL
          */
         try {
 
@@ -342,6 +353,7 @@ public class BaseServiceServiceController {
         /*
          * 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/point#GetChargeURL
          */
         try {
 
@@ -362,6 +374,7 @@ public class BaseServiceServiceController {
         /*
          * 연동회원 포인트 결제내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/point#GetPaymentURL
          */
         try {
 
@@ -382,6 +395,7 @@ public class BaseServiceServiceController {
         /*
          * 연동회원 포인트 사용내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/point#GetUseHistoryURL
          */
         try {
 
@@ -401,6 +415,7 @@ public class BaseServiceServiceController {
     public String joinMember(Model m) throws PopbillException {
         /*
          * 사용자를 연동회원으로 가입처리합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/member#JoinMember
          */
 
         JoinForm joinInfo = new JoinForm();
@@ -459,6 +474,7 @@ public class BaseServiceServiceController {
     public String getContactInfo(Model m) throws PopbillException {
         /*
          * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 확인합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/member#GetContactInfo
          */
 
         // 담당자 아이디
@@ -479,6 +495,7 @@ public class BaseServiceServiceController {
     public String listContact(Model m) throws PopbillException {
         /*
          * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/member#ListContact
          */
 
         try {
@@ -497,6 +514,7 @@ public class BaseServiceServiceController {
     public String updateContact(Model m) throws PopbillException {
         /*
          * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/member#UpdateContact
          */
 
         ContactInfo contactInfo = new ContactInfo();
@@ -534,6 +552,7 @@ public class BaseServiceServiceController {
     public String registContact(Model m) throws PopbillException {
         /*
          * 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/member#RegistContact
          */
 
         ContactInfo contactInfo = new ContactInfo();
@@ -574,6 +593,7 @@ public class BaseServiceServiceController {
     public String checkID(Model m) throws PopbillException {
         /*
          * 사용하고자 하는 아이디의 중복여부를 확인합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/member#CheckID
          */
 
         try {
@@ -592,6 +612,7 @@ public class BaseServiceServiceController {
     public String getCorpInfo(Model m) throws PopbillException {
         /*
          * 연동회원의 회사정보를 확인합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/member#GetCorpInfo
          */
 
         try {
@@ -609,6 +630,7 @@ public class BaseServiceServiceController {
     public String updateCorpInfo(Model m) throws PopbillException {
         /*
          * 연동회원의 회사정보를 수정합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/member#UpdateCorpInfo
          */
 
         CorpInfo corpInfo = new CorpInfo();
