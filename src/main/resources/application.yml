@@ -16,7 +16,7 @@ popbill:
   #비밀키
   secretKey: SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=
   #연동환경 설정값 true(개발용), false(상업용)
-  isTest: false
+  isTest: true
   #인증토큰 아이피 제한 기능 사용여부 true(사용-권장), false(미사용)
   isIpRestrictOnOff: true
   #팝빌 API 서비스 고정 IP 사용여부 true(사용), false(미사용)
