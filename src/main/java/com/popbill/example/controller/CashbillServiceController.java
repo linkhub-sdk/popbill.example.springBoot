@@ -946,8 +946,8 @@ public class CashbillServiceController {
          * - https://developers.popbill.com/reference/cashbill/java/api/etc#UpdateEmailConfig
          *
          * 메일전송유형
-         * CSH_ISSUE : 고객에게 현금영수증이 발행 되었음을 알려주는 메일 입니다.
-         * CSH_CANCEL : 고객에게 현금영수증이 발행취소 되었음을 알려주는 메일 입니다.
+         * - CSH_ISSUE : 고객에게 현금영수증이 발행 되었음을 알려주는 메일 입니다.
+         * - CSH_CANCEL : 고객에게 현금영수증이 발행취소 되었음을 알려주는 메일 입니다.
          */
 
         // 메일 전송 유형

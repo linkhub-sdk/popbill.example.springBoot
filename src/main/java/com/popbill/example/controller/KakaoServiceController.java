@@ -1104,8 +1104,7 @@ public class KakaoServiceController {
 	public String cancelReservebyRCV(Model m) {
 		/*
 		 * 팝빌에서 반환받은 접수번호와 수신번호를 통해 예약접수된 카카오톡을 취소합니다. (예약시간 10분 전까지 가능)
-		 * https://developers.popbill.com/reference/kakaotalk/java/api/send#CancelReservebyRCV
-		 * cancelReservebyRCV
+		 * - https://developers.popbill.com/reference/kakaotalk/java/api/send#CancelReservebyRCV
 		 */
 
 		// 카카오톡 예약전송 접수시 팝빌로부터 반환 받은 접수번호
@@ -1153,8 +1152,7 @@ public class KakaoServiceController {
 	public String cancelReserveRNbyRCV(Model m) {
 		/*
 		 * 파트너가 할당한 전송요청 번호와 수신번호를 통해 예약접수된 카카오톡을 취소합니다. (예약시간 10분 전까지 가능)
-		 * https://developers.popbill.com/reference/kakaotalk/java/api/send#CancelReserveRNbyRCV
-		 * CancelReserveRNbyRCV
+		 * - https://developers.popbill.com/reference/kakaotalk/java/api/send#CancelReserveRNbyRCV
 		 */
 
 		// 카카오톡 예약전송 접수시 파트너가 할당한 전송요청 번호
