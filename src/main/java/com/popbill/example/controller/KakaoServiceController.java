@@ -267,14 +267,14 @@ public class KakaoServiceController {
         KakaoButton[] btns = null;
 
         // 알림톡 버튼 URL에 #{템플릿변수}를 기재한경우 템플릿변수 영역을 변경하여 버튼정보 구성
-//        KakaoButton[] btns = new KakaoButton[1];
-//
-//        KakaoButton button = new KakaoButton();
-//        button.setN("버튼명"); // 버튼명
-//        button.setT("WL"); // 버튼타입
-//        button.setU1("https://www.popbill.com"); // 버튼링크1
-//        button.setU2("http://test.popbill.com"); // 버튼링크2
-//        btns[0] = button;
+		// KakaoButton[] btns = new KakaoButton[1];
+		
+		// KakaoButton button = new KakaoButton();
+		// button.setN("버튼명"); // 버튼명
+		// button.setT("WL"); // 버튼타입
+		// button.setU1("https://www.popbill.com"); // 버튼링크1
+		// button.setU2("http://test.popbill.com"); // 버튼링크2
+		// btns[0] = button;
 
         try {
 
@@ -336,22 +336,22 @@ public class KakaoServiceController {
             message.setAltMessage("대체문자 개별내용입니다." + i);       // 대체문자 내용
 
             // 수신자별 개별 버튼정보
-//            KakaoButton button = new KakaoButton();
-//            button.setN("타입1 버튼명"+i); // 버튼명
-//            button.setT("WL"); // 버튼타입
-//            button.setU1("http://"+i+"popbill.com"); // 버튼링크1
-//            button.setU2("http://"+i+"test.popbill.com"); // 버튼링크2
-//
-//            KakaoButton button02 = new KakaoButton();
-//            button02.setN("타입2 버튼명"+i); // 버튼명
-//            button02.setT("WL"); // 버튼타입
-//            button02.setU1("http://"+i+"popbill.com"); // 버튼링크1
-//            button02.setU2("http://"+i+"test.popbill.com"); // 버튼링크2
-//
-//            // 수신자별로 각기다른 버튼정보 추가.
-//            message.setBtns(new ArrayList<KakaoButton>());
-//            message.getBtns().add(button);
-//            message.getBtns().add(button02);
+			// KakaoButton button = new KakaoButton();
+			// button.setN("타입1 버튼명"+i); // 버튼명
+			// button.setT("WL"); // 버튼타입
+			// button.setU1("http://"+i+"popbill.com"); // 버튼링크1
+			// button.setU2("http://"+i+"test.popbill.com"); // 버튼링크2
+
+			// KakaoButton button02 = new KakaoButton();
+			// button02.setN("타입2 버튼명"+i); // 버튼명
+			// button02.setT("WL"); // 버튼타입
+			// button02.setU1("http://"+i+"popbill.com"); // 버튼링크1
+			// button02.setU2("http://"+i+"test.popbill.com"); // 버튼링크2
+
+            // 수신자별로 각기다른 버튼정보 추가.
+            // message.setBtns(new ArrayList<KakaoButton>());
+			// message.getBtns().add(button);
+			// message.getBtns().add(button02);
             receivers[i] = message;
         }
 
@@ -368,14 +368,14 @@ public class KakaoServiceController {
         KakaoButton[] btns = null;
 
         // 알림톡 버튼 URL에 #{템플릿변수}를 기재한경우 템플릿변수 영역을 변경하여 버튼정보 구성
-//        KakaoButton[] btns = new KakaoButton[1];
-//
-//        KakaoButton button = new KakaoButton();
-//        button.setN("버튼명"); // 버튼명
-//        button.setT("WL"); // 버튼타입
-//        button.setU1("https://www.popbill.com"); // 버튼링크1
-//        button.setU2("http://test.popbill.com"); // 버튼링크2
-//        btns[0] = button;
+		//  KakaoButton[] btns = new KakaoButton[1];
+		
+		// KakaoButton button = new KakaoButton();
+		// button.setN("버튼명"); // 버튼명
+		// button.setT("WL"); // 버튼타입
+		// button.setU1("https://www.popbill.com"); // 버튼링크1
+		// button.setU2("http://test.popbill.com"); // 버튼링크2
+		// btns[0] = button;
 
         try {
 
@@ -419,7 +419,7 @@ public class KakaoServiceController {
 
         // 대체문자 제목
         // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
-//        String altSubject = "대체문자 제목";
+        // String altSubject = "대체문자 제목";
 
         // 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
         // └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
@@ -453,14 +453,14 @@ public class KakaoServiceController {
         KakaoButton[] btns = null;
 
         // 알림톡 버튼 URL에 #{템플릿변수}를 기재한경우 템플릿변수 영역을 변경하여 버튼정보 구성
-//        KakaoButton[] btns = new KakaoButton[1];
-//
-//        KakaoButton button = new KakaoButton();
-//        button.setN("버튼명"); // 버튼명
-//        button.setT("WL"); // 버튼타입
-//        button.setU1("https://www.popbill.com"); // 버튼링크1
-//        button.setU2("http://test.popbill.com"); // 버튼링크2
-//        btns[0] = button;
+        // KakaoButton[] btns = new KakaoButton[1];
+
+		// KakaoButton button = new KakaoButton();
+		// button.setN("버튼명"); // 버튼명
+		// button.setT("WL"); // 버튼타입
+		// button.setU1("https://www.popbill.com"); // 버튼링크1
+		// button.setU2("http://test.popbill.com"); // 버튼링크2
+		// btns[0] = button;
 
         try {
 
@@ -905,22 +905,22 @@ public class KakaoServiceController {
             receivers[i] = message;
 
             // 수신자별 개별 버튼 정보
-//            KakaoButton button = new KakaoButton();
-//            button.setN("타입1 버튼명"+i); // 버튼명
-//            button.setT("WL"); // 버튼타입
-//            button.setU1("http://"+i+"popbill.com"); // 버튼링크1
-//            button.setU2("http://"+i+"test.popbill.com"); // 버튼링크2
-//
-//            KakaoButton button02 = new KakaoButton();
-//            button02.setN("타입2 버튼명"+i); // 버튼명
-//            button02.setT("WL"); // 버튼타입
-//            button02.setU1("http://"+i+"popbill.com"); // 버튼링크1
-//            button02.setU2("http://"+i+"test.popbill.com"); // 버튼링크2
-//
-//            // 수신자별로 각기다른 버튼정보 추가.
-//            message.setBtns(new ArrayList<KakaoButton>());
-//            message.getBtns().add(button);
-//            message.getBtns().add(button02);
+			// KakaoButton button = new KakaoButton();
+			// button.setN("타입1 버튼명"+i); // 버튼명
+			// button.setT("WL"); // 버튼타입
+			// button.setU1("http://"+i+"popbill.com"); // 버튼링크1
+			// button.setU2("http://"+i+"test.popbill.com"); // 버튼링크2
+			
+			// KakaoButton button02 = new KakaoButton();
+			// button02.setN("타입2 버튼명"+i); // 버튼명
+			// button02.setT("WL"); // 버튼타입
+			// button02.setU1("http://"+i+"popbill.com"); // 버튼링크1
+			// button02.setU2("http://"+i+"test.popbill.com"); // 버튼링크2
+
+            // 수신자별로 각기다른 버튼정보 추가.
+			// message.setBtns(new ArrayList<KakaoButton>());
+			// message.getBtns().add(button);
+			// message.getBtns().add(button02);
 
         }
 
@@ -1230,10 +1230,10 @@ public class KakaoServiceController {
          */
 
         // 시작일자, 날짜형식(yyyyMMdd)
-        String SDate = "20221006";
+        String SDate = "20230102";
 
         // 종료일자, 날짜형식(yyyyMMdd)
-        String EDate = "20221006";
+        String EDate = "20230131";
 
         // 전송상태 배열 ("0" , "1" , "2" , "3" , "4" , "5" 중 선택, 다중 선택 가능)
         // └ 0 = 전송대기 , 1 = 전송중 , 2 = 전송성공 , 3 = 대체문자 전송 , 4 = 전송실패 , 5 = 전송취소

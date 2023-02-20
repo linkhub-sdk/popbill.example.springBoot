@@ -110,10 +110,10 @@ public class BaseServiceServiceController {
          */
 
     	// 조회 기간의 시작일자 (형식 : yyyyMMdd)
-        String SDate = "20220901";
+        String SDate = "20230101";
         
         // 조회 기간의 종료일자 (형식 : yyyyMMdd)
-        String EDate = "20220930";
+        String EDate = "20230131";
         
         // 목록 페이지번호 (기본값 1)
         Integer Page = 1;
@@ -148,10 +148,10 @@ public class BaseServiceServiceController {
          */
 
     	// 조회 기간의 시작일자 (형식 : yyyyMMdd)
-        String SDate = "20220901";
+        String SDate = "20230101";
         
         // 조회 기간의 종료일자 (형식 : yyyyMMdd)
-        String EDate = "20220930";
+        String EDate = "20230131";
         
         // 목록 페이지번호 (기본값 1)
         Integer Page = 1;

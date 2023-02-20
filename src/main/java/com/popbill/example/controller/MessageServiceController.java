@@ -721,10 +721,10 @@ public class MessageServiceController {
          */
 
         // 시작일자, 날짜형식(yyyyMMdd)
-        String SDate = "20221001";
+        String SDate = "20230102";
 
         // 종료일자, 날짜형식(yyyyMMdd)
-        String EDate = "20221006";
+        String EDate = "20230131";
 
         // 전송상태 배열 ("1" , "2" , "3" , "4" 중 선택, 다중 선택 가능)
         // └ 1 = 대기 , 2 = 성공 , 3 = 실패 , 4 = 취소

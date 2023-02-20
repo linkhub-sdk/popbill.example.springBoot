@@ -338,10 +338,10 @@ public class EasyFinBankServiceController {
         String AccountNumber = "2070064401302";
 
         // 시작일자, 날짜형식(yyyyMMdd)
-        String SDate = "20221216";
+        String SDate = "20230102";
 
         // 종료일자, 닐짜형식(yyyyMMdd)
-        String EDate = "20230116";
+        String EDate = "20230131";
 
         try {
 

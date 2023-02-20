@@ -359,7 +359,7 @@ public class CashbillServiceController {
         String orgConfirmNum = "820116333";
 
         // 원본 현금영수증 거래일자 - 상태확인(getInfo API) 함수를 통해 tradeDate 값 기재
-        String orgTradeDate = "20220217";
+        String orgTradeDate = "20230102";
 
         try {
 
@@ -391,7 +391,7 @@ public class CashbillServiceController {
         String orgConfirmNum = "820116333";
 
         // 원본 현금영수증 거래일자 - 상태확인(getInfo API) 함수를 통해 tradeDate 값 기재
-        String orgTradeDate = "20220217";
+        String orgTradeDate = "20230102";
 
         // 안내 문자 전송여부 , true / false 중 택 1
         // └ true = 전송 , false = 미전송
@@ -506,7 +506,7 @@ public class CashbillServiceController {
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220218-BOOT006";
+        String mgtKey = "20230102-BOOT006";
 
         try {
 
@@ -534,10 +534,10 @@ public class CashbillServiceController {
         String DType = "T";
 
         // 시작일자, 날짜형식(yyyyMMdd)
-        String SDate = "20221108";
+        String SDate = "20230101";
 
         // 종료일자, 날짜형식(yyyyMMdd)
-        String EDate = "20221108";
+        String EDate = "20230131";
 
         // 상태코드 배열 (2,3번째 자리에 와일드카드(*) 사용 가능)
         // - 미입력시 전체조회
@@ -629,7 +629,7 @@ public class CashbillServiceController {
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220218-BOOT002";
+        String mgtKey = "20230102-BOOT002";
 
         try {
 
@@ -654,7 +654,7 @@ public class CashbillServiceController {
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220218-BOOT002";
+        String mgtKey = "20230102-BOOT002";
 
         try {
 
@@ -679,7 +679,7 @@ public class CashbillServiceController {
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220218-BOOT002";
+        String mgtKey = "20230102-BOOT002";
 
         try {
 
@@ -704,7 +704,7 @@ public class CashbillServiceController {
          */
 
         // 문서번호 배열, 최대 100건
-        String[] mgtKeyList = new String[] { "20220218-BOOT002", "20220218-BOOT003", "20220218-BOOT004" };
+        String[] mgtKeyList = new String[] { "20230102-BOOT002", "20230102-BOOT003", "20230102-BOOT004" };
 
         try {
 
@@ -729,7 +729,7 @@ public class CashbillServiceController {
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220218-BOOT002";
+        String mgtKey = "20230102-BOOT002";
 
         try {
 
@@ -754,7 +754,7 @@ public class CashbillServiceController {
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220218-BOOT002";
+        String mgtKey = "20230102-BOOT002";
 
         try {
 
@@ -778,7 +778,7 @@ public class CashbillServiceController {
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220218-BOOT002";
+        String mgtKey = "20230102-BOOT002";
 
         // 수신자 메일주소
         String receiver = "test@test.com";
@@ -806,7 +806,7 @@ public class CashbillServiceController {
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220218-BOOT002";
+        String mgtKey = "20230102-BOOT002";
 
         // 발신번호
         String sender = "07043042991";
@@ -840,7 +840,7 @@ public class CashbillServiceController {
          */
 
         // 현금영수증 문서번호
-        String mgtKey = "20220218-BOOT002";
+        String mgtKey = "20230102-BOOT002";
 
         // 발신자 번호
         String sender = "07043042991";
@@ -873,7 +873,7 @@ public class CashbillServiceController {
         String itemKey = "021080716195300001";
 
         // 현금영수증 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        String mgtKey = "20220218-BOOT007";
+        String mgtKey = "20230102-BOOT007";
 
         try {
 
