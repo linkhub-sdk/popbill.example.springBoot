@@ -695,30 +695,6 @@ public class CashbillServiceController {
         return "result";
     }
 
-    @RequestMapping(value = "getEPrintURL", method = RequestMethod.GET)
-    public String getEPrintURL(Model m) {
-        /*
-         * 현금영수증 인쇄(공급받는자) URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다
-         */
-
-        // 현금영수증 문서번호
-        String mgtKey = "20220218-BOOT002";
-
-        try {
-
-            String url = cashbillService.getEPrintURL(testCorpNum, mgtKey, testUserID);
-
-            m.addAttribute("Result", url);
-
-        } catch (PopbillException e) {
-            m.addAttribute("Exception", e);
-            return "exception";
-        }
-
-        return "result";
-    }
-
     @RequestMapping(value = "getMassPrintURL", method = RequestMethod.GET)
     public String getMassPrintURL(Model m) {
         /*
