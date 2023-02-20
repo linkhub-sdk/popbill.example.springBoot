@@ -319,15 +319,15 @@ public class TaxinvoiceServiceController {
          * - 담당자 정보를 추가하여 발행 안내메일을 다수에게 전송할 수 있습니다. (최대 5명)
          *********************************************************************/
 
-		// taxinvoice.setAddContactList(new ArrayList<TaxinvoiceAddContact>());
+        // taxinvoice.setAddContactList(new ArrayList<TaxinvoiceAddContact>());
 		
-		// TaxinvoiceAddContact addContact = new TaxinvoiceAddContact();
+        // TaxinvoiceAddContact addContact = new TaxinvoiceAddContact();
 		
-		// addContact.setSerialNum(1);
-		// addContact.setContactName("추가 담당자 성명");
-		// addContact.setEmail("test2@test.com");
+        // addContact.setSerialNum(1);
+        // addContact.setContactName("추가 담당자 성명");
+        // addContact.setEmail("test2@test.com");
 		
-		// taxinvoice.getAddContactList().add(addContact);
+        // taxinvoice.getAddContactList().add(addContact);
 
         // 거래명세서 동시작성여부 (true / false 중 택 1)
         // └ true = 사용 , false = 미사용

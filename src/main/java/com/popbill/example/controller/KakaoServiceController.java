@@ -336,22 +336,22 @@ public class KakaoServiceController {
             message.setAltMessage("대체문자 개별내용입니다." + i);       // 대체문자 내용
 
             // 수신자별 개별 버튼정보
-			// KakaoButton button = new KakaoButton();
-			// button.setN("타입1 버튼명"+i); // 버튼명
-			// button.setT("WL"); // 버튼타입
-			// button.setU1("http://"+i+"popbill.com"); // 버튼링크1
-			// button.setU2("http://"+i+"test.popbill.com"); // 버튼링크2
+            // KakaoButton button = new KakaoButton();
+            // button.setN("타입1 버튼명"+i); // 버튼명
+            // button.setT("WL"); // 버튼타입
+            // button.setU1("http://"+i+"popbill.com"); // 버튼링크1
+            // button.setU2("http://"+i+"test.popbill.com"); // 버튼링크2
 
-			// KakaoButton button02 = new KakaoButton();
-			// button02.setN("타입2 버튼명"+i); // 버튼명
-			// button02.setT("WL"); // 버튼타입
-			// button02.setU1("http://"+i+"popbill.com"); // 버튼링크1
-			// button02.setU2("http://"+i+"test.popbill.com"); // 버튼링크2
+            // KakaoButton button02 = new KakaoButton();
+            // button02.setN("타입2 버튼명"+i); // 버튼명
+            // button02.setT("WL"); // 버튼타입
+            // button02.setU1("http://"+i+"popbill.com"); // 버튼링크1
+            // button02.setU2("http://"+i+"test.popbill.com"); // 버튼링크2
 
             // 수신자별로 각기다른 버튼정보 추가.
             // message.setBtns(new ArrayList<KakaoButton>());
-			// message.getBtns().add(button);
-			// message.getBtns().add(button02);
+            // message.getBtns().add(button);
+            // message.getBtns().add(button02);
             receivers[i] = message;
         }
 
@@ -368,14 +368,14 @@ public class KakaoServiceController {
         KakaoButton[] btns = null;
 
         // 알림톡 버튼 URL에 #{템플릿변수}를 기재한경우 템플릿변수 영역을 변경하여 버튼정보 구성
-		//  KakaoButton[] btns = new KakaoButton[1];
+        // KakaoButton[] btns = new KakaoButton[1];
 		
-		// KakaoButton button = new KakaoButton();
-		// button.setN("버튼명"); // 버튼명
-		// button.setT("WL"); // 버튼타입
-		// button.setU1("https://www.popbill.com"); // 버튼링크1
-		// button.setU2("http://test.popbill.com"); // 버튼링크2
-		// btns[0] = button;
+        // KakaoButton button = new KakaoButton();
+        // button.setN("버튼명"); // 버튼명
+        // button.setT("WL"); // 버튼타입
+        // button.setU1("https://www.popbill.com"); // 버튼링크1
+        // button.setU2("http://test.popbill.com"); // 버튼링크2
+        // btns[0] = button;
 
         try {
 
@@ -455,12 +455,12 @@ public class KakaoServiceController {
         // 알림톡 버튼 URL에 #{템플릿변수}를 기재한경우 템플릿변수 영역을 변경하여 버튼정보 구성
         // KakaoButton[] btns = new KakaoButton[1];
 
-		// KakaoButton button = new KakaoButton();
-		// button.setN("버튼명"); // 버튼명
-		// button.setT("WL"); // 버튼타입
-		// button.setU1("https://www.popbill.com"); // 버튼링크1
-		// button.setU2("http://test.popbill.com"); // 버튼링크2
-		// btns[0] = button;
+        // KakaoButton button = new KakaoButton();
+        // button.setN("버튼명"); // 버튼명
+        // button.setT("WL"); // 버튼타입
+        // button.setU1("https://www.popbill.com"); // 버튼링크1
+        // button.setU2("http://test.popbill.com"); // 버튼링크2
+        // btns[0] = button;
 
         try {
 
@@ -905,22 +905,22 @@ public class KakaoServiceController {
             receivers[i] = message;
 
             // 수신자별 개별 버튼 정보
-			// KakaoButton button = new KakaoButton();
-			// button.setN("타입1 버튼명"+i); // 버튼명
-			// button.setT("WL"); // 버튼타입
-			// button.setU1("http://"+i+"popbill.com"); // 버튼링크1
-			// button.setU2("http://"+i+"test.popbill.com"); // 버튼링크2
+            // KakaoButton button = new KakaoButton();
+            // button.setN("타입1 버튼명"+i); // 버튼명
+            // button.setT("WL"); // 버튼타입
+            // button.setU1("http://"+i+"popbill.com"); // 버튼링크1
+            // button.setU2("http://"+i+"test.popbill.com"); // 버튼링크2
 			
-			// KakaoButton button02 = new KakaoButton();
-			// button02.setN("타입2 버튼명"+i); // 버튼명
-			// button02.setT("WL"); // 버튼타입
-			// button02.setU1("http://"+i+"popbill.com"); // 버튼링크1
-			// button02.setU2("http://"+i+"test.popbill.com"); // 버튼링크2
+            // KakaoButton button02 = new KakaoButton();
+            // button02.setN("타입2 버튼명"+i); // 버튼명
+            // button02.setT("WL"); // 버튼타입
+            // button02.setU1("http://"+i+"popbill.com"); // 버튼링크1
+            // button02.setU2("http://"+i+"test.popbill.com"); // 버튼링크2
 
             // 수신자별로 각기다른 버튼정보 추가.
-			// message.setBtns(new ArrayList<KakaoButton>());
-			// message.getBtns().add(button);
-			// message.getBtns().add(button02);
+            // message.setBtns(new ArrayList<KakaoButton>());
+            // message.getBtns().add(button);
+            // message.getBtns().add(button02);
 
         }
 
@@ -1102,27 +1102,27 @@ public class KakaoServiceController {
     
     @RequestMapping(value = "cancelReservebyRCV", method = RequestMethod.GET)
 	public String cancelReservebyRCV(Model m) {
-		/*
-		 * 팝빌에서 반환받은 접수번호와 수신번호를 통해 예약접수된 카카오톡을 취소합니다. (예약시간 10분 전까지 가능)
-		 * - https://developers.popbill.com/reference/kakaotalk/java/api/send#CancelReservebyRCV
-		 */
+        /*
+         * 팝빌에서 반환받은 접수번호와 수신번호를 통해 예약접수된 카카오톡을 취소합니다. (예약시간 10분 전까지 가능)
+         * - https://developers.popbill.com/reference/kakaotalk/java/api/send#CancelReservebyRCV
+         */
 
-		// 카카오톡 예약전송 접수시 팝빌로부터 반환 받은 접수번호
-		String receiptNum = "023011611093900001";
+        // 카카오톡 예약전송 접수시 팝빌로부터 반환 받은 접수번호
+        String receiptNum = "023011611093900001";
 
-		// 카카오톡 예약전송 접수시 팝빌로 요청한 수신번호
+        // 카카오톡 예약전송 접수시 팝빌로 요청한 수신번호
         String receiveNum = "";
 
-		try {
-			Response response = kakaoService.cancelReservebyRCV(testCorpNum, receiptNum, receiveNum);
+        try {
+            Response response = kakaoService.cancelReservebyRCV(testCorpNum, receiptNum, receiveNum);
 
-			m.addAttribute("Response", response);
-		} catch (PopbillException e) {
-			m.addAttribute("Exception", e);
-			return "exception";
-		}
+            m.addAttribute("Response", response);
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
 
-		return "response";
+        return "response";
 	}
 
     @RequestMapping(value = "cancelReserveRN", method = RequestMethod.GET)
@@ -1150,28 +1150,28 @@ public class KakaoServiceController {
     
     @RequestMapping(value = "cancelReserveRNbyRCV", method = RequestMethod.GET)
 	public String cancelReserveRNbyRCV(Model m) {
-		/*
-		 * 파트너가 할당한 전송요청 번호와 수신번호를 통해 예약접수된 카카오톡을 취소합니다. (예약시간 10분 전까지 가능)
-		 * - https://developers.popbill.com/reference/kakaotalk/java/api/send#CancelReserveRNbyRCV
-		 */
+        /*
+         * 파트너가 할당한 전송요청 번호와 수신번호를 통해 예약접수된 카카오톡을 취소합니다. (예약시간 10분 전까지 가능)
+         * - https://developers.popbill.com/reference/kakaotalk/java/api/send#CancelReserveRNbyRCV
+         */
 
-		// 카카오톡 예약전송 접수시 파트너가 할당한 전송요청 번호
-		String requestNum = "20230116_ats_02";
+        // 카카오톡 예약전송 접수시 파트너가 할당한 전송요청 번호
+        String requestNum = "20230116_ats_02";
 		
-		// 카카오톡 예약전송 접수시 팝빌로 요청한 수신번호
+        // 카카오톡 예약전송 접수시 팝빌로 요청한 수신번호
         String receiveNum = "";
 
-		try {
-			Response response = kakaoService.cancelReserveRNbyRCV(testCorpNum, requestNum, receiveNum);
+        try {
+            Response response = kakaoService.cancelReserveRNbyRCV(testCorpNum, requestNum, receiveNum);
 
-			m.addAttribute("Response", response);
-		} catch (PopbillException e) {
-			m.addAttribute("Exception", e);
-			return "exception";
-		}
+            m.addAttribute("Response", response);
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
 
-		return "response";
-	}
+        return "response";
+    }
 
     @RequestMapping(value = "getMessages", method = RequestMethod.GET)
     public String getMessages(Model m) {

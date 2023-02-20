@@ -821,8 +821,10 @@ public class MessageServiceController {
          */
     	
         try {
-        	AutoDenyNumberInfo checkAutoDeny = messageService.checkAutoDenyNumber(testCorpNum);
+            AutoDenyNumberInfo checkAutoDeny = messageService.checkAutoDenyNumber(testCorpNum);
+            
             m.addAttribute("CheckAutoDeny", checkAutoDeny);
+            
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -867,6 +869,7 @@ public class MessageServiceController {
         try {
 
             ChargeInfo chrgInfo = messageService.getChargeInfo(testCorpNum, msgType);
+            
             m.addAttribute("ChargeInfo", chrgInfo);
 
         } catch (PopbillException e) {
