@@ -1,23 +1,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
-<title>팝빌 SDK SpringBoot Example.</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
+    <title>팝빌 SDK SpringBoot Example.</title>
 </head>
 <body>
-    <div id="content">
-        <p class="heading1">Response</p>
-        <br />
-        <fieldset class="fieldset1">
-            <legend th:text="${#request?.requestURL}"></legend>
-            <ul>
-                <li>SMT_ISSUE (수신자에게 전자명세서가 발행 되었음을 알려주는 메일 전송 여부) : <span th:text="${EmailSendConfigs.get('SMT_ISSUE')}"></span></li>
-                <li>SMT_ACCEPT (발신자에게 전자명세서가 승인 되었음을 알려주는 메일 전송 여부) : <span th:text="${EmailSendConfigs.get('SMT_ACCEPT')}"></span></li>
-                <li>SMT_DENY (발신자에게 전자명세서가 거부 되었음을 알려주는 메일 전송 여부) : <span th:text="${EmailSendConfigs.get('SMT_DENY')}"></span></li>
-                <li>SMT_CANCEL (수신자에게 전자명세서가 취소 되었음을 알려주는 메일 전송 여부) : <span th:text="${EmailSendConfigs.get('SMT_CANCEL')}"></span></li>
-                <li>SMT_CANCEL_ISSUE (수신자에게 전자명세서가 발행취소 되었음을 알려주는 메일 전송 여부) : <span th:text="${EmailSendConfigs.get('SMT_CANCEL_ISSUE')}"></span></li>
-            </ul>
-        </fieldset>
-    </div>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend th:text="${#request?.requestURL}"></legend>
+        <ul>
+            <li>SMT_ISSUE (수신자에게 전자명세서가 발행 되었음을 알려주는 메일 전송 여부) : <span th:text="${EmailSendConfigs.get('SMT_ISSUE')}"></span></li>
+            <li>SMT_ACCEPT (발신자에게 전자명세서가 승인 되었음을 알려주는 메일 전송 여부) : <span th:text="${EmailSendConfigs.get('SMT_ACCEPT')}"></span></li>
+            <li>SMT_DENY (발신자에게 전자명세서가 거부 되었음을 알려주는 메일 전송 여부) : <span th:text="${EmailSendConfigs.get('SMT_DENY')}"></span></li>
+            <li>SMT_CANCEL (수신자에게 전자명세서가 취소 되었음을 알려주는 메일 전송 여부) : <span th:text="${EmailSendConfigs.get('SMT_CANCEL')}"></span></li>
+            <li>SMT_CANCEL_ISSUE (수신자에게 전자명세서가 발행취소 되었음을 알려주는 메일 전송 여부) : <span th:text="${EmailSendConfigs.get('SMT_CANCEL_ISSUE')}"></span></li>
+        </ul>
+    </fieldset>
+</div>
 </body>
 </html>

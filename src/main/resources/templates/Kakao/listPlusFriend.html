@@ -1,25 +1,25 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
-<title>팝빌 SDK SpringBoot Example.</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
+    <title>팝빌 SDK SpringBoot Example.</title>
 </head>
 <body>
-    <div id="content">
-        <p class="heading1">Response</p>
-        <br />
-        <fieldset class="fieldset1">
-            <legend th:text="${#request?.requestURL}"></legend>
-            <fieldset th:each="friendInfo, index : ${listInfo}" class="fieldset2">
-                <ul>
-                    <li>plusFriendID (카카오톡 채널 아이디) : <span th:text="${friendInfo.plusFriendID}"></span></li>
-                    <li>plusFriendName (카카오톡 채널 이름) : <span th:text="${friendInfo.plusFriendName}"></span></li>
-                    <li>regDT (등록일시) : <span th:text="${friendInfo.regDT}"></span></li>
-                    <li>state (채널 상태) : <span th:text="${friendInfo.state}"></span></li>
-                    <li>stateDT (채널 상태 일시) : <span th:text="${friendInfo.stateDT}"></span></li>
-                </ul>
-            </fieldset>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend th:text="${#request?.requestURL}"></legend>
+        <fieldset class="fieldset2" th:each="friendInfo, index : ${listInfo}">
+            <ul>
+                <li>plusFriendID (카카오톡 채널 아이디) : <span th:text="${friendInfo.plusFriendID}"></span></li>
+                <li>plusFriendName (카카오톡 채널 이름) : <span th:text="${friendInfo.plusFriendName}"></span></li>
+                <li>regDT (등록일시) : <span th:text="${friendInfo.regDT}"></span></li>
+                <li>state (채널 상태) : <span th:text="${friendInfo.state}"></span></li>
+                <li>stateDT (채널 상태 일시) : <span th:text="${friendInfo.stateDT}"></span></li>
+            </ul>
         </fieldset>
-    </div>
+    </fieldset>
+</div>
 </body>
 </html>

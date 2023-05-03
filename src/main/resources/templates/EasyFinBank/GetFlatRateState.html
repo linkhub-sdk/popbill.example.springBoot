@@ -1,27 +1,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
-<title>팝빌 SDK SpringBoot Example.</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
+    <title>팝빌 SDK SpringBoot Example.</title>
 </head>
 <body>
-    <div id="content">
-        <p class="heading1">Response</p>
-        <br />
-        <fieldset class="fieldset1">
-            <legend th:text="${#request?.requestURL}"></legend>
-            <ul>
-                <li>referenceID (사업자번호) : <span th:text="${State.referenceID}"></span></li>
-                <li>contractDT (정액제 서비스 시작일시) : <span th:text="${State.contractDT}"></span></li>
-                <li>useEndDate (정액제 서비스 종료일) : <span th:text="${State.useEndDate}"></span></li>
-                <li>baseDate (자동연장 결제일) : <span th:text="${State.baseDate}"></span></li>
-                <li>state (정액제 서비스 상태) : <span th:text="${State.state}"></span></li>
-                <li>closeRequestYN (정액제 서비스 해지신청 여부) : <span th:text="${State.closeRequestYN}"></span></li>
-                <li>useRestrictYN (정액제 서비스 사용제한 여부) : <span th:text="${State.useRestrictYN}"></span></li>
-                <li>closeOnExpired (정액제 서비스 만료 시 해지 여부) : <span th:text="${State.closeOnExpired}"></span></li>
-                <li>unPaidYN (미수금 보유 여부) : <span th:text="${State.unPaidYN}"></span></li>
-            </ul>
-        </fieldset>
-    </div>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend th:text="${#request?.requestURL}"></legend>
+        <ul>
+            <li>referenceID (사업자번호) : <span th:text="${State.referenceID}"></span></li>
+            <li>contractDT (정액제 서비스 시작일시) : <span th:text="${State.contractDT}"></span></li>
+            <li>useEndDate (정액제 서비스 종료일) : <span th:text="${State.useEndDate}"></span></li>
+            <li>baseDate (자동연장 결제일) : <span th:text="${State.baseDate}"></span></li>
+            <li>state (정액제 서비스 상태) : <span th:text="${State.state}"></span></li>
+            <li>closeRequestYN (정액제 서비스 해지신청 여부) : <span th:text="${State.closeRequestYN}"></span></li>
+            <li>useRestrictYN (정액제 서비스 사용제한 여부) : <span th:text="${State.useRestrictYN}"></span></li>
+            <li>closeOnExpired (정액제 서비스 만료 시 해지 여부) : <span th:text="${State.closeOnExpired}"></span></li>
+            <li>unPaidYN (미수금 보유 여부) : <span th:text="${State.unPaidYN}"></span></li>
+        </ul>
+    </fieldset>
+</div>
 </body>
 </html>

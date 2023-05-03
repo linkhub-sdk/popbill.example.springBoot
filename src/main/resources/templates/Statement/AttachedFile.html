@@ -1,24 +1,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
-<title>팝빌 SDK SpringBoot Example.</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
+    <title>팝빌 SDK SpringBoot Example.</title>
 </head>
 <body>
-    <div id="content">
-        <p class="heading1">Response</p>
-        <br />
-        <fieldset class="fieldset1">
-            <legend th:text="${#request?.requestURL}"></legend>
-            <fieldset th:each="AttachedFile : ${AttachedFiles}" class="fieldset2">
-                <ul>
-                    <li>serialNum (첨부파일 일련번호) : <span th:text="${AttachedFile.serialNum}"></span></li>
-                    <li>attachedFile (파일아이디-첨부파일 삭제시 사용) : <span th:text="${AttachedFile.attachedFile}"></span></li>
-                    <li>displayName (첨부파일명) : <span th:text="${AttachedFile.displayName}"></span></li>
-                    <li>regDT (첨부일시) : <span th:text="${AttachedFile.regDT}"></span></li>
-                </ul>
-            </fieldset>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend th:text="${#request?.requestURL}"></legend>
+        <fieldset class="fieldset2" th:each="AttachedFile : ${AttachedFiles}">
+            <ul>
+                <li>serialNum (첨부파일 일련번호) : <span th:text="${AttachedFile.serialNum}"></span></li>
+                <li>attachedFile (파일아이디-첨부파일 삭제시 사용) : <span th:text="${AttachedFile.attachedFile}"></span></li>
+                <li>displayName (첨부파일명) : <span th:text="${AttachedFile.displayName}"></span></li>
+                <li>regDT (첨부일시) : <span th:text="${AttachedFile.regDT}"></span></li>
+            </ul>
         </fieldset>
-    </div>
+    </fieldset>
+</div>
 </body>
 </html>

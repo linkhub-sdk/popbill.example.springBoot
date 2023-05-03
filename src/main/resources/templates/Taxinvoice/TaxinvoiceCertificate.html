@@ -1,26 +1,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
-<title>팝빌 SDK SpringBoot Example.</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
+    <title>팝빌 SDK SpringBoot Example.</title>
 </head>
 <body>
-    <div th:if="${TaxinvoiceCertificate}" id="content">
-        <p class="heading1">Response</p>
-        <br />
-        <fieldset class="fieldset1">
-            <legend th:text="${#request?.requestURL}"></legend>
-            <ul>
-                <li>regDT (등록일시) : <span th:text="${TaxinvoiceCertificate.regDT}"></span></li>
-                <li>expireDT (만료일시) : <span th:text="${TaxinvoiceCertificate.expireDT}"></span></li>
-                <li>issuerDN (인증서 발급자 DN) : <span th:text="${TaxinvoiceCertificate.issuerDN}"></span></li>
-                <li>subjectDN (등록된 인증서 DN) : <span th:text="${TaxinvoiceCertificate.subjectDN}"></span></li>
-                <li>issuerName (인증서 종류) : <span th:text="${TaxinvoiceCertificate.issuerName}"></span></li>
-                <li>oid (OID) : <span th:text="${TaxinvoiceCertificate.oid}"></span></li>
-                <li>regContactName (등록 담당자 성명) : <span th:text="${TaxinvoiceCertificate.regContactName}"></span></li>
-                <li>regContactID (등록 담당자 아이디) : <span th:text="${TaxinvoiceCertificate.regContactID}"></span></li>
-            </ul>
-        </fieldset>
-    </div>
+<div id="content" th:if="${TaxinvoiceCertificate}">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend th:text="${#request?.requestURL}"></legend>
+        <ul>
+            <li>regDT (등록일시) : <span th:text="${TaxinvoiceCertificate.regDT}"></span></li>
+            <li>expireDT (만료일시) : <span th:text="${TaxinvoiceCertificate.expireDT}"></span></li>
+            <li>issuerDN (인증서 발급자 DN) : <span th:text="${TaxinvoiceCertificate.issuerDN}"></span></li>
+            <li>subjectDN (등록된 인증서 DN) : <span th:text="${TaxinvoiceCertificate.subjectDN}"></span></li>
+            <li>issuerName (인증서 종류) : <span th:text="${TaxinvoiceCertificate.issuerName}"></span></li>
+            <li>oid (OID) : <span th:text="${TaxinvoiceCertificate.oid}"></span></li>
+            <li>regContactName (등록 담당자 성명) : <span th:text="${TaxinvoiceCertificate.regContactName}"></span></li>
+            <li>regContactID (등록 담당자 아이디) : <span th:text="${TaxinvoiceCertificate.regContactID}"></span></li>
+        </ul>
+    </fieldset>
+</div>
 </body>
 </html>

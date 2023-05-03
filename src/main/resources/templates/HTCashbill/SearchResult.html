@@ -1,51 +1,51 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
-<title>팝빌 SDK SpringBoot Example.</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
+    <title>팝빌 SDK SpringBoot Example.</title>
 </head>
 <body>
-    <div id="content">
-        <p class="heading1">Response</p>
-        <br />
-        <fieldset class="fieldset1">
-            <legend th:text="${#request?.requestURL}"></legend>
-            <fieldset th:if="${SearchResult}" class="fieldset2">
-                <legend>검색결과 정보</legend>
-                <ul>
-                    <li>code (응답코드) : <span th:text="${SearchResult.code}"></span></li>
-                    <li>message (응답 메시지) : <span th:text="${SearchResult.message}"></span></li>
-                    <li>total (전체 검색개수) : <span th:text="${SearchResult.total}"></span></li>
-                    <li>perPage (페이지당 목록개수) : <span th:text="${SearchResult.perPage}"></span></li>
-                    <li>pageNum (페이지번호) : <span th:text="${SearchResult.pageNum}"></span></li>
-                    <li>pageCount (페이지수) : <span th:text="${SearchResult.pageCount}"></span></li>
-                </ul>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend th:text="${#request?.requestURL}"></legend>
+        <fieldset class="fieldset2" th:if="${SearchResult}">
+            <legend>검색결과 정보</legend>
+            <ul>
+                <li>code (응답코드) : <span th:text="${SearchResult.code}"></span></li>
+                <li>message (응답 메시지) : <span th:text="${SearchResult.message}"></span></li>
+                <li>total (전체 검색개수) : <span th:text="${SearchResult.total}"></span></li>
+                <li>perPage (페이지당 목록개수) : <span th:text="${SearchResult.perPage}"></span></li>
+                <li>pageNum (페이지번호) : <span th:text="${SearchResult.pageNum}"></span></li>
+                <li>pageCount (페이지수) : <span th:text="${SearchResult.pageCount}"></span></li>
+            </ul>
 
-                <fieldset th:each="SearchInfo, index : ${SearchResult.list}" class="fieldset3">
-                    <legend>세금계산서 요약정보[ <span th:text="${index.index + 1}"></span> / <span th:text="${index.size}"></span> ]</legend>
-                    <ul>
-                        <li>ntsconfirmNum (국세청 승인번호) : <span th:text="${SearchInfo.ntsconfirmNum}"></span></li>
-                        <li>tradeDate (거래일자) : <span th:text="${SearchInfo.tradeDate}"></span></li>
-                        <li>tradeDT (거래일시) : <span th:text="${SearchInfo.tradeDT}"></span></li>
-                        <li>tradeUsage (거래구분) : <span th:text="${SearchInfo.tradeUsage}"></span></li>
-                        <li>tradeType (문서형태) : <span th:text="${SearchInfo.tradeType}"></span></li>
-                        <li>totalAmount (거래금액) : <span th:text="${SearchInfo.totalAmount}"></span></li>
-                        <li>supplyCost (공급가액) : <span th:text="${SearchInfo.supplyCost}"></span></li>
-                        <li>tax (부가세) : <span th:text="${SearchInfo.tax}"></span></li>
-                        <li>serviceFee (봉사료) : <span th:text="${SearchInfo.serviceFee}"></span></li>
-                        <li>invoiceType (매입/매출) : <span th:text="${SearchInfo.invoiceType}"></span></li>
-                        <li>franchiseCorpNum (발행자 사업자번호) : <span th:text="${SearchInfo.franchiseCorpNum}"></span></li>
-                        <li>franchiseCorpName (발행자 상호) : <span th:text="${SearchInfo.franchiseCorpName}"></span></li>
-                        <li>franchiseCorpType (발행자 사업자유형) : <span th:text="${SearchInfo.franchiseCorpType}"></span></li>
-                        <li>identityNum (거래처 식별번호) : <span th:text="${SearchInfo.identityNum}"></span></li>
-                        <li>identityNumType (식별번호유형) : <span th:text="${SearchInfo.identityNumType}"></span></li>
-                        <li>customerName (고객명) : <span th:text="${SearchInfo.customerName}"></span></li>
-                        <li>cardOwnerName (카드소유자명) : <span th:text="${SearchInfo.cardOwnerName}"></span></li>
-                        <li>deductionType (공제유형) : <span th:text="${SearchInfo.deductionType}"></span></li>
-                    </ul>
-                </fieldset>
+            <fieldset class="fieldset3" th:each="SearchInfo, index : ${SearchResult.list}">
+                <legend>세금계산서 요약정보[ <span th:text="${index.index + 1}"></span> / <span th:text="${index.size}"></span> ]</legend>
+                <ul>
+                    <li>ntsconfirmNum (국세청 승인번호) : <span th:text="${SearchInfo.ntsconfirmNum}"></span></li>
+                    <li>tradeDate (거래일자) : <span th:text="${SearchInfo.tradeDate}"></span></li>
+                    <li>tradeDT (거래일시) : <span th:text="${SearchInfo.tradeDT}"></span></li>
+                    <li>tradeUsage (거래구분) : <span th:text="${SearchInfo.tradeUsage}"></span></li>
+                    <li>tradeType (문서형태) : <span th:text="${SearchInfo.tradeType}"></span></li>
+                    <li>totalAmount (거래금액) : <span th:text="${SearchInfo.totalAmount}"></span></li>
+                    <li>supplyCost (공급가액) : <span th:text="${SearchInfo.supplyCost}"></span></li>
+                    <li>tax (부가세) : <span th:text="${SearchInfo.tax}"></span></li>
+                    <li>serviceFee (봉사료) : <span th:text="${SearchInfo.serviceFee}"></span></li>
+                    <li>invoiceType (매입/매출) : <span th:text="${SearchInfo.invoiceType}"></span></li>
+                    <li>franchiseCorpNum (발행자 사업자번호) : <span th:text="${SearchInfo.franchiseCorpNum}"></span></li>
+                    <li>franchiseCorpName (발행자 상호) : <span th:text="${SearchInfo.franchiseCorpName}"></span></li>
+                    <li>franchiseCorpType (발행자 사업자유형) : <span th:text="${SearchInfo.franchiseCorpType}"></span></li>
+                    <li>identityNum (거래처 식별번호) : <span th:text="${SearchInfo.identityNum}"></span></li>
+                    <li>identityNumType (식별번호유형) : <span th:text="${SearchInfo.identityNumType}"></span></li>
+                    <li>customerName (고객명) : <span th:text="${SearchInfo.customerName}"></span></li>
+                    <li>cardOwnerName (카드소유자명) : <span th:text="${SearchInfo.cardOwnerName}"></span></li>
+                    <li>deductionType (공제유형) : <span th:text="${SearchInfo.deductionType}"></span></li>
+                </ul>
             </fieldset>
         </fieldset>
-    </div>
+    </fieldset>
+</div>
 </body>
 </html>

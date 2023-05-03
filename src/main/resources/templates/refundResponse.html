@@ -6,14 +6,15 @@
 </head>
 <body>
 <div id="content">
-    <p class="heading1">PaymentResponse</p>
+    <p class="heading1">RefundResponse</p>
     <br/>
     <fieldset class="fieldset1">
         <legend th:text="${#request?.requestURL}"></legend>
+        <legend>환불신청내역 목록</legend>
         <ul>
-            <li>code (응답코드) : <span th:text="${PaymentResponse.code}"></span></li>
-            <li>message (응답메시지) : <span th:text="${PaymentResponse.message}"></span></li>
-            <li>settleCode (정산코드) : <span th:text="${PaymentResponse.settleCode}"></span></li>
+            <li>응답코드 (code) : <span th:text="${Response.code}"></span></li>
+            <li>응답메시지 (message) : <span th:text="${Response.message}"></span></li>
+            <li>환불코드 (refundCode) : <span th:text="${Response.refundCode}"></span></li>
         </ul>
     </fieldset>
 </div>

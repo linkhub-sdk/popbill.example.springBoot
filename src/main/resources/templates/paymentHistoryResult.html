@@ -1,42 +1,42 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
-<title>팝빌 SDK SpringBoot Example.</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
+    <title>팝빌 SDK SpringBoot Example.</title>
 </head>
 <body>
-    <div id="content">
-        <p class="heading1">PaymentHistoryResult</p>
-        <br />
-        <fieldset class="fieldset1">
-            <legend th:text="${#request?.requestURL}"></legend>
-            <fieldset th:if="${PaymentHistoryResult}" class="fieldset2">
-                <legend>결제내역 정보목록</legend>
-                <ul>
-                    <li>code (응답코드) : <span th:text="${PaymentHistoryResult.code}"></span></li>
-                    <li>total (전체 검색개수) : <span th:text="${PaymentHistoryResult.total}"></span></li>
-                    <li>perPage (페이지당 목록개수) : <span th:text="${PaymentHistoryResult.perPage}"></span></li>
-                    <li>pageNum (페이지번호) : <span th:text="${PaymentHistoryResult.pageNum}"></span></li>
-                    <li>pageCount (페이지수) : <span th:text="${PaymentHistoryResult.pageCount}"></span></li>
-                </ul>
+<div id="content">
+    <p class="heading1">PaymentHistoryResult</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend th:text="${#request?.requestURL}"></legend>
+        <fieldset class="fieldset2" th:if="${PaymentHistoryResult}">
+            <legend>결제내역 정보목록</legend>
+            <ul>
+                <li>code (응답코드) : <span th:text="${PaymentHistoryResult.code}"></span></li>
+                <li>total (전체 검색개수) : <span th:text="${PaymentHistoryResult.total}"></span></li>
+                <li>perPage (페이지당 목록개수) : <span th:text="${PaymentHistoryResult.perPage}"></span></li>
+                <li>pageNum (페이지번호) : <span th:text="${PaymentHistoryResult.pageNum}"></span></li>
+                <li>pageCount (페이지수) : <span th:text="${PaymentHistoryResult.pageCount}"></span></li>
+            </ul>
 
-                <fieldset th:each="PaymentHistory, index : ${PaymentHistoryResult.list}" class="fieldset3">
-                    <legend>결제내역 정보[ <span th:text="${index.index + 1}"></span> / <span th:text="${index.size}"></span> ]</legend>
-                    <ul>
-                        <li>productType (결제 내용) : <span th:text="${PaymentHistory.productType}"></span></li>
-                        <li>productName (정액제 상품명) : <span th:text="${PaymentHistory.productName}"></span></li>
-                        <li>settleType (결제유형) : <span th:text="${PaymentHistory.settleType}"></span></li>
-                        <li>settlerName (담당자명) : <span th:text="${PaymentHistory.settlerName}"></span></li>
-                        <li>settlerEmail (담당자메일) : <span th:text="${PaymentHistory.settlerEmail}"></span></li>
-                        <li>settleCost (결제금액) : <span th:text="${PaymentHistory.settleCost}"></span></li>
-                        <li>settlePoint (충전포인트) : <span th:text="${PaymentHistory.settlePoint}"></span></li>
-                        <li>settleState (결제상태) : <span th:text="${PaymentHistory.settleState}"></span></li>
-                        <li>regDT (등록일시) : <span th:text="${PaymentHistory.regDT}"></span></li>
-                        <li>stateDT (상태일시) : <span th:text="${PaymentHistory.stateDT}"></span></li>
-                    </ul>
-                </fieldset>
+            <fieldset class="fieldset3" th:each="PaymentHistory, index : ${PaymentHistoryResult.list}">
+                <legend>결제내역 정보[ <span th:text="${index.index + 1}"></span> / <span th:text="${index.size}"></span> ]</legend>
+                <ul>
+                    <li>productType (결제 내용) : <span th:text="${PaymentHistory.productType}"></span></li>
+                    <li>productName (정액제 상품명) : <span th:text="${PaymentHistory.productName}"></span></li>
+                    <li>settleType (결제유형) : <span th:text="${PaymentHistory.settleType}"></span></li>
+                    <li>settlerName (담당자명) : <span th:text="${PaymentHistory.settlerName}"></span></li>
+                    <li>settlerEmail (담당자메일) : <span th:text="${PaymentHistory.settlerEmail}"></span></li>
+                    <li>settleCost (결제금액) : <span th:text="${PaymentHistory.settleCost}"></span></li>
+                    <li>settlePoint (충전포인트) : <span th:text="${PaymentHistory.settlePoint}"></span></li>
+                    <li>settleState (결제상태) : <span th:text="${PaymentHistory.settleState}"></span></li>
+                    <li>regDT (등록일시) : <span th:text="${PaymentHistory.regDT}"></span></li>
+                    <li>stateDT (상태일시) : <span th:text="${PaymentHistory.stateDT}"></span></li>
+                </ul>
             </fieldset>
         </fieldset>
-    </div>
+    </fieldset>
+</div>
 </body>
 </html>

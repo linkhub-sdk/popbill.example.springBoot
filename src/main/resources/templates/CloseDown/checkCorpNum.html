@@ -1,38 +1,38 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="/css/main.css" media="screen" />
-<title>팝빌 SDK SpringBoot Example.</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
+    <title>팝빌 SDK SpringBoot Example.</title>
 </head>
 <body>
-    <div id="content">
-        <p class="heading1">휴폐업조회 API SDK SpringBoot Example.</p>
-        <br />
-        <fieldset class="fieldset1">
-            <legend th:text="${#request?.requestURL}"></legend>
-            <div class="fieldset4">
-                <form method="GET" id="corpnum_form" th:action="@{checkCorpNum}">
-                    <input class="txtCorpNum left" type="text" placeholder="사업자번호 기재" id="CorpNum" name="CorpNum" th:value="${CorpState?.corpNum}" tabindex=1 />
-                    <p class="find_btn find_btn01 hand" onclick="search()" tabindex=2>조회</p>
-                </form>
-            </div>
-        </fieldset>
-        <fieldset th:if="${CorpState}" class="fieldset1">
-            <legend>휴폐업조회 - 단건</legend>
-            <p class="info">state : null (알수없음), 0 (등록되지 않은 사업자번호), 1 (사업중), 2 (폐업), 3 (휴업)</p>
-            <p class="info">taxType : null (알수없음), 10 ( 일반과세자), 20 (면세과세자), 30 (간이과세자), 31 (간이과세자-세금계산서 발급사업자), 40 (비영리법인 또는 국가기관, 고유번호가 부여된 단체)</p>
-            <ul>
-                <li>corpNum (사업자번호) : <span th:text="${CorpState.corpNum}"></span></li>
-                <li>taxType (과세유형) : <span th:text="${CorpState.taxType}"></span></li>
-                <li>state (휴폐업 상태) : <span th:text="${CorpState.state}"></span></li>
-                <li>stateDate (휴폐업일자) : <span th:text="${CorpState.stateDate}"></span></li>
-                <li>typeDate (과세유형 전환일자) : <span th:text="${CorpState.typeDate}"></span></li>
-                <li>checkDate (확인일자) : <span th:text="${CorpState.checkDate}"></span></li>
-            </ul>
-        </fieldset>
-        <br />
-    </div>
-    
+<div id="content">
+    <p class="heading1">휴폐업조회 API SDK SpringBoot Example.</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend th:text="${#request?.requestURL}"></legend>
+        <div class="fieldset4">
+            <form id="corpnum_form" method="GET" th:action="@{checkCorpNum}">
+                <input class="txtCorpNum left" id="CorpNum" name="CorpNum" placeholder="사업자번호 기재" tabindex=1/ th:value="${CorpState?.corpNum}" type="text">
+                <p class="find_btn find_btn01 hand" onclick="search()" tabindex=2>조회</p>
+            </form>
+        </div>
+    </fieldset>
+    <fieldset class="fieldset1" th:if="${CorpState}">
+        <legend>휴폐업조회 - 단건</legend>
+        <p class="info">state : null (알수없음), 0 (등록되지 않은 사업자번호), 1 (사업중), 2 (폐업), 3 (휴업)</p>
+        <p class="info">taxType : null (알수없음), 10 ( 일반과세자), 20 (면세과세자), 30 (간이과세자), 31 (간이과세자-세금계산서 발급사업자), 40 (비영리법인 또는 국가기관, 고유번호가 부여된 단체)</p>
+        <ul>
+            <li>corpNum (사업자번호) : <span th:text="${CorpState.corpNum}"></span></li>
+            <li>taxType (과세유형) : <span th:text="${CorpState.taxType}"></span></li>
+            <li>state (휴폐업 상태) : <span th:text="${CorpState.state}"></span></li>
+            <li>stateDate (휴폐업일자) : <span th:text="${CorpState.stateDate}"></span></li>
+            <li>typeDate (과세유형 전환일자) : <span th:text="${CorpState.typeDate}"></span></li>
+            <li>checkDate (확인일자) : <span th:text="${CorpState.checkDate}"></span></li>
+        </ul>
+    </fieldset>
+    <br/>
+</div>
+
 <script type="text/javascript">
     window.onload = function () {
         document.getElementById('CorpNum').focus();
