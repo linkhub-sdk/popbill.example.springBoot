@@ -3,13 +3,6 @@ package com.popbill.example.controller;
 import java.io.File;
 import java.util.Date;
 import java.util.Locale;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.MessageService;
 import com.popbill.api.PopbillException;
@@ -21,6 +14,11 @@ import com.popbill.api.message.Message;
 import com.popbill.api.message.MessageType;
 import com.popbill.api.message.SenderNumber;
 import com.popbill.api.message.SentMessage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("MessageService")
@@ -42,7 +40,7 @@ public class MessageServiceController {
 
     @RequestMapping(value = "checkSenderNumber", method = RequestMethod.GET)
     public String checkSenderNumber(Model m) {
-        /*
+        /**
          * 문자 발신번호 등록여부를 확인합니다.
          * - https://developers.popbill.com/reference/sms/java/api/sendnum#CheckSenderNumber
          */
@@ -66,7 +64,7 @@ public class MessageServiceController {
 
     @RequestMapping(value = "getSenderNumberMgtURL", method = RequestMethod.GET)
     public String getSenderNumberMgtURL(Model m) {
-        /*
+        /**
          * 발신번호를 등록하고 내역을 확인하는 문자 발신번호 관리 페이지 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://developers.popbill.com/reference/sms/java/api/sendnum#GetSenderNumberMgtURL
@@ -87,7 +85,7 @@ public class MessageServiceController {
 
     @RequestMapping(value = "getSenderNumberList", method = RequestMethod.GET)
     public String getSenderNumberList(Model m) {
-        /*
+        /**
          * 팝빌에 등록한 연동회원의 문자 발신번호 목록을 확인합니다.
          * - https://developers.popbill.com/reference/sms/java/api/sendnum#GetSenderNumberList
          */
@@ -104,7 +102,7 @@ public class MessageServiceController {
 
     @RequestMapping(value = "sendSMS", method = RequestMethod.GET)
     public String sendSMS(Model m) {
-        /*
+        /**
          * 최대 90byte의 단문(SMS) 메시지 1건 전송을 팝빌에 접수합니다.
          * - https://developers.popbill.com/reference/sms/java/api/send#SendSMSOne
          */
@@ -151,7 +149,7 @@ public class MessageServiceController {
 
     @RequestMapping(value = "sendSMS_Multi", method = RequestMethod.GET)
     public String sendSMS_Multi(Model m) {
-        /*
+        /**
          * 최대 90byte의 단문(SMS) 메시지 다수건 전송을 팝빌에 접수합니다. (최대 1,000건)
          * - 모든 수신자에게 동일한 내용을 전송하거나(동보전송), 수신자마다 개별 내용을 전송할 수 있습니다(대량전송).
          * - https://developers.popbill.com/reference/sms/java/api/send#SendSMSAll
@@ -213,7 +211,7 @@ public class MessageServiceController {
 
     @RequestMapping(value = "sendLMS", method = RequestMethod.GET)
     public String sendLMS(Model m) {
-        /*
+        /**
          * 최대 2,000byte의 장문(LMS) 메시지 1건 전송을 팝빌에 접수합니다.
          * - https://developers.popbill.com/reference/sms/java/api/send#SendLMSOne
          */
@@ -263,7 +261,7 @@ public class MessageServiceController {
 
     @RequestMapping(value = "sendLMS_Multi", method = RequestMethod.GET)
     public String sendLMS_Multi(Model m) {
-        /*
+        /**
          * 최대 2,000byte의 장문(LMS) 메시지 다수건 전송을 팝빌에 접수합니다. (최대 1,000건)
          * - 모든 수신자에게 동일한 내용을 전송하거나(동보전송), 수신자마다 개별 내용을 전송할 수 있습니다(대량전송).
          * - https://developers.popbill.com/reference/sms/java/api/send#SendLMSAll
@@ -331,7 +329,7 @@ public class MessageServiceController {
 
     @RequestMapping(value = "sendMMS", method = RequestMethod.GET)
     public String sendMMS(Model m) {
-        /*
+        /**
          * 최대 2,000byte의 메시지와 이미지로 구성된 포토문자(MMS) 1건 전송을 팝빌에 접수합니다.
          * - 이미지 파일 포맷/규격 : 최대 300Kbyte(JPEG, JPG), 가로/세로 1,000px 이하 권장
          * - https://developers.popbill.com/reference/sms/java/api/send#SendMMSOne
@@ -385,7 +383,7 @@ public class MessageServiceController {
 
     @RequestMapping(value = "sendMMS_Multi", method = RequestMethod.GET)
     public String sendMMS_Multi(Model m) {
-        /*
+        /**
          * 최대 2,000byte의 메시지와 이미지로 구성된 포토문자(MMS) 다수건 전송을 팝빌에 접수합니다. (최대 1,000건)
          * - 모든 수신자에게 동일한 내용을 전송하거나(동보전송), 수신자마다 개별 내용을 전송할 수 있습니다(대량전송).
          * - 이미지 파일 포맷/규격 : 최대 300Kbyte(JPEG), 가로/세로 1,000px 이하 권장
@@ -456,7 +454,7 @@ public class MessageServiceController {
 
     @RequestMapping(value = "sendXMS", method = RequestMethod.GET)
     public String sendXMS(Model m) {
-        /*
+        /**
          * 메시지 길이(90byte)에 따라 단문/장문(SMS/LMS)을 자동으로 인식하여 1건의 메시지를 전송을 팝빌에 접수합니다.
          * - https://developers.popbill.com/reference/sms/java/api/send#SendXMSOne
          */
@@ -505,7 +503,7 @@ public class MessageServiceController {
 
     @RequestMapping(value = "sendXMS_Multi", method = RequestMethod.GET)
     public String sendXMS_Multi(Model m) {
-        /*
+        /**
          * 메시지 길이(90byte)에 따라 단문/장문(SMS/LMS)을 자동으로 인식하여 다수건의 메시지 전송을 팝빌에 접수합니다. (최대 1,000건)
          * - https://developers.popbill.com/reference/sms/java/api/send#SendXMSAll
          */
@@ -569,7 +567,7 @@ public class MessageServiceController {
 
     @RequestMapping(value = "cancelReserve", method = RequestMethod.GET)
     public String cancelReserve(Model m) {
-        /*
+        /**
          * 팝빌에서 반환받은 접수번호를 통해 예약접수된 문자 메시지 전송을 취소합니다. (예약시간 10분 전까지 가능)
          * - https://developers.popbill.com/reference/sms/java/api/send#CancelReserve
          */
@@ -592,7 +590,7 @@ public class MessageServiceController {
 
     @RequestMapping(value = "cancelReserveRN", method = RequestMethod.GET)
     public String cancelReserveRN(Model m) {
-        /*
+        /**
          * 파트너가 할당한 전송요청 번호를 통해 예약접수된 문자 전송을 취소합니다. (예약시간 10분 전까지 가능)
          * - https://developers.popbill.com/reference/sms/java/api/send#CancelReserveRN
          */
@@ -614,59 +612,59 @@ public class MessageServiceController {
     }
     @RequestMapping(value = "cancelReservebyRCV", method = RequestMethod.GET)
     public String cancelReservebyRCV(Model m) {
-        /*
+        /**
          * 팝빌에서 반환받은 접수번호와 수신번호를 통해 예약접수된 문자 메시지 전송을 취소합니다. (예약시간 10분 전까지 가능)
          * - https://developers.popbill.com/reference/sms/java/api/send#CancelReservebyRCV
          */
-        
+
         // 예약문자 전송요청 시 팝빌로부터 반환 받은 접수번호
         String receiptNum = "022022111000000012";
         // 예약문자 전송요청 시 파트너가 요청한 수신번호
         String receiveNum = "";
-        
-        
+
+
         try {
             Response response = messageService.cancelReservebyRCV(testCorpNum, receiptNum, receiveNum);
-            
+
             m.addAttribute("Response", response);
-            
+
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
         }
-        
+
         return "response";
     }
-    
+
     @RequestMapping(value = "cancelReserveRNbyRCV", method = RequestMethod.GET)
     public String cancelReserveRNbyRCV(Model m) {
-        /*
+        /**
          * 파트너가 할당한 전송요청 번호와 수신번호를 통해 예약접수된 문자 전송을 취소합니다. (예약시간 10분 전까지 가능)
          * - https://developers.popbill.com/reference/sms/java/api/send#CancelReserveRNbyRCV
          */
-        
+
         // 예약문자 전송요청 시 파트너가 할당한 전송요청 번호
         String requestNum = "";
         // 예약문자 전송요청 시 파트너가 요청한 수신번호
         String receiveNum = "";
-        
-        
+
+
         try {
             Response response = messageService.cancelReserveRNbyRCV(testCorpNum, requestNum, receiveNum);
-            
+
             m.addAttribute("Response", response);
-            
+
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
         }
-        
+
         return "response";
     }
 
     @RequestMapping(value = "getMessages", method = RequestMethod.GET)
     public String getMessages(Model m) {
-        /*
+        /**
          * 팝빌에서 반환받은 접수번호를 통해 문자 전송상태 및 결과를 확인합니다.
          * - https://developers.popbill.com/reference/sms/java/api/info#GetMessages
          */
@@ -690,7 +688,7 @@ public class MessageServiceController {
 
     @RequestMapping(value = "getMessagesRN", method = RequestMethod.GET)
     public String getMessagesRN(Model m) {
-        /*
+        /**
          * 파트너가 할당한 전송요청 번호를 통해 문자 전송상태 및 결과를 확인합니다.
          * - https://developers.popbill.com/reference/sms/java/api/info#GetMessagesRN
          */
@@ -714,7 +712,7 @@ public class MessageServiceController {
 
     @RequestMapping(value = "search", method = RequestMethod.GET)
     public String search(Model m) {
-        /*
+        /**
          * 검색조건에 해당하는 문자 전송내역을 조회합니다. (조회기간 단위 : 최대 2개월)
          * - 문자 접수일시로부터 6개월 이내 접수건만 조회할 수 있습니다.
          * - https://developers.popbill.com/reference/sms/java/api/info#Search
@@ -777,7 +775,7 @@ public class MessageServiceController {
 
     @RequestMapping(value = "getSentListURL", method = RequestMethod.GET)
     public String getSentListURL(Model m) {
-        /*
+        /**
          * 문자 전송내역 확인 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://developers.popbill.com/reference/sms/java/api/info#GetSentListURL
@@ -798,7 +796,7 @@ public class MessageServiceController {
 
     @RequestMapping(value = "autoDenyList", method = RequestMethod.GET)
     public String getAutoDenyList(Model m) {
-        /*
+        /**
          * 전용 080 번호에 등록된 수신거부 목록을 반환합니다.
          * - https://developers.popbill.com/reference/sms/java/api/info#GetAutoDenyList
          */
@@ -812,19 +810,19 @@ public class MessageServiceController {
         }
         return "Message/AutoDenyList";
     }
-    
+
     @RequestMapping(value = "checkAutoDenyNumber", method = RequestMethod.GET)
     public String checkAutoDenyNumber(Model m) {
-        /*
+        /**
          * 팝빌회원에 등록된 080 수신거부 번호 정보를 확인합니다.
          * - https://developers.popbill.com/reference/sms/java/api/info#CheckAutoDenyNumber
          */
-    	
+
         try {
             AutoDenyNumberInfo checkAutoDeny = messageService.checkAutoDenyNumber(testCorpNum);
-            
+
             m.addAttribute("CheckAutoDeny", checkAutoDeny);
-            
+
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -834,7 +832,7 @@ public class MessageServiceController {
 
     @RequestMapping(value = "getUnitCost", method = RequestMethod.GET)
     public String getUnitCost(Model m) {
-        /*
+        /**
          * 문자 전송시 과금되는 포인트 단가를 확인합니다.
          * - https://developers.popbill.com/reference/sms/java/api/point#GetUnitCost
          */
@@ -858,7 +856,7 @@ public class MessageServiceController {
 
     @RequestMapping(value = "getChargeInfo", method = RequestMethod.GET)
     public String chargeInfo(Model m) {
-        /*
+        /**
          * 팝빌 문자 API 서비스 과금정보를 확인합니다.
          * - https://developers.popbill.com/reference/sms/java/api/point#GetChargeInfo
          */
@@ -869,7 +867,7 @@ public class MessageServiceController {
         try {
 
             ChargeInfo chrgInfo = messageService.getChargeInfo(testCorpNum, msgType);
-            
+
             m.addAttribute("ChargeInfo", chrgInfo);
 
         } catch (PopbillException e) {

@@ -1,18 +1,16 @@
 package com.popbill.example.controller;
 
 import java.util.Locale;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.popbill.api.AccountCheckInfo;
 import com.popbill.api.AccountCheckService;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.DepositorCheckInfo;
 import com.popbill.api.PopbillException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("AccountCheckService")
@@ -31,7 +29,7 @@ public class AccountCheckServiceController {
 
     @RequestMapping(value = "checkAccountInfo", method = RequestMethod.GET)
     public String checkAccountInfo(Model m) {
-        /*
+        /**
          * 1건의 예금주성명을 조회합니다.
          * - https://developers.popbill.com/reference/accountcheck/java/api/check#CheckAccountInfo
          */
@@ -58,7 +56,7 @@ public class AccountCheckServiceController {
 
     @RequestMapping(value = "checkDepositorInfo", method = RequestMethod.GET)
     public String checkDepositorInfo(Model m) {
-        /*
+        /**
          * 1건의 예금주실명을 조회합니다.
          * - https://developers.popbill.com/reference/accountcheck/java/api/check#CheckDepositorInfo
          */
@@ -73,7 +71,7 @@ public class AccountCheckServiceController {
         // - P = 개인 , B = 사업자
         String IdentityNumType ="P";
 
-        /*
+        /**
          * 등록번호
          * - IdentityNumType 값이 "B" 인 경우 (사업자번호(10)자리 입력)
          * - IdentityNumType 값이 "P" 인 경우 (생년월일(6)자리 입력 (형식 : YYMMDD))
@@ -97,7 +95,7 @@ public class AccountCheckServiceController {
 
     @RequestMapping(value = "getUnitCost", method = RequestMethod.GET)
     public String getUnitCost(Model m) {
-        /*
+        /**
          * 예금주조회시 과금되는 포인트 단가를 확인합니다.
          * - https://developers.popbill.com/reference/accountcheck/java/api/point#GetUnitCost
          */
@@ -122,7 +120,7 @@ public class AccountCheckServiceController {
 
     @RequestMapping(value = "getChargeInfo", method = RequestMethod.GET)
     public String chargeInfo(Model m) {
-        /*
+        /**
          * 팝빌 예금주조회 API 서비스 과금정보를 확인합니다.
          * - https://developers.popbill.com/reference/accountcheck/java/api/point#GetChargeInfo
          */
