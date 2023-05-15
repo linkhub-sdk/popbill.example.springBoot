@@ -1,23 +1,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
-    <title>팝빌 SDK SpringBoot Example.</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link href="/css/main.css" media="screen" rel="stylesheet"
+	type="text/css" />
+<title>팝빌 SDK SpringBoot Example.</title>
 </head>
 <body>
-<div id="content">
-    <p class="heading1">Response</p>
-    <br/>
-    <fieldset class="fieldset1">
-        <legend th:text="${#request?.requestURL}"></legend>
-        <fieldset class="fieldset2">
-            <ul>
-                <li>unitCost (단가) : <span th:text="${ChargeInfo.unitCost}"></span></li>
-                <li>chargeMethod (과금유형) : <span th:text="${ChargeInfo.chargeMethod}"></span></li>
-                <li>rateSystem (과금제도) : <span th:text="${ChargeInfo.rateSystem}"></span></li>
-            </ul>
-        </fieldset>
-    </fieldset>
-</div>
+	<div id="content">
+		<p class="heading1">Response</p>
+		<br />
+		<fieldset class="fieldset1">
+			<legend th:text="${#request?.requestURL}"></legend>
+			<fieldset class="fieldset2">
+				<ul>
+					<li>unitCost (단가) : <span th:text="${ChargeInfo.unitCost}"></span></li>
+					<li>chargeMethod (과금유형) : <span
+						th:text="${ChargeInfo.chargeMethod}"></span></li>
+					<li>rateSystem (과금제도) : <span
+						th:text="${ChargeInfo.rateSystem}"></span></li>
+				</ul>
+			</fieldset>
+		</fieldset>
+	</div>
 </body>
 </html>

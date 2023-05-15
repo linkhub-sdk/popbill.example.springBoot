@@ -1,82 +1,117 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
-    <title>팝빌 SDK SpringBoot Example.</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link href="/css/main.css" media="screen" rel="stylesheet"
+	type="text/css" />
+<title>팝빌 SDK SpringBoot Example.</title>
 </head>
 <body>
-<div id="content" th:if="${CashbillInfo}">
-    <p class="heading1">Response</p>
-    <br/>
-    <fieldset class="fieldset1">
-        <legend th:text="${#request?.requestURL}"></legend>
-        <fieldset class="fieldset2">
-            <legend>CashbillInfo</legend>
-            <ul>
-                <li>itemKey (팝빌번호) : <span th:text="${CashbillInfo.itemKey}"></span></li>
-                <li>mgtKey (문서번호) : <span th:text="${CashbillInfo.mgtKey}"></span></li>
-                <li>tradeDate (거래일자) : <span th:text="${CashbillInfo.tradeDate}"></span></li>
-                <li>issueDT (발행일시) : <span th:text="${CashbillInfo.issueDT}"></span></li>
-                <li>regDT (등록일시) : <span th:text="${CashbillInfo.regDT}"></span></li>
-                <li>taxationType (과세형태) : <span th:text="${CashbillInfo.taxationType}"></span></li>
-                <li>totalAmount (거래금액) : <span th:text="${CashbillInfo.totalAmount}"></span></li>
-                <li>tradeUsage (거래구분) : <span th:text="${CashbillInfo.tradeUsage}"></span></li>
-                <li>tradeOpt (거래유형) : <span th:text="${CashbillInfo.tradeOpt}"></span></li>
-                <li>tradeType (문서형태) : <span th:text="${CashbillInfo.tradeType}"></span></li>
-                <li>identityNum (거래처 식별번호) : <span th:text="${CashbillInfo.identityNum}"></span></li>
-                <li>itemName (거래처 주문상품명) : <span th:text="${CashbillInfo.itemName}"></span></li>
-                <li>customerName (거래처 고객명) : <span th:text="${CashbillInfo.customerName}"></span></li>
-                <li>stateCode (상태코드) : <span th:text="${CashbillInfo.stateCode}"></span></li>
-                <li>stateDT (상태변경일시) : <span th:text="${CashbillInfo.stateDT}"></span></li>
-                <li>printYN (인쇄여부) : <span th:text="${CashbillInfo.printYN}"></span></li>
-                <li>stateMemo (상태메모) : <span th:text="${CashbillInfo.stateMemo}"></span></li>
-                <li>ntssendDT (국세청 전송일시) : <span th:text="${CashbillInfo.ntssendDT}"></span></li>
-                <li>ntsresultDT (국세청 처리결과 수신일시) : <span th:text="${CashbillInfo.ntsresultDT}"></span></li>
-                <li>ntsresultCode (국세청 처리결과 상태코드) : <span th:text="${CashbillInfo.ntsresultCode}"></span></li>
-                <li>ntsresultMessage (국세청 처리결과 메시지) : <span th:text="${CashbillInfo.ntsresultMessage}"></span></li>
-                <li>orgConfirmNum (원본 현금영수증 승인번호) : <span th:text="${CashbillInfo.orgConfirmNum}"></span></li>
-                <li>orgTradeDate (원본 현금영수증 거래일자) : <span th:text="${CashbillInfo.orgTradeDate}"></span></li>
-            </ul>
-        </fieldset>
-    </fieldset>
-</div>
-<div id="content" th:if="${CashbillInfos}">
-    <p class="heading1">Response</p>
-    <br/>
-    <fieldset class="fieldset1">
-        <legend th:text="${#request?.requestURL}"></legend>
-        <fieldset class="fieldset2" th:each="CashbillInfo : ${CashbillInfos}">
-            <legend>
-                CashbillInfo : <span th:text="${CashbillInfo.mgtKey}"></span>
-            </legend>
-            <ul>
-                <li>itemKey (팝빌번호) : <span th:text="${CashbillInfo.itemKey}"></span></li>
-                <li>mgtKey (문서번호) : <span th:text="${CashbillInfo.mgtKey}"></span></li>
-                <li>tradeDate (거래일자) : <span th:text="${CashbillInfo.tradeDate}"></span></li>
-                <li>tradeDT (거래일시) : <span th:text="${CashbillInfo.tradeDT}"></span></li>
-                <li>issueDT (발행일시) : <span th:text="${CashbillInfo.issueDT}"></span></li>
-                <li>regDT (등록일시) : <span th:text="${CashbillInfo.regDT}"></span></li>
-                <li>taxationType (과세형태) : <span th:text="${CashbillInfo.taxationType}"></span></li>
-                <li>totalAmount (거래금액) : <span th:text="${CashbillInfo.totalAmount}"></span></li>
-                <li>tradeUsage (거래구분) : <span th:text="${CashbillInfo.tradeUsage}"></span></li>
-                <li>tradeOpt (거래유형) : <span th:text="${CashbillInfo.tradeOpt}"></span></li>
-                <li>tradeType (문서형태) : <span th:text="${CashbillInfo.tradeType}"></span></li>
-                <li>identityNum (거래처 식별번호) : <span th:text="${CashbillInfo.identityNum}"></span></li>
-                <li>itemName (거래처 주문상품명) : <span th:text="${CashbillInfo.itemName}"></span></li>
-                <li>customerName (거래처 고객명) : <span th:text="${CashbillInfo.customerName}"></span></li>
-                <li>stateCode (상태코드) : <span th:text="${CashbillInfo.stateCode}"></span></li>
-                <li>stateDT (상태변경일시) : <span th:text="${CashbillInfo.stateDT}"></span></li>
-                <li>printYN (인쇄여부) : <span th:text="${CashbillInfo.printYN}"></span></li>
-                <li>stateMemo (상태메모) : <span th:text="${CashbillInfo.stateMemo}"></span></li>
-                <li>ntssendDT (국세청 전송일시) : <span th:text="${CashbillInfo.ntssendDT}"></span></li>
-                <li>ntsresultDT (국세청 처리결과 수신일시) : <span th:text="${CashbillInfo.ntsresultDT}"></span></li>
-                <li>ntsresultCode (국세청 처리결과 상태코드) : <span th:text="${CashbillInfo.ntsresultCode}"></span></li>
-                <li>ntsresultMessage (국세청 처리결과 메시지) : <span th:text="${CashbillInfo.ntsresultMessage}"></span></li>
-                <li>orgConfirmNum (원본 현금영수증 승인번호) : <span th:text="${CashbillInfo.orgConfirmNum}"></span></li>
-                <li>orgTradeDate (원본 현금영수증 거래일자) : <span th:text="${CashbillInfo.orgTradeDate}"></span></li>
-            </ul>
-        </fieldset>
-    </fieldset>
-</div>
+	<div id="content" th:if="${CashbillInfo}">
+		<p class="heading1">Response</p>
+		<br />
+		<fieldset class="fieldset1">
+			<legend th:text="${#request?.requestURL}"></legend>
+			<fieldset class="fieldset2">
+				<legend>CashbillInfo</legend>
+				<ul>
+					<li>itemKey (팝빌번호) : <span th:text="${CashbillInfo.itemKey}"></span></li>
+					<li>mgtKey (문서번호) : <span th:text="${CashbillInfo.mgtKey}"></span></li>
+					<li>tradeDate (거래일자) : <span
+						th:text="${CashbillInfo.tradeDate}"></span></li>
+					<li>issueDT (발행일시) : <span th:text="${CashbillInfo.issueDT}"></span></li>
+					<li>regDT (등록일시) : <span th:text="${CashbillInfo.regDT}"></span></li>
+					<li>taxationType (과세형태) : <span
+						th:text="${CashbillInfo.taxationType}"></span></li>
+					<li>totalAmount (거래금액) : <span
+						th:text="${CashbillInfo.totalAmount}"></span></li>
+					<li>tradeUsage (거래구분) : <span
+						th:text="${CashbillInfo.tradeUsage}"></span></li>
+					<li>tradeOpt (거래유형) : <span th:text="${CashbillInfo.tradeOpt}"></span></li>
+					<li>tradeType (문서형태) : <span
+						th:text="${CashbillInfo.tradeType}"></span></li>
+					<li>identityNum (거래처 식별번호) : <span
+						th:text="${CashbillInfo.identityNum}"></span></li>
+					<li>itemName (거래처 주문상품명) : <span
+						th:text="${CashbillInfo.itemName}"></span></li>
+					<li>customerName (거래처 고객명) : <span
+						th:text="${CashbillInfo.customerName}"></span></li>
+					<li>stateCode (상태코드) : <span
+						th:text="${CashbillInfo.stateCode}"></span></li>
+					<li>stateDT (상태변경일시) : <span th:text="${CashbillInfo.stateDT}"></span></li>
+					<li>printYN (인쇄여부) : <span th:text="${CashbillInfo.printYN}"></span></li>
+					<li>interOPYN (연동문서여부) : <span
+						th:text="${CashbillInfo.interOPYN}"></span></li>
+					<li>stateMemo (상태메모) : <span
+						th:text="${CashbillInfo.stateMemo}"></span></li>
+					<li>ntssendDT (국세청 전송일시) : <span
+						th:text="${CashbillInfo.ntssendDT}"></span></li>
+					<li>ntsresultDT (국세청 처리결과 수신일시) : <span
+						th:text="${CashbillInfo.ntsresultDT}"></span></li>
+					<li>ntsresultCode (국세청 처리결과 상태코드) : <span
+						th:text="${CashbillInfo.ntsresultCode}"></span></li>
+					<li>ntsresultMessage (국세청 처리결과 메시지) : <span
+						th:text="${CashbillInfo.ntsresultMessage}"></span></li>
+					<li>orgConfirmNum (원본 현금영수증 승인번호) : <span
+						th:text="${CashbillInfo.orgConfirmNum}"></span></li>
+					<li>orgTradeDate (원본 현금영수증 거래일자) : <span
+						th:text="${CashbillInfo.orgTradeDate}"></span></li>
+				</ul>
+			</fieldset>
+		</fieldset>
+	</div>
+	<div id="content" th:if="${CashbillInfos}">
+		<p class="heading1">Response</p>
+		<br />
+		<fieldset class="fieldset1">
+			<legend th:text="${#request?.requestURL}"></legend>
+			<fieldset class="fieldset2" th:each="CashbillInfo : ${CashbillInfos}">
+				<legend>
+					CashbillInfo : <span th:text="${CashbillInfo.mgtKey}"></span>
+				</legend>
+				<ul>
+					<li>itemKey (팝빌번호) : <span th:text="${CashbillInfo.itemKey}"></span></li>
+					<li>mgtKey (문서번호) : <span th:text="${CashbillInfo.mgtKey}"></span></li>
+					<li>tradeDate (거래일자) : <span
+						th:text="${CashbillInfo.tradeDate}"></span></li>
+					<li>tradeDT (거래일시) : <span th:text="${CashbillInfo.tradeDT}"></span></li>
+					<li>issueDT (발행일시) : <span th:text="${CashbillInfo.issueDT}"></span></li>
+					<li>regDT (등록일시) : <span th:text="${CashbillInfo.regDT}"></span></li>
+					<li>taxationType (과세형태) : <span
+						th:text="${CashbillInfo.taxationType}"></span></li>
+					<li>totalAmount (거래금액) : <span
+						th:text="${CashbillInfo.totalAmount}"></span></li>
+					<li>tradeUsage (거래구분) : <span
+						th:text="${CashbillInfo.tradeUsage}"></span></li>
+					<li>tradeOpt (거래유형) : <span th:text="${CashbillInfo.tradeOpt}"></span></li>
+					<li>tradeType (문서형태) : <span
+						th:text="${CashbillInfo.tradeType}"></span></li>
+					<li>identityNum (거래처 식별번호) : <span
+						th:text="${CashbillInfo.identityNum}"></span></li>
+					<li>itemName (거래처 주문상품명) : <span
+						th:text="${CashbillInfo.itemName}"></span></li>
+					<li>customerName (거래처 고객명) : <span
+						th:text="${CashbillInfo.customerName}"></span></li>
+					<li>stateCode (상태코드) : <span
+						th:text="${CashbillInfo.stateCode}"></span></li>
+					<li>stateDT (상태변경일시) : <span th:text="${CashbillInfo.stateDT}"></span></li>
+					<li>printYN (인쇄여부) : <span th:text="${CashbillInfo.printYN}"></span></li>
+					<li>interOPYN (연동문서여부) : <span
+						th:text="${CashbillInfo.interOPYN}"></span></li>
+					<li>ntssendDT (국세청 전송일시) : <span
+						th:text="${CashbillInfo.ntssendDT}"></span></li>
+					<li>ntsresultDT (국세청 처리결과 수신일시) : <span
+						th:text="${CashbillInfo.ntsresultDT}"></span></li>
+					<li>ntsresultCode (국세청 처리결과 상태코드) : <span
+						th:text="${CashbillInfo.ntsresultCode}"></span></li>
+					<li>ntsresultMessage (국세청 처리결과 메시지) : <span
+						th:text="${CashbillInfo.ntsresultMessage}"></span></li>
+					<li>orgConfirmNum (원본 현금영수증 승인번호) : <span
+						th:text="${CashbillInfo.orgConfirmNum}"></span></li>
+					<li>orgTradeDate (원본 현금영수증 거래일자) : <span
+						th:text="${CashbillInfo.orgTradeDate}"></span></li>
+				</ul>
+			</fieldset>
+		</fieldset>
+	</div>
 </body>
 </html>

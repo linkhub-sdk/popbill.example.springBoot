@@ -8,20 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.popbill.api.AttachedFile;
 import com.popbill.api.BulkResponse;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.EmailSendConfig;
 import com.popbill.api.IssueResponse;
 import com.popbill.api.PopbillException;
-import com.popbill.api.Response;
 import com.popbill.api.TaxinvoiceCertificate;
 import com.popbill.api.TaxinvoiceService;
 import com.popbill.api.taxinvoice.BulkTaxinvoiceResult;
@@ -34,6 +26,11 @@ import com.popbill.api.taxinvoice.TaxinvoiceDetail;
 import com.popbill.api.taxinvoice.TaxinvoiceInfo;
 import com.popbill.api.taxinvoice.TaxinvoiceLog;
 import com.popbill.api.taxinvoice.TaxinvoiceXML;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(value = "TaxinvoiceService")
@@ -320,13 +317,13 @@ public class TaxinvoiceServiceController {
          *********************************************************************/
 
         // taxinvoice.setAddContactList(new ArrayList<TaxinvoiceAddContact>());
-		
+
         // TaxinvoiceAddContact addContact = new TaxinvoiceAddContact();
-		
+
         // addContact.setSerialNum(1);
         // addContact.setContactName("추가 담당자 성명");
         // addContact.setEmail("test2@test.com");
-		
+
         // taxinvoice.getAddContactList().add(addContact);
 
         // 거래명세서 동시작성여부 (true / false 중 택 1)
@@ -1904,8 +1901,8 @@ public class TaxinvoiceServiceController {
          * - https://developers.popbill.com/reference/taxinvoice/java/api/info#GetURL
          */
 
-        // TBOX : 임시문서함 , SBOX : 매출문서함 , PBOX : 매입문서함 , 
-        // SWBOX : 매출발행 대기함 , PWBOX : 매입발행 대기함 , WRITE : 매출작성
+        // TBOX : 임시문서함 , SBOX : 매출문서함 , PBOX : 매입문서함 ,
+        // SWBOX : 매출발행 대기함 , PWBOX : 매입발행 대기함 , WRITE : 정발행 작성
         String TOGO = "SBOX";
 
         try {

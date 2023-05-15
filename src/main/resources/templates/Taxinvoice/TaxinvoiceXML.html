@@ -1,24 +1,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
-    <title>팝빌 SDK SpringBoot Example.</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link href="/css/main.css" media="screen" rel="stylesheet"
+	type="text/css" />
+<title>팝빌 SDK SpringBoot Example.</title>
 </head>
 <body>
-<div id="content" th:if="${TaxinvoiceXML}">
-    <p class="heading1">Response</p>
-    <br/>
-    <fieldset class="fieldset1">
-        <legend th:text="${#request?.requestURL}"></legend>
-        <fieldset class="fieldset2">
-            <legend>TaxinvoiceXML</legend>
-            <ul>
-                <li>code (응답코드) : <span th:text="${TaxinvoiceXML.code}"></span></li>
-                <li>message (응답메시지) : <span th:text="${TaxinvoiceXML.message}"></span></li>
-                <li>retObject (전자세금계산서 XML 문서) : <span th:text="${TaxinvoiceXML.retObject}"></span></li>
-            </ul>
-        </fieldset>
-    </fieldset>
-</div>
+	<div id="content" th:if="${TaxinvoiceXML}">
+		<p class="heading1">Response</p>
+		<br />
+		<fieldset class="fieldset1">
+			<legend th:text="${#request?.requestURL}"></legend>
+			<fieldset class="fieldset2">
+				<legend>TaxinvoiceXML</legend>
+				<ul>
+					<li>code (응답코드) : <span th:text="${TaxinvoiceXML.code}"></span></li>
+					<li>message (응답메시지) : <span th:text="${TaxinvoiceXML.message}"></span></li>
+					<li>retObject (전자세금계산서 XML 문서) : <span
+						th:text="${TaxinvoiceXML.retObject}"></span></li>
+				</ul>
+			</fieldset>
+		</fieldset>
+	</div>
 </body>
 </html>

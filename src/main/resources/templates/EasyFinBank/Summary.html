@@ -1,23 +1,28 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
-    <title>팝빌 SDK SpringBoot Example.</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link href="/css/main.css" media="screen" rel="stylesheet"
+	type="text/css" />
+<title>팝빌 SDK SpringBoot Example.</title>
 </head>
 <body>
-<div id="content">
-    <p class="heading1">Response</p>
-    <br/>
-    <fieldset class="fieldset1">
-        <legend th:text="${#request?.requestURL}"></legend>
-        <ul>
-            <li>count (수집 결과 건수) : <span th:text="${SummaryResult.count}"></span></li>
-            <li>cntAccIn (입금거래 건수) : <span th:text="${SummaryResult.cntAccIn}"></span></li>
-            <li>cntAccOut (출금거래 건수) : <span th:text="${SummaryResult.cntAccOut}"></span></li>
-            <li>totalAccIn (입금액 합계) : <span th:text="${SummaryResult.totalAccIn}"></span></li>
-            <li>totalAccOut (출금액 합계) : <span th:text="${SummaryResult.totalAccOut}"></span></li>
-        </ul>
-    </fieldset>
-</div>
+	<div id="content">
+		<p class="heading1">Response</p>
+		<br />
+		<fieldset class="fieldset1">
+			<legend th:text="${#request?.requestURL}"></legend>
+			<ul>
+				<li>count (수집 결과 건수) : <span th:text="${SummaryResult.count}"></span></li>
+				<li>cntAccIn (입금거래 건수) : <span
+					th:text="${SummaryResult.cntAccIn}"></span></li>
+				<li>cntAccOut (출금거래 건수) : <span
+					th:text="${SummaryResult.cntAccOut}"></span></li>
+				<li>totalAccIn (입금액 합계) : <span
+					th:text="${SummaryResult.totalAccIn}"></span></li>
+				<li>totalAccOut (출금액 합계) : <span
+					th:text="${SummaryResult.totalAccOut}"></span></li>
+			</ul>
+		</fieldset>
+	</div>
 </body>
 </html>

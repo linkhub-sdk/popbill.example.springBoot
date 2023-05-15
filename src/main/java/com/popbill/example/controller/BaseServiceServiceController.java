@@ -1,6 +1,20 @@
 package com.popbill.example.controller;
 
-import com.popbill.api.*;
+import com.popbill.api.ContactInfo;
+import com.popbill.api.CorpInfo;
+import com.popbill.api.JoinForm;
+import com.popbill.api.PaymentForm;
+import com.popbill.api.PaymentHistory;
+import com.popbill.api.PaymentHistoryResult;
+import com.popbill.api.PaymentResponse;
+import com.popbill.api.PopbillException;
+import com.popbill.api.RefundForm;
+import com.popbill.api.RefundHistory;
+import com.popbill.api.RefundHistoryResult;
+import com.popbill.api.RefundResponse;
+import com.popbill.api.Response;
+import com.popbill.api.TaxinvoiceService;
+import com.popbill.api.UseHistoryResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -689,12 +703,12 @@ public class BaseServiceServiceController {
 
         try {
             RefundHistory response = taxinvoiceService.getRefundInfo(testCorpNum, refundCode);
-            m.addAttribute("Response", response);
+            m.addAttribute("response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
         }
-        return "refundHistoryResult";
+        return "refundHistory";
     }
 
     @RequestMapping(value = "getRefundableBalance", method = RequestMethod.GET)

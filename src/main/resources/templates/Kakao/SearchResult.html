@@ -1,48 +1,64 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
-    <title>팝빌 SDK SpringBoot Example.</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link href="/css/main.css" media="screen" rel="stylesheet"
+	type="text/css" />
+<title>팝빌 SDK SpringBoot Example.</title>
 </head>
 <body>
-<div id="content">
-    <p class="heading1">Response</p>
-    <br/>
-    <fieldset class="fieldset1">
-        <legend th:text="${#request?.requestURL}"></legend>
-        <fieldset class="fieldset2" th:if="${SearchResult}">
-            <legend>검색결과 정보</legend>
-            <ul>
-                <li>code (응답코드) : <span th:text="${SearchResult.code}"></span></li>
-                <li>message (응답 메시지) : <span th:text="${SearchResult.message}"></span></li>
-                <li>total (전체 검색개수) : <span th:text="${SearchResult.total}"></span></li>
-                <li>perPage (페이지당 목록개수) : <span th:text="${SearchResult.perPage}"></span></li>
-                <li>pageNum (페이지번호) : <span th:text="${SearchResult.pageNum}"></span></li>
-                <li>pageCount (페이지수) : <span th:text="${SearchResult.pageCount}"></span></li>
-            </ul>
+	<div id="content">
+		<p class="heading1">Response</p>
+		<br />
+		<fieldset class="fieldset1">
+			<legend th:text="${#request?.requestURL}"></legend>
+			<fieldset class="fieldset2" th:if="${SearchResult}">
+				<legend>검색결과 정보</legend>
+				<ul>
+					<li>code (응답코드) : <span th:text="${SearchResult.code}"></span></li>
+					<li>message (응답 메시지) : <span th:text="${SearchResult.message}"></span></li>
+					<li>total (전체 검색개수) : <span th:text="${SearchResult.total}"></span></li>
+					<li>perPage (페이지당 목록개수) : <span
+						th:text="${SearchResult.perPage}"></span></li>
+					<li>pageNum (페이지번호) : <span th:text="${SearchResult.pageNum}"></span></li>
+					<li>pageCount (페이지수) : <span
+						th:text="${SearchResult.pageCount}"></span></li>
+				</ul>
 
-            <fieldset class="fieldset3" th:each="msgInfo, index : ${SearchResult.list}">
-                <legend>전송결과 정보[ <span th:text="${index.index + 1}"></span> / <span th:text="${index.size}"></span> ]</legend>
-                <ul>
-                    <li>state (전송상태 코드) : <span th:text="${msgInfo.state}"></span></li>
-                    <li>sendDT (전송일시) : <span th:text="${msgInfo.sendDT}"></span></li>
-                    <li>receiveNum (수신번호) : <span th:text="${msgInfo.receiveNum}"></span></li>
-                    <li>receiveName (수신자명) : <span th:text="${msgInfo.receiveName}"></span></li>
-                    <li>content (알림톡/친구톡 내용) : <span th:text="${msgInfo.content}"></span></li>
-                    <li>result (알림톡/친구톡 전송결과 코드) : <span th:text="${msgInfo.result}"></span></li>
-                    <li>resultDT (알림톡/친구톡 전송결과 수신일시) : <span th:text="${msgInfo.resultDT}"></span></li>
-                    <li>altSubject (대체문자 제목) : <span th:text="${msgInfo.altSubject}"></span></li>
-                    <li>altContent (대체문자 내용) : <span th:text="${msgInfo.altContent}"></span></li>
-                    <li>altContentType (대체문자 전송유형) : <span th:text="${msgInfo.altContentType}"></span></li>
-                    <li>altSendDT (대체문자 전송일시) : <span th:text="${msgInfo.altSendDT}"></span></li>
-                    <li>altResult (대체문자 전송결과 코드) : <span th:text="${msgInfo.altResult}"></span></li>
-                    <li>altResultDT (대체문자 전송결과 수신일시) : <span th:text="${msgInfo.altResultDT}"></span></li>
-                    <li>receiptNum (접수번호) : <span th:text="${msgInfo.receiptNum}"></span></li>
-                    <li>requestNum (요청번호) : <span th:text="${msgInfo.requestNum}"></span></li>
-                </ul>
-            </fieldset>
-        </fieldset>
-    </fieldset>
-</div>
+				<fieldset class="fieldset3"
+					th:each="msgInfo, index : ${SearchResult.list}">
+					<legend>
+						전송결과 정보[ <span th:text="${index.index + 1}"></span> / <span
+							th:text="${index.size}"></span> ]
+					</legend>
+					<ul>
+						<li>state (전송상태 코드) : <span th:text="${msgInfo.state}"></span></li>
+						<li>sendDT (전송일시) : <span th:text="${msgInfo.sendDT}"></span></li>
+						<li>receiveNum (수신번호) : <span th:text="${msgInfo.receiveNum}"></span></li>
+						<li>receiveName (수신자명) : <span
+							th:text="${msgInfo.receiveName}"></span></li>
+						<li>content (알림톡/친구톡 내용) : <span th:text="${msgInfo.content}"></span></li>
+						<li>result (알림톡/친구톡 전송결과 코드) : <span
+							th:text="${msgInfo.result}"></span></li>
+						<li>resultDT (알림톡/친구톡 전송결과 수신일시) : <span
+							th:text="${msgInfo.resultDT}"></span></li>
+						<li>altSubject (대체문자 제목) : <span
+							th:text="${msgInfo.altSubject}"></span></li>
+						<li>altContent (대체문자 내용) : <span
+							th:text="${msgInfo.altContent}"></span></li>
+						<li>altContentType (대체문자 전송유형) : <span
+							th:text="${msgInfo.altContentType}"></span></li>
+						<li>altSendDT (대체문자 전송일시) : <span
+							th:text="${msgInfo.altSendDT}"></span></li>
+						<li>altResult (대체문자 전송결과 코드) : <span
+							th:text="${msgInfo.altResult}"></span></li>
+						<li>altResultDT (대체문자 전송결과 수신일시) : <span
+							th:text="${msgInfo.altResultDT}"></span></li>
+						<li>receiptNum (접수번호) : <span th:text="${msgInfo.receiptNum}"></span></li>
+						<li>requestNum (요청번호) : <span th:text="${msgInfo.requestNum}"></span></li>
+					</ul>
+				</fieldset>
+			</fieldset>
+		</fieldset>
+	</div>
 </body>
 </html>

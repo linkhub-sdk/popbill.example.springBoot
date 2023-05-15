@@ -1,0 +1,26 @@
+r<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+        <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
+        <title>팝빌 SDK SpringBoot Example.</title>
+    </head>
+    <body>
+    <div id="content">
+        <p class="heading1">RefundHistory</p>
+        <br/>
+        <fieldset class="fieldset1">
+                <legend>환불신청 정보</legend>
+                <ul>
+                    <li>reqDT (신청일자) : <span th:text="${response.reqDT}"></span></li>
+                        <li>requestPoint (환불 신청포인트) : <span th:text="${response.requestPoint}"></span></li>
+                        <li>accountBank (환불계좌 은행명) : <span th:text="${response.accountBank}"></span></li>
+                        <li>accountNum (환불계좌번호) : <span th:text="${response.accountNum}"></span></li>
+                        <li>accountName (환불계좌 예금주명) : <span th:text="${response.accountName}"></span></li>
+                        <li>state (상태) : <span th:text="${response.state}"></span></li>
+                        <li>reason (환불사유) : <span th:text="${response.reason}"></span></li>
+                </ul>
+
+        </fieldset>
+    </div>
+    </body>
+    </html>

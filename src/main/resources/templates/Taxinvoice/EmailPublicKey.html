@@ -1,22 +1,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
-    <title>팝빌 SDK SpringBoot Example.</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link href="/css/main.css" media="screen" rel="stylesheet"
+	type="text/css" />
+<title>팝빌 SDK SpringBoot Example.</title>
 </head>
 <body>
-<div id="content">
-    <p class="heading1">Response</p>
-    <br/>
-    <fieldset class="fieldset1">
-        <legend th:text="${#request?.requestURL}"></legend>
-        <fieldset class="fieldset2" th:each="EmailPublicKey : ${EmailPublicKeys}">
-            <ul>
-                <li>confirmNum (유통사업자 승인번호) : <span th:text="${EmailPublicKey.confirmNum}"></span></li>
-                <li>email (유통사업자 이메일) : <span th:text="${EmailPublicKey.email}"></span></li>
-            </ul>
-        </fieldset>
-    </fieldset>
-</div>
+	<div id="content">
+		<p class="heading1">Response</p>
+		<br />
+		<fieldset class="fieldset1">
+			<legend th:text="${#request?.requestURL}"></legend>
+			<fieldset class="fieldset2"
+				th:each="EmailPublicKey : ${EmailPublicKeys}">
+				<ul>
+					<li>confirmNum (유통사업자 승인번호) : <span
+						th:text="${EmailPublicKey.confirmNum}"></span></li>
+					<li>email (유통사업자 이메일) : <span
+						th:text="${EmailPublicKey.email}"></span></li>
+				</ul>
+			</fieldset>
+		</fieldset>
+	</div>
 </body>
 </html>

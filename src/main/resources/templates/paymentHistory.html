@@ -1,30 +1,39 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
-    <title>팝빌 SDK SpringBoot Example.</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link href="/css/main.css" media="screen" rel="stylesheet"
+	type="text/css" />
+<title>팝빌 SDK SpringBoot Example.</title>
 </head>
 <body>
-<div id="content">
-    <p class="heading1">PaymentHistory</p>
-    <br/>
-    <fieldset class="fieldset1">
-        <legend th:text="${#request?.requestURL}"></legend>
-        <fieldset class="fieldset2">
-            <ul>
-                <li>productType (결제 내용) : <span th:text="${PaymentHistory.productType}"></span></li>
-                <li>productName (정액제 상품명) : <span th:text="${PaymentHistory.productName}"></span></li>
-                <li>settleType (결제유형) : <span th:text="${PaymentHistory.settleType}"></span></li>
-                <li>settlerName (담당자명) : <span th:text="${PaymentHistory.settlerName}"></span></li>
-                <li>settlerEmail (담당자메일) : <span th:text="${PaymentHistory.settlerEmail}"></span></li>
-                <li>settleCost (결제금액) : <span th:text="${PaymentHistory.settleCost}"></span></li>
-                <li>settlePoint (충전포인트) : <span th:text="${PaymentHistory.settlePoint}"></span></li>
-                <li>settleState (결제상태) : <span th:text="${PaymentHistory.settleState}"></span></li>
-                <li>regDT (등록일시) : <span th:text="${PaymentHistory.regDT}"></span></li>
-                <li>stateDT (상태일시) : <span th:text="${PaymentHistory.stateDT}"></span></li>
-            </ul>
-        </fieldset>
-    </fieldset>
-</div>
+	<div id="content">
+		<p class="heading1">PaymentHistory</p>
+		<br />
+		<fieldset class="fieldset1">
+			<legend th:text="${#request?.requestURL}"></legend>
+			<fieldset class="fieldset2">
+				<ul>
+					<li>productType (결제 내용) : <span
+						th:text="${PaymentHistory.productType}"></span></li>
+					<li>productName (정액제 상품명) : <span
+						th:text="${PaymentHistory.productName}"></span></li>
+					<li>settleType (결제유형) : <span
+						th:text="${PaymentHistory.settleType}"></span></li>
+					<li>settlerName (담당자명) : <span
+						th:text="${PaymentHistory.settlerName}"></span></li>
+					<li>settlerEmail (담당자메일) : <span
+						th:text="${PaymentHistory.settlerEmail}"></span></li>
+					<li>settleCost (결제금액) : <span
+						th:text="${PaymentHistory.settleCost}"></span></li>
+					<li>settlePoint (충전포인트) : <span
+						th:text="${PaymentHistory.settlePoint}"></span></li>
+					<li>settleState (결제상태) : <span
+						th:text="${PaymentHistory.settleState}"></span></li>
+					<li>regDT (등록일시) : <span th:text="${PaymentHistory.regDT}"></span></li>
+					<li>stateDT (상태일시) : <span th:text="${PaymentHistory.stateDT}"></span></li>
+				</ul>
+			</fieldset>
+		</fieldset>
+	</div>
 </body>
 </html>

@@ -1,29 +1,39 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
-    <title>팝빌 SDK SpringBoot Example.</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link href="/css/main.css" media="screen" rel="stylesheet"
+	type="text/css" />
+<title>팝빌 SDK SpringBoot Example.</title>
 </head>
 <body>
-<div id="content">
-    <p class="heading1">Response</p>
-    <br/>
-    <fieldset class="fieldset1">
-        <legend th:text="${#request?.requestURL}"></legend>
-        <fieldset class="fieldset2" th:each="TaxinvoiceLog, index : ${TaxinvoiceLogs}">
-            <legend>[<span th:text="${index.index + 1}"></span>/<span th:text="${index.size}"></span>]</legend>
-            <ul>
-                <li>docLogType (로그타입) : <span th:text="${TaxinvoiceLog.docLogType}"></span></li>
-                <li>log (이력정보) : <span th:text="${TaxinvoiceLog.log}"></span></li>
-                <li>procType (처리형태) : <span th:text="${TaxinvoiceLog.procType}"></span></li>
-                <li>procCorpName (처리회사명) : <span th:text="${TaxinvoiceLog.procCorpName}"></span></li>
-                <li>procContactName (처리담당자) : <span th:text="${TaxinvoiceLog.procContactName}"></span></li>
-                <li>procMemo (처리메모) : <span th:text="${TaxinvoiceLog.procMemo}"></span></li>
-                <li>regDT (등록일시) : <span th:text="${TaxinvoiceLog.regDT}"></span></li>
-                <li>ip (아이피) : <span th:text="${TaxinvoiceLog.IP}"></span></li>
-            </ul>
-        </fieldset>
-    </fieldset>
-</div>
+	<div id="content">
+		<p class="heading1">Response</p>
+		<br />
+		<fieldset class="fieldset1">
+			<legend th:text="${#request?.requestURL}"></legend>
+			<fieldset class="fieldset2"
+				th:each="TaxinvoiceLog, index : ${TaxinvoiceLogs}">
+				<legend>
+					[<span th:text="${index.index + 1}"></span>/<span
+						th:text="${index.size}"></span>]
+				</legend>
+				<ul>
+					<li>docLogType (로그타입) : <span
+						th:text="${TaxinvoiceLog.docLogType}"></span></li>
+					<li>log (이력정보) : <span th:text="${TaxinvoiceLog.log}"></span></li>
+					<li>procType (처리형태) : <span
+						th:text="${TaxinvoiceLog.procType}"></span></li>
+					<li>procCorpName (처리회사명) : <span
+						th:text="${TaxinvoiceLog.procCorpName}"></span></li>
+					<li>procContactName (처리담당자) : <span
+						th:text="${TaxinvoiceLog.procContactName}"></span></li>
+					<li>procMemo (처리메모) : <span
+						th:text="${TaxinvoiceLog.procMemo}"></span></li>
+					<li>regDT (등록일시) : <span th:text="${TaxinvoiceLog.regDT}"></span></li>
+					<li>ip (아이피) : <span th:text="${TaxinvoiceLog.IP}"></span></li>
+				</ul>
+			</fieldset>
+		</fieldset>
+	</div>
 </body>
 </html>

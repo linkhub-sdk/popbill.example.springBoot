@@ -1,89 +1,128 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
-    <title>팝빌 SDK SpringBoot Example.</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link href="/css/main.css" media="screen" rel="stylesheet"
+	type="text/css" />
+<title>팝빌 SDK SpringBoot Example.</title>
 </head>
 <body>
-<div id="content">
-    <p class="heading1">Response</p>
-    <br/>
-    <fieldset class="fieldset1">
-        <legend th:text="${#request?.requestURL}"></legend>
-        <fieldset class="fieldset2">
-            <legend>Statement</legend>
-            <ul>
-                <li>itemCode (전자명세서 유형 코드) : <span th:text="${Statement.itemCode}"></span></li>
-                <li>mgtKey (문서번호) : <span th:text="${Statement.mgtKey}"></span></li>
-                <li>formCode (맞춤양식 코드) : <span th:text="${Statement.formCode}"></span></li>
-                <li>writeDate (작성일자) : <span th:text="${Statement.writeDate}"></span></li>
-                <li>taxType (과세형태) : <span th:text="${Statement.taxType}"></span></li>
-                <li>purposeType (영수/청구) : <span th:text="${Statement.purposeType}"></span></li>
-                <li>serialNum (일련번호) : <span th:text="${Statement.serialNum}"></span></li>
-                <li>taxTotal (세액 합계) : <span th:text="${Statement.taxTotal}"></span></li>
-                <li>supplyCostTotal (공급가액 합계) : <span th:text="${Statement.supplyCostTotal}"></span></li>
-                <li>totalAmount (합계금액) : <span th:text="${Statement.totalAmount}"></span></li>
-                <li>remark1 (비고1) : <span th:text="${Statement.remark1}"></span></li>
-                <li>remark2 (비고2) : <span th:text="${Statement.remark2}"></span></li>
-                <li>remark3 (비고3) : <span th:text="${Statement.remark3}"></span></li>
+	<div id="content">
+		<p class="heading1">Response</p>
+		<br />
+		<fieldset class="fieldset1">
+			<legend th:text="${#request?.requestURL}"></legend>
+			<fieldset class="fieldset2">
+				<legend>Statement</legend>
+				<ul>
+					<li>itemCode (전자명세서 유형 코드) : <span
+						th:text="${Statement.itemCode}"></span></li>
+					<li>mgtKey (문서번호) : <span th:text="${Statement.mgtKey}"></span></li>
+					<li>formCode (맞춤양식 코드) : <span th:text="${Statement.formCode}"></span></li>
+					<li>writeDate (작성일자) : <span th:text="${Statement.writeDate}"></span></li>
+					<li>taxType (과세형태) : <span th:text="${Statement.taxType}"></span></li>
+					<li>purposeType (영수/청구) : <span
+						th:text="${Statement.purposeType}"></span></li>
+					<li>serialNum (일련번호) : <span th:text="${Statement.serialNum}"></span></li>
+					<li>taxTotal (세액 합계) : <span th:text="${Statement.taxTotal}"></span></li>
+					<li>supplyCostTotal (공급가액 합계) : <span
+						th:text="${Statement.supplyCostTotal}"></span></li>
+					<li>totalAmount (합계금액) : <span
+						th:text="${Statement.totalAmount}"></span></li>
+					<li>remark1 (비고1) : <span th:text="${Statement.remark1}"></span></li>
+					<li>remark2 (비고2) : <span th:text="${Statement.remark2}"></span></li>
+					<li>remark3 (비고3) : <span th:text="${Statement.remark3}"></span></li>
 
-                <li>senderCorpNum (발신자 사업자번호) : <span th:text="${Statement.senderCorpNum}"></span></li>
-                <li>senderTaxRegID (발신자 종사업장번호) : <span th:text="${Statement.senderTaxRegID}"></span></li>
-                <li>senderCorpName (발신자 상호) : <span th:text="${Statement.senderCorpName}"></span></li>
-                <li>senderCEOName (발신자 대표자 성명) : <span th:text="${Statement.senderCEOName}"></span></li>
-                <li>senderAddr (발신자 주소) : <span th:text="${Statement.senderAddr}"></span></li>
-                <li>senderBizType (발신자 업태) : <span th:text="${Statement.senderBizType}"></span></li>
-                <li>senderBizClass (발신자 종목) : <span th:text="${Statement.senderBizClass}"></span></li>
-                <li>senderContactName (발신자 성명) : <span th:text="${Statement.senderContactName}"></span></li>
-                <li>senderDeptName (발신자 부서명) : <span th:text="${Statement.senderDeptName}"></span></li>
-                <li>senderTEL (발신자 연락처) : <span th:text="${Statement.senderTEL}"></span></li>
-                <li>senderHP (발신자 휴대전화) : <span th:text="${Statement.senderHP}"></span></li>
-                <li>senderEmail (발신자 이메일주소) : <span th:text="${Statement.senderEmail}"></span></li>
-                <li>senderFAX (발신자 팩스번호) : <span th:text="${Statement.senderFAX}"></span></li>
+					<li>senderCorpNum (발신자 사업자번호) : <span
+						th:text="${Statement.senderCorpNum}"></span></li>
+					<li>senderTaxRegID (발신자 종사업장번호) : <span
+						th:text="${Statement.senderTaxRegID}"></span></li>
+					<li>senderCorpName (발신자 상호) : <span
+						th:text="${Statement.senderCorpName}"></span></li>
+					<li>senderCEOName (발신자 대표자 성명) : <span
+						th:text="${Statement.senderCEOName}"></span></li>
+					<li>senderAddr (발신자 주소) : <span
+						th:text="${Statement.senderAddr}"></span></li>
+					<li>senderBizType (발신자 업태) : <span
+						th:text="${Statement.senderBizType}"></span></li>
+					<li>senderBizClass (발신자 종목) : <span
+						th:text="${Statement.senderBizClass}"></span></li>
+					<li>senderContactName (발신자 성명) : <span
+						th:text="${Statement.senderContactName}"></span></li>
+					<li>senderDeptName (발신자 부서명) : <span
+						th:text="${Statement.senderDeptName}"></span></li>
+					<li>senderTEL (발신자 연락처) : <span
+						th:text="${Statement.senderTEL}"></span></li>
+					<li>senderHP (발신자 휴대전화) : <span
+						th:text="${Statement.senderHP}"></span></li>
+					<li>senderEmail (발신자 이메일주소) : <span
+						th:text="${Statement.senderEmail}"></span></li>
+					<li>senderFAX (발신자 팩스번호) : <span
+						th:text="${Statement.senderFAX}"></span></li>
 
-                <li>receiverCorpNum (수신자 사업자번호) : <span th:text="${Statement.receiverCorpNum}"></span></li>
-                <li>receiverTaxRegID (수신자 종사업장번호) : <span th:text="${Statement.receiverTaxRegID}"></span></li>
-                <li>receiverCorpName (수신자 상호) : <span th:text="${Statement.receiverCorpName}"></span></li>
-                <li>receiverCEOName (수신자 대표자 성명) : <span th:text="${Statement.receiverCEOName}"></span></li>
-                <li>receiverAddr (수신자 주소) : <span th:text="${Statement.receiverAddr}"></span></li>
-                <li>receiverBizType (수신자 업태) : <span th:text="${Statement.receiverBizType}"></span></li>
-                <li>receiverBizClass (수신자 종목) : <span th:text="${Statement.receiverBizClass}"></span></li>
-                <li>receiverContactName (수신자 성명) : <span th:text="${Statement.receiverContactName}"></span></li>
-                <li>receiverDeptName (수신자 부서명) : <span th:text="${Statement.receiverDeptName}"></span></li>
-                <li>receiverTEL (수신자 연락처) : <span th:text="${Statement.receiverTEL}"></span></li>
-                <li>receiverHP (수신자 휴대전화) : <span th:text="${Statement.receiverHP}"></span></li>
-                <li>receiverEmail (수신자 이메일주소) : <span th:text="${Statement.receiverEmail}"></span></li>
-                <li>receiverFAX (수신자 팩스번호) : <span th:text="${Statement.receiverFAX}"></span></li>
+					<li>receiverCorpNum (수신자 사업자번호) : <span
+						th:text="${Statement.receiverCorpNum}"></span></li>
+					<li>receiverTaxRegID (수신자 종사업장번호) : <span
+						th:text="${Statement.receiverTaxRegID}"></span></li>
+					<li>receiverCorpName (수신자 상호) : <span
+						th:text="${Statement.receiverCorpName}"></span></li>
+					<li>receiverCEOName (수신자 대표자 성명) : <span
+						th:text="${Statement.receiverCEOName}"></span></li>
+					<li>receiverAddr (수신자 주소) : <span
+						th:text="${Statement.receiverAddr}"></span></li>
+					<li>receiverBizType (수신자 업태) : <span
+						th:text="${Statement.receiverBizType}"></span></li>
+					<li>receiverBizClass (수신자 종목) : <span
+						th:text="${Statement.receiverBizClass}"></span></li>
+					<li>receiverContactName (수신자 성명) : <span
+						th:text="${Statement.receiverContactName}"></span></li>
+					<li>receiverDeptName (수신자 부서명) : <span
+						th:text="${Statement.receiverDeptName}"></span></li>
+					<li>receiverTEL (수신자 연락처) : <span
+						th:text="${Statement.receiverTEL}"></span></li>
+					<li>receiverHP (수신자 휴대전화) : <span
+						th:text="${Statement.receiverHP}"></span></li>
+					<li>receiverEmail (수신자 이메일주소) : <span
+						th:text="${Statement.receiverEmail}"></span></li>
+					<li>receiverFAX (수신자 팩스번호) : <span
+						th:text="${Statement.receiverFAX}"></span></li>
 
-            </ul>
-            <fieldset class="fieldset3" th:each="StatementDetail : ${Statement.detailList}">
-                <legend>detailList (상세항목)</legend>
-                <ul>
-                    <li>serialNum (일련번호) : <span th:text="${StatementDetail.serialNum}"></span></li>
-                    <li>purchaseDT (거래일자) : <span th:text="${StatementDetail.purchaseDT}"></span></li>
-                    <li>itemName (품목명) : <span th:text="${StatementDetail.itemName}"></span></li>
-                    <li>spec (규격) : <span th:text="${StatementDetail.spec}"></span></li>
-                    <li>qty (수량) : <span th:text="${StatementDetail.qty}"></span></li>
-                    <li>unitCost (단가) : <span th:text="${StatementDetail.unitCost}"></span></li>
-                    <li>supplyCost (공급가액) : <span th:text="${StatementDetail.supplyCost}"></span></li>
-                    <li>tax (세액) : <span th:text="${StatementDetail.tax}"></span></li>
-                    <li>remark (비고) : <span th:text="${StatementDetail.remark}"></span></li>
-                    <li>spare1 (비고) : <span th:text="${StatementDetail.spare1}"></span></li>
-                    <li>spare2 (비고) : <span th:text="${StatementDetail.spare2}"></span></li>
-                    <li>spare3 (비고) : <span th:text="${StatementDetail.spare3}"></span></li>
-                    <li>spare4 (비고) : <span th:text="${StatementDetail.spare4}"></span></li>
-                    <li>spare5 (비고) : <span th:text="${StatementDetail.spare5}"></span>
-                    </li>
-                </ul>
-            </fieldset>
-            <fieldset class="fieldset3" th:if="${Statement.propertyBag}">
-                <legend>propertyBag</legend>
-                <ul>
-                    <li th:each="propertyBag : ${Statement.propertyBag}"><span th:text="${propertyBag.key}"></span> : <span th:text=" ${propertyBag.value}"></span></li>
-                </ul>
-            </fieldset>
-        </fieldset>
-    </fieldset>
-</div>
+				</ul>
+				<fieldset class="fieldset3"
+					th:each="StatementDetail : ${Statement.detailList}">
+					<legend>detailList (상세항목)</legend>
+					<ul>
+						<li>serialNum (일련번호) : <span
+							th:text="${StatementDetail.serialNum}"></span></li>
+						<li>purchaseDT (거래일자) : <span
+							th:text="${StatementDetail.purchaseDT}"></span></li>
+						<li>itemName (품목명) : <span
+							th:text="${StatementDetail.itemName}"></span></li>
+						<li>spec (규격) : <span th:text="${StatementDetail.spec}"></span></li>
+						<li>qty (수량) : <span th:text="${StatementDetail.qty}"></span></li>
+						<li>unitCost (단가) : <span
+							th:text="${StatementDetail.unitCost}"></span></li>
+						<li>supplyCost (공급가액) : <span
+							th:text="${StatementDetail.supplyCost}"></span></li>
+						<li>tax (세액) : <span th:text="${StatementDetail.tax}"></span></li>
+						<li>remark (비고) : <span th:text="${StatementDetail.remark}"></span></li>
+						<li>spare1 (비고) : <span th:text="${StatementDetail.spare1}"></span></li>
+						<li>spare2 (비고) : <span th:text="${StatementDetail.spare2}"></span></li>
+						<li>spare3 (비고) : <span th:text="${StatementDetail.spare3}"></span></li>
+						<li>spare4 (비고) : <span th:text="${StatementDetail.spare4}"></span></li>
+						<li>spare5 (비고) : <span th:text="${StatementDetail.spare5}"></span>
+						</li>
+					</ul>
+				</fieldset>
+				<fieldset class="fieldset3" th:if="${Statement.propertyBag}">
+					<legend>propertyBag</legend>
+					<ul>
+						<li th:each="propertyBag : ${Statement.propertyBag}"><span
+							th:text="${propertyBag.key}"></span> : <span
+							th:text=" ${propertyBag.value}"></span></li>
+					</ul>
+				</fieldset>
+			</fieldset>
+		</fieldset>
+	</div>
 </body>
 </html>

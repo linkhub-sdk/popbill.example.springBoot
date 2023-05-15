@@ -1,25 +1,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
-    <title>팝빌 SDK SpringBoot Example.</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link href="/css/main.css" media="screen" rel="stylesheet"
+	type="text/css" />
+<title>팝빌 SDK SpringBoot Example.</title>
 </head>
 <body>
-<div id="content">
-    <p class="heading1">Response</p>
-    <br/>
-    <fieldset class="fieldset1">
-        <legend th:text="${#request?.requestURL}"></legend>
-        <fieldset class="fieldset2">
-            <ul>
-                <li>ceoname (대표자 성명) : <span th:text="${CorpInfo.ceoname}"></span></li>
-                <li>corpName (상호) : <span th:text="${CorpInfo.corpName}"></span></li>
-                <li>addr (주소) : <span th:text="${CorpInfo.addr}"></span></li>
-                <li>bizType (업태) : <span th:text="${CorpInfo.bizType}"></span></li>
-                <li>bizClass (업종) : <span th:text="${CorpInfo.bizClass}"></span></li>
-            </ul>
-        </fieldset>
-    </fieldset>
-</div>
+	<div id="content">
+		<p class="heading1">Response</p>
+		<br />
+		<fieldset class="fieldset1">
+			<legend th:text="${#request?.requestURL}"></legend>
+			<fieldset class="fieldset2">
+				<ul>
+					<li>ceoname (대표자 성명) : <span th:text="${CorpInfo.ceoname}"></span></li>
+					<li>corpName (상호) : <span th:text="${CorpInfo.corpName}"></span></li>
+					<li>addr (주소) : <span th:text="${CorpInfo.addr}"></span></li>
+					<li>bizType (업태) : <span th:text="${CorpInfo.bizType}"></span></li>
+					<li>bizClass (업종) : <span th:text="${CorpInfo.bizClass}"></span></li>
+				</ul>
+			</fieldset>
+		</fieldset>
+	</div>
 </body>
 </html>

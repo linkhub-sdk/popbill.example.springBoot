@@ -1,73 +1,100 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-    <link href="/css/main.css" media="screen" rel="stylesheet" type="text/css"/>
-    <title>팝빌 SDK SpringBoot Example.</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link href="/css/main.css" media="screen" rel="stylesheet"
+	type="text/css" />
+<title>팝빌 SDK SpringBoot Example.</title>
 </head>
 <body>
-<div id="content">
-    <p class="heading1">Response</p>
-    <br/>
-    <fieldset class="fieldset1">
-        <legend th:text="${#request?.requestURL}"></legend>
-        <fieldset class="fieldset2" th:if="sentInfos">
-            <ul>
-                <li>contentType (카카오톡 유형) : <span th:text="${sentInfos.contentType}"></span></li>
-                <li>templateCode (템플릿 코드) : <span th:text="${sentInfos.templateCode}"></span></li>
-                <li>plusFriendID (카카오톡 채널 아이디) : <span th:text="${sentInfos.plusFriendID}"></span></li>
-                <li>sendNum (발신번호) : <span th:text="${sentInfos.sendNum}"></span></li>
-                <li>altSubject (대체문자 제목) : <span th:text="${sentInfos.altSubject}"></span></li>
-                <li>altContent (대체문자 내용) : <span th:text="${sentInfos.altContent}"></span></li>
-                <li>altSendType (대체문자 전송유형) : <span th:text="${sentInfos.altSendType}"></span></li>
-                <li>reserveDT (예약일시) : <span th:text="${sentInfos.reserveDT}"></span></li>
-                <li>adsYN (광고전송 여부) : <span th:text="${sentInfos.adsYN}"></span></li>
-                <li>imageURL (친구톡 이미지 URL) : <span th:text="${sentInfos.imageURL}"></span></li>
-                <li>sendCnt (전송건수) : <span th:text="${sentInfos.sendCnt}"></span></li>
-                <li>successCnt (성공건수) : <span th:text="${sentInfos.successCnt}"></span></li>
-                <li>failCnt (실패건수) : <span th:text="${sentInfos.failCnt}"></span></li>
-                <li>altCnt (대체문자 건수) : <span th:text="${sentInfos.altCnt}"></span></li>
-                <li>cancelCnt (취소건수) : <span th:text="${sentInfos.cancelCnt}"></span></li>
-            </ul>
-        </fieldset>
+	<div id="content">
+		<p class="heading1">Response</p>
+		<br />
+		<fieldset class="fieldset1">
+			<legend th:text="${#request?.requestURL}"></legend>
+			<fieldset class="fieldset2" th:if="sentInfos">
+				<ul>
+					<li>contentType (카카오톡 유형) : <span
+						th:text="${sentInfos.contentType}"></span></li>
+					<li>templateCode (템플릿 코드) : <span
+						th:text="${sentInfos.templateCode}"></span></li>
+					<li>plusFriendID (카카오톡 채널 아이디) : <span
+						th:text="${sentInfos.plusFriendID}"></span></li>
+					<li>sendNum (발신번호) : <span th:text="${sentInfos.sendNum}"></span></li>
+					<li>altSubject (대체문자 제목) : <span
+						th:text="${sentInfos.altSubject}"></span></li>
+					<li>altContent (대체문자 내용) : <span
+						th:text="${sentInfos.altContent}"></span></li>
+					<li>altSendType (대체문자 전송유형) : <span
+						th:text="${sentInfos.altSendType}"></span></li>
+					<li>reserveDT (예약일시) : <span th:text="${sentInfos.reserveDT}"></span></li>
+					<li>adsYN (광고전송 여부) : <span th:text="${sentInfos.adsYN}"></span></li>
+					<li>imageURL (친구톡 이미지 URL) : <span
+						th:text="${sentInfos.imageURL}"></span></li>
+					<li>sendCnt (전송건수) : <span th:text="${sentInfos.sendCnt}"></span></li>
+					<li>successCnt (성공건수) : <span
+						th:text="${sentInfos.successCnt}"></span></li>
+					<li>failCnt (실패건수) : <span th:text="${sentInfos.failCnt}"></span></li>
+					<li>altCnt (대체문자 건수) : <span th:text="${sentInfos.altCnt}"></span></li>
+					<li>cancelCnt (취소건수) : <span th:text="${sentInfos.cancelCnt}"></span></li>
+				</ul>
+			</fieldset>
 
-        <fieldset class="fieldset2">
-            <legend>버튼정보</legend>
-            <fieldset class="fieldset3" th:each="btnInfo, index : ${sentInfos.btns}">
-                <legend>버튼정보 [<span th:text="${index.index + 1}"></span> / <span th:text="${index.size}"></span>]</legend>
-                <ul>
-                    <li>n (버튼명) : <span th:text="${btnInfo.n}"></span></li>
-                    <li>t (버튼유형) : <span th:text="${btnInfo.t}"></span></li>
-                    <li>u1 (버튼링크1) : <span th:text="${btnInfo.u1}"></span></li>
-                    <li>u2 (버튼링크2) : <span th:text="${btnInfo.u2}"></span></li>
-                </ul>
-            </fieldset>
-        </fieldset>
+			<fieldset class="fieldset2">
+				<legend>버튼정보</legend>
+				<fieldset class="fieldset3"
+					th:each="btnInfo, index : ${sentInfos.btns}">
+					<legend>
+						버튼정보 [<span th:text="${index.index + 1}"></span> / <span
+							th:text="${index.size}"></span>]
+					</legend>
+					<ul>
+						<li>n (버튼명) : <span th:text="${btnInfo.n}"></span></li>
+						<li>t (버튼유형) : <span th:text="${btnInfo.t}"></span></li>
+						<li>u1 (버튼링크1) : <span th:text="${btnInfo.u1}"></span></li>
+						<li>u2 (버튼링크2) : <span th:text="${btnInfo.u2}"></span></li>
+					</ul>
+				</fieldset>
+			</fieldset>
 
-        <fieldset class="fieldset2">
-            <legend>전송결과 정보</legend>
-            <fieldset class="fieldset3" th:each="msgInfo, index : ${sentInfos.msgs}">
-                <legend>개별전송 정보 [<span th:text="${index.index + 1}"></span> / <span th:text="${index.size}"></span>]</legend>
-                <ul>
-                    <li>state (전송상태 코드) : <span th:text="${msgInfo.state}"></span></li>
-                    <li>sendDT (전송일시) : <span th:text="${msgInfo.sendDT}"></span></li>
-                    <li>receiveNum (수신번호) : <span th:text="${msgInfo.receiveNum}"></span></li>
-                    <li>receiveName (수신자명) : <span th:text="${msgInfo.receiveName}"></span></li>
-                    <li>content (알림톡/친구톡 내용) : <span th:text="${msgInfo.content}"></span></li>
-                    <li>result (알림톡/친구톡 전송결과 코드) : <span th:text="${msgInfo.result}"></span></li>
-                    <li>resultDT (알림톡/친구톡 전송결과 수신일시) : <span th:text="${msgInfo.resultDT}"></span></li>
-                    <li>altSubject (대체문자 제목) : <span th:text="${msgInfo.altSubject}"></span></li>
-                    <li>altContent (대체문자 내용) : <span th:text="${msgInfo.altContent}"></span></li>
-                    <li>altContentType (대체문자 전송유형) : <span th:text="${msgInfo.altContentType}"></span></li>
-                    <li>altSendDT (대체문자 전송일시) : <span th:text="${msgInfo.altSendDT}"></span></li>
-                    <li>altResult (대체문자 전송결과 코드) : <span th:text="${msgInfo.altResult}"></span></li>
-                    <li>altResultDT (대체문자 전송결과 수신일시) : <span th:text="${msgInfo.altResultDT}"></span></li>
-                    <li>receiptNum (접수번호) : <span th:text="${msgInfo.receiptNum}"></span></li>
-                    <li>requestNum (요청번호) : <span th:text="${msgInfo.requestNum}"></span></li>
-                    <li>interOPRefKey (참조키) : <span th:text="${msgInfo.interOPRefKey}"></span></li>
-                </ul>
-            </fieldset>
-        </fieldset>
-    </fieldset>
-</div>
+			<fieldset class="fieldset2">
+				<legend>전송결과 정보</legend>
+				<fieldset class="fieldset3"
+					th:each="msgInfo, index : ${sentInfos.msgs}">
+					<legend>
+						개별전송 정보 [<span th:text="${index.index + 1}"></span> / <span
+							th:text="${index.size}"></span>]
+					</legend>
+					<ul>
+						<li>state (전송상태 코드) : <span th:text="${msgInfo.state}"></span></li>
+						<li>sendDT (전송일시) : <span th:text="${msgInfo.sendDT}"></span></li>
+						<li>receiveNum (수신번호) : <span th:text="${msgInfo.receiveNum}"></span></li>
+						<li>receiveName (수신자명) : <span
+							th:text="${msgInfo.receiveName}"></span></li>
+						<li>content (알림톡/친구톡 내용) : <span th:text="${msgInfo.content}"></span></li>
+						<li>result (알림톡/친구톡 전송결과 코드) : <span
+							th:text="${msgInfo.result}"></span></li>
+						<li>resultDT (알림톡/친구톡 전송결과 수신일시) : <span
+							th:text="${msgInfo.resultDT}"></span></li>
+						<li>altSubject (대체문자 제목) : <span
+							th:text="${msgInfo.altSubject}"></span></li>
+						<li>altContent (대체문자 내용) : <span
+							th:text="${msgInfo.altContent}"></span></li>
+						<li>altContentType (대체문자 전송유형) : <span
+							th:text="${msgInfo.altContentType}"></span></li>
+						<li>altSendDT (대체문자 전송일시) : <span
+							th:text="${msgInfo.altSendDT}"></span></li>
+						<li>altResult (대체문자 전송결과 코드) : <span
+							th:text="${msgInfo.altResult}"></span></li>
+						<li>altResultDT (대체문자 전송결과 수신일시) : <span
+							th:text="${msgInfo.altResultDT}"></span></li>
+						<li>receiptNum (접수번호) : <span th:text="${msgInfo.receiptNum}"></span></li>
+						<li>requestNum (요청번호) : <span th:text="${msgInfo.requestNum}"></span></li>
+						<li>interOPRefKey (참조키) : <span
+							th:text="${msgInfo.interOPRefKey}"></span></li>
+					</ul>
+				</fieldset>
+			</fieldset>
+		</fieldset>
+	</div>
 </body>
 </html>
