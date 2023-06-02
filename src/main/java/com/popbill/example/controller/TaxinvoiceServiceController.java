@@ -8,12 +8,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.popbill.api.AttachedFile;
 import com.popbill.api.BulkResponse;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.EmailSendConfig;
 import com.popbill.api.IssueResponse;
 import com.popbill.api.PopbillException;
+import com.popbill.api.Response;
 import com.popbill.api.TaxinvoiceCertificate;
 import com.popbill.api.TaxinvoiceService;
 import com.popbill.api.taxinvoice.BulkTaxinvoiceResult;
@@ -26,11 +34,6 @@ import com.popbill.api.taxinvoice.TaxinvoiceDetail;
 import com.popbill.api.taxinvoice.TaxinvoiceInfo;
 import com.popbill.api.taxinvoice.TaxinvoiceLog;
 import com.popbill.api.taxinvoice.TaxinvoiceXML;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(value = "TaxinvoiceService")
