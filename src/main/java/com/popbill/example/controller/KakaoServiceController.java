@@ -6,6 +6,7 @@ import java.util.Locale;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.KakaoService;
 import com.popbill.api.PopbillException;
+import com.popbill.api.Response;
 import com.popbill.api.kakao.ATSTemplate;
 import com.popbill.api.kakao.KakaoButton;
 import com.popbill.api.kakao.KakaoReceiver;

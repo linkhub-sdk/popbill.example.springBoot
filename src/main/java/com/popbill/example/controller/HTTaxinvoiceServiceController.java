@@ -6,6 +6,7 @@ import com.popbill.api.ChargeInfo;
 import com.popbill.api.FlatRateState;
 import com.popbill.api.HTTaxinvoiceService;
 import com.popbill.api.PopbillException;
+import com.popbill.api.Response;
 import com.popbill.api.hometax.HTTaxinvoice;
 import com.popbill.api.hometax.HTTaxinvoiceJobState;
 import com.popbill.api.hometax.HTTaxinvoiceSearchResult;

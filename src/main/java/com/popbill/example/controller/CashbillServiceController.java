@@ -11,6 +11,7 @@ import com.popbill.api.CashbillService;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.EmailSendConfig;
 import com.popbill.api.PopbillException;
+import com.popbill.api.Response;
 import com.popbill.api.cashbill.BulkCashbillResult;
 import com.popbill.api.cashbill.CBSearchResult;
 import com.popbill.api.cashbill.Cashbill;

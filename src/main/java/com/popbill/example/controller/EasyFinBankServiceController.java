@@ -5,6 +5,7 @@ import com.popbill.api.ChargeInfo;
 import com.popbill.api.EasyFinBankService;
 import com.popbill.api.FlatRateState;
 import com.popbill.api.PopbillException;
+import com.popbill.api.Response;
 import com.popbill.api.easyfin.EasyFinBankAccount;
 import com.popbill.api.easyfin.EasyFinBankAccountForm;
 import com.popbill.api.easyfin.EasyFinBankJobState;
