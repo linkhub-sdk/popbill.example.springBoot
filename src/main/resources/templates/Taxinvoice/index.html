@@ -1,10 +1,11 @@
 <html>
+
 <head>
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<link href="/css/main.css" media="screen" rel="stylesheet"
-	type="text/css" />
-<title>팝빌 SDK SpringBoot Example.</title>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<link href="/css/main.css" media="screen" rel="stylesheet" type="text/css" />
+	<title>팝빌 SDK SpringBoot Example.</title>
 </head>
+
 <body>
 	<div id="content">
 		<p class="heading1">팝빌 전자세금계산서 SDK SpringBoot Example.</p>
@@ -32,6 +33,19 @@
 				<li><a href="TaxinvoiceService/cancelRequest">CancelRequest</a>
 					- 역발행요청 취소</li>
 				<li><a href="TaxinvoiceService/refuse">Refuse</a> - 역발행요청 거부</li>
+			</ul>
+		</fieldset>
+		<fieldset class="fieldset1">
+			<legend>수정세금계산서 발행</legend>
+			<ul>
+				<li><a href="TaxinvoiceService/modifyTaxinvoice01minus">RegistIssue</a> - 기재사항 착오정정(취소분)</li>
+				<li><a href="TaxinvoiceService/modifyTaxinvoice01plus">RegistIssue</a> - 기재사항 착오정정(수정분)</li>
+				<li><a href="TaxinvoiceService/modifyTaxinvoice02">RegistIssue</a> - 공급가액 변동</li>
+				<li><a href="TaxinvoiceService/modifyTaxinvoice03">RegistIssue</a> - 환입</li>
+				<li><a href="TaxinvoiceService/modifyTaxinvoice04">RegistIssue</a> - 계약의 해제</li>
+				<li><a href="TaxinvoiceService/modifyTaxinvoice05minus">RegistIssue</a> - 내국신용장 사후개설(취소분)</li>
+				<li><a href="TaxinvoiceService/modifyTaxinvoice05plus">RegistIssue</a> - 내국신용장 사후개설(수정분)</li>
+				<li><a href="TaxinvoiceService/modifyTaxinvoice06">RegistIssue</a> - 착오에 의한 이중발급</li>
 			</ul>
 		</fieldset>
 		<fieldset class="fieldset1">
@@ -183,4 +197,5 @@
 		</fieldset>
 	</div>
 </body>
+
 </html>
