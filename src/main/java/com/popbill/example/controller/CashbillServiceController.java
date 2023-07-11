@@ -11,7 +11,6 @@ import com.popbill.api.CashbillService;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.EmailSendConfig;
 import com.popbill.api.PopbillException;
-import com.popbill.api.Response;
 import com.popbill.api.cashbill.BulkCashbillResult;
 import com.popbill.api.cashbill.CBSearchResult;
 import com.popbill.api.cashbill.Cashbill;
@@ -30,10 +29,10 @@ public class CashbillServiceController {
     private CashbillService cashbillService;
 
     // 팝빌회원 사업자번호
-    private String testCorpNum = "1234567890";
+    private String CorpNum = "1234567890";
 
     // 팝빌회원 아이디
-    private String testUserID = "testkorea";
+    private String UserID = "testkorea";
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String home(Locale locale, Model model) {
@@ -54,7 +53,7 @@ public class CashbillServiceController {
         String isUseStr;
 
         try {
-            boolean IsUse = cashbillService.checkMgtKeyInUse(testCorpNum, mgtKey);
+            boolean IsUse = cashbillService.checkMgtKeyInUse(CorpNum, mgtKey);
 
             isUseStr = (IsUse) ? "사용중" : "미사용중";
 
@@ -165,7 +164,7 @@ public class CashbillServiceController {
 
         try {
 
-            CBIssueResponse response = cashbillService.registIssue(testCorpNum, cashbill, Memo, testUserID, emailSubject);
+            CBIssueResponse response = cashbillService.registIssue(CorpNum, cashbill, Memo, UserID, emailSubject);
 
             m.addAttribute("Response", response);
 
@@ -279,7 +278,7 @@ public class CashbillServiceController {
 
         try {
 
-            BulkResponse response = cashbillService.bulkSubmit(testCorpNum, SubmitID, cashbillList);
+            BulkResponse response = cashbillService.bulkSubmit(CorpNum, SubmitID, cashbillList);
 
             m.addAttribute("Response", response);
 
@@ -304,7 +303,7 @@ public class CashbillServiceController {
 
         try {
 
-            BulkCashbillResult bulkResult = cashbillService.getBulkResult(testCorpNum, SubmitID);
+            BulkCashbillResult bulkResult = cashbillService.getBulkResult(CorpNum, SubmitID);
 
             m.addAttribute("BulkResult", bulkResult);
 
@@ -330,7 +329,7 @@ public class CashbillServiceController {
 
         try {
 
-            Response response = cashbillService.delete(testCorpNum, mgtKey);
+            Response response = cashbillService.delete(CorpNum, mgtKey);
 
             m.addAttribute("Response", response);
 
@@ -361,7 +360,7 @@ public class CashbillServiceController {
 
         try {
 
-            CBIssueResponse response = cashbillService.revokeRegistIssue(testCorpNum, mgtKey, orgConfirmNum, orgTradeDate);
+            CBIssueResponse response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate);
 
             m.addAttribute("Response", response);
 
@@ -431,7 +430,7 @@ public class CashbillServiceController {
 
         try {
 
-            CBIssueResponse response = cashbillService.revokeRegistIssue(testCorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, memo,
+            CBIssueResponse response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, memo,
                     isPartCancel, cancelType, supplyCost, tax, serviceFee, totalAmount);
 
             m.addAttribute("Response", response);
@@ -458,7 +457,7 @@ public class CashbillServiceController {
 
         try {
 
-            CashbillInfo cashbillInfo = cashbillService.getInfo(testCorpNum, mgtKey);
+            CashbillInfo cashbillInfo = cashbillService.getInfo(CorpNum, mgtKey);
 
             m.addAttribute("CashbillInfo", cashbillInfo);
 
@@ -484,7 +483,7 @@ public class CashbillServiceController {
 
         try {
 
-            CashbillInfo[] cashbillInfos = cashbillService.getInfos(testCorpNum, mgtKeyList);
+            CashbillInfo[] cashbillInfos = cashbillService.getInfos(CorpNum, mgtKeyList);
 
             m.addAttribute("CashbillInfos", cashbillInfos);
 
@@ -508,7 +507,7 @@ public class CashbillServiceController {
 
         try {
 
-            Cashbill cashbill = cashbillService.getDetailInfo(testCorpNum, mgtKey);
+            Cashbill cashbill = cashbillService.getDetailInfo(CorpNum, mgtKey);
 
             m.addAttribute("Cashbill", cashbill);
 
@@ -580,7 +579,7 @@ public class CashbillServiceController {
 
         try {
 
-            CBSearchResult searchResult = cashbillService.search(testCorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TradeOpt,
+            CBSearchResult searchResult = cashbillService.search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TradeOpt,
                     TaxationType, QString, Page, PerPage, Order, FranchiseTaxRegID);
 
             m.addAttribute("SearchResult", searchResult);
@@ -606,7 +605,7 @@ public class CashbillServiceController {
 
         try {
 
-            String url = cashbillService.getURL(testCorpNum, testUserID, TOGO);
+            String url = cashbillService.getURL(CorpNum, UserID, TOGO);
 
             m.addAttribute("Result", url);
 
@@ -631,7 +630,7 @@ public class CashbillServiceController {
 
         try {
 
-            String url = cashbillService.getPopUpURL(testCorpNum, mgtKey, testUserID);
+            String url = cashbillService.getPopUpURL(CorpNum, mgtKey, UserID);
 
             m.addAttribute("Result", url);
 
@@ -656,7 +655,7 @@ public class CashbillServiceController {
 
         try {
 
-            String url = cashbillService.getViewURL(testCorpNum, mgtKey, testUserID);
+            String url = cashbillService.getViewURL(CorpNum, mgtKey, UserID);
 
             m.addAttribute("Result", url);
 
@@ -681,7 +680,7 @@ public class CashbillServiceController {
 
         try {
 
-            String url = cashbillService.getPrintURL(testCorpNum, mgtKey, testUserID);
+            String url = cashbillService.getPrintURL(CorpNum, mgtKey, UserID);
 
             m.addAttribute("Result", url);
 
@@ -706,7 +705,7 @@ public class CashbillServiceController {
 
         try {
 
-            String url = cashbillService.getMassPrintURL(testCorpNum, mgtKeyList, testUserID);
+            String url = cashbillService.getMassPrintURL(CorpNum, mgtKeyList, UserID);
 
             m.addAttribute("Result", url);
 
@@ -731,7 +730,7 @@ public class CashbillServiceController {
 
         try {
 
-            String url = cashbillService.getMailURL(testCorpNum, mgtKey, testUserID);
+            String url = cashbillService.getMailURL(CorpNum, mgtKey, UserID);
 
             m.addAttribute("Result", url);
 
@@ -756,7 +755,7 @@ public class CashbillServiceController {
 
         try {
 
-            String url = cashbillService.getPDFURL(testCorpNum, mgtKey, testUserID);
+            String url = cashbillService.getPDFURL(CorpNum, mgtKey, UserID);
 
             m.addAttribute("Result", url);
 
@@ -782,7 +781,7 @@ public class CashbillServiceController {
         String receiver = "test@test.com";
 
         try {
-            Response response = cashbillService.sendEmail(testCorpNum, mgtKey, receiver);
+            Response response = cashbillService.sendEmail(CorpNum, mgtKey, receiver);
 
             m.addAttribute("Response", response);
 
@@ -817,7 +816,7 @@ public class CashbillServiceController {
 
         try {
 
-            Response response = cashbillService.sendSMS(testCorpNum, mgtKey, sender, receiver, contents);
+            Response response = cashbillService.sendSMS(CorpNum, mgtKey, sender, receiver, contents);
 
             m.addAttribute("Response", response);
 
@@ -848,7 +847,7 @@ public class CashbillServiceController {
 
         try {
 
-            Response response = cashbillService.sendFAX(testCorpNum, mgtKey, sender, receiver);
+            Response response = cashbillService.sendFAX(CorpNum, mgtKey, sender, receiver);
 
             m.addAttribute("Response", response);
 
@@ -875,7 +874,7 @@ public class CashbillServiceController {
 
         try {
 
-            Response response = cashbillService.assignMgtKey(testCorpNum, itemKey, mgtKey);
+            Response response = cashbillService.assignMgtKey(CorpNum, itemKey, mgtKey);
 
             m.addAttribute("Response", response);
 
@@ -897,7 +896,7 @@ public class CashbillServiceController {
 
         try {
 
-            EmailSendConfig[] Configs = cashbillService.listEmailConfig(testCorpNum);
+            EmailSendConfig[] Configs = cashbillService.listEmailConfig(CorpNum);
 
             for (EmailSendConfig emailSendConfig : Configs) {
                 emailSendConfigs.put(emailSendConfig.getEmailType(), emailSendConfig.getSendYN());
@@ -932,7 +931,7 @@ public class CashbillServiceController {
 
         try {
 
-            Response response = cashbillService.updateEmailConfig(testCorpNum, emailType, sendYN);
+            Response response = cashbillService.updateEmailConfig(CorpNum, emailType, sendYN);
 
             m.addAttribute("Response", response);
 
@@ -953,7 +952,7 @@ public class CashbillServiceController {
 
         try {
 
-            float unitCost = cashbillService.getUnitCost(testCorpNum);
+            float unitCost = cashbillService.getUnitCost(CorpNum);
 
             m.addAttribute("Result", unitCost);
 
@@ -974,7 +973,7 @@ public class CashbillServiceController {
 
         try {
 
-            ChargeInfo chrgInfo = cashbillService.getChargeInfo(testCorpNum);
+            ChargeInfo chrgInfo = cashbillService.getChargeInfo(CorpNum);
 
             m.addAttribute("ChargeInfo", chrgInfo);
 

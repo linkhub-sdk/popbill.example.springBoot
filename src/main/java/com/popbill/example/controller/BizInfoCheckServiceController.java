@@ -19,7 +19,7 @@ public class BizInfoCheckServiceController {
     private BizInfoCheckService bizInfoCheckService;
 
     // 팝빌회원 사업자번호
-    private String testCorpNum = "1234567890";
+    private String CorpNum = "1234567890";
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String home(Locale locale, Model model) {
@@ -38,7 +38,7 @@ public class BizInfoCheckServiceController {
 
         try {
 
-            BizCheckInfo bizInfo = bizInfoCheckService.CheckBizInfo(testCorpNum, CorpNum);
+            BizCheckInfo bizInfo = bizInfoCheckService.CheckBizInfo(CorpNum, CorpNum);
             m.addAttribute("BizInfo", bizInfo);
 
         } catch (PopbillException e) {
@@ -58,7 +58,7 @@ public class BizInfoCheckServiceController {
 
         try {
 
-            float unitCost = bizInfoCheckService.getUnitCost(testCorpNum);
+            float unitCost = bizInfoCheckService.getUnitCost(CorpNum);
             m.addAttribute("Result", unitCost);
 
 
@@ -78,7 +78,7 @@ public class BizInfoCheckServiceController {
          */
 
         try {
-            ChargeInfo chrgInfo = bizInfoCheckService.getChargeInfo(testCorpNum);
+            ChargeInfo chrgInfo = bizInfoCheckService.getChargeInfo(CorpNum);
             m.addAttribute("ChargeInfo", chrgInfo);
 
         } catch (PopbillException e) {

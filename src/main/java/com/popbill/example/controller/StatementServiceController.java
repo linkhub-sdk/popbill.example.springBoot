@@ -10,10 +10,8 @@ import com.popbill.api.AttachedFile;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.EmailSendConfig;
 import com.popbill.api.PopbillException;
-import com.popbill.api.Response;
 import com.popbill.api.SMTIssueResponse;
 import com.popbill.api.StatementService;
-import com.popbill.api.statement.Statement;
 import com.popbill.api.statement.StatementDetail;
 import com.popbill.api.statement.StatementInfo;
 import com.popbill.api.statement.StatementLog;
@@ -32,10 +30,10 @@ public class StatementServiceController {
     private StatementService statementService;
 
     // 팝빌회원 사업자번호
-    private String testCorpNum = "1234567890";
+    private String CorpNum = "1234567890";
 
     // 팝빌회원 아이디
-    private String testUserID = "testkorea";
+    private String UserID = "testkorea";
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String home(Locale locale, Model model) {
@@ -58,7 +56,7 @@ public class StatementServiceController {
         String isUseStr;
 
         try {
-            boolean IsUse = statementService.checkMgtKeyInUse(testCorpNum, itemCode, mgtKey);
+            boolean IsUse = statementService.checkMgtKeyInUse(CorpNum, itemCode, mgtKey);
 
             isUseStr = (IsUse) ? "사용중" : "미사용중";
 
@@ -246,7 +244,7 @@ public class StatementServiceController {
         statement.setPropertyBag(propertyBag);
 
         try {
-            SMTIssueResponse response = statementService.registIssue(testCorpNum, statement, Memo, testUserID, emailSubject);
+            SMTIssueResponse response = statementService.registIssue(CorpNum, statement, Memo, UserID, emailSubject);
 
             m.addAttribute("Response", response);
 
@@ -428,7 +426,7 @@ public class StatementServiceController {
 
         try {
 
-            Response response = statementService.register(testCorpNum, statement);
+            Response response = statementService.register(CorpNum, statement);
 
             m.addAttribute("Response", response);
 
@@ -614,7 +612,7 @@ public class StatementServiceController {
 
         try {
 
-            Response response = statementService.update(testCorpNum, itemCode,
+            Response response = statementService.update(CorpNum, itemCode,
                     mgtKey, statement);
 
             m.addAttribute("Response", response);
@@ -652,7 +650,7 @@ public class StatementServiceController {
 
         try {
 
-            Response response = statementService.issue(testCorpNum, itemCode,
+            Response response = statementService.issue(CorpNum, itemCode,
                     mgtKey, memo, emailSubject, null);
 
             m.addAttribute("Response", response);
@@ -684,7 +682,7 @@ public class StatementServiceController {
 
         try {
 
-            Response response = statementService.cancel(testCorpNum, itemCode,
+            Response response = statementService.cancel(CorpNum, itemCode,
                     mgtKey, memo);
 
             m.addAttribute("Response", response);
@@ -714,7 +712,7 @@ public class StatementServiceController {
 
         try {
 
-            Response response = statementService.delete(testCorpNum, itemCode, mgtKey);
+            Response response = statementService.delete(CorpNum, itemCode, mgtKey);
 
             m.addAttribute("Response", response);
 
@@ -741,7 +739,7 @@ public class StatementServiceController {
 
         try {
 
-            StatementInfo statementInfo = statementService.getInfo(testCorpNum,
+            StatementInfo statementInfo = statementService.getInfo(CorpNum,
                     itemCode, mgtKey);
 
             m.addAttribute("StatementInfo", statementInfo);
@@ -769,7 +767,7 @@ public class StatementServiceController {
 
         try {
 
-            StatementInfo[] statementInfos = statementService.getInfos(testCorpNum,
+            StatementInfo[] statementInfos = statementService.getInfos(CorpNum,
                     itemCode, MgtKeyList);
 
             m.addAttribute("StatementInfos", statementInfos);
@@ -797,7 +795,7 @@ public class StatementServiceController {
 
         try {
 
-            Statement statement = statementService.getDetailInfo(testCorpNum,
+            Statement statement = statementService.getDetailInfo(CorpNum,
                     itemCode, mgtKey);
 
             m.addAttribute("Statement", statement);
@@ -851,7 +849,7 @@ public class StatementServiceController {
 
         try {
 
-            StmtSearchResult searchResult = statementService.search(testCorpNum,
+            StmtSearchResult searchResult = statementService.search(CorpNum,
                     DType, SDate, EDate, State, ItemCode, QString, Page, PerPage, Order);
 
             m.addAttribute("SearchResult", searchResult);
@@ -879,7 +877,7 @@ public class StatementServiceController {
 
         try {
 
-            StatementLog[] statementLogs = statementService.getLogs(testCorpNum,
+            StatementLog[] statementLogs = statementService.getLogs(CorpNum,
                     itemCode, mgtKey);
 
             m.addAttribute("StatementLogs", statementLogs);
@@ -905,7 +903,7 @@ public class StatementServiceController {
 
         try {
 
-            String url = statementService.getURL(testCorpNum, testUserID, TOGO);
+            String url = statementService.getURL(CorpNum, UserID, TOGO);
 
             m.addAttribute("Result", url);
 
@@ -933,7 +931,7 @@ public class StatementServiceController {
 
         try {
 
-            String url = statementService.getPopUpURL(testCorpNum, itemCode, mgtKey, testUserID);
+            String url = statementService.getPopUpURL(CorpNum, itemCode, mgtKey, UserID);
 
             m.addAttribute("Result", url);
 
@@ -961,7 +959,7 @@ public class StatementServiceController {
 
         try {
 
-            String url = statementService.getViewURL(testCorpNum, itemCode, mgtKey, testUserID);
+            String url = statementService.getViewURL(CorpNum, itemCode, mgtKey, UserID);
 
             m.addAttribute("Result", url);
 
@@ -991,7 +989,7 @@ public class StatementServiceController {
 
         try {
 
-            String url = statementService.getPrintURL(testCorpNum, itemCode, mgtKey, testUserID);
+            String url = statementService.getPrintURL(CorpNum, itemCode, mgtKey, UserID);
 
             m.addAttribute("Result", url);
 
@@ -1020,7 +1018,7 @@ public class StatementServiceController {
 
         try {
 
-            String url = statementService.getEPrintURL(testCorpNum, itemCode, mgtKey, testUserID);
+            String url = statementService.getEPrintURL(CorpNum, itemCode, mgtKey, UserID);
 
             m.addAttribute("Result", url);
 
@@ -1048,7 +1046,7 @@ public class StatementServiceController {
 
         try {
 
-            String url = statementService.getMassPrintURL(testCorpNum, itemCode, mgtKeyList, testUserID);
+            String url = statementService.getMassPrintURL(CorpNum, itemCode, mgtKeyList, UserID);
 
             m.addAttribute("Result", url);
 
@@ -1075,7 +1073,7 @@ public class StatementServiceController {
         String mgtKey = "20230102-BOOT001";
 
         try {
-            String url = statementService.getMailURL(testCorpNum, itemCode, mgtKey, testUserID);
+            String url = statementService.getMailURL(CorpNum, itemCode, mgtKey, UserID);
 
             m.addAttribute("Result", url);
 
@@ -1097,7 +1095,7 @@ public class StatementServiceController {
 
         try {
 
-            String url = statementService.getSealURL(testCorpNum, testUserID);
+            String url = statementService.getSealURL(CorpNum, UserID);
 
             m.addAttribute("Result", url);
 
@@ -1131,7 +1129,7 @@ public class StatementServiceController {
 
         try {
 
-            Response response = statementService.attachFile(testCorpNum, itemCode,
+            Response response = statementService.attachFile(CorpNum, itemCode,
                     mgtKey, displayName, stream);
 
             m.addAttribute("Response", response);
@@ -1170,7 +1168,7 @@ public class StatementServiceController {
 
         try {
 
-            Response response = statementService.deleteFile(testCorpNum, itemCode,
+            Response response = statementService.deleteFile(CorpNum, itemCode,
                     mgtKey, FileID);
 
             m.addAttribute("Response", response);
@@ -1199,7 +1197,7 @@ public class StatementServiceController {
 
         try {
 
-            AttachedFile[] attachedFiles = statementService.getFiles(testCorpNum,
+            AttachedFile[] attachedFiles = statementService.getFiles(CorpNum,
                     itemCode, mgtKey);
 
             m.addAttribute("AttachedFiles", attachedFiles);
@@ -1230,7 +1228,7 @@ public class StatementServiceController {
 
         try {
 
-            Response response = statementService.sendEmail(testCorpNum, itemCode,
+            Response response = statementService.sendEmail(CorpNum, itemCode,
                     mgtKey, receiver);
 
             m.addAttribute("Response", response);
@@ -1269,7 +1267,7 @@ public class StatementServiceController {
 
         try {
 
-            Response response = statementService.sendSMS(testCorpNum, itemCode,
+            Response response = statementService.sendSMS(CorpNum, itemCode,
                     mgtKey, sender, receiver, contents);
 
             m.addAttribute("Response", response);
@@ -1304,7 +1302,7 @@ public class StatementServiceController {
 
         try {
 
-            Response response = statementService.sendFAX(testCorpNum, itemCode,
+            Response response = statementService.sendFAX(CorpNum, itemCode,
                     mgtKey, sender, receiver);
 
             m.addAttribute("Response", response);
@@ -1496,7 +1494,7 @@ public class StatementServiceController {
 
         try {
 
-            String receiptNum = statementService.FAXSend(testCorpNum, statement,
+            String receiptNum = statementService.FAXSend(CorpNum, statement,
                     sendNum, receiveNum);
 
             m.addAttribute("Result", receiptNum);
@@ -1530,7 +1528,7 @@ public class StatementServiceController {
 
         try {
 
-            Response response = statementService.attachStatement(testCorpNum,
+            Response response = statementService.attachStatement(CorpNum,
                     itemCode, mgtKey, subItemCode, subMgtKey);
 
             m.addAttribute("Response", response);
@@ -1565,7 +1563,7 @@ public class StatementServiceController {
 
         try {
 
-            Response response = statementService.detachStatement(testCorpNum,
+            Response response = statementService.detachStatement(CorpNum,
                     itemCode, mgtKey, subItemCode, subMgtKey);
 
             m.addAttribute("Response", response);
@@ -1588,7 +1586,7 @@ public class StatementServiceController {
 
         try {
 
-            EmailSendConfig[] Configs = statementService.listEmailConfig(testCorpNum);
+            EmailSendConfig[] Configs = statementService.listEmailConfig(CorpNum);
 
             for(EmailSendConfig emailSendConfig : Configs) {
                 emailSendConfigs.put(emailSendConfig.getEmailType(), emailSendConfig.getSendYN());
@@ -1626,7 +1624,7 @@ public class StatementServiceController {
 
         try {
 
-            Response response = statementService.updateEmailConfig(testCorpNum,
+            Response response = statementService.updateEmailConfig(CorpNum,
                     emailType, sendYN);
 
             m.addAttribute("Response", response);
@@ -1651,7 +1649,7 @@ public class StatementServiceController {
 
         try {
 
-            float unitCost = statementService.getUnitCost(testCorpNum, itemCode);
+            float unitCost = statementService.getUnitCost(CorpNum, itemCode);
 
             m.addAttribute("Result", unitCost);
 
@@ -1677,7 +1675,7 @@ public class StatementServiceController {
 
         try {
 
-            ChargeInfo chrgInfo = statementService.getChargeInfo(testCorpNum, itemCode);
+            ChargeInfo chrgInfo = statementService.getChargeInfo(CorpNum, itemCode);
 
             m.addAttribute("ChargeInfo", chrgInfo);
 

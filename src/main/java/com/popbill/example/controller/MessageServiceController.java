@@ -6,14 +6,13 @@ import java.util.Locale;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.MessageService;
 import com.popbill.api.PopbillException;
-import com.popbill.api.Response;
 import com.popbill.api.message.AutoDeny;
 import com.popbill.api.message.AutoDenyNumberInfo;
 import com.popbill.api.message.MSGSearchResult;
-import com.popbill.api.message.Message;
 import com.popbill.api.message.MessageType;
 import com.popbill.api.message.SenderNumber;
 import com.popbill.api.message.SentMessage;
+import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,10 +27,10 @@ public class MessageServiceController {
     private MessageService messageService;
 
     // 팝빌회원 사업자번호
-    private String testCorpNum = "1234567890";
+    private String CorpNum = "1234567890";
 
     // 팝빌회원 아이디
-    private String testUserID = "testkorea";
+    private String UserID = "testkorea";
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String home(Locale locale, Model model) {
@@ -50,7 +49,7 @@ public class MessageServiceController {
 
         try {
 
-            Response response = messageService.checkSenderNumber(testCorpNum, Sender);
+            Response response = messageService.checkSenderNumber(CorpNum, Sender);
 
             m.addAttribute("Response", response);
 
@@ -71,7 +70,7 @@ public class MessageServiceController {
          */
         try {
 
-            String url = messageService.getSenderNumberMgtURL(testCorpNum, testUserID);
+            String url = messageService.getSenderNumberMgtURL(CorpNum, UserID);
 
             m.addAttribute("Result", url);
 
@@ -91,7 +90,7 @@ public class MessageServiceController {
          */
 
         try {
-            SenderNumber[] senderNumberList = messageService.getSenderNumberList(testCorpNum);
+            SenderNumber[] senderNumberList = messageService.getSenderNumberList(CorpNum);
             m.addAttribute("SenderNumberList", senderNumberList);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -134,8 +133,8 @@ public class MessageServiceController {
 
         try {
 
-            String receiptNum = messageService.sendSMS(testCorpNum, sender, receiver,
-                    receiverName, content, reserveDT, adsYN, testUserID, requestNum);
+            String receiptNum = messageService.sendSMS(CorpNum, sender, receiver,
+                    receiverName, content, reserveDT, adsYN, UserID, requestNum);
 
             m.addAttribute("Result", receiptNum);
 
@@ -196,8 +195,8 @@ public class MessageServiceController {
         String requestNum = "";
 
         try {
-            String receiptNum = messageService.sendSMS(testCorpNum, sender, content,
-                    messages, reserveDT, adsYN, testUserID, requestNum);
+            String receiptNum = messageService.sendSMS(CorpNum, sender, content,
+                    messages, reserveDT, adsYN, UserID, requestNum);
 
             m.addAttribute("Result", receiptNum);
 
@@ -246,8 +245,8 @@ public class MessageServiceController {
 
         try {
 
-            String receiptNum = messageService.sendLMS(testCorpNum, sender, receiver,
-                    receiverName, subject, content, reserveDT, adsYN, testUserID, requestNum);
+            String receiptNum = messageService.sendLMS(CorpNum, sender, receiver,
+                    receiverName, subject, content, reserveDT, adsYN, UserID, requestNum);
 
             m.addAttribute("Result", receiptNum);
 
@@ -314,8 +313,8 @@ public class MessageServiceController {
 
         try {
 
-            String receiptNum = messageService.sendLMS(testCorpNum, sender, subject,
-                    content, messages, reserveDT, adsYN, testUserID, requestNum);
+            String receiptNum = messageService.sendLMS(CorpNum, sender, subject,
+                    content, messages, reserveDT, adsYN, UserID, requestNum);
 
             m.addAttribute("Result", receiptNum);
 
@@ -368,8 +367,8 @@ public class MessageServiceController {
 
         try {
 
-            String receiptNum = messageService.sendMMS(testCorpNum, sender, receiver,
-                    receiverName, subject, content, file, reserveDT, adsYN, testUserID, requestNum);
+            String receiptNum = messageService.sendMMS(CorpNum, sender, receiver,
+                    receiverName, subject, content, file, reserveDT, adsYN, UserID, requestNum);
 
             m.addAttribute("Result", receiptNum);
 
@@ -439,8 +438,8 @@ public class MessageServiceController {
         String requestNum = "";
 
         try {
-            String receiptNum = messageService.sendMMS(testCorpNum, sender, subject,
-                    content, messages, file, reserveDT, adsYN, testUserID, requestNum);
+            String receiptNum = messageService.sendMMS(CorpNum, sender, subject,
+                    content, messages, file, reserveDT, adsYN, UserID, requestNum);
 
             m.addAttribute("Result", receiptNum);
 
@@ -488,8 +487,8 @@ public class MessageServiceController {
 
         try {
 
-            String receiptNum = messageService.sendXMS(testCorpNum, sender, receiver,
-                    receiverName, subject, content, reserveDT, adsYN, testUserID, requestNum);
+            String receiptNum = messageService.sendXMS(CorpNum, sender, receiver,
+                    receiverName, subject, content, reserveDT, adsYN, UserID, requestNum);
 
             m.addAttribute("Result", receiptNum);
 
@@ -552,8 +551,8 @@ public class MessageServiceController {
 
         try {
 
-            String receiptNum = messageService.sendXMS(testCorpNum, sender, subject,
-                    content, messages, reserveDT, adsYN, testUserID, requestNum);
+            String receiptNum = messageService.sendXMS(CorpNum, sender, subject,
+                    content, messages, reserveDT, adsYN, UserID, requestNum);
 
             m.addAttribute("Result", receiptNum);
 
@@ -576,7 +575,7 @@ public class MessageServiceController {
         String receiptNum = "022022111000000012";
 
         try {
-            Response response = messageService.cancelReserve(testCorpNum, receiptNum);
+            Response response = messageService.cancelReserve(CorpNum, receiptNum);
 
             m.addAttribute("Response", response);
 
@@ -599,7 +598,7 @@ public class MessageServiceController {
         String requestNum = "";
 
         try {
-            Response response = messageService.cancelReserveRN(testCorpNum, requestNum);
+            Response response = messageService.cancelReserveRN(CorpNum, requestNum);
 
             m.addAttribute("Response", response);
 
@@ -624,7 +623,7 @@ public class MessageServiceController {
 
 
         try {
-            Response response = messageService.cancelReservebyRCV(testCorpNum, receiptNum, receiveNum);
+            Response response = messageService.cancelReservebyRCV(CorpNum, receiptNum, receiveNum);
 
             m.addAttribute("Response", response);
 
@@ -650,7 +649,7 @@ public class MessageServiceController {
 
 
         try {
-            Response response = messageService.cancelReserveRNbyRCV(testCorpNum, requestNum, receiveNum);
+            Response response = messageService.cancelReserveRNbyRCV(CorpNum, requestNum, receiveNum);
 
             m.addAttribute("Response", response);
 
@@ -674,7 +673,7 @@ public class MessageServiceController {
 
         try {
 
-            SentMessage[] sentMessages = messageService.getMessages(testCorpNum, receiptNum);
+            SentMessage[] sentMessages = messageService.getMessages(CorpNum, receiptNum);
 
             m.addAttribute("SentMessages", sentMessages);
 
@@ -698,7 +697,7 @@ public class MessageServiceController {
 
         try {
 
-            SentMessage[] sentMessages = messageService.getMessagesRN(testCorpNum, requestNum);
+            SentMessage[] sentMessages = messageService.getMessagesRN(CorpNum, requestNum);
 
             m.addAttribute("SentMessages", sentMessages);
 
@@ -761,7 +760,7 @@ public class MessageServiceController {
 
         try {
 
-            MSGSearchResult response = messageService.search(testCorpNum, SDate,
+            MSGSearchResult response = messageService.search(CorpNum, SDate,
                     EDate, State, Item, ReserveYN, SenderYN, Page, PerPage, Order, QString);
 
             m.addAttribute("SearchResult", response);
@@ -782,7 +781,7 @@ public class MessageServiceController {
          */
         try {
 
-            String url = messageService.getSentListURL(testCorpNum, testUserID);
+            String url = messageService.getSentListURL(CorpNum, UserID);
 
             m.addAttribute("Result", url);
 
@@ -802,7 +801,7 @@ public class MessageServiceController {
          */
 
         try {
-            AutoDeny[] autoDenyList = messageService.getAutoDenyList(testCorpNum);
+            AutoDeny[] autoDenyList = messageService.getAutoDenyList(CorpNum);
             m.addAttribute("AutoDenyList", autoDenyList);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -819,7 +818,7 @@ public class MessageServiceController {
          */
 
         try {
-            AutoDenyNumberInfo checkAutoDeny = messageService.checkAutoDenyNumber(testCorpNum);
+            AutoDenyNumberInfo checkAutoDeny = messageService.checkAutoDenyNumber(CorpNum);
 
             m.addAttribute("CheckAutoDeny", checkAutoDeny);
 
@@ -842,7 +841,7 @@ public class MessageServiceController {
 
         try {
 
-            float unitCost = messageService.getUnitCost(testCorpNum, msgType);
+            float unitCost = messageService.getUnitCost(CorpNum, msgType);
 
             m.addAttribute("Result", unitCost);
 
@@ -866,7 +865,7 @@ public class MessageServiceController {
 
         try {
 
-            ChargeInfo chrgInfo = messageService.getChargeInfo(testCorpNum, msgType);
+            ChargeInfo chrgInfo = messageService.getChargeInfo(CorpNum, msgType);
 
             m.addAttribute("ChargeInfo", chrgInfo);
 

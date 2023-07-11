@@ -20,7 +20,7 @@ public class ClosedownServiceController {
     private CloseDownService closedownService;
 
     // 팝빌회원 사업자번호
-    private String testCorpNum = "1234567890";
+    private String CorpNum = "1234567890";
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String home(Locale locale, Model model) {
@@ -37,7 +37,7 @@ public class ClosedownServiceController {
         if (CorpNum != null && !CorpNum.equals("")) {
 
             try {
-                CorpState corpState = closedownService.CheckCorpNum(testCorpNum, CorpNum);
+                CorpState corpState = closedownService.CheckCorpNum(CorpNum, CorpNum);
 
                 m.addAttribute("CorpState", corpState);
 
@@ -65,7 +65,7 @@ public class ClosedownServiceController {
 
         try {
 
-            CorpState[] corpStates = closedownService.CheckCorpNum(testCorpNum, CorpNumList);
+            CorpState[] corpStates = closedownService.CheckCorpNum(CorpNum, CorpNumList);
 
             m.addAttribute("CorpStates", corpStates);
 
@@ -86,7 +86,7 @@ public class ClosedownServiceController {
 
         try {
 
-            float unitCost = closedownService.getUnitCost(testCorpNum);
+            float unitCost = closedownService.getUnitCost(CorpNum);
 
             m.addAttribute("Result", unitCost);
 
@@ -106,7 +106,7 @@ public class ClosedownServiceController {
          */
 
         try {
-            ChargeInfo chrgInfo = closedownService.getChargeInfo(testCorpNum);
+            ChargeInfo chrgInfo = closedownService.getChargeInfo(CorpNum);
             m.addAttribute("ChargeInfo", chrgInfo);
 
         } catch (PopbillException e) {
