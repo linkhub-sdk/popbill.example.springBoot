@@ -1822,6 +1822,8 @@ public class TaxinvoiceServiceController {
         // 연동문서 - 세금계산서 작성 시 API를 통해 등록한 문서
         String InterOPYN = null;
 
+        String UserID = "testkorea";
+
         try {
 
             TISearchResult searchResult = taxinvoiceService.Search(CorpNum, mgtKeyType, DType,
