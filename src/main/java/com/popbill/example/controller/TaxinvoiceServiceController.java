@@ -2923,15 +2923,15 @@ public class TaxinvoiceServiceController {
          * 있습니다. (최대 5명)
          *********************************************************************/
 
-        // taxinvoice.setAddContactList(new ArrayList<TaxinvoiceAddContact>());
+         taxinvoice.setAddContactList(new ArrayList<TaxinvoiceAddContact>());
 
-        // TaxinvoiceAddContact addContact = new TaxinvoiceAddContact();
+         TaxinvoiceAddContact addContact = new TaxinvoiceAddContact();
 
-        // addContact.setSerialNum(1);
-        // addContact.setContactName("추가 담당자 성명");
-        // addContact.setEmail("test2@test.com");
+         addContact.setSerialNum(1);
+         addContact.setContactName("추가 담당자 성명");
+         addContact.setEmail("test2@test.com");
 
-        // taxinvoice.getAddContactList().add(addContact);
+         taxinvoice.getAddContactList().add(addContact);
 
         // 즉시발행 메모
         String Memo = "수정세금계산서 발행 메모";
@@ -3193,6 +3193,21 @@ public class TaxinvoiceServiceController {
 
         taxinvoice.getDetailList().add(detail);
 
+        /**********************************************************************
+         * 추가담당자 정보 - 세금계산서 발행 안내 메일을 수신받을 공급받는자 담당자가 다수인 경우 - 담당자 정보를 추가하여 발행 안내메일을 다수에게 전송할 수
+         * 있습니다. (최대 5명)
+         *********************************************************************/
+
+        taxinvoice.setAddContactList(new ArrayList<TaxinvoiceAddContact>());
+
+        TaxinvoiceAddContact addContact = new TaxinvoiceAddContact();
+
+        addContact.setSerialNum(1);
+        addContact.setContactName("추가 담당자 성명");
+        addContact.setEmail("test2@test.com");
+
+        taxinvoice.getAddContactList().add(addContact);
+
         // 즉시발행 메모
         String Memo = "수정세금계산서 발행 메모";
 
@@ -3447,6 +3462,21 @@ public class TaxinvoiceServiceController {
         detail.setRemark("품목비고2"); // 비고
 
         taxinvoice.getDetailList().add(detail);
+
+        /**********************************************************************
+         * 추가담당자 정보 - 세금계산서 발행 안내 메일을 수신받을 공급받는자 담당자가 다수인 경우 - 담당자 정보를 추가하여 발행 안내메일을 다수에게 전송할 수
+         * 있습니다. (최대 5명)
+         *********************************************************************/
+
+        taxinvoice.setAddContactList(new ArrayList<TaxinvoiceAddContact>());
+
+        TaxinvoiceAddContact addContact = new TaxinvoiceAddContact();
+
+        addContact.setSerialNum(1);
+        addContact.setContactName("추가 담당자 성명");
+        addContact.setEmail("test2@test.com");
+
+        taxinvoice.getAddContactList().add(addContact);
 
         // 즉시발행 메모
         String Memo = "수정세금계산서 발행 메모";
@@ -3703,6 +3733,21 @@ public class TaxinvoiceServiceController {
 
         taxinvoice.getDetailList().add(detail);
 
+        /**********************************************************************
+         * 추가담당자 정보 - 세금계산서 발행 안내 메일을 수신받을 공급받는자 담당자가 다수인 경우 - 담당자 정보를 추가하여 발행 안내메일을 다수에게 전송할 수
+         * 있습니다. (최대 5명)
+         *********************************************************************/
+
+        taxinvoice.setAddContactList(new ArrayList<TaxinvoiceAddContact>());
+
+        TaxinvoiceAddContact addContact = new TaxinvoiceAddContact();
+
+        addContact.setSerialNum(1);
+        addContact.setContactName("추가 담당자 성명");
+        addContact.setEmail("test2@test.com");
+
+        taxinvoice.getAddContactList().add(addContact);
+
         // 즉시발행 메모
         String Memo = "수정세금계산서 발행 메모";
 
@@ -3956,8 +4001,36 @@ public class TaxinvoiceServiceController {
         detail.setRemark("품목비고2"); // 비고
 
         taxinvoice.getDetailList().add(detail);
+
+
+        /**********************************************************************
+         * 추가담당자 정보 - 세금계산서 발행 안내 메일을 수신받을 공급받는자 담당자가 다수인 경우 - 담당자 정보를 추가하여 발행 안내메일을 다수에게 전송할 수
+         * 있습니다. (최대 5명)
+         *********************************************************************/
+
+        taxinvoice.setAddContactList(new ArrayList<TaxinvoiceAddContact>());
+
+        TaxinvoiceAddContact addContact = new TaxinvoiceAddContact();
+
+        addContact.setSerialNum(1);
+        addContact.setContactName("추가 담당자 성명");
+        addContact.setEmail("test2@test.com");
+
+        taxinvoice.getAddContactList().add(addContact);
+
+        // 즉시발행 메모
+        String Memo = "수정세금계산서 발행 메모";
+
+        // 지연발행 강제여부  (true / false 중 택 1)
+        // └ true = 가능 , false = 불가능
+        // - 미입력 시 기본값 false 처리
+        // - 발행마감일이 지난 세금계산서를 발행하는 경우, 가산세가 부과될 수 있습니다.
+        // - 가산세가 부과되더라도 발행을 해야하는 경우에는 forceIssue의 값을
+        //   true로 선언하여 발행(Issue API)를 호출하시면 됩니다.
+        Boolean ForceIssue = false;
+
         try {
-            IssueResponse response = taxinvoiceService.registIssue(CorpNum, taxinvoice, false);
+            IssueResponse response = taxinvoiceService.registIssue(CorpNum, taxinvoice, Memo, ForceIssue);
             m.addAttribute("Response", response);
         } catch (PopbillException pe) {
             m.addAttribute("Exception", pe);
@@ -4202,6 +4275,21 @@ public class TaxinvoiceServiceController {
 
         taxinvoice.getDetailList().add(detail);
 
+        /**********************************************************************
+         * 추가담당자 정보 - 세금계산서 발행 안내 메일을 수신받을 공급받는자 담당자가 다수인 경우 - 담당자 정보를 추가하여 발행 안내메일을 다수에게 전송할 수
+         * 있습니다. (최대 5명)
+         *********************************************************************/
+
+        taxinvoice.setAddContactList(new ArrayList<TaxinvoiceAddContact>());
+
+        TaxinvoiceAddContact addContact = new TaxinvoiceAddContact();
+
+        addContact.setSerialNum(1);
+        addContact.setContactName("추가 담당자 성명");
+        addContact.setEmail("test2@test.com");
+
+        taxinvoice.getAddContactList().add(addContact);
+
         // 즉시발행 메모
         String Memo = "수정세금계산서 발행 메모";
 
@@ -4212,6 +4300,7 @@ public class TaxinvoiceServiceController {
         // - 가산세가 부과되더라도 발행을 해야하는 경우에는 forceIssue의 값을
         //   true로 선언하여 발행(Issue API)를 호출하시면 됩니다.
         Boolean ForceIssue = false;
+
         try {
             IssueResponse response = taxinvoiceService.registIssue(CorpNum, taxinvoice, Memo, ForceIssue);
             m.addAttribute("Response", response);
@@ -4463,6 +4552,20 @@ public class TaxinvoiceServiceController {
 
         taxinvoice.getDetailList().add(detail);
 
+        /**********************************************************************
+         * 추가담당자 정보 - 세금계산서 발행 안내 메일을 수신받을 공급받는자 담당자가 다수인 경우 - 담당자 정보를 추가하여 발행 안내메일을 다수에게 전송할 수
+         * 있습니다. (최대 5명)
+         *********************************************************************/
+
+        taxinvoice.setAddContactList(new ArrayList<TaxinvoiceAddContact>());
+
+        TaxinvoiceAddContact addContact = new TaxinvoiceAddContact();
+
+        addContact.setSerialNum(1);
+        addContact.setContactName("추가 담당자 성명");
+        addContact.setEmail("test2@test.com");
+
+        taxinvoice.getAddContactList().add(addContact);
         // 즉시발행 메모
         String Memo = "수정세금계산서 발행 메모";
 
@@ -4720,6 +4823,21 @@ public class TaxinvoiceServiceController {
         detail.setRemark("품목비고2"); // 비고
 
         taxinvoice.getDetailList().add(detail);
+
+        /**********************************************************************
+         * 추가담당자 정보 - 세금계산서 발행 안내 메일을 수신받을 공급받는자 담당자가 다수인 경우 - 담당자 정보를 추가하여 발행 안내메일을 다수에게 전송할 수
+         * 있습니다. (최대 5명)
+         *********************************************************************/
+
+        taxinvoice.setAddContactList(new ArrayList<TaxinvoiceAddContact>());
+
+        TaxinvoiceAddContact addContact = new TaxinvoiceAddContact();
+
+        addContact.setSerialNum(1);
+        addContact.setContactName("추가 담당자 성명");
+        addContact.setEmail("test2@test.com");
+
+        taxinvoice.getAddContactList().add(addContact);
 
         // 즉시발행 메모
         String Memo = "수정세금계산서 발행 메모";
