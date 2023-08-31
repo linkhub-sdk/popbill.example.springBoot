@@ -23,7 +23,6 @@ popbill:
   useStaticIp: false
   #로컬시스템 시간 사용여부 true(사용-권장), false(미사용)
   useLocalTimeYn: true
-
-
-server:
-  port: 9090
+  customHeader:
+    appKey: custom-webhook-header-app-key
+    appKey1: custom-webhook-header-app-key-2nc
