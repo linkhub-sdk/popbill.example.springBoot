@@ -4861,4 +4861,35 @@ public class TaxinvoiceServiceController {
 
         return "issueResponse";
     }
+
+    @RequestMapping(value = "registTaxCert", method = RequestMethod.GET)
+    public String registTaxCert(Model m) {
+        /**
+         * 전자세금계산서 발행에 필요한 인증서를 팝빌 인증서버에 등록합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/cert#RegistTaxCert
+         */
+
+        // 팝빌회원 사업자번호 
+        String CorpNum = "1234567890";
+
+        // 공동인증서 공개키(Base64 Encoded)
+        // start line, end 
+        String certPublicKey = "";
+
+        // 공동인증서 개인키(Base64 Encoded)
+        String certPrivateKey = "";
+
+        // 공동인증서 비밀번호
+        String certCipher = "";
+
+        try {
+            Response response = taxinvoiceService.registTaxCert(CorpNum, certPublicKey, certPrivateKey, certCipher);
+            m.addAttribute("Response", response);
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "response";
+    }
 }
