@@ -4873,7 +4873,6 @@ public class TaxinvoiceServiceController {
         String CorpNum = "1234567890";
 
         // 공동인증서 공개키(Base64 Encoded)
-        // start line, end 
         String certPublicKey = "";
 
         // 공동인증서 개인키(Base64 Encoded)
