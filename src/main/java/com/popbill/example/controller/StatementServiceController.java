@@ -1,3 +1,11 @@
+/**
+  * 팝빌 전자명세서 API Java SDK SpringMVC Example
+  *
+  * SpringMVC 연동 튜토리얼 안내 : https://developers.popbill.com/guide/statement/java/getting-started/tutorial?fwn=springmvc
+  * 연동 기술지원 연락처 : 1600-9854
+  * 연동 기술지원 이메일 : code@linkhubcorp.com
+  *
+  */
 package com.popbill.example.controller;
 
 import java.io.IOException;
@@ -172,7 +180,7 @@ public class StatementServiceController {
         statement.setReceiverContactName("수신자 담당자 성명");
 
         // 수신자 메일주소
-        // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        // 팝빌 테스트 환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         // 실제 거래처의 메일주소가 기재되지 않도록 주의
         statement.setReceiverEmail("");
 
@@ -352,7 +360,7 @@ public class StatementServiceController {
         statement.setReceiverContactName("수신자 담당자 성명");
 
         // 수신자 메일주소
-        // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        // 팝빌 테스트 환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         // 실제 거래처의 메일주소가 기재되지 않도록 주의
         statement.setReceiverEmail("");
 
@@ -539,7 +547,7 @@ public class StatementServiceController {
         statement.setReceiverContactName("수신자 담당자 성명");
 
         // 수신자 메일주소
-        // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        // 팝빌 테스트 환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         // 실제 거래처의 메일주소가 기재되지 않도록 주의
         statement.setReceiverEmail("test@receiver.com");
 
@@ -1420,7 +1428,7 @@ public class StatementServiceController {
         statement.setReceiverContactName("수신자 담당자 성명");
 
         // 수신자 메일주소
-        // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        // 팝빌 테스트 환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         // 실제 거래처의 메일주소가 기재되지 않도록 주의
         statement.setReceiverEmail("test@receiver.com");
 
