@@ -19,6 +19,7 @@ import com.popbill.api.easyfin.EasyFinBankAccountForm;
 import com.popbill.api.easyfin.EasyFinBankJobState;
 import com.popbill.api.easyfin.EasyFinBankSearchResult;
 import com.popbill.api.easyfin.EasyFinBankSummary;
+import com.popbill.api.easyfin.UpdateEasyFinBankAccountForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -115,39 +116,41 @@ public class EasyFinBankServiceController {
          * - https://developers.popbill.com/reference/easyfinbank/java/api/manage#UpdateBankAccount
          */
 
-        // 계좌정보 클래스 인스턴스 생성
-        EasyFinBankAccountForm bankInfo = new EasyFinBankAccountForm();
-
         // 기관코드
         // 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
         // SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
         // 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
-        bankInfo.setBankCode("");
+        String BankCode = "";
 
         // 계좌번호 하이픈('-') 제외
-        bankInfo.setAccountNumber("");
+        String AccountNumber = "";
+
+        // 계좌정보 클래스 인스턴스 생성
+        UpdateEasyFinBankAccountForm BankAccountInfo = new UpdateEasyFinBankAccountForm();
 
         // 계좌비밀번호
-        bankInfo.setAccountPWD("");
+        BankAccountInfo.setAccountPWD("");
 
         // 계좌 별칭
-        bankInfo.setAccountName("");
+        BankAccountInfo.setAccountName("");
 
         // 인터넷뱅킹 아이디 (국민은행 필수)
-        bankInfo.setBankID("");
+        BankAccountInfo.setBankID("");
 
         // 조회전용 계정 아이디 (대구은행, 신협, 신한은행 필수)
-        bankInfo.setFastID("");
+        BankAccountInfo.setFastID("");
 
         // 조회전용 계정 비밀번호 (대구은행, 신협, 신한은행 필수)
-        bankInfo.setFastPWD("");
+        BankAccountInfo.setFastPWD("");
 
         // 메모
-        bankInfo.setMemo("");
+        BankAccountInfo.setMemo("");
+
+        String UserID = "testkorea";
 
         try {
 
-            Response response = easyFinBankService.updateBankAccount(CorpNum, bankInfo);
+            Response response = easyFinBankService.updateBankAccount(CorpNum, BankCode, AccountNumber, BankAccountInfo, UserID);
 
             m.addAttribute("Response", response);
 
