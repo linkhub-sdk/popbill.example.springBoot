@@ -2428,27 +2428,6 @@ public class TaxinvoiceServiceController {
         return "response";
     }
 
-    @RequestMapping(value = "getEmailPublicKeys", method = RequestMethod.GET)
-    public String getEmailPublicKeys(Model m) {
-        /**
-         * 전자세금계산서 유통사업자의 메일 목록을 확인합니다. -
-         * https://developers.popbill.com/reference/taxinvoice/java/api/etc#GetEmailPublicKeys
-         */
-
-        try {
-
-            EmailPublicKey[] emailPublicKeys = taxinvoiceService.getEmailPublicKeys(CorpNum);
-
-            m.addAttribute("EmailPublicKeys", emailPublicKeys);
-
-        } catch (PopbillException e) {
-            m.addAttribute("Exception", e);
-            return "exception";
-        }
-
-        return "Taxinvoice/EmailPublicKey";
-    }
-
     @RequestMapping(value = "assignMgtKey", method = RequestMethod.GET)
     public String assignMgtKey(Model m) {
         /**
