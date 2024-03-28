@@ -12,6 +12,12 @@
 #    - UseStaticIP : 통신 IP 고정, true-사용, false-미사용, (기본값:false)
 #    - UseLocalTimeYN : 로컬시스템 시간 사용여부, true-사용, false-미사용, (기본값:true)
 
+#    공동인증서를 등록하는 API를 사용하는 경우, 통신구간 보안을 위한 암호화 정보
+#    암호화 키 발급은 팝빌 파트너센터(1600-8536)로 문의하여 발급
+#    - mlePublicKey : MLE(Message Level Encryption) 공개키
+#    - mleKeyID : MLE 공개키 식별 아이디
+#    - mleKeyName : MLE 공개키 식별 이름
+
 popbill:
   # 링크아이디
   linkId: TESTER
@@ -25,9 +31,9 @@ popbill:
   useStaticIp: false
   # 로컬시스템 시간 사용여부, true-사용, false-미사용, (기본값:true)
   useLocalTimeYn: true
-  # MLE KEY 사용자 식별 아이디
-  mleKeyID: ''
-  # MLE KEY 사용자 식별 이름
-  mleKeyName: ''
   # MLE 공개키
-  mlePublicKey: '''
+  mlePublicKey: ''
+  # MLE 공개키 식별 아이디
+  mleKeyID: ''
+  # MLE 공개키 식별 이름
+  mleKeyName: ''
