@@ -1,4 +1,4 @@
-# 업데이트 일자 : 2024-03-29
+# 업데이트 일자 : 2024-04-01
 # 연동 기술지원 연락처 : 1600-9854
 # 연동 기술지원 이메일 : code@linkhubcorp.com
 #
@@ -14,16 +14,16 @@
 # 3) SDK 환경설정 선택 옵션 설정
 #    RegistTaxCert, RegistTaxCertPFX API를 사용하는 경우, 통신구간 보안을 위한 암호화 정보
 #    암호화 키 발급은 팝빌 파트너센터(1600-8536)로 문의하여 발급
-#    - mlePublicKey : MLE(Message Level Encryption) 공개키
-#    - mleKeyID : MLE 공개키 식별 아이디
-#    - mleKeyName : MLE 공개키 식별 이름
+#    - mlePublicKey : MLE PublicKey
+#    - mleKeyID : MLE Key ID
+#    - mleKeyName : MLE Key Name
 
 popbill:
   # 링크아이디
   linkId: TESTER
   # 비밀키
   secretKey: SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=
-  # 연동환경 설정, true-테스트, false-운영(Production), (기본값:true)
+  # 연동환경 설정, true-테스트, false-운영(Production), (기본값:false)
   isTest: true
   # 인증토큰 IP 검증 설정, true-사용, false-미사용, (기본값:true)
   isIpRestrictOnOff: true
