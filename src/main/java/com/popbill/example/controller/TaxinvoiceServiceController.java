@@ -30,7 +30,6 @@ import com.popbill.api.taxinvoice.TaxinvoiceAddContact;
 import com.popbill.api.taxinvoice.TaxinvoiceDetail;
 import com.popbill.api.taxinvoice.TaxinvoiceInfo;
 import com.popbill.api.taxinvoice.TaxinvoiceLog;
-import com.popbill.api.taxinvoice.TaxinvoiceServiceImp;
 import com.popbill.api.taxinvoice.TaxinvoiceXML;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
