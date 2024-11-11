@@ -1,5 +1,5 @@
 /**
-  * 팝빌 휴폐업조회 API Java SDK SpringBoot Example
+  * 팝빌 사업자등록상태조회 (휴폐업조회) API Java SDK SpringBoot Example
   *
   * SpringBoot 연동 튜토리얼 안내 : https://developers.popbill.com/guide/closedown/java/getting-started/tutorial?fwn=springboot
   * 연동 기술지원 연락처 : 1600-9854
@@ -38,7 +38,7 @@ public class ClosedownServiceController {
     @RequestMapping(value = "checkCorpNum", method = RequestMethod.GET)
     public String checkCorpNum(@RequestParam(required = false) String CorpNum, Model m) {
         /**
-         * 사업자번호 1건에 대한 휴폐업정보를 확인합니다.
+         * 사업자번호 1건에 대한 사업자등록상태 (휴폐업) 를 확인합니다.
          * - https://developers.popbill.com/reference/closedown/java/api/check#CheckCorpNum
          */
 
@@ -64,7 +64,7 @@ public class ClosedownServiceController {
     @RequestMapping(value = "checkCorpNums", method = RequestMethod.GET)
     public String checkCorpNums(Model m) {
         /**
-         * 다수건의 사업자번호에 대한 휴폐업정보를 확인합니다. (최대 1,000건)
+         * 다수건의 사업자번호에 대한 사업자등록상태 (휴폐업조회) 를 확인합니다. (최대 1,000건)
          * - https://developers.popbill.com/reference/closedown/java/api/check#CheckCorpNums
          */
 
@@ -88,7 +88,7 @@ public class ClosedownServiceController {
     @RequestMapping(value = "getUnitCost", method = RequestMethod.GET)
     public String getUnitCost(Model m) {
         /**
-         * 휴폐업 조회시 과금되는 포인트 단가를 확인합니다.
+         * 사업자등록상태 조회시 과금되는 포인트 단가를 확인합니다.
          * - https://developers.popbill.com/reference/closedown/java/api/point#GetUnitCost
          */
 
@@ -109,7 +109,7 @@ public class ClosedownServiceController {
     @RequestMapping(value = "getChargeInfo", method = RequestMethod.GET)
     public String chargeInfo(Model m) {
         /**
-         * 팝빌 휴폐업조회 API 서비스 과금정보를 확인합니다.
+         * 팝빌 사업자등록상태조회 (휴폐업조회) API 서비스 과금정보를 확인합니다.
          * - https://developers.popbill.com/reference/closedown/java/api/point#GetChargeInfo
          */
 
