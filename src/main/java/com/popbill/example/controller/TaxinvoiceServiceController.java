@@ -39,7 +39,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "TaxinvoiceService")
@@ -353,14 +358,10 @@ public class TaxinvoiceServiceController {
         // - 가산세가 부과되더라도 발행을 해야하는 경우에는 forceIssue의 값을 true로 선언하여 발행(Issue API)를 호출하시면 됩니다.
         Boolean ForceIssue = false;
 
-//        세금계산서 발행 안내메일 제목
-//        기본값 : 팝빌에서 설정한 안내메일 제목 사용
-        String EmailSubjet = "";
-
         try {
 
-            IssueResponse response = taxinvoiceService.registIssueMLE(CorpNum, taxinvoice,
-                    WriteSpecification, Memo, ForceIssue, DealInvoiceKey, EmailSubjet, UserID);
+            IssueResponse response = taxinvoiceService.registIssue(CorpNum, taxinvoice,
+                    WriteSpecification, Memo, ForceIssue, DealInvoiceKey);
 
             m.addAttribute("Response", response);
 
@@ -630,7 +631,7 @@ public class TaxinvoiceServiceController {
         try {
 
             BulkResponse response =
-                    taxinvoiceService.bulkSubmitMLE(CorpNum, SubmitID, bulkTx, ForceIssue, UserID);
+                    taxinvoiceService.bulkSubmit(CorpNum, SubmitID, bulkTx, ForceIssue);
 
             m.addAttribute("Response", response);
 
