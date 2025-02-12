@@ -487,7 +487,7 @@ public class BaseServiceServiceController {
     @RequestMapping(value = "getContactInfo", method = RequestMethod.GET)
     public String getContactInfo(Model m) throws PopbillException {
         /**
-         * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 확인합니다.
+         * 연동회원에 추가된 담당자 정보를 확인합니다.
          * - https://developers.popbill.com/reference/taxinvoice/java/api/member#GetContactInfo
          */
 
@@ -508,7 +508,7 @@ public class BaseServiceServiceController {
     @RequestMapping(value = "listContact", method = RequestMethod.GET)
     public String listContact(Model m) throws PopbillException {
         /**
-         * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
+         * 연동회원에 추가된 담당자 목록을 확인합니다.
          * - https://developers.popbill.com/reference/taxinvoice/java/api/member#ListContact
          */
 
@@ -527,7 +527,7 @@ public class BaseServiceServiceController {
     @RequestMapping(value = "updateContact", method = RequestMethod.GET)
     public String updateContact(Model m) throws PopbillException {
         /**
-         * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
+         * 연동회원에 추가된 담당자 정보를 수정합니다.
          * - https://developers.popbill.com/reference/taxinvoice/java/api/member#UpdateContact
          */
 
@@ -566,7 +566,7 @@ public class BaseServiceServiceController {
     @RequestMapping(value = "registContact", method = RequestMethod.GET)
     public String registContact(Model m) throws PopbillException {
         /**
-         * 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
+         * 연동회원에 담당자를 추가합니다.
          * - https://developers.popbill.com/reference/taxinvoice/java/api/member#RegistContact
          */
 
@@ -679,10 +679,8 @@ public class BaseServiceServiceController {
     @RequestMapping(value = "quitMember", method = RequestMethod.GET)
     public String quitMember(Model m) {
         /**
-         * 가입된 연동회원의 탈퇴를 요청합니다.
-         *  - 회원탈퇴 신청과 동시에 팝빌의 모든 서비스 이용이 불가하며, 관리자를 포함한 모든 담당자 계정도 일괄탈퇴 됩니다.
-         *  - 회원탈퇴로 삭제된 데이터는 복원이 불가능합니다.
-         *  - 관리자 계정만 사용 가능합니다.
+         * 팝빌 연동회원을 탈퇴 처리합니다.
+         *  - 관리자를 포함한 모든 담당자가 일괄 삭제 처리됩니다.
          *  - https://developers.popbill.com/reference/taxinvoice/java/api/member#QuitMember
          */
 
@@ -734,5 +732,30 @@ public class BaseServiceServiceController {
             return "exception";
         }
         return "refundableBalance";
+    }
+
+    @RequestMapping(value = "deleteContact", method = RequestMethod.GET)
+    public String deleteContact(Model m) throws PopbillException {
+        /**
+         * 연동회원에 추가된 담당자를 삭제합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/java/api/member#DeleteContact
+         */
+
+        // 담당자 아이디
+        String contactID = "";
+
+        try {
+
+            Response response =
+                    taxinvoiceService.deleteContact(CorpNum, contactID, UserID);
+
+            m.addAttribute("Response", response);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "response";
     }
 }
