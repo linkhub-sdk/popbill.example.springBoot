@@ -767,7 +767,7 @@ public class MessageServiceController {
         // └ false = 접수한 문자 전체 조회 (관리자권한)
         // └ true = 해당 담당자 계정으로 접수한 문자만 조회 (개인권한)
         // - 미입력시 기본값 false 처리
-        Boolean SenderYN = false;
+        Boolean SenderOnly = false;
 
         // 페이지 번호
         int Page = 1;
@@ -786,7 +786,7 @@ public class MessageServiceController {
         try {
 
             MSGSearchResult response = messageService.search(CorpNum, SDate,
-                    EDate, State, Item, ReserveYN, SenderYN, Page, PerPage, Order, QString);
+                    EDate, State, Item, ReserveYN, SenderOnly, Page, PerPage, Order, QString);
 
             m.addAttribute("SearchResult", response);
 
