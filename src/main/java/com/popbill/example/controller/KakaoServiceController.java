@@ -1204,6 +1204,9 @@ public class KakaoServiceController {
     public String getMessages(Model m) {
         /**
          * 팝빌에서 반환받은 접수번호를 통해 알림톡/친구톡 전송상태 및 결과를 확인합니다.
+         * 카카오톡 상태코드 [https://developers.popbill.com/reference/kakaotalk/java/response-code#state-code]
+         * 카카오 결과코드(카카오톡) [https://developers.popbill.com/reference/kakaotalk/java/response-code#kakao-result-code]
+         * 통신사 결과코드(대체문자) [https://developers.popbill.com/reference/kakaotalk/java/response-code#telecom-result-code]
          * - https://developers.popbill.com/reference/kakaotalk/java/api/info#GetMessages
          */
 
@@ -1228,6 +1231,9 @@ public class KakaoServiceController {
     public String getMessagesRN(Model m) {
         /**
          * 파트너가 할당한 전송요청 번호를 통해 알림톡/친구톡 전송상태 및 결과를 확인합니다.
+         * 카카오톡 상태코드 [https://developers.popbill.com/reference/kakaotalk/java/response-code#state-code]
+         * 카카오 결과코드(카카오톡) [https://developers.popbill.com/reference/kakaotalk/java/response-code#kakao-result-code]
+         * 통신사 결과코드(대체문자) [https://developers.popbill.com/reference/kakaotalk/java/response-code#telecom-result-code]
          * - https://developers.popbill.com/reference/kakaotalk/java/api/info#GetMessagesRN
          */
 
@@ -1253,6 +1259,9 @@ public class KakaoServiceController {
         /**
          * 검색조건에 해당하는 카카오톡 전송내역을 조회합니다. (조회기간 단위 : 최대 2개월)
          * - 카카오톡 접수일시로부터 6개월 이내 접수건만 조회할 수 있습니다.
+         * 카카오톡 상태코드 [https://developers.popbill.com/reference/kakaotalk/java/response-code#state-code]
+         * 카카오 결과코드(카카오톡) [https://developers.popbill.com/reference/kakaotalk/java/response-code#kakao-result-code]
+         * 통신사 결과코드(대체문자) [https://developers.popbill.com/reference/kakaotalk/java/response-code#telecom-result-code]
          * - https://developers.popbill.com/reference/kakaotalk/java/api/info#Search
          */
 

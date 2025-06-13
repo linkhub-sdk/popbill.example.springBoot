@@ -738,6 +738,7 @@ public class StatementServiceController {
     public String getInfo(Model m) {
         /**
          * 전자명세서의 1건의 상태 및 요약정보 확인합니다.
+         * 전자명세서 상태코드 [https://developers.popbill.com/reference/statement/java/response-code#state-code]
          * - https://developers.popbill.com/reference/statement/java/api/info#GetInfo
          */
 
@@ -766,6 +767,7 @@ public class StatementServiceController {
     public String getInfos(Model m) {
         /**
          * 다수건의 전자명세서 상태 및 요약 정보를 확인합니다. (1회 호출 시 최대 1,000건 확인 가능)
+         * 전자명세서 상태코드 [https://developers.popbill.com/reference/statement/java/response-code#state-code]
          * - https://developers.popbill.com/reference/statement/java/api/info#GetInfos
          */
 
@@ -822,6 +824,7 @@ public class StatementServiceController {
     public String search(Model m) {
         /**
          * 검색조건에 해당하는 세금계산서를 조회합니다. (조회기간 단위 : 최대 6개월)
+         * 전자명세서 상태코드 [https://developers.popbill.com/reference/statement/java/response-code#state-code]
          * - https://developers.popbill.com/reference/statement/java/api/info#Search
          */
 

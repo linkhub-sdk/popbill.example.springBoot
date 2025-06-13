@@ -1775,6 +1775,7 @@ public class TaxinvoiceServiceController {
     public String search(Model m) {
         /**
          * 검색조건에 해당하는 세금계산서를 조회합니다. (조회기간 단위 : 최대 6개월)
+         * 세금계산서 상태코드 [https://developers.popbill.com/reference/taxinvoice/java/response-code#state-code]
          * - https://developers.popbill.com/reference/taxinvoice/java/api/info#Search
          */
 

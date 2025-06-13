@@ -39,6 +39,7 @@ public class AccountCheckServiceController {
     public String checkAccountInfo(Model m) {
         /**
          * 1건의 예금주성명을 조회합니다.
+         * 예금주조회 상태코드 [https://developers.popbill.com/reference/accountcheck/java/response-code#result-code]
          * - https://developers.popbill.com/reference/accountcheck/java/api/check#CheckAccountInfo
          */
 
@@ -66,6 +67,7 @@ public class AccountCheckServiceController {
     public String checkDepositorInfo(Model m) {
         /**
          * 1건의 예금주실명을 조회합니다.
+         * 예금주조회 상태코드 [https://developers.popbill.com/reference/accountcheck/java/response-code#result-code]
          * - https://developers.popbill.com/reference/accountcheck/java/api/check#CheckDepositorInfo
          */
 
