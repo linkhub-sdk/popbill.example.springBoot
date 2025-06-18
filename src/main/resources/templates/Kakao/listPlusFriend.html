@@ -13,9 +13,9 @@
 			<legend th:text="${#request?.requestURL}"></legend>
 			<fieldset class="fieldset2" th:each="friendInfo, index : ${listInfo}">
 				<ul>
-					<li>plusFriendID (카카오톡 채널 아이디) : <span
+					<li>plusFriendID (비즈니스 채널 아이디) : <span
 						th:text="${friendInfo.plusFriendID}"></span></li>
-					<li>plusFriendName (카카오톡 채널 이름) : <span
+					<li>plusFriendName (비즈니스 채널 이름) : <span
 						th:text="${friendInfo.plusFriendName}"></span></li>
 					<li>regDT (등록일시) : <span th:text="${friendInfo.regDT}"></span></li>
 					<li>state (채널 상태) : <span th:text="${friendInfo.state}"></span></li>

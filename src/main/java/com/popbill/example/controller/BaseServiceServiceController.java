@@ -49,7 +49,6 @@ public class BaseServiceServiceController {
     public String checkIsMember(Model m) throws PopbillException {
         /**
          * 사업자번호를 조회하여 연동회원 가입여부를 확인합니다.
-         * - LinkID는 연동신청 시 팝빌에서 발급받은 링크아이디 값입니다.
          * - https://developers.popbill.com/reference/taxinvoice/java/api/member#CheckIsMember
          */
 
@@ -73,7 +72,6 @@ public class BaseServiceServiceController {
     public String getBalance(Model m) throws PopbillException {
         /**
          * 연동회원의 잔여포인트를 확인합니다.
-         * - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
          * - https://developers.popbill.com/reference/taxinvoice/java/api/point#GetBalance
          */
 
@@ -94,7 +92,6 @@ public class BaseServiceServiceController {
     public String getPartnerBalance(Model m) throws PopbillException {
         /**
          * 파트너의 잔여포인트를 확인합니다.
-         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트 조회(GetBalance API) 함수를 이용하시기 바랍니다.
          * - https://developers.popbill.com/reference/taxinvoice/java/api/point#GetPartnerBalance
          */
 
@@ -319,8 +316,10 @@ public class BaseServiceServiceController {
     @RequestMapping(value = "getPartnerURL", method = RequestMethod.GET)
     public String getPartnerURL(Model m) throws PopbillException {
         /**
-         * 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * 파트너 포인트를 충전하는 팝업 URL을 반환합니다.
+         * - 권장 사이즈 : width = 800px / height = 700px
+         * - 반환되는 URL은 30초 동안만 사용이 가능합니다.
+         * - 반환되는 URL에서만 유효한 세션을 포함하고 있습니다.
          * - https://developers.popbill.com/reference/taxinvoice/java/api/point#GetPartnerURL
          */
 
@@ -365,8 +364,10 @@ public class BaseServiceServiceController {
     @RequestMapping(value = "getChargeURL", method = RequestMethod.GET)
     public String getChargeURL(Model m) throws PopbillException {
         /**
-         * 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * 연동회원 포인트를 충전하는 팝업 URL을 반환합니다.
+         * - 권장 사이즈 : width = 800px / height = 700px
+         * - 반환되는 URL은 30초 동안만 사용이 가능합니다.
+         * - 반환되는 URL에서만 유효한 세션을 포함하고 있습니다.
          * - https://developers.popbill.com/reference/taxinvoice/java/api/point#GetChargeURL
          */
         try {
@@ -386,8 +387,10 @@ public class BaseServiceServiceController {
     @RequestMapping(value = "getPaymentURL", method = RequestMethod.GET)
     public String getPaymentURL(Model m) throws PopbillException {
         /**
-         * 연동회원 포인트 결제내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * 연동회원 포인트 결제내역 팝업 URL을 반환합니다.
+         * - 권장 사이즈 : width = 1,200px (최소 800px) / height = 600px
+         * - 반환되는 URL은 30초 동안만 사용이 가능합니다.
+         * - 반환되는 URL에서만 유효한 세션을 포함하고 있습니다.
          * - https://developers.popbill.com/reference/taxinvoice/java/api/point#GetPaymentURL
          */
         try {
@@ -407,8 +410,10 @@ public class BaseServiceServiceController {
     @RequestMapping(value = "getUseHistoryURL", method = RequestMethod.GET)
     public String getUseHistoryURL(Model m) throws PopbillException {
         /**
-         * 연동회원 포인트 사용내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * 연동회원 포인트 사용내역 팝업 URL을 반환합니다.
+         * - 권장 사이즈 : width = 1,200px (최소 800px) / height = 600px
+         * - 반환되는 URL은 30초 동안만 사용이 가능합니다.
+         * - 반환되는 URL에서만 유효한 세션을 포함하고 있습니다.
          * - https://developers.popbill.com/reference/taxinvoice/java/api/point#GetUseHistoryURL
          */
         try {
@@ -428,7 +433,7 @@ public class BaseServiceServiceController {
     @RequestMapping(value = "joinMember", method = RequestMethod.GET)
     public String joinMember(Model m) throws PopbillException {
         /**
-         * 사용자를 연동회원으로 가입처리합니다.
+         * 프로그램 공급사의 고객사를 팝빌 연동회원으로 가입하는 API 입니다.
          * - https://developers.popbill.com/reference/taxinvoice/java/api/member#JoinMember
          */
 

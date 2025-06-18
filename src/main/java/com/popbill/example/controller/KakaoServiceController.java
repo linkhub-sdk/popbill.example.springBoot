@@ -16,7 +16,7 @@
   *     - UseLocalTimeYN : 로컬시스템 시간 사용여부, true-사용, false-미사용, (기본값:true)
   *  3) 비즈니스 채널 등록 및 알림톡 템플릿을 신청합니다.
   *    - 1. 비즈니스 채널 등록 (등록방법은 사이트/API 두가지 방식이 있습니다.)
-  *       └ 팝빌 사이트 로그인 [문자/팩스] > [카카오톡] > [카카오톡 관리] > '카카오톡 채널 관리' 메뉴에서 등록
+  *       └ 팝빌 사이트 로그인 [문자/팩스] > [카카오톡] > [카카오톡 관리] > '비즈니스 채널 관리' 메뉴에서 등록
   *       └ GetPlusFriendMgtURL API 를 통해 반환된 URL을 이용하여 등록
   *    - 2. 알림톡 템플릿 신청 (등록방법은 사이트/API 두가지 방식이 있습니다.)
   *       └ 팝빌 사이트 로그인 [문자/팩스] > [카카오톡] > [카카오톡 관리] > '알림톡 템플릿 관리' 메뉴에서 등록
@@ -66,7 +66,7 @@ public class KakaoServiceController {
     @RequestMapping(value = "getPlusFriendMgtURL", method = RequestMethod.GET)
     public String getPlusFriendMgtURL(Model m) {
         /**
-         * 카카오톡 채널을 등록하고 내역을 확인하는 카카오톡 채널 관리 페이지 팝업 URL을 반환합니다.
+         * 비즈니스 채널을 등록하고 내역을 확인하는 비즈니스 채널 관리 페이지 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://developers.popbill.com/reference/kakaotalk/java/api/channel#GetPlusFriendMgtURL
          */
@@ -87,7 +87,7 @@ public class KakaoServiceController {
     @RequestMapping(value = "listPlusFriendID", method = RequestMethod.GET)
     public String listPlusFriendID(Model m) {
         /**
-         * 팝빌에 등록한 연동회원의 카카오톡 채널 목록을 확인합니다.
+         * 팝빌에 등록한 연동회원의 비즈니스 채널 목록을 확인합니다.
          * - https://developers.popbill.com/reference/kakaotalk/java/api/channel#ListPlusFriendID
          */
 
@@ -510,7 +510,7 @@ public class KakaoServiceController {
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#SendFTSOne
          */
 
-        // 팝빌에 등록된 카카오톡 채널 아이디
+        // 팝빌에 등록된 비즈니스 채널 아이디
         String plusFriendID = "@팝빌";
 
         // 팝빌에 사전 등록된 발신번호
@@ -602,7 +602,7 @@ public class KakaoServiceController {
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#SendFTSMulti
          */
 
-        // 팝빌에 등록된 카카오톡 채널 아이디
+        // 팝빌에 등록된 비즈니스 채널 아이디
         String plusFriendID = "@팝빌";
 
         // 팝빌에 사전 등록된 발신번호
@@ -692,7 +692,7 @@ public class KakaoServiceController {
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#SendFTSSame
          */
 
-        // 팝빌에 등록된 카카오톡 채널 아이디
+        // 팝빌에 등록된 비즈니스 채널 아이디
         String plusFriendID = "@팝빌";
 
         // 팝빌에 사전 등록된 발신번호
@@ -788,7 +788,7 @@ public class KakaoServiceController {
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#SendFMSOne
          */
 
-        // 팝빌에 등록된 카카오톡 채널 아이디
+        // 팝빌에 등록된 비즈니스 채널 아이디
         String plusFriendID = "@팝빌";
 
         // 팝빌에 사전 등록된 발신번호
@@ -890,7 +890,7 @@ public class KakaoServiceController {
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#SendFMSMulti
          */
 
-        // 팝빌에 등록된 카카오톡 채널 아이디
+        // 팝빌에 등록된 비즈니스 채널 아이디
         String plusFriendID = "@팝빌";
 
         // 팝빌에 사전 등록된 발신번호
@@ -1008,7 +1008,7 @@ public class KakaoServiceController {
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#SendFMSSame
          */
 
-        // 팝빌에 등록된 카카오톡 채널 아이디
+        // 팝빌에 등록된 비즈니스 채널 아이디
         String plusFriendID = "@팝빌";
 
         // 팝빌에 사전 등록된 발신번호

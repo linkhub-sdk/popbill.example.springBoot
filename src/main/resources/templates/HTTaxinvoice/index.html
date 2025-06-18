@@ -10,7 +10,7 @@
 		<p class="heading1">팝빌 홈택스수집(전자세금계산서) SDK SpringBoot Example.</p>
 		<br />
 		<fieldset class="fieldset1">
-			<legend>홈택스 전자세금계산서 매입/매출 내역 수집</legend>
+			<legend>홈택스 수집 요청</legend>
 			<ul>
 				<li><a href="HTTaxinvoiceService/requestJob">requestJob</a> - 수집 요청</li>
 				<li><a href="HTTaxinvoiceService/getJobState">GetJobState</a> - 수집 상태 확인</li>
@@ -18,33 +18,33 @@
 			</ul>
 		</fieldset>
 		<fieldset class="fieldset1">
-			<legend>홈택스 전자세금계산서 매입/매출 내역 수집 결과 조회</legend>
+			<legend>수집 내역 확인</legend>
 			<ul>
-				<li><a href="HTTaxinvoiceService/search">search</a> - 수집 결과 조회</li>
-				<li><a href="HTTaxinvoiceService/summary">summary</a> - 수집 결과 요약정보 조회</li>
-				<li><a href="HTTaxinvoiceService/getTaxinvoice">GetTaxinvoice</a> - 상세정보 확인 - JSON</li>
-				<li><a href="HTTaxinvoiceService/getXML">GetXML</a> - 상세정보 확인 - XML</li>
-				<li><a href="HTTaxinvoiceService/getPopUpURL">GetPopUpURL</a> - 홈택스 전자세금계산서 보기 팝업 URL</li>
-				<li><a href="HTTaxinvoiceService/getPrintURL">GetPrintURL</a> - 홈택스 전자세금계산서 인쇄 팝업 URL</li>
+				<li><a href="HTTaxinvoiceService/search">search</a> - 수집 내역 확인</li>
+				<li><a href="HTTaxinvoiceService/summary">summary</a> - 수집 내역 합계</li>
+				<li><a href="HTTaxinvoiceService/getTaxinvoice">GetTaxinvoice</a> - 수집 상세 확인</li>
+				<li><a href="HTTaxinvoiceService/getXML">GetXML</a> - 수집 상세 확인 (XML)</li>
+				<li><a href="HTTaxinvoiceService/getPopUpURL">GetPopUpURL</a> - 전자세금계산서 팝업 URL</li>
+				<li><a href="HTTaxinvoiceService/getPrintURL">GetPrintURL</a> - 전자세금계산서 인쇄 팝업 URL</li>
 			</ul>
 		</fieldset>
 		<fieldset class="fieldset1">
-			<legend>홈택스수집 인증 관리</legend>
+			<legend>홈택스 인증 관리</legend>
 			<ul>
-				<li><a href="HTTaxinvoiceService/getCertificatePopUpURL">GetCertificatePopUpURL</a> - 홈택스수집 인증 관리 팝업 URL</li>
-				<li><a href="HTTaxinvoiceService/getCertificateExpireDate">GetCertificateExpireDate</a> - 홈택스수집 공동인증서 만료일자 확인</li>
-				<li><a href="HTTaxinvoiceService/checkCertValidation">checkCertValidation</a> - 홈택스 공동인증서 로그인 테스트</li>
-				<li><a href="HTTaxinvoiceService/registDeptUser">registDeptUser</a> - 부서사용자 계정등록</li>
-				<li><a href="HTTaxinvoiceService/checkDeptUser">checkDeptUser</a> - 부서사용자 등록정보 확인</li>
-				<li><a href="HTTaxinvoiceService/checkLoginDeptUser">checkLoginDeptUser</a> - 부서사용자 로그인 테스트</li>
-				<li><a href="HTTaxinvoiceService/deleteDeptUser">deleteDeptUser</a> - 부서사용자 등록정보 삭제</li>
+				<li><a href="HTTaxinvoiceService/getCertificatePopUpURL">GetCertificatePopUpURL</a> - 홈택스 인증정보 등록 팝업 URL</li>
+				<li><a href="HTTaxinvoiceService/getCertificateExpireDate">GetCertificateExpireDate</a> - 인증서 만료일자 확인</li>
+				<li><a href="HTTaxinvoiceService/checkCertValidation">checkCertValidation</a> - 인증서 유효성 검증</li>
+				<li><a href="HTTaxinvoiceService/registDeptUser">registDeptUser</a> - 부서사용자 계정 등록</li>
+				<li><a href="HTTaxinvoiceService/checkDeptUser">checkDeptUser</a> - 부서사용자 등록 여부</li>
+				<li><a href="HTTaxinvoiceService/checkLoginDeptUser">checkLoginDeptUser</a> - 부서사용자 유효성 검증</li>
+				<li><a href="HTTaxinvoiceService/deleteDeptUser">deleteDeptUser</a> - 부서사용자 계정 삭제</li>
 			</ul>
 		</fieldset>
 		<fieldset class="fieldset1">
-			<legend>포인트 관리 / 정액제 신청</legend>
+			<legend>정액제 신청 / 포인트 관리</legend>
 			<ul>
 				<li><a href="HTTaxinvoiceService/getFlatRateState">GetFlatRateState</a> - 정액제 서비스 상태 확인</li>
-				<li><a href="HTTaxinvoiceService/getFlatRatePopUpURL">GetFlatRatePopUpURL</a> - 정액제 서비스 신청 URL</li>
+				<li><a href="HTTaxinvoiceService/getFlatRatePopUpURL">GetFlatRatePopUpURL</a> - 정액제 신청 팝업 URL</li>
 				<li><a href="HTTaxinvoiceService/getChargeInfo">GetChargeInfo</a> - 과금정보 확인</li>
 				<li><a href="BaseService/getBalance">GetBalance</a> - 연동회원 잔여포인트 확인</li>
 				<li><a href="BaseService/getChargeURL">GetChargeURL</a> - 연동회원 포인트 충전 팝업 URL</li>
@@ -58,12 +58,12 @@
 				<li><a href="BaseService/getRefundHistory">GetRefundHistory</a> - 연동회원 포인트 환불내역 확인</li>
 				<li><a href="BaseService/getPartnerBalance">GetPartnerBalance</a> - 파트너 잔여포인트 확인</li>
 				<li><a href="BaseService/getPartnerURL">GetPartnerURL</a> - 파트너 포인트충전 팝업 URL</li>
-				<li><a href="BaseService/getRefundInfo">GetRefundInfo</a> - 환불 신청 상태 확인</li>
-				<li><a href="BaseService/getRefundableBalance">GetRefundableBalance</a> - 환불가능 포인트 조회</li>
+				<li><a href="BaseService/getRefundInfo">GetRefundInfo</a> - 환불 신청 상태 조회</li>
+				<li><a href="BaseService/getRefundableBalance">GetRefundableBalance</a> - 환불 가능 포인트 조회</li>
 			</ul>
 		</fieldset>
 		<fieldset class="fieldset1">
-			<legend>회원정보</legend>
+			<legend>히원 관리</legend>
 			<ul>
 				<li><a href="BaseService/checkIsMember">checkIsMember</a> - 연동회원 가입여부 확인</li>
 				<li><a href="BaseService/checkID">checkID</a> - 연동회원 아이디 중복 확인</li>

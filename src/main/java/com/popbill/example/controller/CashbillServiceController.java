@@ -115,10 +115,10 @@ public class CashbillServiceController {
         // 공급가액, 숫자만 가능
         cashbill.setSupplyCost("10000");
 
-        // 부가세, 숫자만 가능
+        // 부가세, 양수 또는 0 입력
         cashbill.setTax("1000");
 
-        // 봉사료, 숫자만 가능
+        // 봉사료, 양수 또는 0 입력
         cashbill.setServiceFee("0");
 
         // 합계금액, 숫자만 가능, 봉사료 + 공급가액 + 부가세
@@ -229,10 +229,10 @@ public class CashbillServiceController {
             // 공급가액, 숫자만 가능
             cashbill.setSupplyCost("10000");
 
-            // 부가세, 숫자만 가능
+            // 부가세, 양수 또는 0 입력
             cashbill.setTax("1000");
 
-            // 봉사료, 숫자만 가능
+            // 봉사료, 양수 또는 0 입력
             cashbill.setServiceFee("0");
 
             // 합계금액, 숫자만 가능, 봉사료 + 공급가액 + 부가세
@@ -361,10 +361,10 @@ public class CashbillServiceController {
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
         String mgtKey = "20220218-BOOT005";
 
-        // 당초 승인 현금영수증 국세청 승인번호 - 상태확인(getInfo API) 함수를 통해 confirmNum 값 기재
+        // 당초 국세청승인번호 - 상태확인(getInfo API) 함수를 통해 confirmNum 값 기재
         String orgConfirmNum = "820116333";
 
-        // 당초 승인 현금영수증 거래일자 - 상태확인(getInfo API) 함수를 통해 tradeDate 값 기재
+        // 당초 거래일자 - 상태확인(getInfo API) 함수를 통해 tradeDate 값 기재
         String orgTradeDate = "20230102";
 
         try {
@@ -393,10 +393,10 @@ public class CashbillServiceController {
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
         String mgtKey = "20220218-BOOT006";
 
-        // 당초 승인 현금영수증 국세청 승인번호 - 상태확인(getInfo API) 함수를 통해 confirmNum 값 기재
+        // 당초 국세청승인번호 - 상태확인(getInfo API) 함수를 통해 confirmNum 값 기재
         String orgConfirmNum = "820116333";
 
-        // 당초 승인 현금영수증 거래일자 - 상태확인(getInfo API) 함수를 통해 tradeDate 값 기재
+        // 당초 거래일자 - 상태확인(getInfo API) 함수를 통해 tradeDate 값 기재
         String orgTradeDate = "20230102";
 
         // 안내 문자 전송여부 , true / false 중 택 1
