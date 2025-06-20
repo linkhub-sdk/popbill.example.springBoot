@@ -14,8 +14,8 @@
 			<fieldset class="fieldset2" th:each="SentMessage : ${SentMessages}">
 				<legend>문자 전송결과</legend>
 				<ul>
-					<li>state (전송상태 코드) : <span th:text="${SentMessage.state}"></span></li>
-					<li>result (전송결과 코드) : <span th:text="${SentMessage.result}"></span></li>
+					<li>state (상태코드) : <span th:text="${SentMessage.state}"></span></li>
+					<li>result (결과코드) : <span th:text="${SentMessage.result}"></span></li>
 					<li>subject (메시지 제목) : <span th:text="${SentMessage.subject}"></span></li>
 					<li>messageType (메시지타입) : <span
 						th:text="${SentMessage.messageType}"></span></li>

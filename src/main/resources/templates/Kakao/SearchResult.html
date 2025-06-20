@@ -31,13 +31,13 @@
 							th:text="${index.size}"></span> ]
 					</legend>
 					<ul>
-						<li>state (전송상태 코드) : <span th:text="${msgInfo.state}"></span></li>
+						<li>state (상태코드) : <span th:text="${msgInfo.state}"></span></li>
 						<li>sendDT (전송일시) : <span th:text="${msgInfo.sendDT}"></span></li>
 						<li>receiveNum (수신번호) : <span th:text="${msgInfo.receiveNum}"></span></li>
 						<li>receiveName (수신자명) : <span
 							th:text="${msgInfo.receiveName}"></span></li>
 						<li>content (알림톡/친구톡 내용) : <span th:text="${msgInfo.content}"></span></li>
-						<li>result (알림톡/친구톡 전송결과 코드) : <span
+						<li>result (카카오 결과코드) : <span
 							th:text="${msgInfo.result}"></span></li>
 						<li>resultDT (알림톡/친구톡 전송결과 수신일시) : <span
 							th:text="${msgInfo.resultDT}"></span></li>
@@ -49,7 +49,7 @@
 							th:text="${msgInfo.altContentType}"></span></li>
 						<li>altSendDT (대체문자 전송일시) : <span
 							th:text="${msgInfo.altSendDT}"></span></li>
-						<li>altResult (대체문자 전송결과 코드) : <span
+						<li>altResult (통신사 결과코드) : <span
 							th:text="${msgInfo.altResult}"></span></li>
 						<li>altResultDT (대체문자 전송결과 수신일시) : <span
 							th:text="${msgInfo.altResultDT}"></span></li>

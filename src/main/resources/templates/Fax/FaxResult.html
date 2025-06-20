@@ -14,8 +14,8 @@
 			<fieldset class="fieldset2" th:each="FaxResult : ${FaxResults}">
 				<legend>팩스 전송결과</legend>
 				<ul>
-					<li>state (전송상태 코드) : <span th:text="${FaxResult.state}"></span></li>
-					<li>result (전송결과 코드) : <span th:text="${FaxResult.result}"></span></li>
+					<li>state (상태코드) : <span th:text="${FaxResult.state}"></span></li>
+					<li>result (결과코드) : <span th:text="${FaxResult.result}"></span></li>
 					<li>sendNum (발신번호) : <span th:text="${FaxResult.sendNum}"></span></li>
 					<li>senderName (발신자명) : <span
 						th:text="${FaxResult.senderName}"></span></li>
