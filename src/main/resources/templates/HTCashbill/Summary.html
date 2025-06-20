@@ -10,7 +10,7 @@
 		<p class="heading1">Response</p>
 		<br />
 		<fieldset class="fieldset1">
-			<legend th:text="${#request?.requestURL}"></legend>
+			<legend th:text="${#request?.requestURI}"></legend>
 			<ul>
 				<li>count (수집 결과 건수) : <span th:text="${SummaryResult.count}"></span></li>
 				<li>supplyCostTotal (공급가액 합계) : <span

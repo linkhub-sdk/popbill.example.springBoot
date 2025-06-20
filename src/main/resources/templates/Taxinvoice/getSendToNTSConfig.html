@@ -10,7 +10,7 @@
 		<p class="heading1">Response</p>
 		<br />
 		<fieldset class="fieldset1">
-			<legend th:text="${#request?.requestURL}"></legend>
+			<legend th:text="${#request?.requestURI}"></legend>
 			<ul>
 				<li>ntsConfig : <span th:text="${NTSConfig}"></span></li>
 				<li>(true)-발행 즉시 전송 (false)-익일 자동 전송</li>

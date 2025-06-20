@@ -10,7 +10,7 @@
 		<p class="heading1">Response</p>
 		<br />
 		<fieldset class="fieldset1">
-			<legend th:text="${#request?.requestURL}"></legend>
+			<legend th:text="${#request?.requestURI}"></legend>
 			<fieldset class="fieldset2" th:if="BulkResult">
 				<legend>대량발행 접수결과</legend>
 				<ul>

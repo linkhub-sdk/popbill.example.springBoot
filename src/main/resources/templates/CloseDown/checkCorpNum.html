@@ -10,7 +10,7 @@
 		<p class="heading1">사업자등록상태조회(휴폐업조회) API SDK SpringBoot Example.</p>
 		<br />
 		<fieldset class="fieldset1">
-			<legend th:text="${#request?.requestURL}"></legend>
+			<legend th:text="${#request?.requestURI}"></legend>
 			<div class="fieldset4">
 				<form id="corpnum_form" method="GET" th:action="@{checkCorpNum}">
 					<input class="txtCorpNum left" id="CorpNum" name="CorpNum"

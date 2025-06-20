@@ -10,7 +10,7 @@
 		<p class="heading1">PaymentHistoryResult</p>
 		<br />
 		<fieldset class="fieldset1">
-			<legend th:text="${#request?.requestURL}"></legend>
+			<legend th:text="${#request?.requestURI}"></legend>
 			<fieldset class="fieldset2" th:if="${PaymentHistoryResult}">
 				<legend>결제내역 정보목록</legend>
 				<ul>

@@ -10,7 +10,7 @@
 		<p class="heading1">Response</p>
 		<br />
 		<fieldset class="fieldset1">
-			<legend th:text="${#request?.requestURL}"></legend>
+			<legend th:text="${#request?.requestURI}"></legend>
 			<fieldset class="fieldset2">
 				<legend>StatementInfo</legend>
 				<ul>
@@ -59,7 +59,7 @@
 		<p class="heading1">Response</p>
 		<br />
 		<fieldset class="fieldset1">
-			<legend th:text="${#request?.requestURL}"></legend>
+			<legend th:text="${#request?.requestURI}"></legend>
 			<fieldset class="fieldset2"
 				th:each="StatementInfo, index : ${StatementInfos}">
 				<legend>

@@ -10,7 +10,7 @@
 		<p class="heading1">Exception Occurred</p>
 		<br />
 		<fieldset class="fieldset1">
-			<legend th:text="${#request?.requestURL}"></legend>
+			<legend th:text="${#request?.requestURI}"></legend>
 			<ul>
 				<li>Exception.code : <span th:text="${Exception.code}"></span></li>
 				<li>Exception.message : <span th:text="${Exception.message}"></span></li>

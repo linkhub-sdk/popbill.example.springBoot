@@ -10,7 +10,7 @@
 		<p class="heading1">사업자등록상태조회(휴폐업조회) API SDK SpringBoot Example.</p>
 		<br />
 		<fieldset class="fieldset1">
-			<legend th:text="${#request?.requestURL}"></legend>
+			<legend th:text="${#request?.requestURI}"></legend>
 			<p class="info">state : null (알수없음), 0 (등록되지 않은 사업자번호), 1 (사업중),
 				2 (폐업), 3 (휴업)</p>
 			<p class="info">taxType : null (알수없음), 10 ( 일반과세자), 20 (면세과세자),

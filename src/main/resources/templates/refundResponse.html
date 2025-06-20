@@ -10,7 +10,7 @@
 		<p class="heading1">RefundResponse</p>
 		<br />
 		<fieldset class="fieldset1">
-			<legend th:text="${#request?.requestURL}"></legend>
+			<legend th:text="${#request?.requestURI}"></legend>
 			<legend>환불신청내역 목록</legend>
 			<ul>
 				<li>응답코드 (code) : <span th:text="${Response.code}"></span></li>

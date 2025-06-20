@@ -10,7 +10,7 @@
 		<p class="heading1">Response</p>
 		<br />
 		<fieldset class="fieldset1">
-			<legend th:text="${#request?.requestURL}"></legend>
+			<legend th:text="${#request?.requestURI}"></legend>
 			<ul>
 				<li>code (요청에 대한 응답 상태코드) : <span
 					th:text="${TaxinvoiceXML.resultCode}"></span></li>

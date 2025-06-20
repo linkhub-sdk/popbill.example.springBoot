@@ -10,7 +10,7 @@
 		<p class="heading1">Response</p>
 		<br />
 		<fieldset class="fieldset1">
-			<legend th:text="${#request?.requestURL}"></legend>
+			<legend th:text="${#request?.requestURI}"></legend>
 			<ul>
 				<li>bankCode (기관코드) : <span th:text="${Account.bankCode}"></span></li>
 				<li>accountNumber (계좌번호) : <span
