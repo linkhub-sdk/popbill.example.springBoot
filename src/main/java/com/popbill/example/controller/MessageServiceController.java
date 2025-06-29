@@ -13,8 +13,13 @@
 package com.popbill.example.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Date;
 import java.util.Locale;
+
+import com.popbill.api.Attachment;
 import com.popbill.api.ChargeInfo;
 import com.popbill.api.MessageService;
 import com.popbill.api.PopbillException;
@@ -462,6 +467,146 @@ public class MessageServiceController {
         try {
             String receiptNum = messageService.sendMMS(CorpNum, sender, subject,
                     content, messages, file, reserveDT, adsYN, UserID, requestNum);
+
+            m.addAttribute("Result", receiptNum);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "result";
+    }
+
+    @RequestMapping(value = "sendMMS_binary", method = RequestMethod.GET)
+    public String sendMMS_binary(Model m) throws FileNotFoundException {
+        /**
+         * 최대 2,000byte의 메시지와 바이너리 형식의 이미지 데이터로 구성된 포토문자(MMS) 1건 전송을 팝빌에 접수합니다.
+         * - 이미지 파일 포맷/규격 : 최대 300Kbyte(JPEG, JPG), 가로/세로 1,000px 이하 권장
+         * - 팝빌 서비스의 안정적인 제공을 위하여 동시호출이 제한될 수 있습니다.
+         * - 동시에 1,000건 이상 요청하는 경우 동보전송 또는 대량전송 API를 이용하시는 것을 권장합니다.
+         * - https://developers.popbill.com/reference/sms/java/api/send#SendMMSBinaryOne
+         */
+
+        // 발신번호 (팝빌에 등록된 발신번호만 이용가능)
+        String sender = "07043042991";
+
+        // 발신자명
+        String senderName = "발신자명";
+
+        // 수신번호
+        String receiver = "010111222";
+
+        // 수신자명
+        String receiverName = "수신자";
+
+        // 메시지 제목
+        String subject = "포토 문자 제목";
+
+        // 메시지 내용
+        // └ 한글, 한자, 특수문자 2byte / 영문, 숫자, 공백 1byte
+        String content = "멀티 문자메시지 내용";
+
+        // 전송할 이미지 파일 경로
+        File file = new File("C:/test.jpg");
+        InputStream inputStream = new FileInputStream(file);
+
+        Attachment attachment = new Attachment();
+        attachment.setFileName(file.getName());
+        attachment.setFileData(inputStream);
+
+        // 전송예약일시, null인 경우 즉시전송
+        Date reserveDT = null;
+
+        // 광고 메시지 여부 ( true , false 중 택 1)
+        // └ true = 광고 , false = 일반
+        Boolean adsYN = false;
+
+        // 전송요청번호
+        // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호.
+        // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
+        String requestNum = "";
+
+        try {
+
+            String receiptNum = messageService.sendMMSBinary(CorpNum, sender, senderName, receiver,
+                    receiverName, subject, content, attachment, reserveDT, adsYN, UserID, requestNum);
+
+            m.addAttribute("Result", receiptNum);
+
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "result";
+    }
+
+    @RequestMapping(value = "sendMMS_Multi_binary", method = RequestMethod.GET)
+    public String sendMMS_Multi_binary(Model m) throws FileNotFoundException {
+        /**
+         * 최대 2,000byte의 메시지와 바이너리 형식의 이미지 데이터로 구성된 포토문자(MMS) 다수건 전송을 팝빌에 접수합니다. (최대 1,000건)
+         * - 이미지 파일 포맷/규격 : 최대 300Kbyte(JPEG), 가로/세로 1,000px 이하 권장
+         * - 모든 수신자에게 동일한 내용을 전송하거나(동보전송), 수신자마다 개별 내용을 전송할 수 있습니다(대량전송).
+         * - https://developers.popbill.com/reference/sms/java/api/send#SendMMSBinaryOne
+         */
+
+        // [동보전송시 필수] 발신번호, 개별 전송정보의 발신번호가 없는 경우 적용
+        String sender = "07043042991";
+
+        // [동보전송시 필수] 메시지 제목, 개별 전송정보의 메시지 제목이 없는 경우 적용
+        String subject = "대량전송 제목";
+
+        // [동보전송시 필수] 메시지 내용, 개별 전송정보의 메시지 내용이 없는 경우 적용
+        // └ 한글, 한자, 특수문자 2byte / 영문, 숫자, 공백 1byte
+        String content = "대량전송 메시지 내용";
+
+        // 전송 정보 배열, 최대 1000건.
+        Message[] messages = new Message[2];
+
+        Message msg1 = new Message();
+        msg1.setSender("16008536");       // 발신번호
+        msg1.setSenderName("발신자1");       // 발신자명
+        msg1.setReceiver("010111222");       // 수신번호
+        msg1.setReceiverName("수신자1");     // 수신자명
+        msg1.setSubject("멀티 메시지 제목"); // 문자제목
+        msg1.setContent("메시지 내용1");     // 메시지내용
+        msg1.setInterOPRefKey("20221006-MMS001");    // 파트너 지정키
+        messages[0] = msg1;
+
+        Message msg2 = new Message();
+        msg2.setSender("16008536");
+        msg2.setSenderName("발신자2");
+        msg2.setReceiver("010333444");
+        msg2.setReceiverName("수신자2");
+        msg2.setSubject("멀티 메시지 제목");
+        msg2.setContent("메시지 내용2");
+        msg2.setInterOPRefKey("20221006-MMS001");
+        messages[1] = msg2;
+
+        // 전송할 이미지 파일 경로
+        File file = new File("C:/test.jpg");
+        InputStream inputStream = new FileInputStream(file);
+
+        Attachment attachment = new Attachment();
+        attachment.setFileName(file.getName());
+        attachment.setFileData(inputStream);
+
+        // 전송예약일시, null인 경우 즉시전송
+        Date reserveDT = null;
+
+        // 광고 메시지 여부 ( true , false 중 택 1)
+        // └ true = 광고 , false = 일반
+        Boolean adsYN = false;
+
+        // 전송요청번호
+        // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호.
+        // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
+        String requestNum = "";
+
+        try {
+            String receiptNum = messageService.sendMMSBinary(CorpNum, sender, null, subject,
+                    content, messages, attachment, reserveDT, adsYN, UserID, requestNum);
 
             m.addAttribute("Result", receiptNum);
 
