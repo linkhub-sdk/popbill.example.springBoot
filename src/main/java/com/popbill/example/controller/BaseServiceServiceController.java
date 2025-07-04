@@ -57,9 +57,7 @@ public class BaseServiceServiceController {
 
         try {
             Response response = taxinvoiceService.checkIsMember(corpNum, testLinkID);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -77,9 +75,7 @@ public class BaseServiceServiceController {
 
         try {
             double remainPoint = taxinvoiceService.getBalance(CorpNum);
-
             m.addAttribute("Result", remainPoint);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -97,9 +93,7 @@ public class BaseServiceServiceController {
 
         try {
             double remainPoint = taxinvoiceService.getPartnerBalance(CorpNum);
-
             m.addAttribute("Result", remainPoint);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -134,11 +128,9 @@ public class BaseServiceServiceController {
         String Order = "D";
 
         try {
-            UseHistoryResult useHistoryResult = taxinvoiceService.getUseHistory(CorpNum, SDate,
-                    EDate, Page, PerPage, Order);
-
+            UseHistoryResult useHistoryResult = taxinvoiceService.getUseHistory(CorpNum, SDate, EDate, Page, PerPage,
+                    Order);
             m.addAttribute("UseHistoryResult", useHistoryResult);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -167,11 +159,9 @@ public class BaseServiceServiceController {
         Integer PerPage = 100;
 
         try {
-            PaymentHistoryResult paymentHistoryResult =
-                    taxinvoiceService.getPaymentHistory(CorpNum, SDate, EDate, Page, PerPage);
-
+            PaymentHistoryResult paymentHistoryResult = taxinvoiceService.getPaymentHistory(CorpNum, SDate, EDate, Page,
+                    PerPage);
             m.addAttribute("PaymentHistoryResult", paymentHistoryResult);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -194,11 +184,8 @@ public class BaseServiceServiceController {
         Integer PerPage = 100;
 
         try {
-            RefundHistoryResult refundHistoryResult =
-                    taxinvoiceService.getRefundHistory(CorpNum, Page, PerPage);
-
+            RefundHistoryResult refundHistoryResult = taxinvoiceService.getRefundHistory(CorpNum, Page, PerPage);
             m.addAttribute("RefundHistoryResult", refundHistoryResult);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -239,9 +226,7 @@ public class BaseServiceServiceController {
 
         try {
             RefundResponse response = taxinvoiceService.refund(CorpNum, refundForm);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -276,11 +261,8 @@ public class BaseServiceServiceController {
         paymentForm.setSettleCost("11000");
 
         try {
-            PaymentResponse paymentResponse =
-                    taxinvoiceService.paymentRequest(CorpNum, paymentForm);
-
+            PaymentResponse paymentResponse = taxinvoiceService.paymentRequest(CorpNum, paymentForm);
             m.addAttribute("PaymentResponse", paymentResponse);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -300,11 +282,8 @@ public class BaseServiceServiceController {
         String settleCode = "202301160000000010";
 
         try {
-            PaymentHistory paymentHistory =
-                    taxinvoiceService.getSettleResult(CorpNum, settleCode);
-
+            PaymentHistory paymentHistory = taxinvoiceService.getSettleResult(CorpNum, settleCode);
             m.addAttribute("PaymentHistory", paymentHistory);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -327,11 +306,8 @@ public class BaseServiceServiceController {
         String TOGO = "CHRG";
 
         try {
-
             String url = taxinvoiceService.getPartnerURL(CorpNum, TOGO);
-
             m.addAttribute("Result", url);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -347,12 +323,10 @@ public class BaseServiceServiceController {
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://developers.popbill.com/reference/taxinvoice/java/api/member#GetAccessURL
          */
+
         try {
-
             String url = taxinvoiceService.getAccessURL(CorpNum, UserID);
-
             m.addAttribute("Result", url);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -370,12 +344,10 @@ public class BaseServiceServiceController {
          * - 반환되는 URL에서만 유효한 세션을 포함하고 있습니다.
          * - https://developers.popbill.com/reference/taxinvoice/java/api/point#GetChargeURL
          */
+
         try {
-
             String url = taxinvoiceService.getChargeURL(CorpNum, UserID);
-
             m.addAttribute("Result", url);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -393,12 +365,10 @@ public class BaseServiceServiceController {
          * - 반환되는 URL에서만 유효한 세션을 포함하고 있습니다.
          * - https://developers.popbill.com/reference/taxinvoice/java/api/point#GetPaymentURL
          */
+
         try {
-
             String url = taxinvoiceService.getPaymentURL(CorpNum, UserID);
-
             m.addAttribute("Result", url);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -416,12 +386,10 @@ public class BaseServiceServiceController {
          * - 반환되는 URL에서만 유효한 세션을 포함하고 있습니다.
          * - https://developers.popbill.com/reference/taxinvoice/java/api/point#GetUseHistoryURL
          */
+
         try {
-
             String url = taxinvoiceService.getUseHistoryURL(CorpNum, UserID);
-
             m.addAttribute("Result", url);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -476,11 +444,8 @@ public class BaseServiceServiceController {
         joinInfo.setContactTEL("02-999-9999");
 
         try {
-
             Response response = taxinvoiceService.joinMember(joinInfo);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -501,12 +466,12 @@ public class BaseServiceServiceController {
 
         try {
             ContactInfo response = taxinvoiceService.getContactInfo(CorpNum, contactID);
-
             m.addAttribute("ContactInfo", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
         }
+
         return "getContactInfo";
     }
 
@@ -519,7 +484,6 @@ public class BaseServiceServiceController {
 
         try {
             ContactInfo[] response = taxinvoiceService.listContact(CorpNum);
-
             m.addAttribute("ContactInfos", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -554,12 +518,8 @@ public class BaseServiceServiceController {
         contactInfo.setSearchRole(3);
 
         try {
-
-            Response response =
-                    taxinvoiceService.updateContact(CorpNum, contactInfo, UserID);
-
+            Response response = taxinvoiceService.updateContact(CorpNum, contactInfo, UserID);
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -596,11 +556,8 @@ public class BaseServiceServiceController {
         contactInfo.setSearchRole(3);
 
         try {
-
             Response response = taxinvoiceService.registContact(CorpNum, contactInfo);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -617,10 +574,8 @@ public class BaseServiceServiceController {
          */
 
         try {
-
             Response response = taxinvoiceService.checkID(UserID);
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -699,6 +654,7 @@ public class BaseServiceServiceController {
             m.addAttribute("Exception", e);
             return "exception";
         }
+
         return "response";
     }
 
@@ -719,6 +675,7 @@ public class BaseServiceServiceController {
             m.addAttribute("Exception", e);
             return "exception";
         }
+
         return "refundHistory";
     }
 
@@ -736,6 +693,7 @@ public class BaseServiceServiceController {
             m.addAttribute("Exception", e);
             return "exception";
         }
+
         return "refundableBalance";
     }
 
@@ -750,12 +708,8 @@ public class BaseServiceServiceController {
         String contactID = "";
 
         try {
-
-            Response response =
-                    taxinvoiceService.deleteContact(CorpNum, contactID, UserID);
-
+            Response response = taxinvoiceService.deleteContact(CorpNum, contactID, UserID);
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";

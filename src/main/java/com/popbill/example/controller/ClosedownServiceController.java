@@ -43,21 +43,17 @@ public class ClosedownServiceController {
          */
 
         if (CorpNum != null && !CorpNum.equals("")) {
-
             try {
                 CorpState corpState = closedownService.CheckCorpNum(CorpNum, CorpNum);
-
                 m.addAttribute("CorpState", corpState);
-
             } catch (PopbillException e) {
                 m.addAttribute("Exception", e);
                 return "exception";
             }
-
         } else {
 
-
         }
+
         return "Closedown/checkCorpNum";
     }
 
@@ -72,11 +68,8 @@ public class ClosedownServiceController {
         String[] CorpNumList = new String[]{"1234567890", "6798700433"};
 
         try {
-
             CorpState[] corpStates = closedownService.CheckCorpNum(CorpNum, CorpNumList);
-
             m.addAttribute("CorpStates", corpStates);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -93,11 +86,8 @@ public class ClosedownServiceController {
          */
 
         try {
-
             float unitCost = closedownService.getUnitCost(CorpNum);
-
             m.addAttribute("Result", unitCost);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -116,7 +106,6 @@ public class ClosedownServiceController {
         try {
             ChargeInfo chrgInfo = closedownService.getChargeInfo(CorpNum);
             m.addAttribute("ChargeInfo", chrgInfo);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";

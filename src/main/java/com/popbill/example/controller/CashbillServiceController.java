@@ -63,11 +63,8 @@ public class CashbillServiceController {
 
         try {
             boolean IsUse = cashbillService.checkMgtKeyInUse(CorpNum, mgtKey);
-
             isUseStr = (IsUse) ? "사용중" : "미사용중";
-
             m.addAttribute("Result", isUseStr);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -84,26 +81,18 @@ public class CashbillServiceController {
          * - https://developers.popbill.com/reference/cashbill/java/api/issue#RegistIssue
          */
 
-        // 현금영수증 상태 이력을 관리하기 위한 메모
-        String Memo = "현금영수증 즉시발행 메모";
-
         // 현금영수증 정보 객체
         Cashbill cashbill = new Cashbill();
 
         // 현금영수증 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        cashbill.setMgtKey("20230116-BOOT001");
+        cashbill.setMgtKey("20230113-BOOT001");
+
+        // 거래일시, 날짜(yyyyMMddHHmmss)
+        // 당일, 전일만 가능
+        cashbill.setTradeDT("20230112111111");
 
         // 문서형태, 승인거래 기재
         cashbill.setTradeType("승인거래");
-
-        // 과세형태, {과세, 비과세} 중 기재
-        cashbill.setTaxationType("과세");
-
-        // 식별번호, 거래구분에 따라 작성
-        // └ 소득공제용 - 주민등록/휴대폰/카드번호(현금영수증 카드)/자진발급용 번호(010-000-1234) 기재가능
-        // └ 지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호(현금영수증 카드) 기재가능
-        // └ 주민등록번호 13자리, 휴대폰번호 10~11자리, 카드번호 13~19자리, 사업자번호 10자리 입력 가능
-        cashbill.setIdentityNum("0101112222");
 
         // 거래구분, {소득공제용, 지출증빙용} 중 기재
         cashbill.setTradeUsage("소득공제용");
@@ -111,6 +100,12 @@ public class CashbillServiceController {
         // 거래유형, {일반, 도서공연, 대중교통} 중 기재
         // - 미입력시 기본값 "일반" 처리
         cashbill.setTradeOpt("대중교통");
+
+        // 과세형태, {과세, 비과세} 중 기재
+        cashbill.setTaxationType("과세");
+
+        // 합계금액, 숫자만 가능, 봉사료 + 공급가액 + 부가세
+        cashbill.setTotalAmount("11000");
 
         // 공급가액, 숫자만 가능
         cashbill.setSupplyCost("10000");
@@ -121,13 +116,10 @@ public class CashbillServiceController {
         // 봉사료, 양수 또는 0 입력
         cashbill.setServiceFee("0");
 
-        // 합계금액, 숫자만 가능, 봉사료 + 공급가액 + 부가세
-        cashbill.setTotalAmount("11000");
-
         // 가맹점 사업자번호, '-'제외 10자리
         cashbill.setFranchiseCorpNum("1234567890");
 
-        // 가맹점 종사업장번호
+        // 가맹점 종사업장 번호
         cashbill.setFranchiseTaxRegID("");
 
         // 가맹점 상호
@@ -142,7 +134,13 @@ public class CashbillServiceController {
         // 가맹점 연락처
         cashbill.setFranchiseTEL("07043042991");
 
-        // 구매자
+        // 식별번호, 거래구분에 따라 작성
+        // └ 소득공제용 - 주민등록/휴대폰/카드번호(현금영수증 카드)/자진발급용 번호(010-000-1234) 기재가능
+        // └ 지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호(현금영수증 카드) 기재가능
+        // └ 주민등록번호 13자리, 휴대폰번호 10~11자리, 카드번호 13~19자리, 사업자번호 10자리 입력 가능
+        cashbill.setIdentityNum("0101112222");
+
+        // 구매자 성명
         cashbill.setCustomerName("고객명");
 
         // 주문상품명
@@ -152,31 +150,26 @@ public class CashbillServiceController {
         cashbill.setOrderNumber("주문번호");
 
         // 구매자 이메일
-        // 팝빌 테스트 환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+        // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         // 실제 거래처의 메일주소가 기재되지 않도록 주의
         cashbill.setEmail("test@test.com");
-
-        // 발행 안내 문자 전송여부
-        cashbill.setSmssendYN(false);
 
         // 구매자 휴대폰
         // - {smssendYN} 의 값이 true 인 경우 아래 휴대폰번호로 안내 문자 전송
         cashbill.setHp("");
 
-        // 거래일시, 날짜(yyyyMMddHHmmss)
-        // 당일, 전일만 가능
-        cashbill.setTradeDT("20230116180000");
+        // 발행 안내 문자 전송여부
+        cashbill.setSmssendYN(false);
+
+        // 현금영수증 상태 이력을 관리하기 위한 메모
+        String Memo = "현금영수증 즉시발행 메모";
 
         // 발행 안내 메일제목, 미기재시 기본 양식으로 메일 전송
         String emailSubject = "";
 
-
         try {
-
             CBIssueResponse response = cashbillService.registIssue(CorpNum, cashbill, Memo, UserID, emailSubject);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -194,9 +187,9 @@ public class CashbillServiceController {
 
         // 제출아이디, 대량 발행 접수를 구별하는 식별키
         // └ 최대 36자리 영문, 숫자, '-' 조합으로 구성
-        String SubmitID = "20221108-BOOT-BULK";
+        String SubmitID = "20230102-BOOT-BULK";
 
-        // 최대 100건
+        // 최대 100건.
         List<Cashbill> cashbillList = new ArrayList<Cashbill>();
 
         for (int i = 0 ; i < 5; i++) {
@@ -207,17 +200,12 @@ public class CashbillServiceController {
             // 현금영수증 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
             cashbill.setMgtKey(SubmitID + "-" + String.valueOf(i + 1));
 
+            // 거래일시, 날짜(yyyyMMddHHmmss)
+            // 당일, 전일만 가능
+            cashbill.setTradeDT("20221104000000");
+
             // 문서형태, 승인거래 기재
             cashbill.setTradeType("승인거래");
-
-            // 과세형태, {과세, 비과세} 중 기재
-            cashbill.setTaxationType("과세");
-
-            // 식별번호, 거래구분에 따라 작성
-            // └ 소득공제용 - 주민등록/휴대폰/카드번호(현금영수증 카드)/자진발급용 번호(010-000-1234) 기재가능
-            // └ 지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호(현금영수증 카드) 기재가능
-            // └ 주민등록번호 13자리, 휴대폰번호 10~11자리, 카드번호 13~19자리, 사업자번호 10자리 입력 가능
-            cashbill.setIdentityNum("0101112222");
 
             // 거래구분, {소득공제용, 지출증빙용} 중 기재
             cashbill.setTradeUsage("소득공제용");
@@ -225,6 +213,12 @@ public class CashbillServiceController {
             // 거래유형, {일반, 도서공연, 대중교통} 중 기재
             // - 미입력시 기본값 "일반" 처리
             cashbill.setTradeOpt("대중교통");
+
+            // 과세형태, {과세, 비과세} 중 기재
+            cashbill.setTaxationType("과세");
+
+            // 합계금액, 숫자만 가능, 봉사료 + 공급가액 + 부가세
+            cashbill.setTotalAmount("11000");
 
             // 공급가액, 숫자만 가능
             cashbill.setSupplyCost("10000");
@@ -234,9 +228,6 @@ public class CashbillServiceController {
 
             // 봉사료, 양수 또는 0 입력
             cashbill.setServiceFee("0");
-
-            // 합계금액, 숫자만 가능, 봉사료 + 공급가액 + 부가세
-            cashbill.setTotalAmount("11000");
 
             // 가맹점 사업자번호, '-'제외 10자리
             cashbill.setFranchiseCorpNum("1234567890");
@@ -256,6 +247,12 @@ public class CashbillServiceController {
             // 가맹점 연락처
             cashbill.setFranchiseTEL("07043042991");
 
+            // 식별번호, 거래구분에 따라 작성
+            // └ 소득공제용 - 주민등록/휴대폰/카드번호(현금영수증 카드)/자진발급용 번호(010-000-1234) 기재가능
+            // └ 지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호(현금영수증 카드) 기재가능
+            // └ 주민등록번호 13자리, 휴대폰번호 10~11자리, 카드번호 13~19자리, 사업자번호 10자리 입력 가능
+            cashbill.setIdentityNum("0101112222");
+
             // 구매자 성명
             cashbill.setCustomerName("고객명");
 
@@ -266,31 +263,23 @@ public class CashbillServiceController {
             cashbill.setOrderNumber("주문번호");
 
             // 구매자 이메일
-            // 팝빌 테스트 환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+            // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
             // 실제 거래처의 메일주소가 기재되지 않도록 주의
             cashbill.setEmail("");
-
-            // 발행 안내 문자 전송여부
-            cashbill.setSmssendYN(false);
 
             // 구매자 휴대폰
             // - {smssendYN} 의 값이 true 인 경우 아래 휴대폰번호로 안내 문자 전송
             cashbill.setHp("");
 
-            // 거래일시, 날짜(yyyyMMddHHmmss)
-            // 당일, 전일만 가능
-            cashbill.setTradeDT("20221108000000");
+            // 발행 안내 문자 전송여부
+            cashbill.setSmssendYN(false);
 
             cashbillList.add(cashbill);
-
         }
 
         try {
-
             BulkResponse response = cashbillService.bulkSubmit(CorpNum, SubmitID, cashbillList);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -311,11 +300,8 @@ public class CashbillServiceController {
         String SubmitID = "20221108-BOOT-BULK";
 
         try {
-
             BulkCashbillResult bulkResult = cashbillService.getBulkResult(CorpNum, SubmitID);
-
             m.addAttribute("BulkResult", bulkResult);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -337,11 +323,8 @@ public class CashbillServiceController {
         String mgtKey = "20220218-BOOT001";
 
         try {
-
             Response response = cashbillService.delete(CorpNum, mgtKey);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -368,11 +351,8 @@ public class CashbillServiceController {
         String orgTradeDate = "20230102";
 
         try {
-
             CBIssueResponse response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -391,7 +371,7 @@ public class CashbillServiceController {
          */
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        String mgtKey = "20220218-BOOT006";
+        String mgtKey = "20230102-BOOT006";
 
         // 당초 국세청승인번호 - 상태확인(getInfo API) 함수를 통해 confirmNum 값 기재
         String orgConfirmNum = "820116333";
@@ -438,12 +418,9 @@ public class CashbillServiceController {
         String totalAmount = "3300";
 
         try {
-
-            CBIssueResponse response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate, smssendYN, memo,
-                    isPartCancel, cancelType, supplyCost, tax, serviceFee, totalAmount);
-
+            CBIssueResponse response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate,
+                    smssendYN, memo, isPartCancel, cancelType, supplyCost, tax, serviceFee, totalAmount);
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -465,11 +442,8 @@ public class CashbillServiceController {
         String mgtKey = "20220218-BOOT002";
 
         try {
-
             CashbillInfo cashbillInfo = cashbillService.getInfo(CorpNum, mgtKey);
-
             m.addAttribute("CashbillInfo", cashbillInfo);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -491,11 +465,8 @@ public class CashbillServiceController {
         String[] mgtKeyList = new String[] { "20221108-BOOT002", "20220218-BOOT004", "20220218-BOOT005" };
 
         try {
-
             CashbillInfo[] cashbillInfos = cashbillService.getInfos(CorpNum, mgtKeyList);
-
             m.addAttribute("CashbillInfos", cashbillInfos);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -515,11 +486,8 @@ public class CashbillServiceController {
         String mgtKey = "20230102-BOOT006";
 
         try {
-
             Cashbill cashbill = cashbillService.getDetailInfo(CorpNum, mgtKey);
-
             m.addAttribute("Cashbill", cashbill);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -541,7 +509,7 @@ public class CashbillServiceController {
         String DType = "T";
 
         // 시작일자, 날짜형식(yyyyMMdd)
-        String SDate = "20230101";
+        String SDate = "20230102";
 
         // 종료일자, 날짜형식(yyyyMMdd)
         String EDate = "20230131";
@@ -573,11 +541,6 @@ public class CashbillServiceController {
         // 식별번호 조회 (미기재시 전체조회)
         String QString = "";
 
-        // 가맹점 종사업장 번호
-        // └ 다수건 검색시 콤마(",")로 구분. 예) "1234,1000"
-        // └ 미입력시 전제조회
-        String FranchiseTaxRegID = "";
-
         // 페이지 번호
         int Page = 1;
 
@@ -587,13 +550,15 @@ public class CashbillServiceController {
         // 정렬방향, A-오름차순, D-내림차순
         String Order = "D";
 
+        // 가맹점 종사업장 번호
+        // └ 다수건 검색시 콤마(",")로 구분. 예) "1234,1000"
+        // └ 미입력시 전제조회
+        String FranchiseTaxRegID = "";
+
         try {
-
-            CBSearchResult searchResult = cashbillService.search(CorpNum, DType, SDate, EDate, State, TradeType, TradeUsage, TradeOpt,
-                    TaxationType, QString, Page, PerPage, Order, FranchiseTaxRegID);
-
+            CBSearchResult searchResult = cashbillService.search(CorpNum, DType, SDate, EDate, State, TradeType,
+                    TradeUsage, TradeOpt, TaxationType, QString, Page, PerPage, Order, FranchiseTaxRegID);
             m.addAttribute("SearchResult", searchResult);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -614,11 +579,8 @@ public class CashbillServiceController {
         String TOGO = "WRITE";
 
         try {
-
             String url = cashbillService.getURL(CorpNum, UserID, TOGO);
-
             m.addAttribute("Result", url);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -639,11 +601,8 @@ public class CashbillServiceController {
         String mgtKey = "20230102-BOOT002";
 
         try {
-
             String url = cashbillService.getPopUpURL(CorpNum, mgtKey, UserID);
-
             m.addAttribute("Result", url);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -664,11 +623,8 @@ public class CashbillServiceController {
         String mgtKey = "20230102-BOOT002";
 
         try {
-
             String url = cashbillService.getViewURL(CorpNum, mgtKey, UserID);
-
             m.addAttribute("Result", url);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -689,11 +645,8 @@ public class CashbillServiceController {
         String mgtKey = "20230102-BOOT002";
 
         try {
-
             String url = cashbillService.getPrintURL(CorpNum, mgtKey, UserID);
-
             m.addAttribute("Result", url);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -714,11 +667,8 @@ public class CashbillServiceController {
         String[] mgtKeyList = new String[] { "20230102-BOOT002", "20230102-BOOT003", "20230102-BOOT004" };
 
         try {
-
             String url = cashbillService.getMassPrintURL(CorpNum, mgtKeyList, UserID);
-
             m.addAttribute("Result", url);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -739,11 +689,8 @@ public class CashbillServiceController {
         String mgtKey = "20230102-BOOT002";
 
         try {
-
             String url = cashbillService.getMailURL(CorpNum, mgtKey, UserID);
-
             m.addAttribute("Result", url);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -764,11 +711,8 @@ public class CashbillServiceController {
         String mgtKey = "20230102-BOOT002";
 
         try {
-
             String url = cashbillService.getPDFURL(CorpNum, mgtKey, UserID);
-
             m.addAttribute("Result", url);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -792,9 +736,7 @@ public class CashbillServiceController {
 
         try {
             Response response = cashbillService.sendEmail(CorpNum, mgtKey, receiver);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -825,11 +767,8 @@ public class CashbillServiceController {
         String contents = "현금영수증 문자메시지 전송 테스트입니다.";
 
         try {
-
             Response response = cashbillService.sendSMS(CorpNum, mgtKey, sender, receiver, contents);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -856,11 +795,8 @@ public class CashbillServiceController {
         String receiver = "010111222";
 
         try {
-
             Response response = cashbillService.sendFAX(CorpNum, mgtKey, sender, receiver);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -883,11 +819,8 @@ public class CashbillServiceController {
         String mgtKey = "20230102-BOOT007";
 
         try {
-
             Response response = cashbillService.assignMgtKey(CorpNum, itemKey, mgtKey);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -905,7 +838,6 @@ public class CashbillServiceController {
         Map<String, Boolean> emailSendConfigs = new HashMap<String, Boolean>();
 
         try {
-
             EmailSendConfig[] Configs = cashbillService.listEmailConfig(CorpNum);
 
             for (EmailSendConfig emailSendConfig : Configs) {
@@ -913,7 +845,6 @@ public class CashbillServiceController {
             }
 
             m.addAttribute("EmailSendConfigs", emailSendConfigs);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -940,11 +871,8 @@ public class CashbillServiceController {
         Boolean sendYN = true;
 
         try {
-
             Response response = cashbillService.updateEmailConfig(CorpNum, emailType, sendYN);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -961,11 +889,8 @@ public class CashbillServiceController {
          */
 
         try {
-
             float unitCost = cashbillService.getUnitCost(CorpNum);
-
             m.addAttribute("Result", unitCost);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -982,11 +907,8 @@ public class CashbillServiceController {
          */
 
         try {
-
             ChargeInfo chrgInfo = cashbillService.getChargeInfo(CorpNum);
-
             m.addAttribute("ChargeInfo", chrgInfo);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";

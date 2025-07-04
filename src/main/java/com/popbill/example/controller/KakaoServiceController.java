@@ -75,12 +75,10 @@ public class KakaoServiceController {
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://developers.popbill.com/reference/kakaotalk/java/api/channel#GetPlusFriendMgtURL
          */
+
         try {
-
             String url = kakaoService.getPlusFriendMgtURL(CorpNum, UserID);
-
             m.addAttribute("Result", url);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -98,7 +96,6 @@ public class KakaoServiceController {
 
         try {
             PlusFriendID[] response = kakaoService.listPlusFriendID(CorpNum);
-
             m.addAttribute("listInfo", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -119,11 +116,8 @@ public class KakaoServiceController {
         String Sender = "070-4304-2991";
 
         try {
-
             Response response = kakaoService.checkSenderNumber(CorpNum, Sender);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -139,12 +133,10 @@ public class KakaoServiceController {
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://developers.popbill.com/reference/kakaotalk/java/api/sendnum#GetSenderNumberMgtURL
          */
+
         try {
-
             String url = kakaoService.getSenderNumberMgtURL(CorpNum, UserID);
-
             m.addAttribute("Result", url);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -167,6 +159,7 @@ public class KakaoServiceController {
             m.addAttribute("Exception", e);
             return "exception";
         }
+
         return "Kakao/SenderNumber";
     }
 
@@ -177,12 +170,10 @@ public class KakaoServiceController {
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://developers.popbill.com/reference/kakaotalk/java/api/template#GetATSTemplateMgtURL
          */
+
         try {
-
             String url = kakaoService.getATSTemplateMgtURL(CorpNum, UserID);
-
             m.addAttribute("Result", url);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -202,11 +193,8 @@ public class KakaoServiceController {
         String templateCode = "022070000353";
 
         try {
-
             ATSTemplate response = kakaoService.getATSTemplate(CorpNum, templateCode);
-
             m.addAttribute("Template", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -225,7 +213,6 @@ public class KakaoServiceController {
 
         try {
             ATSTemplate[] response = kakaoService.listATSTemplate(CorpNum);
-
             m.addAttribute("listTemplate", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -296,7 +283,7 @@ public class KakaoServiceController {
         // 알림톡 버튼 URL에 #{템플릿변수}를 기재한경우 템플릿변수 영역을 변경하여 버튼정보 구성
 		// KakaoButton[] btns = new KakaoButton[1];
 
-		 KakaoButton button = new KakaoButton();
+		// KakaoButton button = new KakaoButton();
 		// button.setN("버튼명"); // 버튼명
 		// button.setT("WL"); // 버튼타입
 		// button.setU1("https://www.popbill.com"); // 버튼링크1
@@ -305,12 +292,9 @@ public class KakaoServiceController {
 		// btns[0] = button;
 
         try {
-
-            String receiptNum = kakaoService.sendATS(CorpNum, templateCode, senderNum, content, altSubject, altContent, altSendType,
-                    receiverNum, receiverName, sndDT, UserID, requestNum, btns);
-
+            String receiptNum = kakaoService.sendATS(CorpNum, templateCode, senderNum, content, altSubject, altContent,
+                    altSendType, receiverNum, receiverName, sndDT, UserID, requestNum, btns);
             m.addAttribute("Result", receiptNum);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -409,7 +393,6 @@ public class KakaoServiceController {
         // btns[0] = button;
 
         try {
-
             String receiptNum = kakaoService.sendATS(CorpNum, templateCode, senderNum, altSendType, receivers, sndDT,
                     UserID, requestNum, btns);
             m.addAttribute("Result", receiptNum);
@@ -417,6 +400,7 @@ public class KakaoServiceController {
             m.addAttribute("Exception", e);
             return "exception";
         }
+
         return "result";
     }
 
@@ -495,14 +479,14 @@ public class KakaoServiceController {
         // btns[0] = button;
 
         try {
-
-            String receiptNum = kakaoService.sendATS(CorpNum, templateCode, senderNum, content,
-                    altContent, altSendType, receivers, sndDT, UserID, requestNum, btns);
+            String receiptNum = kakaoService.sendATS(CorpNum, templateCode, senderNum, content, altContent, altSendType,
+                    receivers, sndDT, UserID, requestNum, btns);
             m.addAttribute("Result", receiptNum);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
         }
+
         return "result";
     }
 
@@ -525,12 +509,9 @@ public class KakaoServiceController {
         String senderNum = "07043042991";
 
         // 친구톡 내용 (최대 1000자)
-        String content = "[친구톡 테스트]\n\n"
-                       + "친구톡 개별내용입니다.\n"
-                       + "대체문자를 친구톡 메시지 내용 그대로 전송할 수 있습니다.\n"
-                       + "또는 대체문자 내용을 작송하여 전송할 수도 있습니다.\n"
-                       + "하지만 대체문자 내용이 길어지게 되면 LMS 로 전송될 수 있습니다.\n\n"
-                       + "수신을 원치 않으시면 1600-9854로 전화주시길 바랍니다.\n";
+        String content = "[친구톡 테스트]\n\n" + "친구톡 개별내용입니다.\n" + "대체문자를 친구톡 메시지 내용 그대로 전송할 수 있습니다.\n"
+                + "또는 대체문자 내용을 작송하여 전송할 수도 있습니다.\n" + "하지만 대체문자 내용이 길어지게 되면 LMS 로 전송될 수 있습니다.\n\n"
+                + "수신을 원치 않으시면 1600-9854로 전화주시길 바랍니다.\n";
 
         // 대체문자 제목
         // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
@@ -543,6 +524,25 @@ public class KakaoServiceController {
         // 대체문자 유형 (null , "C" , "A" 중 택 1)
         // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         String altSendType = "C";
+
+        // 친구톡 버튼 배열, 최대 5개
+        KakaoButton[] btns = new KakaoButton[2];
+
+        KakaoButton button = new KakaoButton();
+        button.setN("버튼명"); // 버튼명
+        button.setT("WL"); // 버튼타입
+        button.setU1("http://www.popbill.com"); // 버튼링크1
+        button.setU2("http://test.popbill.com"); // 버튼링크2
+        button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
+        btns[0] = button;
+
+        button = new KakaoButton();
+        button.setN("버튼명2");
+        button.setT("WL");
+        button.setU1("http://www.popbill.com");
+        button.setU2("http://test.popbill.com");
+        button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
+        btns[1] = button;
 
         // 수신번호
         String receiverNum = "010111222";
@@ -559,35 +559,14 @@ public class KakaoServiceController {
         // - 미입력 시 기본값 false 처리
         Boolean adsYN = false;
 
-
-        // 친구톡 버튼 배열, 최대 5개
-        KakaoButton[] btns = new KakaoButton[2];
-
-        KakaoButton button = new KakaoButton();
-        button.setN("버튼명");                    // 버튼명
-        button.setT("WL");                       // 버튼타입
-        button.setU1("http://www.popbill.com");  // 버튼링크1
-        button.setU2("http://test.popbill.com"); // 버튼링크2
-        btns[0] = button;
-
-        KakaoButton button2 = new KakaoButton();
-        button2.setN("버튼명2");
-        button2.setT("WL");
-        button2.setU1("http://www.popbill.com");
-        button2.setU2("http://test.popbill.com");
-        btns[1] = button2;
-
         // 전송요청번호
         // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
 
         try {
-
-            String receiptNum = kakaoService.sendFTS(CorpNum, plusFriendID, senderNum, content,
-                    altSubject, altContent, altSendType, btns, receiverNum, receiverName, sndDT, adsYN,
-                    UserID, requestNum);
-
+            String receiptNum = kakaoService.sendFTS(CorpNum, plusFriendID, senderNum, content, altSubject, altContent,
+                    altSendType, btns, receiverNum, receiverName, sndDT, adsYN, UserID, requestNum);
             m.addAttribute("Result", receiptNum);
 
         } catch (PopbillException e) {
@@ -620,45 +599,32 @@ public class KakaoServiceController {
         // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         String altSendType = "C";
 
-        // 예약전송일시, 형태(yyyyMMddHHmmss)
-        // - 분단위 전송, 미입력 시 즉시 전송
-        String sndDT = "";
-
-        // 광고성 메시지 여부 ( true , false 중 택 1)
-        // └ true = 광고 , false = 일반
-        // - 미입력 시 기본값 false 처리
-        Boolean adsYN = false;
-
         // 카카오톡 수신정보 배열, 최대 1000건
         KakaoReceiver[] receivers = new KakaoReceiver[3];
         for (int i = 0; i < 3; i++) {
             KakaoReceiver message = new KakaoReceiver();
-            message.setReceiverNum("010111222");            // 수신번호
-            message.setReceiverName("수신자명" + i);          // 수신자명
-            message.setMessage(
-                      "[친구톡 테스트]\n\n"
-                    + "친구톡 개별내용입니다.\n"
-                    + "대체문자를 친구톡 메시지 내용 그대로 전송할 수 있습니다.\n"
-                    + "또는 대체문자 내용을 작송하여 전송할 수도 있습니다.\n"
-                    + "하지만 대체문자 내용이 길어지게 되면 LMS 로 전송될 수 있습니다.\n\n"
-                    + "수신을 원치 않으시면 1600-9854로 전화주시길 바랍니다.\n"
-                    + "To. 수신자" + i
-                    );                                      // 친구톡 내용, 최대 1000자
-            message.setAltSubject("대체문자 개별제목" + i);      // 대체문자 제목
-            message.setAltMessage("대체문자 개별내용" + i);      // 대체문자 내용
+            message.setReceiverNum("010111222"); // 수신번호
+            message.setReceiverName("수신자명" + i); // 수신자명
+            message.setMessage("[친구톡 테스트]\n\n" + "친구톡 개별내용입니다.\n" + "대체문자를 친구톡 메시지 내용 그대로 전송할 수 있습니다.\n"
+                    + "또는 대체문자 내용을 작송하여 전송할 수도 있습니다.\n" + "하지만 대체문자 내용이 길어지게 되면 LMS 로 전송될 수 있습니다.\n\n"
+                    + "수신을 원치 않으시면 1600-9854로 전화주시길 바랍니다.\n" + "To. 수신자" + i); // 친구톡 내용, 최대 1000자
+            message.setAltSubject("대체문자 개별제목" + i); // 대체문자 제목
+            message.setAltMessage("대체문자 개별내용" + i); // 대체문자 내용
             message.setInterOPRefKey("");
 
             KakaoButton button = new KakaoButton();
-            button.setN("타입1 버튼명"+i);                     // 버튼명
-            button.setT("WL");                              // 버튼타입
-            button.setU1("http://"+i+"popbill.com");        // 버튼링크1
-            button.setU2("http://"+i+"test.popbill.com");   // 버튼링크2
+            button.setN("타입1 버튼명" + i); // 버튼명
+            button.setT("WL"); // 버튼타입
+            button.setU1("http://" + i + "popbill.com"); // 버튼링크1
+            button.setU2("http://" + i + "test.popbill.com"); // 버튼링크2
+            button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
 
             KakaoButton button02 = new KakaoButton();
-            button02.setN("타입2 버튼명"+i);                   // 버튼명
-            button02.setT("WL");                            // 버튼타입
-            button02.setU1("http://"+i+"popbill.com");      // 버튼링크1
-            button02.setU2("http://"+i+"test.popbill.com"); // 버튼링크2
+            button02.setN("타입2 버튼명" + i); // 버튼명
+            button02.setT("WL"); // 버튼타입
+            button02.setU1("http://" + i + "popbill.com"); // 버튼링크1
+            button02.setU2("http://" + i + "test.popbill.com"); // 버튼링크2
+            button02.setTg("out");  // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
 
             // 수신자별로 각기다른 버튼정보 추가.
             message.setBtns(new ArrayList<KakaoButton>());
@@ -668,18 +634,24 @@ public class KakaoServiceController {
             receivers[i] = message;
         }
 
+        // 예약전송일시, 형태(yyyyMMddHHmmss)
+        // - 분단위 전송, 미입력 시 즉시 전송
+        String sndDT = "";
+
+        // 광고성 메시지 여부 ( true , false 중 택 1)
+        // └ true = 광고 , false = 일반
+        // - 미입력 시 기본값 false 처리
+        Boolean adsYN = false;
+
         // 전송요청번호
         // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
 
         try {
-
-            String receiptNum = kakaoService.sendFTS(CorpNum, plusFriendID, senderNum, altSendType,
-                    receivers, null, sndDT, adsYN, UserID, requestNum);
-
+            String receiptNum = kakaoService.sendFTS(CorpNum, plusFriendID, senderNum, altSendType, receivers,
+                    null, sndDT, adsYN, UserID, requestNum);
             m.addAttribute("Result", receiptNum);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -707,12 +679,9 @@ public class KakaoServiceController {
         String senderNum = "07043042991";
 
         // 친구톡 내용 (최대 1000자)
-        String content = "[친구톡 테스트]\n\n"
-                       + "친구톡 동보내용입니다.\n"
-                       + "대체문자를 친구톡 메시지 내용 그대로 전송할 수 있습니다.\n"
-                       + "또는 대체문자 내용을 작송하여 전송할 수도 있습니다.\n"
-                       + "하지만 대체문자 내용이 길어지게 되면 LMS 로 전송될 수 있습니다.\n\n"
-                       + "수신을 원치 않으시면 1600-9854로 전화주시길 바랍니다.";
+        String content = "[친구톡 테스트]\n\n" + "친구톡 동보내용입니다.\n" + "대체문자를 친구톡 메시지 내용 그대로 전송할 수 있습니다.\n"
+                + "또는 대체문자 내용을 작송하여 전송할 수도 있습니다.\n" + "하지만 대체문자 내용이 길어지게 되면 LMS 로 전송될 수 있습니다.\n\n"
+                + "수신을 원치 않으시면 1600-9854로 전화주시길 바랍니다.";
 
         // 대체문자 제목
         // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
@@ -726,16 +695,6 @@ public class KakaoServiceController {
         // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         String altSendType = "C";
 
-        // 예약전송일시, 형태(yyyyMMddHHmmss)
-        // - 분단위 전송, 미입력 시 즉시 전송
-        String sndDT = "";
-
-        // 광고성 메시지 여부 ( true , false 중 택 1)
-        // └ true = 광고 , false = 일반
-        // - 미입력 시 기본값 false 처리
-        Boolean adsYN = false;
-
-
         // 카카오톡 수신정보 배열, 최대 1000건
         KakaoReceiver[] receivers = new KakaoReceiver[2];
         for (int i = 0; i < 2; i++) {
@@ -745,15 +704,15 @@ public class KakaoServiceController {
             receivers[i] = message;
         }
 
-
         // 친구톡 버튼 배열, 최대 5개
         KakaoButton[] btns = new KakaoButton[2];
 
         KakaoButton button = new KakaoButton();
-        button.setN("버튼명");                     // 버튼명
-        button.setT("WL");                       // 버튼타입
-        button.setU1("http://www.popbill.com");  // 버튼링크1
+        button.setN("버튼명"); // 버튼명
+        button.setT("WL"); // 버튼타입
+        button.setU1("http://www.popbill.com"); // 버튼링크1
         button.setU2("http://test.popbill.com"); // 버튼링크2
+        button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
         btns[0] = button;
 
         button = new KakaoButton();
@@ -761,7 +720,17 @@ public class KakaoServiceController {
         button.setT("WL");
         button.setU1("http://www.popbill.com");
         button.setU2("http://test.popbill.com");
+        button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
         btns[1] = button;
+
+        // 예약전송일시, 형태(yyyyMMddHHmmss)
+        // - 분단위 전송, 미입력 시 즉시 전송
+        String sndDT = "";
+
+        // 광고성 메시지 여부 ( true , false 중 택 1)
+        // └ true = 광고 , false = 일반
+        // - 미입력 시 기본값 false 처리
+        Boolean adsYN = false;
 
         // 전송요청번호
         // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호.
@@ -769,12 +738,9 @@ public class KakaoServiceController {
         String requestNum = "";
 
         try {
-
-            String receiptNum = kakaoService.sendFTS(CorpNum, plusFriendID, senderNum, content,
-                    altSubject, altContent, altSendType, receivers, btns, sndDT, adsYN, UserID, requestNum);
-
+            String receiptNum = kakaoService.sendFTS(CorpNum, plusFriendID, senderNum, content, altSubject, altContent,
+                    altSendType, receivers, btns, sndDT, adsYN, UserID, requestNum);
             m.addAttribute("Result", receiptNum);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -811,16 +777,32 @@ public class KakaoServiceController {
 
         // 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
         // └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
-        String altContent = "[친구톡이미지 대체문자]\n\n"
-                          + "친구톡 이미지 대체문자 내용입니다.\n"
-                          + "대체문자를 친구톡 메시지 내용 그대로 전송할 수 있습니다.\n"
-                          + "또는 대체문자 내용을 작송하여 전송할 수도 있습니다.\n"
-                          + "하지만 대체문자 내용이 길어지게 되면 LMS 로 전송될 수 있습니다.\n\n"
-                          + "수신을 원치 않으시면 1600-9854로 전화주시길 바랍니다.\n";
+        String altContent = "[친구톡이미지 대체문자]\n\n" + "친구톡 이미지 대체문자 내용입니다.\n" + "대체문자를 친구톡 메시지 내용 그대로 전송할 수 있습니다.\n"
+                + "또는 대체문자 내용을 작송하여 전송할 수도 있습니다.\n" + "하지만 대체문자 내용이 길어지게 되면 LMS 로 전송될 수 있습니다.\n\n"
+                + "수신을 원치 않으시면 1600-9854로 전화주시길 바랍니다.\n";
 
         // 대체문자 유형 (null , "C" , "A" 중 택 1)
         // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         String altSendType = "A";
+
+        // 친구톡 버튼 배열, 최대 5개
+        KakaoButton[] btns = new KakaoButton[2];
+
+        KakaoButton button = new KakaoButton();
+        button.setN("버튼명"); // 버튼명
+        button.setT("WL"); // 버튼타입
+        button.setU1("http://www.popbill.com"); // 버튼링크1
+        button.setU2("http://test.popbill.com"); // 버튼링크2
+        button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
+        btns[0] = button;
+
+        button = new KakaoButton();
+        button.setN("버튼명2");
+        button.setT("WL");
+        button.setU1("http://www.popbill.com");
+        button.setU2("http://test.popbill.com");
+        button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
+        btns[1] = button;
 
         // 수신번호
         String receiverNum = "010111222";
@@ -837,26 +819,9 @@ public class KakaoServiceController {
         // - 미입력 시 기본값 false 처리
         Boolean adsYN = false;
 
-
-        // 친구톡 버튼 배열, 최대 5개
-        KakaoButton[] btns = new KakaoButton[2];
-
-        KakaoButton button = new KakaoButton();
-        button.setN("버튼명");                    // 버튼명
-        button.setT("WL");                       // 버튼타입
-        button.setU1("http://www.popbill.com");  // 버튼링크1
-        button.setU2("http://test.popbill.com"); // 버튼링크2
-        btns[0] = button;
-
-        KakaoButton button2 = new KakaoButton();
-        button2.setN("버튼명2");
-        button2.setT("WL");
-        button2.setU1("http://www.popbill.com");
-        button2.setU2("http://test.popbill.com");
-        btns[1] = button2;
-
         // 첨부이미지 파일 경로
-        // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
+        // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px
+        // 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
         File file = new File("C:/Users/Public/Pictures/Image.jpg");
 
         // 이미지 링크 URL
@@ -870,13 +835,9 @@ public class KakaoServiceController {
         String requestNum = "";
 
         try {
-
-            String receiptNum = kakaoService.sendFMS(CorpNum, plusFriendID, senderNum, content, altSubject,
-                    altContent, altSendType, btns, receiverNum, receiverName, sndDT, adsYN, file, imageURL,
-                    UserID, requestNum);
-
+            String receiptNum = kakaoService.sendFMS(CorpNum, plusFriendID, senderNum, content, altSubject, altContent,
+                    altSendType, btns, receiverNum, receiverName, sndDT, adsYN, file, imageURL, UserID, requestNum);
             m.addAttribute("Result", receiptNum);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -908,32 +869,17 @@ public class KakaoServiceController {
         // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         String altSendType = "C";
 
-        // 예약전송일시, 형태(yyyyMMddHHmmss)
-        // - 분단위 전송, 미입력 시 즉시 전송
-        String sndDT = "";
-
-        // 광고성 메시지 여부 ( true , false 중 택 1)
-        // └ true = 광고 , false = 일반
-        // - 미입력 시 기본값 false 처리
-        Boolean adsYN = false;
-
         // 카카오톡 수신정보 배열, 최대 1000건
         KakaoReceiver[] receivers = new KakaoReceiver[3];
         for (int i = 0; i < 3; i++) {
             KakaoReceiver message = new KakaoReceiver();
-            message.setReceiverNum("010111222");            // 수신번호
-            message.setReceiverName("수신자명" + i);          // 수신자명
-            message.setMessage(
-                      "[친구톡 이미지 테스트]\n\n"
-                    + "친구톡 이미지 개별내용입니다.\n"
-                    + "대체문자를 친구톡 메시지 내용 그대로 전송할 수 있습니다.\n"
-                    + "또는 대체문자 내용을 작송하여 전송할 수도 있습니다.\n"
-                    + "하지만 대체문자 내용이 길어지게 되면 LMS 로 전송될 수 있습니다.\n\n"
-                    + "수신을 원치 않으시면 1600-9854로 전화주시길 바랍니다.\n"
-                    + "To. 수신자" + i
-                    );                                      // 친구톡 내용, 최대 400자
-            message.setAltSubject("대체문자 개별제목" + i);      // 대체문자 제목
-            message.setAltMessage("대체문자 개별내용" + i);      // 대체문자 내용
+            message.setReceiverNum("010111222"); // 수신번호
+            message.setReceiverName("수신자명" + i); // 수신자명
+            message.setMessage("[친구톡 이미지 테스트]\n\n" + "친구톡 이미지 개별내용입니다.\n" + "대체문자를 친구톡 메시지 내용 그대로 전송할 수 있습니다.\n"
+                    + "또는 대체문자 내용을 작송하여 전송할 수도 있습니다.\n" + "하지만 대체문자 내용이 길어지게 되면 LMS 로 전송될 수 있습니다.\n\n"
+                    + "수신을 원치 않으시면 1600-9854로 전화주시길 바랍니다.\n" + "To. 수신자" + i); // 친구톡 내용, 최대 400자
+            message.setAltSubject("대체문자 개별제목" + i); // 대체문자 제목
+            message.setAltMessage("대체문자 개별내용" + i); // 대체문자 내용
             receivers[i] = message;
 
             // 수신자별 개별 버튼 정보
@@ -961,10 +907,11 @@ public class KakaoServiceController {
         KakaoButton[] btns = new KakaoButton[2];
 
         KakaoButton button = new KakaoButton();
-        button.setN("버튼명");                    // 버튼명
-        button.setT("WL");                       // 버튼타입
-        button.setU1("http://www.popbill.com");  // 버튼링크1
+        button.setN("버튼명"); // 버튼명
+        button.setT("WL"); // 버튼타입
+        button.setU1("http://www.popbill.com"); // 버튼링크1
         button.setU2("http://test.popbill.com"); // 버튼링크2
+        button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
         btns[0] = button;
 
         button = new KakaoButton();
@@ -972,10 +919,21 @@ public class KakaoServiceController {
         button.setT("WL");
         button.setU1("http://www.popbill.com");
         button.setU2("http://test.popbill.com");
+        button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
         btns[1] = button;
 
+        // 예약전송일시, 형태(yyyyMMddHHmmss)
+        // - 분단위 전송, 미입력 시 즉시 전송
+        String sndDT = "";
+
+        // 광고성 메시지 여부 ( true , false 중 택 1)
+        // └ true = 광고 , false = 일반
+        // - 미입력 시 기본값 false 처리
+        Boolean adsYN = false;
+
         // 첨부이미지 파일 경로
-        // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
+        // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px
+        // 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
         File file = new File("C:/Users/Public/Pictures/Image.jpg");
 
         // 이미지 링크 URL
@@ -989,12 +947,9 @@ public class KakaoServiceController {
         String requestNum = "";
 
         try {
-
-            String receiptNum = kakaoService.sendFMS(CorpNum, plusFriendID, senderNum, altSendType,
-                    receivers, btns, sndDT, adsYN, file, imageURL, UserID, requestNum);
-
+            String receiptNum = kakaoService.sendFMS(CorpNum, plusFriendID, senderNum, altSendType, receivers, btns,
+                    sndDT, adsYN, file, imageURL, UserID, requestNum);
             m.addAttribute("Result", receiptNum);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -1023,12 +978,9 @@ public class KakaoServiceController {
         String senderNum = "07043042991";
 
         // 친구톡 내용 (최대 400자)
-        String content = "[친구톡 이미지 테스트]\n\n"
-                       + "친구톡 이미지 동보내용입니다.\n"
-                       + "대체문자를 친구톡 메시지 내용 그대로 전송할 수 있습니다.\n"
-                       + "또는 대체문자 내용을 작송하여 전송할 수도 있습니다.\n"
-                       + "하지만 대체문자 내용이 길어지게 되면 LMS 로 전송될 수 있습니다.\n\n"
-                       + "수신을 원치 않으시면 1600-9854로 전화주시길 바랍니다.\n";
+        String content = "[친구톡 이미지 테스트]\n\n" + "친구톡 이미지 동보내용입니다.\n" + "대체문자를 친구톡 메시지 내용 그대로 전송할 수 있습니다.\n"
+                + "또는 대체문자 내용을 작송하여 전송할 수도 있습니다.\n" + "하지만 대체문자 내용이 길어지게 되면 LMS 로 전송될 수 있습니다.\n\n"
+                + "수신을 원치 않으시면 1600-9854로 전화주시길 바랍니다.\n";
 
         // 대체문자 제목
         // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
@@ -1042,6 +994,35 @@ public class KakaoServiceController {
         // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         String altSendType = "C";
 
+        // 카카오톡 수신정보 배열, 최대 1000건
+        KakaoReceiver[] receivers = new KakaoReceiver[2];
+        for (int i = 0; i < 2; i++) {
+            KakaoReceiver message = new KakaoReceiver();
+            message.setReceiverNum("010111222"); // 수신번호
+            message.setReceiverName("수신자명" + i); // 수신자명
+            receivers[i] = message;
+        }
+
+        // 수신자별 동일 버튼 정보
+        // 친구톡 버튼 배열, 최대 5개
+        KakaoButton[] btns = new KakaoButton[2];
+
+        KakaoButton button = new KakaoButton();
+        button.setN("버튼명"); // 버튼명
+        button.setT("WL"); // 버튼타입
+        button.setU1("http://www.popbill.com"); // 버튼링크1
+        button.setU2("http://test.popbill.com"); // 버튼링크2
+        button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
+        btns[0] = button;
+
+        button = new KakaoButton();
+        button.setN("버튼명2");
+        button.setT("WL");
+        button.setU1("http://www.popbill.com");
+        button.setU2("http://test.popbill.com");
+        button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
+        btns[1] = button;
+
         // 예약전송일시, 형태(yyyyMMddHHmmss)
         // - 분단위 전송, 미입력 시 즉시 전송
         String sndDT = "";
@@ -1051,36 +1032,9 @@ public class KakaoServiceController {
         // - 미입력 시 기본값 false 처리
         Boolean adsYN = false;
 
-        // 카카오톡 수신정보 배열, 최대 1000건
-        KakaoReceiver[] receivers = new KakaoReceiver[2];
-        for (int i = 0; i < 2; i++) {
-            KakaoReceiver message = new KakaoReceiver();
-            message.setReceiverNum("010111222");     // 수신번호
-            message.setReceiverName("수신자명" + i);   // 수신자명
-            receivers[i] = message;
-        }
-
-        // 수신자별 동일 버튼 정보
-        // 친구톡 버튼 배열, 최대 5개
-        KakaoButton[] btns = new KakaoButton[2];
-
-        KakaoButton button = new KakaoButton();
-        button.setN("버튼명");                     // 버튼명
-        button.setT("WL");                       // 버튼타입
-        button.setU1("http://www.popbill.com");  // 버튼링크1
-        button.setU2("http://test.popbill.com"); // 버튼링크2
-        btns[0] = button;
-
-        button = new KakaoButton();
-        button.setN("버튼명2");
-        button.setT("WL");
-        button.setU1("http://www.popbill.com");
-        button.setU2("http://test.popbill.com");
-        btns[1] = button;
-
-
         // 첨부이미지 파일 경로
-        // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
+        // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px
+        // 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
         File file = new File("C:/Users/Public/Pictures/Image.jpg");
 
         // 이미지 링크 URL
@@ -1094,13 +1048,9 @@ public class KakaoServiceController {
         String requestNum = "";
 
         try {
-
-            String receiptNum = kakaoService.sendFMS(CorpNum, plusFriendID, senderNum, content,
-                    altSubject, altContent, altSendType, receivers, btns, sndDT, adsYN, file, imageURL,
-                    UserID, requestNum);
-
+            String receiptNum = kakaoService.sendFMS(CorpNum, plusFriendID, senderNum, content, altSubject, altContent,
+                    altSendType, receivers, btns, sndDT, adsYN, file, imageURL, UserID, requestNum);
             m.addAttribute("Result", receiptNum);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -1139,16 +1089,32 @@ public class KakaoServiceController {
 
         // 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
         // └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
-        String altContent = "[친구톡이미지 대체문자]\n\n"
-                + "친구톡 이미지 대체문자 내용입니다.\n"
-                + "대체문자를 친구톡 메시지 내용 그대로 전송할 수 있습니다.\n"
-                + "또는 대체문자 내용을 작송하여 전송할 수도 있습니다.\n"
-                + "하지만 대체문자 내용이 길어지게 되면 LMS 로 전송될 수 있습니다.\n\n"
+        String altContent = "[친구톡이미지 대체문자]\n\n" + "친구톡 이미지 대체문자 내용입니다.\n" + "대체문자를 친구톡 메시지 내용 그대로 전송할 수 있습니다.\n"
+                + "또는 대체문자 내용을 작송하여 전송할 수도 있습니다.\n" + "하지만 대체문자 내용이 길어지게 되면 LMS 로 전송될 수 있습니다.\n\n"
                 + "수신을 원치 않으시면 1600-9854로 전화주시길 바랍니다.\n";
 
         // 대체문자 유형 (null , "C" , "A" 중 택 1)
         // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         String altSendType = "A";
+
+        // 친구톡 버튼 배열, 최대 5개
+        KakaoButton[] btns = new KakaoButton[2];
+
+        KakaoButton button = new KakaoButton();
+        button.setN("버튼명"); // 버튼명
+        button.setT("WL"); // 버튼타입
+        button.setU1("http://www.popbill.com"); // 버튼링크1
+        button.setU2("http://test.popbill.com"); // 버튼링크2
+        button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
+        btns[0] = button;
+
+        button = new KakaoButton();
+        button.setN("버튼명2");
+        button.setT("WL");
+        button.setU1("http://www.popbill.com");
+        button.setU2("http://test.popbill.com");
+        button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
+        btns[1] = button;
 
         // 수신번호
         String receiverNum = "010111222";
@@ -1165,26 +1131,9 @@ public class KakaoServiceController {
         // - 미입력 시 기본값 false 처리
         Boolean adsYN = false;
 
-
-        // 친구톡 버튼 배열, 최대 5개
-        KakaoButton[] btns = new KakaoButton[2];
-
-        KakaoButton button = new KakaoButton();
-        button.setN("버튼명");                    // 버튼명
-        button.setT("WL");                       // 버튼타입
-        button.setU1("http://www.popbill.com");  // 버튼링크1
-        button.setU2("http://test.popbill.com"); // 버튼링크2
-        btns[0] = button;
-
-        KakaoButton button2 = new KakaoButton();
-        button2.setN("버튼명2");
-        button2.setT("WL");
-        button2.setU1("http://www.popbill.com");
-        button2.setU2("http://test.popbill.com");
-        btns[1] = button2;
-
         // 첨부이미지 파일 경로
-        // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
+        // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px
+        // 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
         File file = new File("C:/Users/Public/Pictures/Image.jpg");
         InputStream inputStream = new FileInputStream(file);
 
@@ -1203,13 +1152,9 @@ public class KakaoServiceController {
         String requestNum = "";
 
         try {
-
-            String receiptNum = kakaoService.sendFMS(CorpNum, plusFriendID, senderNum, content, altSubject,
-                    altContent, altSendType, btns, receiverNum, receiverName, sndDT, adsYN, file, imageURL,
-                    UserID, requestNum);
-
+            String receiptNum = kakaoService.sendFMS(CorpNum, plusFriendID, senderNum, content, altSubject, altContent,
+                    altSendType, btns, receiverNum, receiverName, sndDT, adsYN, file, imageURL, UserID, requestNum);
             m.addAttribute("Result", receiptNum);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -1241,32 +1186,17 @@ public class KakaoServiceController {
         // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         String altSendType = "C";
 
-        // 예약전송일시, 형태(yyyyMMddHHmmss)
-        // - 분단위 전송, 미입력 시 즉시 전송
-        String sndDT = "";
-
-        // 광고성 메시지 여부 ( true , false 중 택 1)
-        // └ true = 광고 , false = 일반
-        // - 미입력 시 기본값 false 처리
-        Boolean adsYN = false;
-
         // 카카오톡 수신정보 배열, 최대 1000건
         KakaoReceiver[] receivers = new KakaoReceiver[3];
         for (int i = 0; i < 3; i++) {
             KakaoReceiver message = new KakaoReceiver();
-            message.setReceiverNum("010111222");            // 수신번호
-            message.setReceiverName("수신자명" + i);          // 수신자명
-            message.setMessage(
-                    "[친구톡 이미지 테스트]\n\n"
-                            + "친구톡 이미지 개별내용입니다.\n"
-                            + "대체문자를 친구톡 메시지 내용 그대로 전송할 수 있습니다.\n"
-                            + "또는 대체문자 내용을 작송하여 전송할 수도 있습니다.\n"
-                            + "하지만 대체문자 내용이 길어지게 되면 LMS 로 전송될 수 있습니다.\n\n"
-                            + "수신을 원치 않으시면 1600-9854로 전화주시길 바랍니다.\n"
-                            + "To. 수신자" + i
-            );                                      // 친구톡 내용, 최대 400자
-            message.setAltSubject("대체문자 개별제목" + i);      // 대체문자 제목
-            message.setAltMessage("대체문자 개별내용" + i);      // 대체문자 내용
+            message.setReceiverNum("010111222"); // 수신번호
+            message.setReceiverName("수신자명" + i); // 수신자명
+            message.setMessage("[친구톡 이미지 테스트]\n\n" + "친구톡 이미지 개별내용입니다.\n" + "대체문자를 친구톡 메시지 내용 그대로 전송할 수 있습니다.\n"
+                    + "또는 대체문자 내용을 작송하여 전송할 수도 있습니다.\n" + "하지만 대체문자 내용이 길어지게 되면 LMS 로 전송될 수 있습니다.\n\n"
+                    + "수신을 원치 않으시면 1600-9854로 전화주시길 바랍니다.\n" + "To. 수신자" + i); // 친구톡 내용, 최대 400자
+            message.setAltSubject("대체문자 개별제목" + i); // 대체문자 제목
+            message.setAltMessage("대체문자 개별내용" + i); // 대체문자 내용
             receivers[i] = message;
 
             // 수신자별 개별 버튼 정보
@@ -1294,10 +1224,11 @@ public class KakaoServiceController {
         KakaoButton[] btns = new KakaoButton[2];
 
         KakaoButton button = new KakaoButton();
-        button.setN("버튼명");                    // 버튼명
-        button.setT("WL");                       // 버튼타입
-        button.setU1("http://www.popbill.com");  // 버튼링크1
+        button.setN("버튼명"); // 버튼명
+        button.setT("WL"); // 버튼타입
+        button.setU1("http://www.popbill.com"); // 버튼링크1
         button.setU2("http://test.popbill.com"); // 버튼링크2
+        button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
         btns[0] = button;
 
         button = new KakaoButton();
@@ -1305,12 +1236,24 @@ public class KakaoServiceController {
         button.setT("WL");
         button.setU1("http://www.popbill.com");
         button.setU2("http://test.popbill.com");
+        button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
         btns[1] = button;
 
+        // 예약전송일시, 형태(yyyyMMddHHmmss)
+        // - 분단위 전송, 미입력 시 즉시 전송
+        String sndDT = "";
+
+        // 광고성 메시지 여부 ( true , false 중 택 1)
+        // └ true = 광고 , false = 일반
+        // - 미입력 시 기본값 false 처리
+        Boolean adsYN = false;
+
         // 첨부이미지 파일 경로
-        // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
+        // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px
+        // 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
         File file = new File("C:/Users/Public/Pictures/Image.jpg");
         InputStream inputStream = new FileInputStream(file);
+
         Attachment attachment = new Attachment();
         attachment.setFileName(file.getName());
         attachment.setFileData(inputStream);
@@ -1326,12 +1269,9 @@ public class KakaoServiceController {
         String requestNum = "";
 
         try {
-
-            String receiptNum = kakaoService.sendFMS(CorpNum, plusFriendID, senderNum, altSendType,
-                    receivers, btns, sndDT, adsYN, file, imageURL, UserID, requestNum);
-
+            String receiptNum = kakaoService.sendFMS(CorpNum, plusFriendID, senderNum, altSendType, receivers, btns,
+                    sndDT, adsYN, file, imageURL, UserID, requestNum);
             m.addAttribute("Result", receiptNum);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -1360,11 +1300,8 @@ public class KakaoServiceController {
         String senderNum = "07043042991";
 
         // 친구톡 내용 (최대 400자)
-        String content = "[친구톡 이미지 테스트]\n\n"
-                + "친구톡 이미지 동보내용입니다.\n"
-                + "대체문자를 친구톡 메시지 내용 그대로 전송할 수 있습니다.\n"
-                + "또는 대체문자 내용을 작송하여 전송할 수도 있습니다.\n"
-                + "하지만 대체문자 내용이 길어지게 되면 LMS 로 전송될 수 있습니다.\n\n"
+        String content = "[친구톡 이미지 테스트]\n\n" + "친구톡 이미지 동보내용입니다.\n" + "대체문자를 친구톡 메시지 내용 그대로 전송할 수 있습니다.\n"
+                + "또는 대체문자 내용을 작송하여 전송할 수도 있습니다.\n" + "하지만 대체문자 내용이 길어지게 되면 LMS 로 전송될 수 있습니다.\n\n"
                 + "수신을 원치 않으시면 1600-9854로 전화주시길 바랍니다.\n";
 
         // 대체문자 제목
@@ -1379,6 +1316,35 @@ public class KakaoServiceController {
         // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         String altSendType = "C";
 
+        // 카카오톡 수신정보 배열, 최대 1000건
+        KakaoReceiver[] receivers = new KakaoReceiver[2];
+        for (int i = 0; i < 2; i++) {
+            KakaoReceiver message = new KakaoReceiver();
+            message.setReceiverNum("010111222"); // 수신번호
+            message.setReceiverName("수신자명" + i); // 수신자명
+            receivers[i] = message;
+        }
+
+        // 수신자별 동일 버튼 정보
+        // 친구톡 버튼 배열, 최대 5개
+        KakaoButton[] btns = new KakaoButton[2];
+
+        KakaoButton button = new KakaoButton();
+        button.setN("버튼명"); // 버튼명
+        button.setT("WL"); // 버튼타입
+        button.setU1("http://www.popbill.com"); // 버튼링크1
+        button.setU2("http://test.popbill.com"); // 버튼링크2
+        button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
+        btns[0] = button;
+
+        button = new KakaoButton();
+        button.setN("버튼명2");
+        button.setT("WL");
+        button.setU1("http://www.popbill.com");
+        button.setU2("http://test.popbill.com");
+        button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
+        btns[1] = button;
+
         // 예약전송일시, 형태(yyyyMMddHHmmss)
         // - 분단위 전송, 미입력 시 즉시 전송
         String sndDT = "";
@@ -1388,36 +1354,9 @@ public class KakaoServiceController {
         // - 미입력 시 기본값 false 처리
         Boolean adsYN = false;
 
-        // 카카오톡 수신정보 배열, 최대 1000건
-        KakaoReceiver[] receivers = new KakaoReceiver[2];
-        for (int i = 0; i < 2; i++) {
-            KakaoReceiver message = new KakaoReceiver();
-            message.setReceiverNum("010111222");     // 수신번호
-            message.setReceiverName("수신자명" + i);   // 수신자명
-            receivers[i] = message;
-        }
-
-        // 수신자별 동일 버튼 정보
-        // 친구톡 버튼 배열, 최대 5개
-        KakaoButton[] btns = new KakaoButton[2];
-
-        KakaoButton button = new KakaoButton();
-        button.setN("버튼명");                     // 버튼명
-        button.setT("WL");                       // 버튼타입
-        button.setU1("http://www.popbill.com");  // 버튼링크1
-        button.setU2("http://test.popbill.com"); // 버튼링크2
-        btns[0] = button;
-
-        button = new KakaoButton();
-        button.setN("버튼명2");
-        button.setT("WL");
-        button.setU1("http://www.popbill.com");
-        button.setU2("http://test.popbill.com");
-        btns[1] = button;
-
-
         // 첨부이미지 파일 경로
-        // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
+        // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px
+        // 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
         File file = new File("C:/Users/Public/Pictures/Image.jpg");
         InputStream inputStream = new FileInputStream(file);
 
@@ -1436,13 +1375,9 @@ public class KakaoServiceController {
         String requestNum = "";
 
         try {
-
-            String receiptNum = kakaoService.sendFMS(CorpNum, plusFriendID, senderNum, content,
-                    altSubject, altContent, altSendType, receivers, btns, sndDT, adsYN, file, imageURL,
-                    UserID, requestNum);
-
+            String receiptNum = kakaoService.sendFMS(CorpNum, plusFriendID, senderNum, content, altSubject, altContent,
+                    altSendType, receivers, btns, sndDT, adsYN, file, imageURL, UserID, requestNum);
             m.addAttribute("Result", receiptNum);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -1463,9 +1398,7 @@ public class KakaoServiceController {
 
         try {
             Response response = kakaoService.cancelReserve(CorpNum, receiptNum);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -1489,7 +1422,6 @@ public class KakaoServiceController {
 
         try {
             Response response = kakaoService.cancelReservebyRCV(CorpNum, receiptNum, receiveNum);
-
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -1511,9 +1443,7 @@ public class KakaoServiceController {
 
         try {
             Response response = kakaoService.cancelReserveRN(CorpNum, requestNum);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -1537,7 +1467,6 @@ public class KakaoServiceController {
 
         try {
             Response response = kakaoService.cancelReserveRNbyRCV(CorpNum, requestNum, receiveNum);
-
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -1561,11 +1490,8 @@ public class KakaoServiceController {
         String receiptNum = "022100612053100001";
 
         try {
-
             KakaoSentInfo sentInfos = kakaoService.getMessages(CorpNum, receiptNum);
-
             m.addAttribute("sentInfos", sentInfos);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -1588,11 +1514,8 @@ public class KakaoServiceController {
         String requestNum = "";
 
         try {
-
             KakaoSentInfo sentInfos = kakaoService.getMessagesRN(CorpNum, requestNum);
-
             m.addAttribute("sentInfos", sentInfos);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -1653,16 +1576,14 @@ public class KakaoServiceController {
         String QString = "";
 
         try {
-
-            KakaoSearchResult response = kakaoService.search(CorpNum, SDate,
-                    EDate, State, Item, ReserveYN, SenderOnly, Page, PerPage, Order, UserID, QString);
-
+            KakaoSearchResult response = kakaoService.search(CorpNum, SDate, EDate, State, Item, ReserveYN, SenderOnly,
+                    Page, PerPage, Order, UserID, QString);
             m.addAttribute("SearchResult", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
         }
+
         return "Kakao/searchResult";
     }
 
@@ -1675,11 +1596,8 @@ public class KakaoServiceController {
          */
 
         try {
-
             String url = kakaoService.getSentListURL(CorpNum, UserID);
-
             m.addAttribute("Result", url);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -1699,11 +1617,8 @@ public class KakaoServiceController {
         KakaoType kakaoType = KakaoType.ATS;
 
         try {
-
             float unitCost = kakaoService.getUnitCost(CorpNum, kakaoType);
-
             m.addAttribute("Result", unitCost);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -1723,10 +1638,8 @@ public class KakaoServiceController {
         KakaoType kakaoType = KakaoType.ATS;
 
         try {
-
             ChargeInfo chrgInfo = kakaoService.getChargeInfo(CorpNum, kakaoType);
             m.addAttribute("ChargeInfo", chrgInfo);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";

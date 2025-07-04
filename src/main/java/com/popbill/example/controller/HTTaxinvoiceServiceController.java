@@ -76,7 +76,6 @@ public class HTTaxinvoiceServiceController {
         try {
             String jobID = htTaxinvoiceService.requestJob(CorpNum, TIType, DType, SDate, EDate);
             m.addAttribute("Result", jobID);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -99,7 +98,6 @@ public class HTTaxinvoiceServiceController {
         try {
             HTTaxinvoiceJobState jobState = htTaxinvoiceService.getJobState(CorpNum, jobID);
             m.addAttribute("JobState", jobState);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -118,7 +116,6 @@ public class HTTaxinvoiceServiceController {
         try {
             HTTaxinvoiceJobState[] jobStates = htTaxinvoiceService.listActiveJob(CorpNum);
             m.addAttribute("JobStates", jobStates);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -179,10 +176,9 @@ public class HTTaxinvoiceServiceController {
         String searchString = "";
 
         try {
-            HTTaxinvoiceSearchResult searchInfo = htTaxinvoiceService.search(CorpNum, jobID, Type, TaxType,
-                    PurposeType, TaxRegIDYN, TaxRegIDType, TaxRegID, Page, PerPage, Order, UserID, searchString);
+            HTTaxinvoiceSearchResult searchInfo = htTaxinvoiceService.search(CorpNum, jobID, Type, TaxType, PurposeType,
+                    TaxRegIDYN, TaxRegIDType, TaxRegID, Page, PerPage, Order, UserID, searchString);
             m.addAttribute("SearchResult", searchInfo);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -234,14 +230,14 @@ public class HTTaxinvoiceServiceController {
         String searchString = "";
 
         try {
-            HTTaxinvoiceSummary summaryInfo = htTaxinvoiceService.summary(CorpNum, jobID, Type, TaxType,
-                    PurposeType, TaxRegIDYN, TaxRegIDType, TaxRegID, UserID, searchString);
+            HTTaxinvoiceSummary summaryInfo = htTaxinvoiceService.summary(CorpNum, jobID, Type, TaxType, PurposeType,
+                    TaxRegIDYN, TaxRegIDType, TaxRegID, UserID, searchString);
             m.addAttribute("SummaryResult", summaryInfo);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
         }
+
         return "HTTaxinvoice/Summary";
     }
 
@@ -258,9 +254,7 @@ public class HTTaxinvoiceServiceController {
 
         try {
             HTTaxinvoice taxinvoiceInfo = htTaxinvoiceService.getTaxinvoice(CorpNum, ntsconfirmNum);
-
             m.addAttribute("Taxinvoice", taxinvoiceInfo);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -281,9 +275,7 @@ public class HTTaxinvoiceServiceController {
 
         try {
             HTTaxinvoiceXMLResponse xmlResponse = htTaxinvoiceService.getXML(CorpNum, ntsconfirmNum);
-
             m.addAttribute("TaxinvoiceXML", xmlResponse);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -306,11 +298,8 @@ public class HTTaxinvoiceServiceController {
         String NTSConfirmNum = "202201058888888800000071";
 
         try {
-
             String url = htTaxinvoiceService.getPopUpURL(CorpNum, NTSConfirmNum, UserID);
-
             m.addAttribute("Result", url);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -333,11 +322,8 @@ public class HTTaxinvoiceServiceController {
         String NTSConfirmNum = "202201058888888800000071";
 
         try {
-
             String url = htTaxinvoiceService.getPrintURL(CorpNum, NTSConfirmNum, UserID);
-
             m.addAttribute("Result", url);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -357,11 +343,8 @@ public class HTTaxinvoiceServiceController {
          */
 
         try {
-
             String url = htTaxinvoiceService.getCertificatePopUpURL(CorpNum, UserID);
-
             m.addAttribute("Result", url);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -378,11 +361,8 @@ public class HTTaxinvoiceServiceController {
          */
 
         try {
-
             Date expireDate = htTaxinvoiceService.getCertificateExpireDate(CorpNum);
-
             m.addAttribute("Result", expireDate);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -399,11 +379,8 @@ public class HTTaxinvoiceServiceController {
          */
 
         try {
-
             Response response = htTaxinvoiceService.checkCertValidation(CorpNum);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -426,11 +403,8 @@ public class HTTaxinvoiceServiceController {
         String deptUserPWD = "passwd";
 
         try {
-
             Response response = htTaxinvoiceService.registDeptUser(CorpNum, deptUserID, deptUserPWD);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -447,11 +421,8 @@ public class HTTaxinvoiceServiceController {
          */
 
         try {
-
             Response response = htTaxinvoiceService.checkDeptUser(CorpNum);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -468,11 +439,8 @@ public class HTTaxinvoiceServiceController {
          */
 
         try {
-
             Response response = htTaxinvoiceService.checkLoginDeptUser(CorpNum);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -489,11 +457,8 @@ public class HTTaxinvoiceServiceController {
          */
 
         try {
-
             Response response = htTaxinvoiceService.deleteDeptUser(CorpNum);
-
             m.addAttribute("Response", response);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -510,10 +475,8 @@ public class HTTaxinvoiceServiceController {
          */
 
         try {
-
             ChargeInfo chrgInfo = htTaxinvoiceService.getChargeInfo(CorpNum);
             m.addAttribute("ChargeInfo", chrgInfo);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -533,11 +496,8 @@ public class HTTaxinvoiceServiceController {
          */
 
         try {
-
             String url = htTaxinvoiceService.getFlatRatePopUpURL(CorpNum, UserID);
-
             m.addAttribute("Result", url);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -554,11 +514,8 @@ public class HTTaxinvoiceServiceController {
          */
 
         try {
-
             FlatRateState flatRateInfo = htTaxinvoiceService.getFlatRateState(CorpNum);
-
             m.addAttribute("State", flatRateInfo);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";

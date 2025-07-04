@@ -46,10 +46,8 @@ public class BizInfoCheckServiceController {
         String CorpNum = "6798700433";
 
         try {
-
             BizCheckInfo bizInfo = bizInfoCheckService.CheckBizInfo(CorpNum, CorpNum);
             m.addAttribute("BizInfo", bizInfo);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -66,11 +64,8 @@ public class BizInfoCheckServiceController {
          */
 
         try {
-
             float unitCost = bizInfoCheckService.getUnitCost(CorpNum);
             m.addAttribute("Result", unitCost);
-
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
@@ -89,7 +84,6 @@ public class BizInfoCheckServiceController {
         try {
             ChargeInfo chrgInfo = bizInfoCheckService.getChargeInfo(CorpNum);
             m.addAttribute("ChargeInfo", chrgInfo);
-
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
