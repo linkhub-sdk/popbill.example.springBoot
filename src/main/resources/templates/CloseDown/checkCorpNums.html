@@ -11,10 +11,8 @@
 		<br />
 		<fieldset class="fieldset1">
 			<legend th:text="${#request?.requestURI}"></legend>
-			<p class="info">state : null (알수없음), 0 (등록되지 않은 사업자번호), 1 (사업중),
-				2 (폐업), 3 (휴업)</p>
-			<p class="info">taxType : null (알수없음), 10 ( 일반과세자), 20 (면세과세자),
-				30 (간이과세자), 31 (간이과세자-세금계산서 발급사업자), 40 (비영리법인 또는 국가기관, 고유번호가 부여된 단체)</p>
+			<p class="info">state : null (알수없음), 0 (등록되지 않은 사업자번호), 1 (사업중), 2 (폐업), 3 (휴업)</p>
+			<p class="info">taxType : null (알수없음), 10 ( 일반과세자), 20 (면세과세자), 30 (간이과세자), 31 (간이과세자-세금계산서 발급사업자), 40 (비영리법인 또는 국가기관, 고유번호가 부여된 단체)</p>
 			<fieldset class="fieldset2"
 				th:each="CorpState, index : ${CorpStates}">
 				<legend>
@@ -22,13 +20,12 @@
 						th:text="${index.size}"></span>]
 				</legend>
 				<ul>
-					<li>corpNum (사업자번호) : <span th:text="${CorpState.corpNum}"></span></li>
-					<li>taxType (과세유형) : <span th:text="${CorpState.taxType}"></span></li>
-					<li>state (휴폐업 상태) : <span th:text="${CorpState.state}"></span></li>
+					<li>corpNum (조회한 사업자번호) : <span th:text="${CorpState.corpNum}"></span></li>
+					<li>taxType (사업자 과세유형) : <span th:text="${CorpState.taxType}"></span></li>
+					<li>typeDate (과세유형 전환일자) : <span th:text="${CorpState.typeDate}"></span></li>
+					<li>state (휴폐업상태) : <span th:text="${CorpState.state}"></span></li>
 					<li>stateDate (휴폐업일자) : <span th:text="${CorpState.stateDate}"></span></li>
-					<li>typeDate (과세유형 전환일자) : <span
-						th:text="${CorpState.typeDate}"></span></li>
-					<li>checkDate (확인일자) : <span th:text="${CorpState.checkDate}"></span></li>
+					<li>checkDate (국세청 확인일자) : <span th:text="${CorpState.checkDate}"></span></li>
 				</ul>
 			</fieldset>
 		</fieldset>

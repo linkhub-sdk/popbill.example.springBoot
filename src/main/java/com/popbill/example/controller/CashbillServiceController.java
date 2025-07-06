@@ -544,7 +544,7 @@ public class CashbillServiceController {
         // 페이지 번호
         int Page = 1;
 
-        // 페이지당 목록개수, 최대 1000건
+        // 페이지당 목록 건수, 최대 1000건
         int PerPage = 20;
 
         // 정렬방향, A-오름차순, D-내림차순

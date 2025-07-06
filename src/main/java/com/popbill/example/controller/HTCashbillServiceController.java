@@ -141,7 +141,7 @@ public class HTCashbillServiceController {
         // 페이지번호 (기본값 = 1)
         int Page = 1;
 
-        // 페이지당 목록개수 (기본값 = 500 , 최대 = 1000)
+        // 페이지당 목록 건수 (기본값 = 500 , 최대 = 1000)
         int PerPage = 10;
 
         // 정렬방향, "D" / "A" 중 택 1

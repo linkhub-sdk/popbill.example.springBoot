@@ -15,14 +15,10 @@
 				<legend>환불신청내역 목록</legend>
 				<ul>
 					<li>code (응답코드) : <span th:text="${RefundHistoryResult.code}"></span></li>
-					<li>total (전체 검색개수) : <span
-						th:text="${RefundHistoryResult.total}"></span></li>
-					<li>perPage (페이지당 목록개수) : <span
-						th:text="${RefundHistoryResult.perPage}"></span></li>
-					<li>pageNum (페이지번호) : <span
-						th:text="${RefundHistoryResult.pageNum}"></span></li>
-					<li>pageCount (페이지수) : <span
-						th:text="${RefundHistoryResult.pageCount}"></span></li>
+					<li>total (총 검색결과 건수) : <span th:text="${RefundHistoryResult.total}"></span></li>
+					<li>perPage (페이지당 목록 건수) : <span th:text="${RefundHistoryResult.perPage}"></span></li>
+					<li>pageNum (페이지 번호) : <span th:text="${RefundHistoryResult.pageNum}"></span></li>
+					<li>pageCount (페이지 개수) : <span th:text="${RefundHistoryResult.pageCount}"></span></li>
 				</ul>
 
 				<fieldset class="fieldset3"
@@ -33,14 +29,10 @@
 					</legend>
 					<ul>
 						<li>reqDT (신청일자) : <span th:text="${RefundHistory.reqDT}"></span></li>
-						<li>requestPoint (환불 신청포인트) : <span
-							th:text="${RefundHistory.requestPoint}"></span></li>
-						<li>accountBank (환불계좌 은행명) : <span
-							th:text="${RefundHistory.accountBank}"></span></li>
-						<li>accountNum (환불계좌번호) : <span
-							th:text="${RefundHistory.accountNum}"></span></li>
-						<li>accountName (환불계좌 예금주명) : <span
-							th:text="${RefundHistory.accountName}"></span></li>
+						<li>requestPoint (환불 신청포인트) : <span th:text="${RefundHistory.requestPoint}"></span></li>
+						<li>accountBank (환불계좌 은행명) : <span th:text="${RefundHistory.accountBank}"></span></li>
+						<li>accountNum (환불계좌번호) : <span th:text="${RefundHistory.accountNum}"></span></li>
+						<li>accountName (환불계좌 예금주명) : <span th:text="${RefundHistory.accountName}"></span></li>
 						<li>state (상태) : <span th:text="${RefundHistory.state}"></span></li>
 						<li>reason (환불사유) : <span th:text="${RefundHistory.reason}"></span></li>
 					</ul>

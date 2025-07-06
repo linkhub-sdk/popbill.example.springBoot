@@ -17,43 +17,26 @@
 					<li>state (상태코드) : <span th:text="${FaxResult.state}"></span></li>
 					<li>result (결과코드) : <span th:text="${FaxResult.result}"></span></li>
 					<li>sendNum (발신번호) : <span th:text="${FaxResult.sendNum}"></span></li>
-					<li>senderName (발신자명) : <span
-						th:text="${FaxResult.senderName}"></span></li>
-					<li>receiveNumType (수신번호 유형) : <span
-						th:text="${FaxResult.receiveNumType}"></span></li>
-					<li>receiveNum (수신번호) : <span
-						th:text="${FaxResult.receiveNum}"></span></li>
-					<li>receiveName (수신자명) : <span
-						th:text="${FaxResult.receiveName}"></span></li>
+					<li>senderName (발신자명) : <span th:text="${FaxResult.senderName}"></span></li>
+					<li>receiveNumType (수신번호 유형) : <span th:text="${FaxResult.receiveNumType}"></span></li>
+					<li>receiveNum (수신번호) : <span th:text="${FaxResult.receiveNum}"></span></li>
+					<li>receiveName (수신자명) : <span th:text="${FaxResult.receiveName}"></span></li>
 					<li>title (팩스제목) : <span th:text="${FaxResult.title}"></span></li>
-					<li>sendPageCnt (전체 페이지수) : <span
-						th:text="${FaxResult.sendPageCnt}"></span></li>
-					<li>successPageCnt (성공 페이지수) : <span
-						th:text="${FaxResult.successPageCnt}"></span></li>
-					<li>failPageCnt (실패 페이지수) : <span
-						th:text="${FaxResult.failPageCnt}"></span></li>
-					<li>refundPageCnt (환불 페이지수) : <span
-						th:text="${FaxResult.refundPageCnt}"></span></li>
-					<li>cancelPageCnt (취소 페이지수) : <span
-						th:text="${FaxResult.cancelPageCnt}"></span></li>
-					<li>receiptDT (접수일시) : <span th:text="${FaxResult.receiptDT}"></span></li>
+					<li>sendPageCnt (전체 페이지수) : <span th:text="${FaxResult.sendPageCnt}"></span></li>
+					<li>successPageCnt (성공 페이지수) : <span th:text="${FaxResult.successPageCnt}"></span></li>
+					<li>failPageCnt (실패 페이지수) : <span th:text="${FaxResult.failPageCnt}"></span></li>
+					<li>cancelPageCnt (취소 페이지수) : <span th:text="${FaxResult.cancelPageCnt}"></span></li>
 					<li>reserveDT (예약일시) : <span th:text="${FaxResult.reserveDT}"></span></li>
+					<li>receiptDT (접수일시) : <span th:text="${FaxResult.receiptDT}"></span></li>
 					<li>sendDT (전송일시) : <span th:text="${FaxResult.sendDT}"></span></li>
-					<li>resultDT (전송결과 수신일시) : <span
-						th:text="${FaxResult.resultDT}"></span></li>
-					<li>receiptNum (접수번호) : <span
-						th:text="${FaxResult.receiptNum}"></span></li>
-					<li>requestNum (요청번호) : <span
-						th:text="${FaxResult.requestNum}"></span></li>
-					<li>interOPRefKey (파트너 지정키) : <span
-						th:text="${FaxResult.interOPRefKey}"></span></li>
-					<li>fileNames (전송 파일명 리스트) : <span
-						th:each="fileName : ${FaxResult.fileNames}"><span
-							th:text="${fileName}"></span> </span></li>
-					<li>chargePageCnt (과금 페이지수) : <span
-						th:text="${FaxResult.chargePageCnt}"></span></li>
-					<li>tiffFileSize (변환파일용량 (단위:byte)) : <span
-						th:text="${FaxResult.tiffFileSize}"></span></li>
+					<li>resultDT (전송결과 수신일시) : <span th:text="${FaxResult.resultDT}"></span></li>
+					<li>fileNames (전송 파일명 리스트) : <span th:each="fileName : ${FaxResult.fileNames}"><span th:text="${fileName}"></span> </span></li>
+					<li>receiptNum (접수번호) : <span th:text="${FaxResult.receiptNum}"></span></li>
+					<li>requestNum (요청번호) : <span th:text="${FaxResult.requestNum}"></span></li>
+					<li>interOPRefKey (파트너 지정키) : <span th:text="${FaxResult.interOPRefKey}"></span></li>
+					<li>chargePageCnt (과금 페이지수) : <span th:text="${FaxResult.chargePageCnt}"></span></li>
+					<li>refundPageCnt (환불 페이지수) : <span th:text="${FaxResult.refundPageCnt}"></span></li>
+					<li>tiffFileSize (변환파일용량 (단위:byte)) : <span th:text="${FaxResult.tiffFileSize}"></span></li>
 				</ul>
 			</fieldset>
 		</fieldset>

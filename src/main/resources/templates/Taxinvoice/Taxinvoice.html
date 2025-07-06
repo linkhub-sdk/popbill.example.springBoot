@@ -14,117 +14,18 @@
 			<fieldset class="fieldset2">
 				<legend>Taxinvoice</legend>
 				<ul>
-					<li>writeDate (작성일자) : <span th:text="${Taxinvoice.writeDate}"></span></li>
-					<li>chargeDirection (과금방향) : <span
-						th:text="${Taxinvoice.chargeDirection}"></span></li>
+					<li>NTSConfirmNum (국세청승인번호) : <span th:text="${Taxinvoice.NTSConfirmNum}"></span></li>
 					<li>issueType (발행형태) : <span th:text="${Taxinvoice.issueType}"></span></li>
 					<li>taxType (과세형태) : <span th:text="${Taxinvoice.taxType}"></span></li>
-
-					<li>invoicerCorpNum (공급자 사업자번호) : <span
-						th:text="${Taxinvoice.invoicerCorpNum}"></span></li>
-					<li>invoicerCorpName (공급자 상호) : <span
-						th:text="${Taxinvoice.invoicerCorpName}"></span></li>
-					<li>invoicerMgtKey (공급자 문서번호) : <span
-						th:text="${Taxinvoice.invoicerMgtKey}"></span></li>
-					<li>invoicerTaxRegID (공급자 종사업장 식별번호) : <span
-						th:text="${Taxinvoice.invoicerTaxRegID}"></span></li>
-					<li>invoicerCEOName (공급자 대표자 성명) : <span
-						th:text="${Taxinvoice.invoicerCEOName}"></span></li>
-					<li>invoicerAddr (공급자 주소) : <span
-						th:text="${Taxinvoice.invoicerAddr}"></span></li>
-					<li>invoicerBizClass (공급자 종목) : <span
-						th:text="${Taxinvoice.invoicerBizClass}"></span></li>
-					<li>invoicerBizType (공급자 업태) : <span
-						th:text="${Taxinvoice.invoicerBizType}"></span></li>
-					<li>invoicerDeptName (공급자 담당자 부서명) : <span
-						th:text="${Taxinvoice.invoicerDeptName}"></span></li>
-					<li>invoicerContactName (공급자 담당자 성명) : <span
-						th:text="${Taxinvoice.invoicerContactName}"></span></li>
-					<li>invoicerTEL (공급자 담당자 연락처) : <span
-						th:text="${Taxinvoice.invoicerTEL}"></span></li>
-					<li>invoicerHP (공급자 담당자 휴대폰번호) : <span
-						th:text="${Taxinvoice.invoicerHP}"></span></li>
-					<li>invoicerEmail (공급자 담당자 메일) : <span
-						th:text="${Taxinvoice.invoicerEmail}"></span></li>
-					<li>invoicerSMSSendYN (발행안내문자 전송여부) : <span
-						th:text="${Taxinvoice.invoicerSMSSendYN}"></span></li>
-
-					<li>invoiceeType (공급받는자 유형) : <span
-						th:text="${Taxinvoice.invoiceeType}"></span></li>
-					<li>invoiceeCorpNum (공급받는자 사업자번호) : <span
-						th:text="${Taxinvoice.invoiceeCorpNum}"></span></li>
-					<li>invoiceeMgtKey (공급받는자 문서번호) : <span
-						th:text="${Taxinvoice.invoiceeMgtKey}"></span></li>
-					<li>invoiceeTaxRegID (공급받는자 종사업장 식별번호) : <span
-						th:text="${Taxinvoice.invoiceeTaxRegID}"></span></li>
-					<li>invoiceeCorpName (공급받는자 상호) : <span
-						th:text="${Taxinvoice.invoiceeCorpName}"></span></li>
-					<li>invoiceeCEOName (공급받는자 대표자 성명) : <span
-						th:text="${Taxinvoice.invoiceeCEOName}"></span></li>
-					<li>invoiceeAddr (공급받는자 주소) : <span
-						th:text="${Taxinvoice.invoiceeAddr}"></span></li>
-					<li>invoiceeBizClass (공급받는자 종목) : <span
-						th:text="${Taxinvoice.invoiceeBizClass}"></span></li>
-					<li>invoiceeBizType (공급받는자 업태) : <span
-						th:text="${Taxinvoice.invoiceeBizType}"></span></li>
-					<li>invoiceeDeptName1 (공급받는자 담당자 부서명) : <span
-						th:text="${Taxinvoice.invoiceeDeptName1}"></span></li>
-					<li>invoiceeContactName1 (공급받는자 담당자 성명) : <span
-						th:text="${Taxinvoice.invoiceeContactName1}"></span></li>
-					<li>invoiceeTEL1 (공급받는자 담당자 연락처) : <span
-						th:text="${Taxinvoice.invoiceeTEL1}"></span></li>
-					<li>invoiceeHP1 (공급받는자 담당자 휴대폰) : <span
-						th:text="${Taxinvoice.invoiceeHP1}"></span></li>
-					<li>invoiceeEmail1 (공급받는자 담당자 메일) : <span
-						th:text="${Taxinvoice.invoiceeEmail1}"></span></li>
-					<li>invoiceeSMSSendYN (역발행안내문자 전송여부) : <span
-						th:text="${Taxinvoice.invoiceeSMSSendYN}"></span></li>
-					<li>closeDownState (공급받는자 휴폐업상태) : <span
-						th:text="${Taxinvoice.closeDownState}"></span></li>
-					<li>closeDownStateDate (공급받는자 휴폐업일자) : <span
-						th:text="${Taxinvoice.closeDownStateDate}"></span></li>
-
-					<li>trusteeCorpNum (수탁자 사업자번호) : <span
-						th:text="${Taxinvoice.trusteeCorpNum}"></span></li>
-					<li>trusteeCorpName (수탁자 상호) : <span
-						th:text="${Taxinvoice.trusteeCorpName}"></span></li>
-					<li>trusteeMgtKey (수탁자 문서번호) : <span
-						th:text="${Taxinvoice.trusteeMgtKey}"></span></li>
-					<li>trusteeTaxRegID (수탁자 종사업장 식별번호) : <span
-						th:text="${Taxinvoice.trusteeTaxRegID}"></span></li>
-					<li>trusteeCEOName (수탁자 대표자 성명) : <span
-						th:text="${Taxinvoice.trusteeCEOName}"></span></li>
-					<li>trusteeAddr (수탁자 주소) : <span
-						th:text="${Taxinvoice.trusteeAddr}"></span></li>
-					<li>trusteeBizClass (수탁자 종목) : <span
-						th:text="${Taxinvoice.trusteeBizClass}"></span></li>
-					<li>trusteeBizType (수탁자 업태) : <span
-						th:text="${Taxinvoice.trusteeBizType}"></span></li>
-					<li>trusteeDeptName (수탁자 담당자 부서명) : <span
-						th:text="${Taxinvoice.trusteeDeptName}"></span></li>
-					<li>trusteeContactName (수탁자 담당자 성명) : <span
-						th:text="${Taxinvoice.trusteeContactName}"></span></li>
-					<li>trusteeTEL (수탁자 담당자 연락처) : <span
-						th:text="${Taxinvoice.trusteeTEL}"></span></li>
-					<li>trusteeHP (수탁자 담당자 휴대폰) : <span
-						th:text="${Taxinvoice.trusteeHP}"></span></li>
-					<li>trusteeEmail (수탁자 메일) : <span
-						th:text="${Taxinvoice.trusteeEmail}"></span></li>
-					<li>trusteeSMSSendYN (안내문자 전송여부) : <span
-						th:text="${Taxinvoice.trusteeSMSSendYN}"></span></li>
-
-					<li>supplyCostTotal (공급가액 합계) : <span
-						th:text="${Taxinvoice.supplyCostTotal}"></span></li>
-					<li>taxTotal (세액 합계) : <span th:text="${Taxinvoice.taxTotal}"></span></li>
-					<li>totalAmount (합계금액) : <span
-						th:text="${Taxinvoice.totalAmount}"></span></li>
-					<li>modifyCode (수정사유코드) : <span
-						th:text="${Taxinvoice.modifyCode}"></span></li>
-					<li>orgNTSConfirmNum (원본세금계산서 국세청 승인번호) : <span
-						th:text="${Taxinvoice.orgNTSConfirmNum}"></span></li>
-					<li>purposeType (영수/청구) : <span
-						th:text="${Taxinvoice.purposeType}"></span></li>
+					<li>chargeDirection (과금방향) : <span th:text="${Taxinvoice.chargeDirection}"></span></li>
 					<li>serialNum (일련번호) : <span th:text="${Taxinvoice.serialNum}"></span></li>
+					<li>kwon (권) : <span th:text="${Taxinvoice.kwon}"></span></li>
+					<li>ho (호) : <span th:text="${Taxinvoice.ho}"></span></li>
+					<li>writeDate (작성일자) : <span th:text="${Taxinvoice.writeDate}"></span></li>
+					<li>purposeType (영수/청구) : <span th:text="${Taxinvoice.purposeType}"></span></li>
+					<li>supplyCostTotal (공급가액 합계) : <span th:text="${Taxinvoice.supplyCostTotal}"></span></li>
+					<li>taxTotal (세액 합계) : <span th:text="${Taxinvoice.taxTotal}"></span></li>
+					<li>totalAmount (합계금액) : <span th:text="${Taxinvoice.totalAmount}"></span></li>
 					<li>cash (현금) : <span th:text="${Taxinvoice.cash}"></span></li>
 					<li>chkBill (수표) : <span th:text="${Taxinvoice.chkBill}"></span></li>
 					<li>credit (외상) : <span th:text="${Taxinvoice.credit}"></span></li>
@@ -132,45 +33,82 @@
 					<li>remark1 (비고1) : <span th:text="${Taxinvoice.remark1}"></span></li>
 					<li>remark2 (비고2) : <span th:text="${Taxinvoice.remark2}"></span></li>
 					<li>remark3 (비고3) : <span th:text="${Taxinvoice.remark3}"></span></li>
-					<li>kwon (권) : <span th:text="${Taxinvoice.kwon}"></span></li>
-					<li>ho (호) : <span th:text="${Taxinvoice.ho}"></span></li>
-					<li>businessLicenseYN (사업자등록증 이미지 첨부여부) : <span
-						th:text="${Taxinvoice.businessLicenseYN}"></span></li>
-					<li>bankBookYN (통장사본 이미지 첨부여부) : <span
-						th:text="${Taxinvoice.bankBookYN}"></span></li>
-					<li>NTSConfirmNum (국세청 승인번호) : <span
-						th:text="${Taxinvoice.NTSConfirmNum}"></span></li>
+
+					<li>invoicerMgtKey (공급자 문서번호) : <span th:text="${Taxinvoice.invoicerMgtKey}"></span></li>
+					<li>invoicerCorpNum (공급자 사업자번호) : <span th:text="${Taxinvoice.invoicerCorpNum}"></span></li>
+					<li>invoicerCorpName (공급자 상호) : <span th:text="${Taxinvoice.invoicerCorpName}"></span></li>
+					<li>invoicerTaxRegID (공급자 종사업장 식별번호) : <span th:text="${Taxinvoice.invoicerTaxRegID}"></span></li>
+					<li>invoicerCEOName (공급자 대표자 성명) : <span th:text="${Taxinvoice.invoicerCEOName}"></span></li>
+					<li>invoicerAddr (공급자 주소) : <span th:text="${Taxinvoice.invoicerAddr}"></span></li>
+					<li>invoicerBizType (공급자 업태) : <span th:text="${Taxinvoice.invoicerBizType}"></span></li>
+					<li>invoicerBizClass (공급자 종목) : <span th:text="${Taxinvoice.invoicerBizClass}"></span></li>
+					<li>invoicerContactName (공급자 담당자 성명) : <span th:text="${Taxinvoice.invoicerContactName}"></span></li>
+					<li>invoicerDeptName (공급자 담당자 부서명) : <span th:text="${Taxinvoice.invoicerDeptName}"></span></li>
+					<li>invoicerTEL (공급자 담당자 연락처) : <span th:text="${Taxinvoice.invoicerTEL}"></span></li>
+					<li>invoicerHP (공급자 담당자 휴대폰) : <span th:text="${Taxinvoice.invoicerHP}"></span></li>
+					<li>invoicerEmail (공급자 담당자 메일) : <span th:text="${Taxinvoice.invoicerEmail}"></span></li>
+					<li>invoicerSMSSendYN (공급자 알림문자 전송 여부) : <span th:text="${Taxinvoice.invoicerSMSSendYN}"></span></li>
+
+					<li>invoiceeMgtKey (공급받는자 문서번호) : <span th:text="${Taxinvoice.invoiceeMgtKey}"></span></li>
+					<li>invoiceeType (공급받는자 유형) : <span th:text="${Taxinvoice.invoiceeType}"></span></li>
+					<li>invoiceeCorpNum (공급받는자 등록번호) : <span th:text="${Taxinvoice.invoiceeCorpNum}"></span></li>
+					<li>invoiceeTaxRegID (공급받는자 종사업장 식별번호) : <span th:text="${Taxinvoice.invoiceeTaxRegID}"></span></li>
+					<li>invoiceeCorpName (공급받는자 상호) : <span th:text="${Taxinvoice.invoiceeCorpName}"></span></li>
+					<li>invoiceeCEOName (공급받는자 대표자 성명) : <span th:text="${Taxinvoice.invoiceeCEOName}"></span></li>
+					<li>invoiceeAddr (공급받는자 주소) : <span th:text="${Taxinvoice.invoiceeAddr}"></span></li>
+					<li>invoiceeBizType (공급받는자 업태) : <span th:text="${Taxinvoice.invoiceeBizType}"></span></li>
+					<li>invoiceeBizClass (공급받는자 종목) : <span th:text="${Taxinvoice.invoiceeBizClass}"></span></li>
+					<li>closeDownState (공급받는자 휴폐업상태) : <span th:text="${Taxinvoice.closeDownState}"></span></li>
+					<li>closeDownStateDate (공급받는자 휴폐업일자) : <span th:text="${Taxinvoice.closeDownStateDate}"></span></li>
+					<li>invoiceeContactName1 (공급받는자 담당자 성명) : <span th:text="${Taxinvoice.invoiceeContactName1}"></span></li>
+					<li>invoiceeDeptName1 (공급받는자 담당자 부서명) : <span th:text="${Taxinvoice.invoiceeDeptName1}"></span></li>
+					<li>invoiceeTEL1 (공급받는자 담당자 연락처) : <span th:text="${Taxinvoice.invoiceeTEL1}"></span></li>
+					<li>invoiceeHP1 (공급받는자 담당자 휴대폰) : <span th:text="${Taxinvoice.invoiceeHP1}"></span></li>
+					<li>invoiceeEmail1 (공급받는자 담당자 메일) : <span th:text="${Taxinvoice.invoiceeEmail1}"></span></li>
+					<li>invoiceeSMSSendYN (공급받는자 알림문자 전송 여부) : <span th:text="${Taxinvoice.invoiceeSMSSendYN}"></span></li>
+
+					<li>trusteeMgtKey (수탁자 문서번호) : <span th:text="${Taxinvoice.trusteeMgtKey}"></span></li>
+					<li>trusteeCorpNum (수탁자 사업자번호) : <span th:text="${Taxinvoice.trusteeCorpNum}"></span></li>
+					<li>trusteeTaxRegID (수탁자 종사업장 식별번호) : <span th:text="${Taxinvoice.trusteeTaxRegID}"></span></li>
+					<li>trusteeCorpName (수탁자 상호) : <span th:text="${Taxinvoice.trusteeCorpName}"></span></li>
+					<li>trusteeCEOName (수탁자 대표자 성명) : <span th:text="${Taxinvoice.trusteeCEOName}"></span></li>
+					<li>trusteeAddr (수탁자 주소) : <span th:text="${Taxinvoice.trusteeAddr}"></span></li>
+					<li>trusteeBizType (수탁자 업태) : <span th:text="${Taxinvoice.trusteeBizType}"></span></li>
+					<li>trusteeBizClass (수탁자 종목) : <span th:text="${Taxinvoice.trusteeBizClass}"></span></li>
+					<li>trusteeContactName (수탁자 담당자 성명) : <span th:text="${Taxinvoice.trusteeContactName}"></span></li>
+					<li>trusteeDeptName (수탁자 담당자 부서명) : <span th:text="${Taxinvoice.trusteeDeptName}"></span></li>
+					<li>trusteeTEL (수탁자 담당자 연락처) : <span th:text="${Taxinvoice.trusteeTEL}"></span></li>
+					<li>trusteeHP (수탁자 담당자 휴대폰) : <span th:text="${Taxinvoice.trusteeHP}"></span></li>
+					<li>trusteeEmail (수탁자 메일) : <span th:text="${Taxinvoice.trusteeEmail}"></span></li>
+					<li>trusteeSMSSendYN (수탁자 알림문자 전송 여부) : <span th:text="${Taxinvoice.trusteeSMSSendYN}"></span></li>
+
+					<li>modifyCode (수정 사유코드) : <span th:text="${Taxinvoice.modifyCode}"></span></li>
+					<li>orgNTSConfirmNum (당초 국세청승인번호) : <span th:text="${Taxinvoice.orgNTSConfirmNum}"></span></li>
+					<li>businessLicenseYN (사업자등록증 첨부 여부) : <span th:text="${Taxinvoice.businessLicenseYN}"></span></li>
+					<li>bankBookYN (통장사본 첨부 여부) : <span th:text="${Taxinvoice.bankBookYN}"></span></li>
 				</ul>
 				<fieldset class="fieldset3"
 					th:each="TaxinvoiceDetail : ${Taxinvoice.detailList}">
-					<legend>detailList (상세항목)</legend>
+					<legend>detailList (품목 상세정보)</legend>
 					<ul>
-						<li>serialNum (일련번호) : <span
-							th:text="${TaxinvoiceDetail.serialNum}"></span></li>
-						<li>purchaseDT (거래일자) : <span
-							th:text="${TaxinvoiceDetail.purchaseDT}"></span></li>
-						<li>itemName (품명) : <span
-							th:text="${TaxinvoiceDetail.itemName}"></span></li>
+						<li>serialNum (일련번호) : <span th:text="${TaxinvoiceDetail.serialNum}"></span></li>
+						<li>purchaseDT (거래일자) : <span th:text="${TaxinvoiceDetail.purchaseDT}"></span></li>
+						<li>itemName (품명) : <span th:text="${TaxinvoiceDetail.itemName}"></span></li>
 						<li>spec (규격) : <span th:text="${TaxinvoiceDetail.spec}"></span></li>
 						<li>qty (수량) : <span th:text="${TaxinvoiceDetail.qty}"></span></li>
-						<li>unitCost (단가) : <span
-							th:text="${TaxinvoiceDetail.unitCost}"></span></li>
-						<li>supplyCost (공급가액) : <span
-							th:text="${TaxinvoiceDetail.supplyCost}"></span></li>
+						<li>unitCost (단가) : <span th:text="${TaxinvoiceDetail.unitCost}"></span></li>
+						<li>supplyCost (공급가액) : <span th:text="${TaxinvoiceDetail.supplyCost}"></span></li>
 						<li>tax (세액) : <span th:text="${TaxinvoiceDetail.tax}"></span></li>
 						<li>remark (비고) : <span th:text="${TaxinvoiceDetail.remark}"></span></li>
 					</ul>
 				</fieldset>
 				<fieldset class="fieldset3"
 					th:each="TaxinvoiceAddContact : ${Taxinvoice.addContactList}">
-					<legend>addContactList (추가담당자)</legend>
+					<legend>addContactList (공급받는자 추가담당자 정보)</legend>
 					<ul>
-						<li>serialNum (일련번호) : <span
-							th:text="${TaxinvoiceAddContact.serialNum}"></span></li>
-						<li>contactName (담당자 성명) : <span
-							th:text="${TaxinvoiceAddContact.contactName}"></span></li>
-						<li>email (메일주소) : <span
-							th:text="${TaxinvoiceAddContact.email}"></span></li>
+						<li>serialNum (일련번호) : <span th:text="${TaxinvoiceAddContact.serialNum}"></span></li>
+						<li>contactName (담당자 성명) : <span th:text="${TaxinvoiceAddContact.contactName}"></span></li>
+						<li>email (메일) : <span th:text="${TaxinvoiceAddContact.email}"></span></li>
 					</ul>
 				</fieldset>
 			</fieldset>

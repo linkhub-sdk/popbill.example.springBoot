@@ -12,11 +12,9 @@
 		<fieldset class="fieldset1">
 			<legend th:text="${#request?.requestURI}"></legend>
 			<ul>
-				<li>code (요청에 대한 응답 상태코드) : <span
-					th:text="${TaxinvoiceXML.resultCode}"></span></li>
+				<li>code (응답코드) : <span th:text="${TaxinvoiceXML.resultCode}"></span></li>
 				<li>message (응답메시지) : <span th:text="${TaxinvoiceXML.message}"></span></li>
-				<li>retObject (XML문서) : <span
-					th:text="${TaxinvoiceXML.retObject}"></span></li>
+				<li>retObject (전자세금계산서 XML 문서) : <span th:text="${TaxinvoiceXML.retObject}"></span></li>
 			</ul>
 		</fieldset>
 	</div>

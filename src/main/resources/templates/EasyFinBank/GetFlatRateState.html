@@ -12,19 +12,14 @@
 		<fieldset class="fieldset1">
 			<legend th:text="${#request?.requestURI}"></legend>
 			<ul>
-				<li>referenceID (사업자번호) : <span th:text="${State.referenceID}"></span></li>
-				<li>contractDT (정액제 서비스 시작일시) : <span
-					th:text="${State.contractDT}"></span></li>
-				<li>useEndDate (정액제 서비스 종료일) : <span
-					th:text="${State.useEndDate}"></span></li>
+				<li>referenceID (계좌아이디) : <span th:text="${State.referenceID}"></span></li>
+				<li>contractDT (정액제 서비스 시작일시) : <span th:text="${State.contractDT}"></span></li>
+				<li>useEndDate (정액제 서비스 만료일자) : <span th:text="${State.useEndDate}"></span></li>
 				<li>baseDate (자동연장 결제일) : <span th:text="${State.baseDate}"></span></li>
 				<li>state (정액제 서비스 상태) : <span th:text="${State.state}"></span></li>
-				<li>closeRequestYN (정액제 서비스 해지신청 여부) : <span
-					th:text="${State.closeRequestYN}"></span></li>
-				<li>useRestrictYN (정액제 서비스 사용제한 여부) : <span
-					th:text="${State.useRestrictYN}"></span></li>
-				<li>closeOnExpired (정액제 서비스 만료 시 해지 여부) : <span
-					th:text="${State.closeOnExpired}"></span></li>
+				<li>closeRequestYN (정액제 서비스 해지신청 여부) : <span th:text="${State.closeRequestYN}"></span></li>
+				<li>useRestrictYN (정액제 서비스 사용제한 여부) : <span th:text="${State.useRestrictYN}"></span></li>
+				<li>closeOnExpired (정액제 서비스 해지 구분) : <span th:text="${State.closeOnExpired}"></span></li>
 				<li>unPaidYN (미수금 보유 여부) : <span th:text="${State.unPaidYN}"></span></li>
 			</ul>
 		</fieldset>

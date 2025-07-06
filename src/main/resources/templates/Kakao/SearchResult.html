@@ -16,12 +16,10 @@
 				<ul>
 					<li>code (응답코드) : <span th:text="${SearchResult.code}"></span></li>
 					<li>message (응답 메시지) : <span th:text="${SearchResult.message}"></span></li>
-					<li>total (전체 검색개수) : <span th:text="${SearchResult.total}"></span></li>
-					<li>perPage (페이지당 목록개수) : <span
-						th:text="${SearchResult.perPage}"></span></li>
-					<li>pageNum (페이지번호) : <span th:text="${SearchResult.pageNum}"></span></li>
-					<li>pageCount (페이지수) : <span
-						th:text="${SearchResult.pageCount}"></span></li>
+					<li>total (총 검색결과 건수) : <span th:text="${SearchResult.total}"></span></li>
+					<li>perPage (페이지 당 목록 건수) : <span th:text="${SearchResult.perPage}"></span></li>
+					<li>pageNum (페이지 번호) : <span th:text="${SearchResult.pageNum}"></span></li>
+					<li>pageCount (페이지 개수) : <span th:text="${SearchResult.pageCount}"></span></li>
 				</ul>
 
 				<fieldset class="fieldset3"
@@ -33,28 +31,21 @@
 					<ul>
 						<li>state (상태코드) : <span th:text="${msgInfo.state}"></span></li>
 						<li>sendDT (전송일시) : <span th:text="${msgInfo.sendDT}"></span></li>
+						<li>result (카카오 결과코드) : <span th:text="${msgInfo.result}"></span></li>
+						<li>resultDT (전송결과 수신일시) : <span th:text="${msgInfo.resultDT}"></span></li>
+						<li>contentType (카카오톡 유형) : <span th:text="${msgInfo.contentType}"></span></li>
 						<li>receiveNum (수신번호) : <span th:text="${msgInfo.receiveNum}"></span></li>
-						<li>receiveName (수신자명) : <span
-							th:text="${msgInfo.receiveName}"></span></li>
+						<li>receiveName (수신자명) : <span th:text="${msgInfo.receiveName}"></span></li>
 						<li>content (알림톡/친구톡 내용) : <span th:text="${msgInfo.content}"></span></li>
-						<li>result (카카오 결과코드) : <span
-							th:text="${msgInfo.result}"></span></li>
-						<li>resultDT (알림톡/친구톡 전송결과 수신일시) : <span
-							th:text="${msgInfo.resultDT}"></span></li>
-						<li>altSubject (대체문자 제목) : <span
-							th:text="${msgInfo.altSubject}"></span></li>
-						<li>altContent (대체문자 내용) : <span
-							th:text="${msgInfo.altContent}"></span></li>
-						<li>altContentType (대체문자 전송유형) : <span
-							th:text="${msgInfo.altContentType}"></span></li>
-						<li>altSendDT (대체문자 전송일시) : <span
-							th:text="${msgInfo.altSendDT}"></span></li>
-						<li>altResult (통신사 결과코드) : <span
-							th:text="${msgInfo.altResult}"></span></li>
-						<li>altResultDT (대체문자 전송결과 수신일시) : <span
-							th:text="${msgInfo.altResultDT}"></span></li>
+						<li>altSubject (대체문자 제목) : <span th:text="${msgInfo.altSubject}"></span></li>
+						<li>altContent (대체문자 내용) : <span th:text="${msgInfo.altContent}"></span></li>
+						<li>altContentType (대체문자 전송타입) : <span th:text="${msgInfo.altContentType}"></span></li>
+						<li>altSendDT (대체문자 전송일시) : <span th:text="${msgInfo.altSendDT}"></span></li>
+						<li>altResult (통신사 결과코드) : <span th:text="${msgInfo.altResult}"></span></li>
+						<li>altResultDT (대체문자 전송결과 수신일시) : <span th:text="${msgInfo.altResultDT}"></span></li>
 						<li>receiptNum (접수번호) : <span th:text="${msgInfo.receiptNum}"></span></li>
 						<li>requestNum (요청번호) : <span th:text="${msgInfo.requestNum}"></span></li>
+						<li>interOPRefKey (파트너 지정키) : <span th:text="${msgInfo.interOPRefKey}"></span></li>
 					</ul>
 				</fieldset>
 			</fieldset>

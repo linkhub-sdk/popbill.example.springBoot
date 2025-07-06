@@ -15,15 +15,12 @@
 				<legend>거래내역 검색결과 정보</legend>
 				<ul>
 					<li>code (응답코드) : <span th:text="${SearchResult.code}"></span></li>
-					<li>message (응답 메시지) : <span th:text="${SearchResult.message}"></span></li>
-					<li>total (전체 검색개수) : <span th:text="${SearchResult.total}"></span></li>
-					<li>perPage (페이지당 목록개수) : <span
-						th:text="${SearchResult.perPage}"></span></li>
-					<li>pageNum (페이지번호) : <span th:text="${SearchResult.pageNum}"></span></li>
-					<li>pageCount (페이지수) : <span
-						th:text="${SearchResult.pageCount}"></span></li>
-					<li>lastScrapDT (최종 조회일시) : <span
-						th:text="${SearchResult.lastScrapDT}"></span></li>
+					<li>message (응답메시지) : <span th:text="${SearchResult.message}"></span></li>
+					<li>total (총 검색결과 건수) : <span th:text="${SearchResult.total}"></span></li>
+					<li>perPage (페이지 당 목록 건수) : <span th:text="${SearchResult.perPage}"></span></li>
+					<li>pageNum (페이지 번호) : <span th:text="${SearchResult.pageNum}"></span></li>
+					<li>pageCount (페이지 개수) : <span th:text="${SearchResult.pageCount}"></span></li>
+					<li>lastScrapDT (최종 조회일시) : <span th:text="${SearchResult.lastScrapDT}"></span></li>
 					<li>balance (현재잔액) : <span th:text="${SearchResult.balance}"></span></li>
 				</ul>
 
@@ -34,7 +31,9 @@
 							th:text="${index.size}"></span>]
 					</legend>
 					<ul>
+						<li>tid (거래내역 아이디) : <span th:text="${SearchInfo.tid}"></span></li>
 						<li>trdate (거래일자) : <span th:text="${SearchInfo.trdate}"></span></li>
+						<li>trserial (거래일련번호) : <span th:text="${SearchInfo.trserial}"></span></li>
 						<li>trdt (거래일시) : <span th:text="${SearchInfo.trdt}"></span></li>
 						<li>accIn (입금액) : <span th:text="${SearchInfo.accIn}"></span></li>
 						<li>accOut (출금액) : <span th:text="${SearchInfo.accOut}"></span></li>
@@ -45,9 +44,6 @@
 						<li>remark4 (비고 4) : <span th:text="${SearchInfo.remark4}"></span></li>
 						<li>regDT (등록일시) : <span th:text="${SearchInfo.regDT}"></span></li>
 						<li>memo (메모) : <span th:text="${SearchInfo.memo}"></span></li>
-						<li>tid (거래내역 아이디) : <span th:text="${SearchInfo.tid}"></span></li>
-						<li>trserial (거래일련번호) : <span
-							th:text="${SearchInfo.trserial}"></span></li>
 					</ul>
 				</fieldset>
 			</fieldset>

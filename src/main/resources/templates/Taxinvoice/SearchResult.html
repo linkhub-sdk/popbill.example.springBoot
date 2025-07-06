@@ -15,13 +15,11 @@
 				<legend>검색결과 정보</legend>
 				<ul>
 					<li>code (응답코드) : <span th:text="${SearchResult.code}"></span></li>
-					<li>message (응답 메시지) : <span th:text="${SearchResult.message}"></span></li>
-					<li>total (전체 검색개수) : <span th:text="${SearchResult.total}"></span></li>
-					<li>perPage (페이지당 목록개수) : <span
-						th:text="${SearchResult.perPage}"></span></li>
-					<li>pageNum (페이지번호) : <span th:text="${SearchResult.pageNum}"></span></li>
-					<li>pageCount (페이지수) : <span
-						th:text="${SearchResult.pageCount}"></span></li>
+					<li>message (응답메시지) : <span th:text="${SearchResult.message}"></span></li>
+					<li>total (총 검색결과 건수) : <span th:text="${SearchResult.total}"></span></li>
+					<li>perPage (페이지당 목록 건수) : <span th:text="${SearchResult.perPage}"></span></li>
+					<li>pageNum (페이지 번호) : <span th:text="${SearchResult.pageNum}"></span></li>
+					<li>pageCount (페이지 개수) : <span th:text="${SearchResult.pageCount}"></span></li>
 				</ul>
 
 				<fieldset class="fieldset3"
@@ -31,61 +29,42 @@
 							th:text="${index.size}"></span> ]
 					</legend>
 					<ul>
-						<li>itemKey (팝빌번호) : <span th:text="${SearchInfo.itemKey}"></span></li>
+						<li>itemKey (팝빌에서 할당한 식별번호) : <span th:text="${SearchInfo.itemKey}"></span></li>
 						<li>taxType (과세형태) : <span th:text="${SearchInfo.taxType}"></span></li>
-						<li>writeDate (작성일자) : <span
-							th:text="${SearchInfo.writeDate}"></span></li>
-						<li>regDT (등록일자) : <span th:text="${SearchInfo.regDT}"></span></li>
-						<li>issueType (발행형태) : <span
-							th:text="${SearchInfo.issueType}"></span></li>
-						<li>supplyCostTotal (공급가액 합계) : <span
-							th:text="${SearchInfo.supplyCostTotal}"></span></li>
+						<li>writeDate (작성일자) : <span th:text="${SearchInfo.writeDate}"></span></li>
+						<li>regDT (임시저장 일시) : <span th:text="${SearchInfo.regDT}"></span></li>
+						<li>issueType (발행형태) : <span th:text="${SearchInfo.issueType}"></span></li>
+						<li>supplyCostTotal (공급가액 합계) : <span th:text="${SearchInfo.supplyCostTotal}"></span></li>
 						<li>taxTotal (세액 합계) : <span th:text="${SearchInfo.taxTotal}"></span></li>
-						<li>purposeType (영수/청구) : <span
-							th:text="${SearchInfo.purposeType}"></span></li>
+						<li>purposeType (영수/청구) : <span th:text="${SearchInfo.purposeType}"></span></li>
 						<li>issueDT (발행일시) : <span th:text="${SearchInfo.issueDT}"></span></li>
-						<li>lateIssueYN (지연발행 여부) : <span
-							th:text="${SearchInfo.lateIssueYN}"></span></li>
-
-						<li>openYN (개봉여부) : <span th:text="${SearchInfo.openYN}"></span></li>
+						<li>lateIssueYN (지연발행 여부) : <span th:text="${SearchInfo.lateIssueYN}"></span></li>
+						<li>openYN (개봉 여부) : <span th:text="${SearchInfo.openYN}"></span></li>
 						<li>openDT (개봉일시) : <span th:text="${SearchInfo.openDT}"></span></li>
-						<li>stateCode (상태코드) : <span
-							th:text="${SearchInfo.stateCode}"></span></li>
-						<li>stateMemo (상태메모) : <span
-							th:text="${SearchInfo.stateMemo}"></span></li>
+						<li>stateMemo (상태메모) : <span th:text="${SearchInfo.stateMemo}"></span></li>
+						<li>stateCode (상태코드) : <span th:text="${SearchInfo.stateCode}"></span></li>
 						<li>stateDT (상태 변경일시) : <span th:text="${SearchInfo.stateDT}"></span></li>
-						<li>modifyCode (수정사유코드) : <span
-							th:text="${SearchInfo.modifyCode}"></span></li>
-						<li>interOPYN (연동문서 여부) : <span
-							th:text="${SearchInfo.interOPYN}"></span></li>
-						<li>invoicerCorpName (공급자 상호) : <span
-							th:text="${SearchInfo.invoicerCorpName}"></span></li>
-						<li>invoicerCorpNum (공급자 사업자번호) : <span
-							th:text="${SearchInfo.invoicerCorpNum}"></span></li>
-						<li>invoicerMgtKey (공급자 문서번호) : <span
-							th:text="${SearchInfo.invoicerMgtKey}"></span></li>
-						<li>invoicerPrintYN (공급자 인쇄여부) : <span
-							th:text="${SearchInfo.invoicerPrintYN}"></span></li>
-						<li>invoiceeCorpName (공급받는자 상호) : <span
-							th:text="${SearchInfo.invoiceeCorpName}"></span></li>
-						<li>invoiceeCorpNum (공급받는자 사업자번호) : <span
-							th:text="${SearchInfo.invoiceeCorpNum}"></span></li>
-						<li>invoiceeMgtKey (공급받는자 문서번호) : <span
-							th:text="${SearchInfo.invoiceeMgtKey}"></span></li>
-						<li>invoiceePrintYN (공급받는자 인쇄여부) : <span
-							th:text="${SearchInfo.invoiceePrintYN}"></span></li>
-						<li>closeDownState (휴폐업상태) : <span
-							th:text="${SearchInfo.closeDownState}"></span></li>
-						<li>closeDownStateDate (휴폐업일자) : <span
-							th:text="${SearchInfo.closeDownStateDate}"></span></li>
-						<li>trusteeCorpName (수탁자 상호) : <span
-							th:text="${SearchInfo.trusteeCorpName}"></span></li>
-						<li>trusteeCorpNum (수탁자 사업자번호) : <span
-							th:text="${SearchInfo.trusteeCorpNum}"></span></li>
-						<li>trusteeMgtKey (수탁자 문서번호) : <span
-							th:text="${SearchInfo.trusteeMgtKey}"></span></li>
-						<li>trusteePrintYN (수탁자 인쇄여부) : <span
-							th:text="${SearchInfo.trusteePrintYN}"></span></li>
+						<li>ntsconfirmNum (국세청승인번호) : <span th:text="${SearchInfo.ntsconfirmNum}"></span></li>
+						<li>ntsresult (국세청 전송결과) : <span th:text="${SearchInfo.ntsresult}"></span></li>
+						<li>ntssendDT (국세청 전송일시) : <span th:text="${SearchInfo.ntssendDT}"></span></li>
+						<li>ntsresultDT (국세청 결과 수신일시) : <span th:text="${SearchInfo.ntsresultDT}"></span></li>
+						<li>ntssendErrCode (결과코드) : <span th:text="${SearchInfo.ntssendErrCode}"></span></li>
+						<li>modifyCode (수정사유코드) : <span th:text="${SearchInfo.modifyCode}"></span></li>
+						<li>interOPYN (연동문서 여부) : <span th:text="${SearchInfo.interOPYN}"></span></li>
+						<li>invoicerCorpName (공급자 상호) : <span th:text="${SearchInfo.invoicerCorpName}"></span></li>
+						<li>invoicerCorpNum (공급자 사업자번호) : <span th:text="${SearchInfo.invoicerCorpNum}"></span></li>
+						<li>invoicerMgtKey (공급자 문서번호) : <span th:text="${SearchInfo.invoicerMgtKey}"></span></li>
+						<li>invoicerPrintYN (공급자 인쇄여부) : <span th:text="${SearchInfo.invoicerPrintYN}"></span></li>
+						<li>invoiceeCorpName (공급받는자 상호) : <span th:text="${SearchInfo.invoiceeCorpName}"></span></li>
+						<li>invoiceeCorpNum (공급받는자 사업자번호) : <span th:text="${SearchInfo.invoiceeCorpNum}"></span></li>
+						<li>invoiceeMgtKey (공급받는자 문서번호) : <span th:text="${SearchInfo.invoiceeMgtKey}"></span></li>
+						<li>invoiceePrintYN (공급받는자 인쇄여부) : <span th:text="${SearchInfo.invoiceePrintYN}"></span></li>
+						<li>closeDownState (공급받는자 휴폐업상태) : <span th:text="${SearchInfo.closeDownState}"></span></li>
+						<li>closeDownStateDate (공급받는자 휴폐업일자) : <span th:text="${SearchInfo.closeDownStateDate}"></span></li>
+						<li>trusteeCorpName (수탁자 상호) : <span th:text="${SearchInfo.trusteeCorpName}"></span></li>
+						<li>trusteeCorpNum (수탁자 사업자번호) : <span th:text="${SearchInfo.trusteeCorpNum}"></span></li>
+						<li>trusteeMgtKey (수탁자 문서번호) : <span th:text="${SearchInfo.trusteeMgtKey}"></span></li>
+						<li>trusteePrintYN (수탁자 인쇄여부) : <span th:text="${SearchInfo.trusteePrintYN}"></span></li>
 					</ul>
 				</fieldset>
 			</fieldset>

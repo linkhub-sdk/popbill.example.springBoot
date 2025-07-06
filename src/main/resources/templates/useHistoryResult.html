@@ -15,14 +15,10 @@
 				<legend>사용내역 목록</legend>
 				<ul>
 					<li>code (응답코드) : <span th:text="${UseHistoryResult.code}"></span></li>
-					<li>total (전체 검색개수) : <span
-						th:text="${UseHistoryResult.total}"></span></li>
-					<li>perPage (페이지당 목록개수) : <span
-						th:text="${UseHistoryResult.perPage}"></span></li>
-					<li>pageNum (페이지번호) : <span
-						th:text="${UseHistoryResult.pageNum}"></span></li>
-					<li>pageCount (페이지수) : <span
-						th:text="${UseHistoryResult.pageCount}"></span></li>
+					<li>total (총 검색결과 건수) : <span th:text="${UseHistoryResult.total}"></span></li>
+					<li>perPage (페이지당 목록 건수) : <span th:text="${UseHistoryResult.perPage}"></span></li>
+					<li>pageNum (페이지 번호) : <span th:text="${UseHistoryResult.pageNum}"></span></li>
+					<li>pageCount (페이지 개수) : <span th:text="${UseHistoryResult.pageCount}"></span></li>
 				</ul>
 
 				<fieldset class="fieldset3"
@@ -32,10 +28,10 @@
 							th:text="${index.size}"></span> ]
 					</legend>
 					<ul>
-						<li>itemCode (서비스 코드) : <span
-							th:text="${UseHistory.itemCode}"></span></li>
+						<li>itemCode (서비스 코드) : <span th:text="${UseHistory.itemCode}"></span></li>
 						<li>txType (포인트 증감 유형) : <span th:text="${UseHistory.txType}"></span></li>
-						<li>balance (증감 포인트) : <span th:text="${UseHistory.balance}"></span></li>
+						<li>txPoint (증감 포인트) : <span th:text="${UseHistory.txPoint}"></span></li>
+						<li>balance (잔여포인트) : <span th:text="${UseHistory.balance}"></span></li>
 						<li>txDT (포인트 증감 일시) : <span th:text="${UseHistory.txDT}"></span></li>
 						<li>userID (담당자 아이디) : <span th:text="${UseHistory.userID}"></span></li>
 						<li>userName (담당자명) : <span th:text="${UseHistory.userName}"></span></li>

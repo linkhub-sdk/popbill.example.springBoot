@@ -164,7 +164,7 @@ public class HTTaxinvoiceServiceController {
         // 페이지번호
         int Page = 1;
 
-        // 페이지당 목록개수
+        // 페이지당 목록 건수
         int PerPage = 10;
 
         // 정렬방향 D-내림차순, A-오름차순
@@ -249,7 +249,7 @@ public class HTTaxinvoiceServiceController {
          * - https://developers.popbill.com/reference/httaxinvoice/java/api/search#GetTaxinvoice
          */
 
-        // 전자세금계산서 국세청 승인번호
+        // 전자세금계산서 국세청승인번호
         String ntsconfirmNum = "202201058888888800000071";
 
         try {
@@ -270,7 +270,7 @@ public class HTTaxinvoiceServiceController {
          * - https://developers.popbill.com/reference/httaxinvoice/java/api/search#GetXML
          */
 
-        // 전자세금계산서 국세청 승인번호
+        // 전자세금계산서 국세청승인번호
         String ntsconfirmNum = "202201058888888800000071";
 
         try {
@@ -294,7 +294,7 @@ public class HTTaxinvoiceServiceController {
          * - https://developers.popbill.com/reference/httaxinvoice/java/api/search#GetPopUpURL
          */
 
-        // 조회할 전자세금계산서 국세청 승인번호
+        // 조회할 전자세금계산서 국세청승인번호
         String NTSConfirmNum = "202201058888888800000071";
 
         try {
@@ -318,7 +318,7 @@ public class HTTaxinvoiceServiceController {
          * - https://developers.popbill.com/reference/httaxinvoice/java/api/search#GetPrintURL
          */
 
-        // 조회할 전자세금계산서 국세청 승인번호
+        // 조회할 전자세금계산서 국세청승인번호
         String NTSConfirmNum = "202201058888888800000071";
 
         try {

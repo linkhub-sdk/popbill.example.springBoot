@@ -274,12 +274,12 @@ public class TaxinvoiceServiceController {
         // 당초 국세청승인번호
         taxinvoice.setOrgNTSConfirmNum(null);
 
-        // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        // 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBusinessLicenseYN(false);
 
-        // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        // 통장사본 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBankBookYN(false);
@@ -548,15 +548,15 @@ public class TaxinvoiceServiceController {
             // 수정사유코드, 수정사유에 따라 1~6 중 선택기재.
             taxinvoice.setModifyCode(null);
 
-            // 수정세금계산서 작성시 원본세금계산서 국세청 승인번호 기재
+            // 수정세금계산서 작성시 당초 국세청승인번호 기재
             taxinvoice.setOrgNTSConfirmNum(null);
 
-            // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+            // 사업자등록증 첨부 여부 (true / false 중 택 1)
             // └ true = 첨부 , false = 미첨부(기본값)
             // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
             taxinvoice.setBusinessLicenseYN(false);
 
-            // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+            // 통장사본 첨부 여부 (true / false 중 택 1)
             // └ true = 첨부 , false = 미첨부(기본값)
             // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
             taxinvoice.setBankBookYN(false);
@@ -835,15 +835,15 @@ public class TaxinvoiceServiceController {
         // 수정사유코드, 수정사유에 따라 1~6 중 선택기재.
         taxinvoice.setModifyCode(null);
 
-        // 수정세금계산서 작성시 원본세금계산서 국세청 승인번호 기재
+        // 수정세금계산서 작성시 당초 국세청승인번호 기재
         taxinvoice.setOrgNTSConfirmNum(null);
 
-        // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        // 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBusinessLicenseYN(false);
 
-        // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        // 통장사본 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBankBookYN(false);
@@ -1095,15 +1095,15 @@ public class TaxinvoiceServiceController {
         // 수정사유코드, 수정사유에 따라 1~6 중 선택기재.
         taxinvoice.setModifyCode(null);
 
-        // 수정세금계산서 작성시 원본세금계산서 국세청 승인번호 기재
+        // 수정세금계산서 작성시 당초 국세청승인번호 기재
         taxinvoice.setOrgNTSConfirmNum(null);
 
-        // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        // 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBusinessLicenseYN(false);
 
-        // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        // 통장사본 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBankBookYN(false);
@@ -1442,15 +1442,15 @@ public class TaxinvoiceServiceController {
         // 수정사유코드, 수정사유에 따라 1~6 중 선택기재.
         taxinvoice.setModifyCode(null);
 
-        // 수정세금계산서 작성시 원본세금계산서 국세청 승인번호 기재
+        // 수정세금계산서 작성시 당초 국세청승인번호 기재
         taxinvoice.setOrgNTSConfirmNum(null);
 
-        // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        // 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBusinessLicenseYN(false);
 
-        // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        // 통장사본 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBankBookYN(false);
@@ -1782,7 +1782,7 @@ public class TaxinvoiceServiceController {
         // 페이지 번호
         int Page = 1;
 
-        // 페이지당 목록개수
+        // 페이지당 목록 건수
         int PerPage = 20;
 
         // 정렬방향, A-오름차순, D-내림차순
@@ -1804,7 +1804,7 @@ public class TaxinvoiceServiceController {
         // - 미입력시 전체조회
         String[] CloseDownState = {"N", "0", "1", "2", "3"};
 
-        // 문서번호 또는 국세청 승인번호 조회
+        // 문서번호 또는 국세청승인번호 조회
         // - 미입력시 전체조회
         String MgtKey = "";
 
@@ -2566,7 +2566,7 @@ public class TaxinvoiceServiceController {
         // 수정사유코드, 수정사유에 따라 1~6 중 선택기재.
         taxinvoice.setModifyCode((short) 1);
 
-        // 수정세금계산서 작성시 원본세금계산서 국세청 승인번호 기재
+        // 수정세금계산서 작성시 당초 국세청승인번호 기재
         taxinvoice.setOrgNTSConfirmNum("20230706-original-TI00001");
 
         // 발행형태, [정발행, 역발행, 위수탁] 중 기재
@@ -2724,12 +2724,12 @@ public class TaxinvoiceServiceController {
         // - 전송 시 포인트 차감되며, 전송실패시 환불처리
         taxinvoice.setInvoiceeSMSSendYN(false);
 
-        // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        // 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBusinessLicenseYN(false);
 
-        // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        // 통장사본 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBankBookYN(false);
@@ -2842,7 +2842,7 @@ public class TaxinvoiceServiceController {
         // 수정사유코드, 수정사유에 따라 1~6 중 선택기재.
         taxinvoice.setModifyCode((short) 1);
 
-        // 수정세금계산서 작성시 원본세금계산서 국세청 승인번호 기재
+        // 수정세금계산서 작성시 당초 국세청승인번호 기재
         taxinvoice.setOrgNTSConfirmNum("20230706-original-TI00001");
 
         // 발행형태, [정발행, 역발행, 위수탁] 중 기재
@@ -3000,12 +3000,12 @@ public class TaxinvoiceServiceController {
         // - 전송 시 포인트 차감되며, 전송실패시 환불처리
         taxinvoice.setInvoiceeSMSSendYN(false);
 
-        // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        // 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBusinessLicenseYN(false);
 
-        // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        // 통장사본 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBankBookYN(false);
@@ -3109,7 +3109,7 @@ public class TaxinvoiceServiceController {
         // 수정사유코드, 수정사유에 따라 1~6 중 선택기재.
         taxinvoice.setModifyCode((short) 2);
 
-        // 수정세금계산서 작성시 원본세금계산서 국세청 승인번호 기재
+        // 수정세금계산서 작성시 당초 국세청승인번호 기재
         taxinvoice.setOrgNTSConfirmNum("20230706-original-TI00001");
 
         // 발행형태, [정발행, 역발행, 위수탁] 중 기재
@@ -3266,12 +3266,12 @@ public class TaxinvoiceServiceController {
         // - 전송 시 포인트 차감되며, 전송실패시 환불처리
         taxinvoice.setInvoiceeSMSSendYN(false);
 
-        // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        // 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBusinessLicenseYN(false);
 
-        // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        // 통장사본 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBankBookYN(false);
@@ -3372,7 +3372,7 @@ public class TaxinvoiceServiceController {
         // 수정사유코드, 수정사유에 따라 1~6 중 선택기재.
         taxinvoice.setModifyCode((short) 3);
 
-        // 수정세금계산서 작성시 원본세금계산서 국세청 승인번호 기재
+        // 수정세금계산서 작성시 당초 국세청승인번호 기재
         taxinvoice.setOrgNTSConfirmNum("20230706-original-TI00001");
 
         // 발행형태, [정발행, 역발행, 위수탁] 중 기재
@@ -3529,12 +3529,12 @@ public class TaxinvoiceServiceController {
         // - 전송 시 포인트 차감되며, 전송실패시 환불처리
         taxinvoice.setInvoiceeSMSSendYN(false);
 
-        // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        // 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBusinessLicenseYN(false);
 
-        // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        // 통장사본 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBankBookYN(false);
@@ -3635,7 +3635,7 @@ public class TaxinvoiceServiceController {
         // 수정사유코드, 수정사유에 따라 1~6 중 선택기재.
         taxinvoice.setModifyCode((short) 4);
 
-        // 수정세금계산서 작성시 원본세금계산서 국세청 승인번호 기재
+        // 수정세금계산서 작성시 당초 국세청승인번호 기재
         taxinvoice.setOrgNTSConfirmNum("20230706-original-TI00001");
 
         // 발행형태, [정발행, 역발행, 위수탁] 중 기재
@@ -3791,12 +3791,12 @@ public class TaxinvoiceServiceController {
         // - 전송 시 포인트 차감되며, 전송실패시 환불처리
         taxinvoice.setInvoiceeSMSSendYN(false);
 
-        // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        // 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBusinessLicenseYN(false);
 
-        // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        // 통장사본 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBankBookYN(false);
@@ -3899,7 +3899,7 @@ public class TaxinvoiceServiceController {
         // 수정사유코드, 수정사유에 따라 1~6 중 선택기재.
         taxinvoice.setModifyCode((short) 5);
 
-        // 수정세금계산서 작성시 원본세금계산서 국세청 승인번호 기재
+        // 수정세금계산서 작성시 당초 국세청승인번호 기재
         taxinvoice.setOrgNTSConfirmNum("20230706-original-TI00001");
 
         // 발행형태, [정발행, 역발행, 위수탁] 중 기재
@@ -4057,12 +4057,12 @@ public class TaxinvoiceServiceController {
         // - 전송 시 포인트 차감되며, 전송실패시 환불처리
         taxinvoice.setInvoiceeSMSSendYN(false);
 
-        // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        // 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBusinessLicenseYN(false);
 
-        // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        // 통장사본 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBankBookYN(false);
@@ -4165,7 +4165,7 @@ public class TaxinvoiceServiceController {
         // 수정사유코드, 수정사유에 따라 1~6 중 선택기재.
         taxinvoice.setModifyCode((short) 5);
 
-        // 수정세금계산서 작성시 원본세금계산서 국세청 승인번호 기재
+        // 수정세금계산서 작성시 당초 국세청승인번호 기재
         taxinvoice.setOrgNTSConfirmNum("20230706-original-TI00001");
 
         // 발행형태, [정발행, 역발행, 위수탁] 중 기재
@@ -4323,12 +4323,12 @@ public class TaxinvoiceServiceController {
         // - 전송 시 포인트 차감되며, 전송실패시 환불처리
         taxinvoice.setInvoiceeSMSSendYN(false);
 
-        // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        // 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBusinessLicenseYN(false);
 
-        // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        // 통장사본 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBankBookYN(false);
@@ -4431,7 +4431,7 @@ public class TaxinvoiceServiceController {
         // 착오에 의한 이중발급 사유로 수정세금계산서 작성 시, 수정사유코드 6 기재
         taxinvoice.setModifyCode((short) 6);
 
-        // 수정세금계산서 작성시 원본세금계산서 국세청 승인번호 기재
+        // 수정세금계산서 작성시 당초 국세청승인번호 기재
         taxinvoice.setOrgNTSConfirmNum("20230706-original-TI00001");
 
         // 발행형태, [정발행, 역발행, 위수탁] 중 기재
@@ -4592,12 +4592,12 @@ public class TaxinvoiceServiceController {
         // - 전송 시 포인트 차감되며, 전송실패시 환불처리
         taxinvoice.setInvoiceeSMSSendYN(false);
 
-        // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        // 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBusinessLicenseYN(false);
 
-        // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        // 통장사본 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         taxinvoice.setBankBookYN(false);

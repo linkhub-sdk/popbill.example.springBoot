@@ -14,75 +14,45 @@
 			<fieldset class="fieldset2">
 				<legend>TaxinvoiceInfo</legend>
 				<ul>
-					<li>itemKey (팝빌번호) : <span th:text="${TaxinvoiceInfo.itemKey}"></span></li>
+					<li>itemKey (팝빌에서 할당한 식별번호) : <span th:text="${TaxinvoiceInfo.itemKey}"></span></li>
 					<li>taxType (과세형태) : <span th:text="${TaxinvoiceInfo.taxType}"></span></li>
-					<li>writeDate (작성일자) : <span
-						th:text="${TaxinvoiceInfo.writeDate}"></span></li>
-					<li>regDT (임시저장 일자) : <span th:text="${TaxinvoiceInfo.regDT}"></span></li>
-					<li>interOPYN (연동문서 여부) : <span
-						th:text="${TaxinvoiceInfo.interOPYN}"></span></li>
-
-					<li>invoicerCorpName (공급자 상호) : <span
-						th:text="${TaxinvoiceInfo.invoicerCorpName}"></span></li>
-					<li>invoicerCorpNum (공급자 사업자번호) : <span
-						th:text="${TaxinvoiceInfo.invoicerCorpNum}"></span></li>
-					<li>invoicerMgtKey (공급자 문서번호) : <span
-						th:text="${TaxinvoiceInfo.invoicerMgtKey}"></span></li>
-					<li>invoicerPrintYN (공급자 인쇄여부) : <span
-						th:text="${TaxinvoiceInfo.invoicerPrintYN}"></span></li>
-
-					<li>invoiceeCorpName (공급받는자 상호) : <span
-						th:text="${TaxinvoiceInfo.invoiceeCorpName}"></span></li>
-					<li>invoiceeCorpNum (공급받는자 사업자번호) : <span
-						th:text="${TaxinvoiceInfo.invoiceeCorpNum}"></span></li>
-					<li>invoiceeMgtKey (공급받는자 문서번호) : <span
-						th:text="${TaxinvoiceInfo.invoiceeMgtKey}"></span></li>
-					<li>invoiceePrintYN (공급받는자 인쇄여부) : <span
-						th:text="${TaxinvoiceInfo.invoiceePrintYN}"></span></li>
-					<li>closeDownState (공급받는자 휴폐업상태) : <span
-						th:text="${TaxinvoiceInfo.closeDownState}"></span></li>
-					<li>closeDownStateDate (공급받는자 휴폐업일자) : <span
-						th:text="${TaxinvoiceInfo.closeDownStateDate}"></span></li>
-
-					<li>trusteeCorpName (수탁자 상호) : <span
-						th:text="${TaxinvoiceInfo.trusteeCorpName}"></span></li>
-					<li>trusteeCorpNum (수탁사 사업자번호) : <span
-						th:text="${TaxinvoiceInfo.trusteeCorpNum}"></span></li>
-					<li>trusteeMgtKey (수탁자 문서번호) : <span
-						th:text="${TaxinvoiceInfo.trusteeMgtKey}"></span></li>
-
-					<li>supplyCostTotal (공급가액 합계) : <span
-						th:text="${TaxinvoiceInfo.supplyCostTotal}"></span></li>
-					<li>taxTotal (세액 합계) : <span
-						th:text="${TaxinvoiceInfo.taxTotal}"></span></li>
-					<li>purposeType (영수/청구) : <span
-						th:text="${TaxinvoiceInfo.purposeType}"></span></li>
-					<li>modifyCode (수정 사유코드) : <span
-						th:text="${TaxinvoiceInfo.modifyCode}"></span></li>
-					<li>issueType (발행형태) : <span
-						th:text="${TaxinvoiceInfo.issueType}"></span></li>
+					<li>writeDate (작성일자) : <span th:text="${TaxinvoiceInfo.writeDate}"></span></li>
+					<li>regDT (임시저장 일시) : <span th:text="${TaxinvoiceInfo.regDT}"></span></li>
+					<li>issueType (발행형태) : <span th:text="${TaxinvoiceInfo.issueType}"></span></li>
+					<li>supplyCostTotal (공급가액 합계) : <span th:text="${TaxinvoiceInfo.supplyCostTotal}"></span></li>
+					<li>taxTotal (세액 합계) : <span th:text="${TaxinvoiceInfo.taxTotal}"></span></li>
+					<li>purposeType (영수/청구) : <span th:text="${TaxinvoiceInfo.purposeType}"></span></li>
 					<li>issueDT (발행일시) : <span th:text="${TaxinvoiceInfo.issueDT}"></span></li>
-					<li>lateIssueYN (지연발행 여부) : <span
-						th:text="${TaxinvoiceInfo.lateIssueYN}"></span></li>
-
-					<li>stateCode (상태코드) : <span
-						th:text="${TaxinvoiceInfo.stateCode}"></span></li>
-					<li>stateDT (상태변경일시) : <span
-						th:text="${TaxinvoiceInfo.stateDT}"></span></li>
-					<li>stateMemo (상태메모) : <span
-						th:text="${TaxinvoiceInfo.stateMemo}"></span></li>
+					<li>lateIssueYN (지연발행 여부) : <span th:text="${TaxinvoiceInfo.lateIssueYN}"></span></li>
 					<li>openYN (개봉 여부) : <span th:text="${TaxinvoiceInfo.openYN}"></span></li>
-					<li>openDT (개봉 일시) : <span th:text="${TaxinvoiceInfo.openDT}"></span></li>
-					<li>ntsresult (국세청 전송결과) : <span
-						th:text="${TaxinvoiceInfo.NTSResult}"></span></li>
-					<li>ntsconfirmNum (국세청 승인번호) : <span
-						th:text="${TaxinvoiceInfo.NTSConfirmNum}"></span></li>
-					<li>ntssendDT (국세청 전송일시) : <span
-						th:text="${TaxinvoiceInfo.NTSSendDT}"></span></li>
-					<li>ntsresultDT (국세청 결과 수신일시) : <span
-						th:text="${TaxinvoiceInfo.NTSResultDT}"></span></li>
-					<li>ntssendErrCode (결과코드) : <span
-						th:text="${TaxinvoiceInfo.NTSSendErrCode}"></span></li>
+					<li>openDT (개봉일시) : <span th:text="${TaxinvoiceInfo.openDT}"></span></li>
+					<li>stateMemo (상태메모) : <span th:text="${TaxinvoiceInfo.stateMemo}"></span></li>
+					<li>stateCode (상태코드) : <span th:text="${TaxinvoiceInfo.stateCode}"></span></li>
+					<li>stateDT (상태 변경일시) : <span th:text="${TaxinvoiceInfo.stateDT}"></span></li>
+					<li>ntsconfirmNum (국세청승인번호) : <span th:text="${TaxinvoiceInfo.NTSConfirmNum}"></span></li>
+					<li>ntsresult (국세청 전송결과) : <span th:text="${TaxinvoiceInfo.NTSResult}"></span></li>
+					<li>ntssendDT (국세청 전송일시) : <span th:text="${TaxinvoiceInfo.NTSSendDT}"></span></li>
+					<li>ntsresultDT (국세청 결과 수신일시) : <span th:text="${TaxinvoiceInfo.NTSResultDT}"></span></li>
+					<li>ntssendErrCode (결과코드) : <span th:text="${TaxinvoiceInfo.NTSSendErrCode}"></span></li>
+					<li>modifyCode (수정 사유코드) : <span th:text="${TaxinvoiceInfo.modifyCode}"></span></li>
+					<li>interOPYN (연동문서 여부) : <span th:text="${TaxinvoiceInfo.interOPYN}"></span></li>
+
+					<li>invoicerCorpName (공급자 상호) : <span th:text="${TaxinvoiceInfo.invoicerCorpName}"></span></li>
+					<li>invoicerCorpNum (공급자 사업자번호) : <span th:text="${TaxinvoiceInfo.invoicerCorpNum}"></span></li>
+					<li>invoicerMgtKey (공급자 문서번호) : <span th:text="${TaxinvoiceInfo.invoicerMgtKey}"></span></li>
+					<li>invoicerPrintYN (공급자 인쇄여부) : <span th:text="${TaxinvoiceInfo.invoicerPrintYN}"></span></li>
+
+					<li>invoiceeCorpName (공급받는자 상호) : <span th:text="${TaxinvoiceInfo.invoiceeCorpName}"></span></li>
+					<li>invoiceeCorpNum (공급받는자 사업자번호) : <span th:text="${TaxinvoiceInfo.invoiceeCorpNum}"></span></li>
+					<li>invoiceeMgtKey (공급받는자 문서번호) : <span th:text="${TaxinvoiceInfo.invoiceeMgtKey}"></span></li>
+					<li>invoiceePrintYN (공급받는자 인쇄여부) : <span th:text="${TaxinvoiceInfo.invoiceePrintYN}"></span></li>
+					<li>closeDownState (공급받는자 휴폐업상태) : <span th:text="${TaxinvoiceInfo.closeDownState}"></span></li>
+					<li>closeDownStateDate (공급받는자 휴폐업일자) : <span th:text="${TaxinvoiceInfo.closeDownStateDate}"></span></li>
+
+					<li>trusteeCorpName (수탁자 상호) : <span th:text="${TaxinvoiceInfo.trusteeCorpName}"></span></li>
+					<li>trusteeCorpNum (수탁사 사업자번호) : <span th:text="${TaxinvoiceInfo.trusteeCorpNum}"></span></li>
+					<li>trusteeMgtKey (수탁자 문서번호) : <span th:text="${TaxinvoiceInfo.trusteeMgtKey}"></span></li>
+					<li>trusteePrintYN (수탁자 인쇄여부) : <span th:text="${TaxinvoiceInfo.trusteePrintYN}"></span></li>
 				</ul>
 			</fieldset>
 		</fieldset>
@@ -99,75 +69,45 @@
 						th:text="${index.size}"></span>]
 				</legend>
 				<ul>
-					<li>itemKey (팝빌번호) : <span th:text="${TaxinvoiceInfo.itemKey}"></span></li>
+					<li>itemKey (팝빌에서 할당한 식별번호) : <span th:text="${TaxinvoiceInfo.itemKey}"></span></li>
 					<li>taxType (과세형태) : <span th:text="${TaxinvoiceInfo.taxType}"></span></li>
-					<li>writeDate (작성일자) : <span
-						th:text="${TaxinvoiceInfo.writeDate}"></span></li>
-					<li>regDT (임시저장 일자) : <span th:text="${TaxinvoiceInfo.regDT}"></span></li>
-					<li>interOPYN (연동문서 여부) : <span
-						th:text="${TaxinvoiceInfo.interOPYN}"></span></li>
-
-					<li>invoicerCorpName (공급자 상호) : <span
-						th:text="${TaxinvoiceInfo.invoicerCorpName}"></span></li>
-					<li>invoicerCorpNum (공급자 사업자번호) : <span
-						th:text="${TaxinvoiceInfo.invoicerCorpNum}"></span></li>
-					<li>invoicerMgtKey (공급자 문서번호) : <span
-						th:text="${TaxinvoiceInfo.invoicerMgtKey}"></span></li>
-					<li>invoicerPrintYN (공급자 인쇄여부) : <span
-						th:text="${TaxinvoiceInfo.invoicerPrintYN}"></span></li>
-
-					<li>invoiceeCorpName (공급받는자 상호) : <span
-						th:text="${TaxinvoiceInfo.invoiceeCorpName}"></span></li>
-					<li>invoiceeCorpNum (공급받는자 사업자번호) : <span
-						th:text="${TaxinvoiceInfo.invoiceeCorpNum}"></span></li>
-					<li>invoiceeMgtKey (공급받는자 문서번호) : <span
-						th:text="${TaxinvoiceInfo.invoiceeMgtKey}"></span></li>
-					<li>invoiceePrintYN (공급받는자 인쇄여부) : <span
-						th:text="${TaxinvoiceInfo.invoiceePrintYN}"></span></li>
-					<li>closeDownState (공급받는자 휴폐업상태) : <span
-						th:text="${TaxinvoiceInfo.closeDownState}"></span></li>
-					<li>closeDownStateDate (공급받는자 휴폐업일자) : <span
-						th:text="${TaxinvoiceInfo.closeDownStateDate}"></span></li>
-
-					<li>trusteeCorpName (수탁자 상호) : <span
-						th:text="${TaxinvoiceInfo.trusteeCorpName}"></span></li>
-					<li>trusteeCorpNum (수탁사 사업자번호) : <span
-						th:text="${TaxinvoiceInfo.trusteeCorpNum}"></span></li>
-					<li>trusteeMgtKey (수탁자 문서번호) : <span
-						th:text="${TaxinvoiceInfo.trusteeMgtKey}"></span></li>
-
-					<li>supplyCostTotal (공급가액 합계) : <span
-						th:text="${TaxinvoiceInfo.supplyCostTotal}"></span></li>
-					<li>taxTotal (세액 합계) : <span
-						th:text="${TaxinvoiceInfo.taxTotal}"></span></li>
-					<li>purposeType (영수/청구) : <span
-						th:text="${TaxinvoiceInfo.purposeType}"></span></li>
-					<li>modifyCode (수정 사유코드) : <span
-						th:text="${TaxinvoiceInfo.modifyCode}"></span></li>
-					<li>issueType (발행형태) : <span
-						th:text="${TaxinvoiceInfo.issueType}"></span></li>
+					<li>writeDate (작성일자) : <span th:text="${TaxinvoiceInfo.writeDate}"></span></li>
+					<li>regDT (임시저장 일시) : <span th:text="${TaxinvoiceInfo.regDT}"></span></li>
+					<li>issueType (발행형태) : <span th:text="${TaxinvoiceInfo.issueType}"></span></li>
+					<li>supplyCostTotal (공급가액 합계) : <span th:text="${TaxinvoiceInfo.supplyCostTotal}"></span></li>
+					<li>taxTotal (세액 합계) : <span th:text="${TaxinvoiceInfo.taxTotal}"></span></li>
+					<li>purposeType (영수/청구) : <span th:text="${TaxinvoiceInfo.purposeType}"></span></li>
 					<li>issueDT (발행일시) : <span th:text="${TaxinvoiceInfo.issueDT}"></span></li>
-					<li>lateIssueYN (지연발행 여부) : <span
-						th:text="${TaxinvoiceInfo.lateIssueYN}"></span></li>
-
-					<li>stateCode (상태코드) : <span
-						th:text="${TaxinvoiceInfo.stateCode}"></span></li>
-					<li>stateDT (상태변경일시) : <span
-						th:text="${TaxinvoiceInfo.stateDT}"></span></li>
-					<li>stateMemo (상태메모) : <span
-						th:text="${TaxinvoiceInfo.stateMemo}"></span></li>
+					<li>lateIssueYN (지연발행 여부) : <span th:text="${TaxinvoiceInfo.lateIssueYN}"></span></li>
 					<li>openYN (개봉 여부) : <span th:text="${TaxinvoiceInfo.openYN}"></span></li>
-					<li>openDT (개봉 일시) : <span th:text="${TaxinvoiceInfo.openDT}"></span></li>
-					<li>ntsresult (국세청 전송결과) : <span
-						th:text="${TaxinvoiceInfo.NTSResult}"></span></li>
-					<li>ntsconfirmNum (국세청 승인번호) : <span
-						th:text="${TaxinvoiceInfo.NTSConfirmNum}"></span></li>
-					<li>ntssendDT (국세청 전송일시) : <span
-						th:text="${TaxinvoiceInfo.NTSSendDT}"></span></li>
-					<li>ntsresultDT (국세청 결과 수신일시) : <span
-						th:text="${TaxinvoiceInfo.NTSResultDT}"></span></li>
-					<li>ntssendErrCode (결과코드) : <span
-						th:text="${TaxinvoiceInfo.NTSSendErrCode}"></span></li>
+					<li>openDT (개봉일시) : <span th:text="${TaxinvoiceInfo.openDT}"></span></li>
+					<li>stateMemo (상태메모) : <span th:text="${TaxinvoiceInfo.stateMemo}"></span></li>
+					<li>stateCode (상태코드) : <span th:text="${TaxinvoiceInfo.stateCode}"></span></li>
+					<li>stateDT (상태 변경일시) : <span th:text="${TaxinvoiceInfo.stateDT}"></span></li>
+					<li>ntsconfirmNum (국세청승인번호) : <span th:text="${TaxinvoiceInfo.NTSConfirmNum}"></span></li>
+					<li>ntsresult (국세청 전송결과) : <span th:text="${TaxinvoiceInfo.NTSResult}"></span></li>
+					<li>ntssendDT (국세청 전송일시) : <span th:text="${TaxinvoiceInfo.NTSSendDT}"></span></li>
+					<li>ntsresultDT (국세청 결과 수신일시) : <span th:text="${TaxinvoiceInfo.NTSResultDT}"></span></li>
+					<li>ntssendErrCode (결과코드) : <span th:text="${TaxinvoiceInfo.NTSSendErrCode}"></span></li>
+					<li>modifyCode (수정 사유코드) : <span th:text="${TaxinvoiceInfo.modifyCode}"></span></li>
+					<li>interOPYN (연동문서 여부) : <span th:text="${TaxinvoiceInfo.interOPYN}"></span></li>
+
+					<li>invoicerCorpName (공급자 상호) : <span th:text="${TaxinvoiceInfo.invoicerCorpName}"></span></li>
+					<li>invoicerCorpNum (공급자 사업자번호) : <span th:text="${TaxinvoiceInfo.invoicerCorpNum}"></span></li>
+					<li>invoicerMgtKey (공급자 문서번호) : <span th:text="${TaxinvoiceInfo.invoicerMgtKey}"></span></li>
+					<li>invoicerPrintYN (공급자 인쇄여부) : <span th:text="${TaxinvoiceInfo.invoicerPrintYN}"></span></li>
+
+					<li>invoiceeCorpName (공급받는자 상호) : <span th:text="${TaxinvoiceInfo.invoiceeCorpName}"></span></li>
+					<li>invoiceeCorpNum (공급받는자 사업자번호) : <span th:text="${TaxinvoiceInfo.invoiceeCorpNum}"></span></li>
+					<li>invoiceeMgtKey (공급받는자 문서번호) : <span th:text="${TaxinvoiceInfo.invoiceeMgtKey}"></span></li>
+					<li>invoiceePrintYN (공급받는자 인쇄여부) : <span th:text="${TaxinvoiceInfo.invoiceePrintYN}"></span></li>
+					<li>closeDownState (공급받는자 휴폐업상태) : <span th:text="${TaxinvoiceInfo.closeDownState}"></span></li>
+					<li>closeDownStateDate (공급받는자 휴폐업일자) : <span th:text="${TaxinvoiceInfo.closeDownStateDate}"></span></li>
+
+					<li>trusteeCorpName (수탁자 상호) : <span th:text="${TaxinvoiceInfo.trusteeCorpName}"></span></li>
+					<li>trusteeCorpNum (수탁사 사업자번호) : <span th:text="${TaxinvoiceInfo.trusteeCorpNum}"></span></li>
+					<li>trusteeMgtKey (수탁자 문서번호) : <span th:text="${TaxinvoiceInfo.trusteeMgtKey}"></span></li>
+					<li>trusteePrintYN (수탁자 인쇄여부) : <span th:text="${TaxinvoiceInfo.trusteePrintYN}"></span></li>
 				</ul>
 			</fieldset>
 		</fieldset>

@@ -878,7 +878,7 @@ public class MessageServiceController {
         // 페이지 번호
         int Page = 1;
 
-        // 페이지당 목록개수 (최대 1000건)
+        // 페이지당 목록 건수 (최대 1000건)
         int PerPage = 20;
 
         // 문자 접수일시를 기준으로 하는 목록 정렬 방향 ("D" , "A" 중 택 1)

@@ -382,7 +382,7 @@ public class EasyFinBankServiceController {
         // 페이지번호
         int Page = 1;
 
-        // 페이지당 목록개수
+        // 페이지당 목록 건수
         int PerPage = 10;
 
         // 정렬방향 D-내림차순, A-오름차순

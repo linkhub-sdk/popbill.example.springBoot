@@ -199,12 +199,12 @@ public class StatementServiceController {
 
         statement.setPropertyBag(propertyBag);
 
-        // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        // 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBusinessLicenseYN(false);
 
-        // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        // 통장사본 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBankBookYN(false);
@@ -374,12 +374,12 @@ public class StatementServiceController {
 
         statement.setPropertyBag(propertyBag);
 
-        // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        // 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBusinessLicenseYN(false);
 
-        // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        // 통장사본 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBankBookYN(false);
@@ -549,12 +549,12 @@ public class StatementServiceController {
 
         statement.setPropertyBag(propertyBag);
 
-        // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        // 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBusinessLicenseYN(false);
 
-        // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        // 통장사본 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBankBookYN(false);
@@ -793,7 +793,7 @@ public class StatementServiceController {
         // 페이지 번호
         int Page = 1;
 
-        // 페이지당 목록개수, 최대 1000건
+        // 페이지당 목록 건수, 최대 1000건
         int PerPage = 20;
 
         // 정렬방향, A-오름차순, D-내림차순
@@ -1337,12 +1337,12 @@ public class StatementServiceController {
 
         statement.setPropertyBag(propertyBag);
 
-        // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
+        // 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBusinessLicenseYN(false);
 
-        // 통장사본 이미지 첨부여부 (true / false 중 택 1)
+        // 통장사본 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBankBookYN(false);

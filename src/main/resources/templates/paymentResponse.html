@@ -13,10 +13,8 @@
 			<legend th:text="${#request?.requestURI}"></legend>
 			<ul>
 				<li>code (응답코드) : <span th:text="${PaymentResponse.code}"></span></li>
-				<li>message (응답메시지) : <span
-					th:text="${PaymentResponse.message}"></span></li>
-				<li>settleCode (정산코드) : <span
-					th:text="${PaymentResponse.settleCode}"></span></li>
+				<li>message (응답메시지) : <span th:text="${PaymentResponse.message}"></span></li>
+				<li>settleCode (정산코드) : <span th:text="${PaymentResponse.settleCode}"></span></li>
 			</ul>
 		</fieldset>
 	</div>
