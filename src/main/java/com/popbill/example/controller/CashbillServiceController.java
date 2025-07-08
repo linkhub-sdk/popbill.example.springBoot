@@ -885,7 +885,7 @@ public class CashbillServiceController {
     public String getUnitCost(Model m) {
         /**
          * 현금영수증 발행시 과금되는 포인트 단가를 확인합니다.
-         * - https://developers.popbill.com/reference/cashbill/java/api/point#GetUnitCost
+         * - https://developers.popbill.com/reference/cashbill/java/common-api/point#GetUnitCost
          */
 
         try {
@@ -903,7 +903,7 @@ public class CashbillServiceController {
     public String chargeInfo(Model m) {
         /**
          * 팝빌 현금영수증 API 서비스 과금정보를 확인합니다.
-         * - https://developers.popbill.com/reference/cashbill/java/api/point#GetChargeInfo
+         * - https://developers.popbill.com/reference/cashbill/java/common-api/point#GetChargeInfo
          */
 
         try {

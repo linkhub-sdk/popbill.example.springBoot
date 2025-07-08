@@ -82,7 +82,7 @@ public class ClosedownServiceController {
     public String getUnitCost(Model m) {
         /**
          * 사업자등록상태 조회시 과금되는 포인트 단가를 확인합니다.
-         * - https://developers.popbill.com/reference/closedown/java/api/point#GetUnitCost
+         * - https://developers.popbill.com/reference/closedown/java/common-api/point#GetUnitCost
          */
 
         try {
@@ -100,7 +100,7 @@ public class ClosedownServiceController {
     public String chargeInfo(Model m) {
         /**
          * 팝빌 사업자등록상태조회 (휴폐업조회) API 서비스 과금정보를 확인합니다.
-         * - https://developers.popbill.com/reference/closedown/java/api/point#GetChargeInfo
+         * - https://developers.popbill.com/reference/closedown/java/common-api/point#GetChargeInfo
          */
 
         try {

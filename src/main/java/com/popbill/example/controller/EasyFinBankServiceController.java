@@ -470,7 +470,7 @@ public class EasyFinBankServiceController {
         * - 권장 사이즈 : width = 800px / height = 700px
         * - 반환되는 URL은 30초 동안만 사용이 가능합니다.
         * - 반환되는 URL에서만 유효한 세션을 포함하고 있습니다.
-        * - https://developers.popbill.com/reference/easyfinbank/java/api/point#GetFlatRatePopUpURL
+        * - https://developers.popbill.com/reference/easyfinbank/java/common-api/point#GetFlatRatePopUpURL
         */
 
         try {
@@ -489,7 +489,7 @@ public class EasyFinBankServiceController {
     public String getFlatRateState(Model m) {
        /**
         * 계좌조회 정액제 서비스 상태를 확인합니다.
-        * - https://developers.popbill.com/reference/easyfinbank/java/api/point#GetFlatRateState
+        * - https://developers.popbill.com/reference/easyfinbank/java/common-api/point#GetFlatRateState
         */
 
         // 기관코드
@@ -513,7 +513,7 @@ public class EasyFinBankServiceController {
     public String chargeInfo(Model m) {
         /**
          * 팝빌 계좌조회 API 서비스 과금정보를 확인합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/java/api/point#GetChargeInfo
+         * - https://developers.popbill.com/reference/easyfinbank/java/common-api/point#GetChargeInfo
          */
         try {
             ChargeInfo chrgInfo = easyFinBankService.getChargeInfo(CorpNum);

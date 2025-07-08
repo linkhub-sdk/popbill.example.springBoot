@@ -1510,7 +1510,7 @@ public class StatementServiceController {
     public String getUnitCost(Model m) {
         /**
          * 전자명세서 발행시 과금되는 포인트 단가를 확인합니다.
-         * - https://developers.popbill.com/reference/statement/java/api/point#GetUnitCost
+         * - https://developers.popbill.com/reference/statement/java/common-api/point#GetUnitCost
          */
 
         // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
@@ -1531,7 +1531,7 @@ public class StatementServiceController {
     public String chargeInfo(Model m) {
         /**
          * 팝빌 전자명세서 API 서비스 과금정보를 확인합니다.
-         * - https://developers.popbill.com/reference/statement/java/api/point#GetChargeInfo
+         * - https://developers.popbill.com/reference/statement/java/common-api/point#GetChargeInfo
          */
 
         // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]

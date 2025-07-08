@@ -960,7 +960,7 @@ public class MessageServiceController {
     public String getUnitCost(Model m) {
         /**
          * 문자 전송시 과금되는 포인트 단가를 확인합니다.
-         * - https://developers.popbill.com/reference/sms/java/api/point#GetUnitCost
+         * - https://developers.popbill.com/reference/sms/java/common-api/point#GetUnitCost
          */
 
         // 문자 메시지 유형, SMS-단문, LMS-장문, MMS-포토
@@ -981,7 +981,7 @@ public class MessageServiceController {
     public String chargeInfo(Model m) {
         /**
          * 팝빌 문자 API 서비스 과금정보를 확인합니다.
-         * - https://developers.popbill.com/reference/sms/java/api/point#GetChargeInfo
+         * - https://developers.popbill.com/reference/sms/java/common-api/point#GetChargeInfo
          */
 
         // 문자 메시지 유형, SMS-단문, LMS-장문, MMS-포토
