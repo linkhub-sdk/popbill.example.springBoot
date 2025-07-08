@@ -395,7 +395,7 @@ public class FaxServiceController {
         String sendNum = "07043042991";
 
         // 발신자명, 공백처리시 기존전송정보로 재전송
-        String sendName = "발신자명";
+        String senderName = "발신자명";
 
         // 수신번호, 공백처리시 기존전송정보로 재전송
         String receiveNum = "";
@@ -415,7 +415,7 @@ public class FaxServiceController {
         String requestNum = "";
 
         try {
-            String receiptNum = faxService.resendFAX(CorpNum, orgReceiptNum, sendNum, sendName, receiveNum, receiveName,
+            String receiptNum = faxService.resendFAX(CorpNum, orgReceiptNum, sendNum, senderName, receiveNum, receiveName,
                     reserveDT, UserID, title, requestNum);
             m.addAttribute("Result", receiptNum);
         } catch (PopbillException e) {
@@ -443,7 +443,7 @@ public class FaxServiceController {
         String sendNum = "07043042991";
 
         // 발신자명, 공백처리시 기존전송정보로 재전송
-        String sendName = "발신자명";
+        String senderName = "발신자명";
 
         // 팩스수신정보를 기존전송정보와 동일하게 재전송하는 경우, receivers 변수 null 처리
         Receiver[] receivers = null;
@@ -475,7 +475,7 @@ public class FaxServiceController {
         String requestNum = "";
 
         try {
-            String receiptNum = faxService.resendFAX(CorpNum, orgReceiptNum, sendNum, sendName, receivers, reserveDT,
+            String receiptNum = faxService.resendFAX(CorpNum, orgReceiptNum, sendNum, senderName, receivers, reserveDT,
                     UserID, title, requestNum);
             m.addAttribute("Result", receiptNum);
         } catch (PopbillException e) {
@@ -505,7 +505,7 @@ public class FaxServiceController {
         String sendNum = "07043042991";
 
         // 발신자명, 공백처리시 기존전송정보로 재전송
-        String sendName = "발신자명";
+        String senderName = "발신자명";
 
         // 수신번호, 공백처리시 기존전송정보로 재전송
         String receiveNum = "";
@@ -523,7 +523,7 @@ public class FaxServiceController {
         String orgRequestNum = "";
 
         try {
-            String receiptNum = faxService.resendFAXRN(CorpNum, requestNum, sendNum, sendName, receiveNum, receiveName,
+            String receiptNum = faxService.resendFAXRN(CorpNum, requestNum, sendNum, senderName, receiveNum, receiveName,
                     reserveDT, UserID, title, orgRequestNum);
             m.addAttribute("Result", receiptNum);
         } catch (PopbillException e) {
@@ -553,7 +553,7 @@ public class FaxServiceController {
         String sendNum = "07043042991";
 
         // 발신자명, 공백처리시 기존전송정보로 재전송
-        String sendName = "발신자명";
+        String senderName = "발신자명";
 
         // 팩스수신정보를 기존전송정보와 동일하게 재전송하는 경우, receivers 변수 null 처리
         Receiver[] receivers = null;
@@ -583,7 +583,7 @@ public class FaxServiceController {
         String orgRequestNum = "20221006-request";
 
         try {
-            String receiptNum = faxService.resendFAXRN(CorpNum, requestNum, sendNum, sendName, receivers, reserveDT,
+            String receiptNum = faxService.resendFAXRN(CorpNum, requestNum, sendNum, senderName, receivers, reserveDT,
                     UserID, title, orgRequestNum);
             m.addAttribute("Result", receiptNum);
         } catch (PopbillException e) {
