@@ -209,6 +209,9 @@ public class StatementServiceController {
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBankBookYN(false);
 
+        // 알림문자 전송 여부
+        statement.setSmssendYN(false);
+
         /*********************************************************************
          *                            전자명세서 품목항목
          *********************************************************************/
@@ -384,6 +387,9 @@ public class StatementServiceController {
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBankBookYN(false);
 
+        // 알림문자 전송 여부
+        statement.setSmssendYN(false);
+
         /*********************************************************************
          *                            전자명세서 품목항목
          *********************************************************************/
@@ -558,6 +564,9 @@ public class StatementServiceController {
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBankBookYN(false);
+
+        // 알림문자 전송 여부
+        statement.setSmssendYN(false);
 
         /*********************************************************************
          *                            전자명세서 품목항목
