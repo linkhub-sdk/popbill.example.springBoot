@@ -1372,6 +1372,9 @@ public class StatementServiceController {
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBankBookYN(false);
 
+        // 알림문자 전송 여부
+        statement.setSmssendYN(false);
+
         // 추가속성
         // 전자명세서 종류별 추가할 속성을 "key", "value" 형식으로 값을 입력
         Map<String, String> propertyBag = new HashMap<String, String>();
