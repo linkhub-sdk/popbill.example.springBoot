@@ -221,7 +221,7 @@ public class HTCashbillServiceController {
          */
 
         try {
-            Date expireDate = htCashbillService.getCertificateExpireDate(CorpNum);
+            Date expireDate = htCashbillService.getCertificateExpireDate(CorpNum, UserID);
             m.addAttribute("Result", expireDate);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -239,7 +239,7 @@ public class HTCashbillServiceController {
          */
 
         try {
-            Response response = htCashbillService.checkCertValidation(CorpNum);
+            Response response = htCashbillService.checkCertValidation(CorpNum, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -281,7 +281,7 @@ public class HTCashbillServiceController {
          */
 
         try {
-            Response response = htCashbillService.checkDeptUser(CorpNum);
+            Response response = htCashbillService.checkDeptUser(CorpNum, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -299,7 +299,7 @@ public class HTCashbillServiceController {
          */
 
         try {
-            Response response = htCashbillService.checkLoginDeptUser(CorpNum);
+            Response response = htCashbillService.checkLoginDeptUser(CorpNum, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
