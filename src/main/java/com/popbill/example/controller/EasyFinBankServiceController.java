@@ -92,7 +92,7 @@ public class EasyFinBankServiceController {
         bankInfo.setMemo("");
 
         try {
-            Response response = easyFinBankService.registBankAccount(CorpNum, bankInfo);
+            Response response = easyFinBankService.registBankAccount(CorpNum, bankInfo, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -163,7 +163,8 @@ public class EasyFinBankServiceController {
         String AccountNumber = "";
 
         try {
-            EasyFinBankAccount bankAccountInfo = easyFinBankService.getBankAccountInfo(CorpNum, BankCode, AccountNumber);
+            EasyFinBankAccount bankAccountInfo = easyFinBankService.getBankAccountInfo(CorpNum, BankCode, AccountNumber,
+                    UserID);
             m.addAttribute("Account", bankAccountInfo);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -181,7 +182,7 @@ public class EasyFinBankServiceController {
         */
 
         try {
-            EasyFinBankAccount[] bankList = easyFinBankService.listBankAccount(CorpNum);
+            EasyFinBankAccount[] bankList = easyFinBankService.listBankAccount(CorpNum, UserID);
             m.addAttribute("BankAccountList", bankList);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -226,14 +227,12 @@ public class EasyFinBankServiceController {
         // 계좌번호 하이픈('-') 제외
         String AccountNumber = "";
 
-        // 해지유형, "일반", "중도" 중 택 1
+        // 해지유형, "일반"
         // 일반(일반해지) – 이용중인 정액제 기간 만료 후 해지
-        // 중도(중도해지) – 해지 요청일 기준으로 정지되고 팝빌 담당자가 승인시 해지
-        // └ 중도일 경우, 정액제 잔여기간은 일할로 계산되어 포인트 환불 (무료 이용기간 중 해지하면 전액 환불)
-        String CloseType = "중도";
+        String CloseType = "일반";
 
         try {
-            Response response = easyFinBankService.closeBankAccount(CorpNum, BankCode, AccountNumber, CloseType);
+            Response response = easyFinBankService.closeBankAccount(CorpNum, BankCode, AccountNumber, CloseType, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -257,7 +256,7 @@ public class EasyFinBankServiceController {
         String AccountNumber = "";
 
         try {
-            Response response = easyFinBankService.revokeCloseBankAccount(CorpNum, BankCode, AccountNumber);
+            Response response = easyFinBankService.revokeCloseBankAccount(CorpNum, BankCode, AccountNumber, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -281,7 +280,7 @@ public class EasyFinBankServiceController {
         String AccountNumber = "";
 
         try {
-            Response response = easyFinBankService.deleteBankAccount(CorpNum, BankCode, AccountNumber);
+            Response response = easyFinBankService.deleteBankAccount(CorpNum, BankCode, AccountNumber, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -315,7 +314,7 @@ public class EasyFinBankServiceController {
         String EDate = "20230131";
 
         try {
-            String jobID = easyFinBankService.requestJob(CorpNum, BankCode, AccountNumber, SDate, EDate);
+            String jobID = easyFinBankService.requestJob(CorpNum, BankCode, AccountNumber, SDate, EDate, UserID);
             m.addAttribute("Result", jobID);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -337,7 +336,7 @@ public class EasyFinBankServiceController {
         String jobID = "022021814000000010";
 
         try {
-            EasyFinBankJobState jobState = easyFinBankService.getJobState(CorpNum, jobID);
+            EasyFinBankJobState jobState = easyFinBankService.getJobState(CorpNum, jobID, UserID);
             m.addAttribute("JobState", jobState);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -355,7 +354,7 @@ public class EasyFinBankServiceController {
          */
 
         try {
-            EasyFinBankJobState[] jobState = easyFinBankService.listActiveJob(CorpNum);
+            EasyFinBankJobState[] jobState = easyFinBankService.listActiveJob(CorpNum, UserID);
             m.addAttribute("JobStates", jobState);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -395,7 +394,8 @@ public class EasyFinBankServiceController {
         String Order = "D";
 
         try {
-            EasyFinBankSearchResult searchInfo = easyFinBankService.search(CorpNum, jobID, TradeType, SearchString, Page, PerPage, Order);
+            EasyFinBankSearchResult searchInfo = easyFinBankService.search(CorpNum, jobID, TradeType, SearchString,
+                    Page, PerPage, Order, UserID);
             m.addAttribute("SearchResult", searchInfo);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -426,7 +426,7 @@ public class EasyFinBankServiceController {
         String SearchString = "";
 
         try {
-            EasyFinBankSummary summaryInfo = easyFinBankService.summary(CorpNum, jobID, TradeType, SearchString);
+            EasyFinBankSummary summaryInfo = easyFinBankService.summary(CorpNum, jobID, TradeType, SearchString, UserID);
             m.addAttribute("SummaryResult", summaryInfo);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -452,7 +452,7 @@ public class EasyFinBankServiceController {
         String Memo = "Memo테스트";
 
         try {
-            Response response = easyFinBankService.saveMemo(CorpNum ,TID, Memo);
+            Response response = easyFinBankService.saveMemo(CorpNum ,TID, Memo, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -499,7 +499,7 @@ public class EasyFinBankServiceController {
         String AccountNumber = "";
 
         try {
-            FlatRateState flatRateInfo = easyFinBankService.getFlatRateState(CorpNum, BankCode, AccountNumber);
+            FlatRateState flatRateInfo = easyFinBankService.getFlatRateState(CorpNum, BankCode, AccountNumber, UserID);
             m.addAttribute("State", flatRateInfo);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -516,7 +516,7 @@ public class EasyFinBankServiceController {
          * - https://developers.popbill.com/reference/easyfinbank/java/common-api/point#GetChargeInfo
          */
         try {
-            ChargeInfo chrgInfo = easyFinBankService.getChargeInfo(CorpNum);
+            ChargeInfo chrgInfo = easyFinBankService.getChargeInfo(CorpNum, UserID);
             m.addAttribute("ChargeInfo", chrgInfo);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);

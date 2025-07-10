@@ -58,7 +58,7 @@ public class HTCashbillServiceController {
          */
 
         // 현금영수증 유형, SELL-매출, BUY-매입
-        QueryType TIType = QueryType.SELL;
+        QueryType queryType = QueryType.SELL;
 
         // 시작일자, 날짜형식(yyyyMMdd)
         String SDate = "20230102";
@@ -67,7 +67,7 @@ public class HTCashbillServiceController {
         String EDate = "20230131";
 
         try {
-            String jobID = htCashbillService.requestJob(CorpNum, TIType, SDate, EDate);
+            String jobID = htCashbillService.requestJob(CorpNum, queryType, SDate, EDate, UserID);
             m.addAttribute("Result", jobID);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -89,7 +89,7 @@ public class HTCashbillServiceController {
         String jobID = "";
 
         try {
-            HTCashbillJobState jobState = htCashbillService.getJobState(CorpNum, jobID);
+            HTCashbillJobState jobState = htCashbillService.getJobState(CorpNum, jobID, UserID);
             m.addAttribute("JobState", jobState);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -107,7 +107,7 @@ public class HTCashbillServiceController {
          */
 
         try {
-            HTCashbillJobState[] jobStates = htCashbillService.listActiveJob(CorpNum);
+            HTCashbillJobState[] jobStates = htCashbillService.listActiveJob(CorpNum, UserID);
             m.addAttribute("JobStates", jobStates);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -150,7 +150,7 @@ public class HTCashbillServiceController {
 
         try {
             HTCashbillSearchResult searchInfo = htCashbillService.search(CorpNum, jobID, TradeUsage, TradeType, Page,
-                    PerPage, Order);
+                    PerPage, Order, UserID);
             m.addAttribute("SearchResult", searchInfo);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -182,7 +182,7 @@ public class HTCashbillServiceController {
         String[] TradeType = { "N", "C" };
 
         try {
-            HTCashbillSummary summaryInfo = htCashbillService.summary(CorpNum, jobID, TradeUsage, TradeType);
+            HTCashbillSummary summaryInfo = htCashbillService.summary(CorpNum, jobID, TradeUsage, TradeType, UserID);
             m.addAttribute("SummaryResult", summaryInfo);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -263,7 +263,7 @@ public class HTCashbillServiceController {
         String deptUserPWD = "passwd";
 
         try {
-            Response response = htCashbillService.registDeptUser(CorpNum, deptUserID, deptUserPWD);
+            Response response = htCashbillService.registDeptUser(CorpNum, deptUserID, deptUserPWD, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -317,7 +317,7 @@ public class HTCashbillServiceController {
          */
 
         try {
-            Response response = htCashbillService.deleteDeptUser(CorpNum);
+            Response response = htCashbillService.deleteDeptUser(CorpNum, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -335,7 +335,7 @@ public class HTCashbillServiceController {
          */
 
         try {
-            ChargeInfo chrgInfo = htCashbillService.getChargeInfo(CorpNum);
+            ChargeInfo chrgInfo = htCashbillService.getChargeInfo(CorpNum, UserID);
             m.addAttribute("ChargeInfo", chrgInfo);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -374,7 +374,7 @@ public class HTCashbillServiceController {
          */
 
         try {
-            FlatRateState flatRateInfo = htCashbillService.getFlatRateState(CorpNum);
+            FlatRateState flatRateInfo = htCashbillService.getFlatRateState(CorpNum, UserID);
             m.addAttribute("State", flatRateInfo);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);

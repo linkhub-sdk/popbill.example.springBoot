@@ -67,7 +67,7 @@ public class StatementServiceController {
         String isUseStr;
 
         try {
-            boolean IsUse = statementService.checkMgtKeyInUse(CorpNum, itemCode, mgtKey);
+            boolean IsUse = statementService.checkMgtKeyInUse(CorpNum, itemCode, mgtKey, UserID);
             isUseStr = (IsUse) ? "사용중" : "미사용중";
             m.addAttribute("Result", isUseStr);
         } catch (PopbillException e) {
@@ -82,7 +82,7 @@ public class StatementServiceController {
     public String registIssue(Model m) {
         /**
          * 작성된 전자명세서 데이터를 팝빌에 저장과 동시에 발행하여, "발행완료" 상태로 처리합니다.
-         * - 팝빌 사이트 [전자명세서] > [환경설정] > [전자명세서 관리] 메뉴의 발행시 자동승인 옵션 설정을 통해 전자명세서를 "발행완료" 상태가 아닌 "승인대기" 상태로 발행 처리 할 수 있습니다.
+         * - 팝빌 사이트 [전자명세서] > [관리] > [환경설정] 메뉴의 발행시 자동승인 옵션 설정을 통해 전자명세서를 "발행완료" 상태가 아닌 "승인대기" 상태로 발행 처리 할 수 있습니다.
          * - https://developers.popbill.com/reference/statement/java/api/issue#RegistIssue
          */
 
@@ -433,9 +433,8 @@ public class StatementServiceController {
 
         statement.getDetailList().add(detail);
 
-
         try {
-            Response response = statementService.register(CorpNum, statement);
+            Response response = statementService.register(CorpNum, statement, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -620,7 +619,7 @@ public class StatementServiceController {
         statement.getDetailList().add(detail);
 
         try {
-            Response response = statementService.update(CorpNum, itemCode, mgtKey, statement);
+            Response response = statementService.update(CorpNum, itemCode, mgtKey, statement, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -634,7 +633,7 @@ public class StatementServiceController {
     public String issue(Model m) {
         /**
          * "임시저장" 상태의 전자명세서를 발행하여, "발행완료" 상태로 처리합니다.
-         * - 팝빌 사이트 [전자명세서] > [환경설정] > [전자명세서 관리] 메뉴의 발행시 자동승인 옵션 설정을 통해
+         * - 팝빌 사이트 [전자명세서] > [관리] > [환경설정] 메뉴의 발행시 자동승인 옵션 설정을 통해
          * - 전자명세서를 "발행완료" 상태가 아닌 "승인대기" 상태로 발행 처리 할 수 있습니다.
          * - 전자명세서 발행 함수 호출시 수신자에게 발행 안내 메일이 발송됩니다.
          * - https://developers.popbill.com/reference/statement/java/api/issue#Issue
@@ -654,7 +653,7 @@ public class StatementServiceController {
         String emailSubject = "테스트";
 
         try {
-            Response response = statementService.issue(CorpNum, itemCode, mgtKey, memo, emailSubject, null);
+            Response response = statementService.issue(CorpNum, itemCode, mgtKey, memo, emailSubject, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -664,8 +663,8 @@ public class StatementServiceController {
         return "response";
     }
 
-    @RequestMapping(value = "cancelIssue", method = RequestMethod.GET)
-    public String cancelIssue(Model m) {
+    @RequestMapping(value = "cancel", method = RequestMethod.GET)
+    public String cancel(Model m) {
         /**
          * 발신자가 발행한 전자명세서를 발행취소합니다.
          * - "발행취소" 상태의 전자명세서를 삭제(Delete API) 함수를 이용하면, 전자명세서 관리를 위해 부여했던 문서번호를 재사용 할 수 있습니다.
@@ -682,7 +681,7 @@ public class StatementServiceController {
         String memo = "발행취소 메모";
 
         try {
-            Response response = statementService.cancel(CorpNum, itemCode, mgtKey, memo);
+            Response response = statementService.cancel(CorpNum, itemCode, mgtKey, memo, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -708,7 +707,7 @@ public class StatementServiceController {
         String mgtKey = "20230102-BOOT002";
 
         try {
-            Response response = statementService.delete(CorpNum, itemCode, mgtKey);
+            Response response = statementService.delete(CorpNum, itemCode, mgtKey, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -733,7 +732,7 @@ public class StatementServiceController {
         String mgtKey = "20230102-BOOT001";
 
         try {
-            StatementInfo statementInfo = statementService.getInfo(CorpNum, itemCode, mgtKey);
+            StatementInfo statementInfo = statementService.getInfo(CorpNum, itemCode, mgtKey, UserID);
             m.addAttribute("StatementInfo", statementInfo);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -758,7 +757,7 @@ public class StatementServiceController {
         String[] MgtKeyList = new String[]{"20230102-BOOT001", "20230102-BOOT002"};
 
         try {
-            StatementInfo[] statementInfos = statementService.getInfos(CorpNum, itemCode, MgtKeyList);
+            StatementInfo[] statementInfos = statementService.getInfos(CorpNum, itemCode, MgtKeyList, UserID);
             m.addAttribute("StatementInfos", statementInfos);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -782,7 +781,7 @@ public class StatementServiceController {
         String mgtKey = "20230102-BOOT001";
 
         try {
-            Statement statement = statementService.getDetailInfo(CorpNum, itemCode, mgtKey);
+            Statement statement = statementService.getDetailInfo(CorpNum, itemCode, mgtKey, UserID);
             m.addAttribute("Statement", statement);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -834,7 +833,7 @@ public class StatementServiceController {
 
         try {
             StmtSearchResult searchResult = statementService.search(CorpNum, DType, SDate, EDate, State, ItemCode,
-                    QString, Page, PerPage, Order);
+                    QString, Page, PerPage, Order, UserID);
             m.addAttribute("SearchResult", searchResult);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -858,7 +857,7 @@ public class StatementServiceController {
         String mgtKey = "20230102-BOOT001";
 
         try {
-            StatementLog[] statementLogs = statementService.getLogs(CorpNum, itemCode, mgtKey);
+            StatementLog[] statementLogs = statementService.getLogs(CorpNum, itemCode, mgtKey, UserID);
             m.addAttribute("StatementLogs", statementLogs);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -1083,7 +1082,7 @@ public class StatementServiceController {
         InputStream stream = getClass().getClassLoader().getResourceAsStream("static/image/test.jpg");
 
         try {
-            Response response = statementService.attachFile(CorpNum, itemCode, mgtKey, displayName, stream);
+            Response response = statementService.attachFile(CorpNum, itemCode, mgtKey, displayName, stream, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -1118,7 +1117,7 @@ public class StatementServiceController {
         String FileID = "";
 
         try {
-            Response response = statementService.deleteFile(CorpNum, itemCode, mgtKey, FileID);
+            Response response = statementService.deleteFile(CorpNum, itemCode, mgtKey, FileID, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -1143,7 +1142,7 @@ public class StatementServiceController {
         String mgtKey = "20230102-BOOT002";
 
         try {
-            AttachedFile[] attachedFiles = statementService.getFiles(CorpNum, itemCode, mgtKey);
+            AttachedFile[] attachedFiles = statementService.getFiles(CorpNum, itemCode, mgtKey, UserID);
             m.addAttribute("AttachedFiles", attachedFiles);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -1170,7 +1169,7 @@ public class StatementServiceController {
         String receiver = "test@test.com";
 
         try {
-            Response response = statementService.sendEmail(CorpNum, itemCode, mgtKey, receiver);
+            Response response = statementService.sendEmail(CorpNum, itemCode, mgtKey, receiver, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -1183,7 +1182,7 @@ public class StatementServiceController {
     @RequestMapping(value = "sendSMS", method = RequestMethod.GET)
     public String sendSMS(Model m) {
         /**
-         * 전자명세서와 관련된 안내 SMS(단문) 문자를 재전송하는 함수로, 팝빌 사이트 [문자·팩스] > [문자] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
+         * 전자명세서와 관련된 안내 SMS(단문) 문자를 재전송하는 함수로, 팝빌 사이트 [문자] > [결과] > [전송결과] 메뉴에서 전송결과를 확인 할 수 있습니다.
          * - 메시지는 최대 90byte까지 입력 가능하고, 초과한 내용은 자동으로 삭제되어 전송합니다. (한글 최대 45자)
          * - 함수 호출시 포인트가 과금됩니다.
          * - https://developers.popbill.com/reference/statement/java/api/etc#SendSMS
@@ -1205,7 +1204,7 @@ public class StatementServiceController {
         String contents = "전자명세서 문자메시지 전송 테스트입니다.";
 
         try {
-            Response response = statementService.sendSMS(CorpNum, itemCode, mgtKey, sender, receiver, contents);
+            Response response = statementService.sendSMS(CorpNum, itemCode, mgtKey, sender, receiver, contents, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -1218,7 +1217,7 @@ public class StatementServiceController {
     @RequestMapping(value = "sendFAX", method = RequestMethod.GET)
     public String sendFAX(Model m) {
         /**
-         * 전자명세서를 팩스로 전송하는 함수로, 팝빌 사이트 [문자·팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
+         * 전자명세서를 팩스로 전송하는 함수로, 팝빌 사이트 [팩스] > [결과] > [전송결과] 메뉴에서 전송결과를 확인 할 수 있습니다.
          * - 함수 호출시 포인트가 과금됩니다.
          * - https://developers.popbill.com/reference/statement/java/api/etc#SendFAX
          */
@@ -1236,7 +1235,7 @@ public class StatementServiceController {
         String receiver = "070111222";
 
         try {
-            Response response = statementService.sendFAX(CorpNum, itemCode, mgtKey, sender, receiver);
+            Response response = statementService.sendFAX(CorpNum, itemCode, mgtKey, sender, receiver, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -1250,7 +1249,7 @@ public class StatementServiceController {
     public String FAXSend(Model m) {
         /**
          * 전자명세서를 팩스로 전송하는 함수로, 팝빌에 데이터를 저장하는 과정이 없습니다.
-         * - 팝빌 사이트 [문자·팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
+         * - 팝빌 사이트 [팩스] > [결과] > [전송결과] 메뉴에서 전송결과를 확인 할 수 있습니다.
          * - 함수 호출시 포인트가 과금됩니다.
          * - 팩스 발행 요청시 작성한 문서번호는 팩스전송 파일명으로 사용됩니다.
          * - 팩스 전송결과를 확인하기 위해서는 선팩스 전송 요청 시 반환받은 접수번호를 이용하여 팩스 API의 전송결과 확인 (GetFaxDetail API) 함수를 이용하면 됩니다.
@@ -1419,7 +1418,7 @@ public class StatementServiceController {
         String receiveNum = "00111222";
 
         try {
-            String receiptNum = statementService.FAXSend(CorpNum, statement, sendNum, receiveNum);
+            String receiptNum = statementService.FAXSend(CorpNum, statement, sendNum, receiveNum, UserID);
             m.addAttribute("Result", receiptNum);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -1449,7 +1448,8 @@ public class StatementServiceController {
         String subMgtKey = "20230102-BOOT002";
 
         try {
-            Response response = statementService.attachStatement(CorpNum, itemCode, mgtKey, subItemCode, subMgtKey);
+            Response response = statementService.attachStatement(CorpNum, itemCode, mgtKey, subItemCode, subMgtKey,
+                    UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -1479,7 +1479,8 @@ public class StatementServiceController {
         String subMgtKey = "20220218-BOOT002";
 
         try {
-            Response response = statementService.detachStatement(CorpNum, itemCode, mgtKey, subItemCode, subMgtKey);
+            Response response = statementService.detachStatement(CorpNum, itemCode, mgtKey, subItemCode, subMgtKey,
+                    UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -1534,7 +1535,7 @@ public class StatementServiceController {
         Boolean sendYN = true;
 
         try {
-            Response response = statementService.updateEmailConfig(CorpNum, emailType, sendYN);
+            Response response = statementService.updateEmailConfig(CorpNum, emailType, sendYN, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -1555,7 +1556,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         try {
-            float unitCost = statementService.getUnitCost(CorpNum, itemCode);
+            float unitCost = statementService.getUnitCost(CorpNum, itemCode, UserID);
             m.addAttribute("Result", unitCost);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -1576,7 +1577,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         try {
-            ChargeInfo chrgInfo = statementService.getChargeInfo(CorpNum, itemCode);
+            ChargeInfo chrgInfo = statementService.getChargeInfo(CorpNum, itemCode, UserID);
             m.addAttribute("ChargeInfo", chrgInfo);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);

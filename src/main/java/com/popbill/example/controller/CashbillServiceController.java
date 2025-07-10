@@ -62,7 +62,7 @@ public class CashbillServiceController {
         String isUseStr;
 
         try {
-            boolean IsUse = cashbillService.checkMgtKeyInUse(CorpNum, mgtKey);
+            boolean IsUse = cashbillService.checkMgtKeyInUse(CorpNum, mgtKey, UserID);
             isUseStr = (IsUse) ? "사용중" : "미사용중";
             m.addAttribute("Result", isUseStr);
         } catch (PopbillException e) {
@@ -278,7 +278,7 @@ public class CashbillServiceController {
         }
 
         try {
-            BulkResponse response = cashbillService.bulkSubmit(CorpNum, SubmitID, cashbillList);
+            BulkResponse response = cashbillService.bulkSubmit(CorpNum, SubmitID, cashbillList, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -300,7 +300,7 @@ public class CashbillServiceController {
         String SubmitID = "20221108-BOOT-BULK";
 
         try {
-            BulkCashbillResult bulkResult = cashbillService.getBulkResult(CorpNum, SubmitID);
+            BulkCashbillResult bulkResult = cashbillService.getBulkResult(CorpNum, SubmitID, UserID);
             m.addAttribute("BulkResult", bulkResult);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -323,7 +323,7 @@ public class CashbillServiceController {
         String mgtKey = "20220218-BOOT001";
 
         try {
-            Response response = cashbillService.delete(CorpNum, mgtKey);
+            Response response = cashbillService.delete(CorpNum, mgtKey, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -350,8 +350,56 @@ public class CashbillServiceController {
         // 당초 거래일자 - 상태확인(getInfo API) 함수를 통해 tradeDate 값 기재
         String orgTradeDate = "20230102";
 
+        // 안내 문자 전송여부 , true / false 중 택 1
+        // └ true = 전송 , false = 미전송
+        // └ 당초 승인 현금영수증의 구매자(고객)의 휴대폰번호 문자 전송
+        Boolean smssendYN = false;
+
+        // 발행 메모
+        String memo = "취소 현금영수증 발행 메모";
+
+        // 현금영수증 취소유형 , true / false 중 택 1
+        // └ true = 부분 취소 , false = 전체 취소
+        // └ 미입력시 기본값 false 처리
+        Boolean isPartCancel = true;
+
+        // 취소사유 , 1 / 2 / 3 중 택 1
+        // └ 1 = 거래취소 , 2 = 오류발급취소 , 3 = 기타
+        // └ 미입력시 기본값 1 처리
+        Integer cancelType = 1;
+
+        // [취소] 공급가액
+        // - 현금영수증 취소유형이 true 인 경우 취소할 공급가액 입력
+        // - 현금영수증 취소유형이 false 인 경우 미입력
+        String supplyCost = "3000";
+
+        // [취소] 부가세
+        // - 현금영수증 취소유형이 true 인 경우 취소할 부가세 입력
+        // - 현금영수증 취소유형이 false 인 경우 미입력
+        String tax = "300";
+
+        // [취소] 봉사료
+        // - 현금영수증 취소유형이 true 인 경우 취소할 봉사료 입력
+        // - 현금영수증 취소유형이 false 인 경우 미입력
+        String serviceFee = "0";
+
+        // [취소] 거래금액 (공급가액+부가세+봉사료)
+        // - 현금영수증 취소유형이 true 인 경우 취소할 거래금액 입력
+        // - 현금영수증 취소유형이 false 인 경우 미입력
+        String totalAmount = "3300";
+
+        // 현금영수증 발행 안내메일 제목
+        String emailSubject = "";
+
+        // 거래일시
+        // - 전일부터 당일까지 입력 가능
+        // - 기본값 : 발행일시 사용
+        String TradeDT = "";
+
         try {
-            CBIssueResponse response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate);
+            CBIssueResponse response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate,
+                    smssendYN, memo, isPartCancel, cancelType, supplyCost, tax, serviceFee, totalAmount, UserID,
+                    emailSubject, TradeDT);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -417,9 +465,18 @@ public class CashbillServiceController {
         // - 현금영수증 취소유형이 false 인 경우 미입력
         String totalAmount = "3300";
 
+        // 현금영수증 발행 안내메일 제목
+        String emailSubject = "";
+
+        // 거래일시
+        // - 전일부터 당일까지 입력 가능
+        // - 기본값 : 발행일시 사용
+        String TradeDT = "";
+
         try {
             CBIssueResponse response = cashbillService.revokeRegistIssue(CorpNum, mgtKey, orgConfirmNum, orgTradeDate,
-                    smssendYN, memo, isPartCancel, cancelType, supplyCost, tax, serviceFee, totalAmount);
+                    smssendYN, memo, isPartCancel, cancelType, supplyCost, tax, serviceFee, totalAmount, UserID,
+                    emailSubject, TradeDT);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -442,7 +499,7 @@ public class CashbillServiceController {
         String mgtKey = "20220218-BOOT002";
 
         try {
-            CashbillInfo cashbillInfo = cashbillService.getInfo(CorpNum, mgtKey);
+            CashbillInfo cashbillInfo = cashbillService.getInfo(CorpNum, mgtKey, UserID);
             m.addAttribute("CashbillInfo", cashbillInfo);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -465,7 +522,7 @@ public class CashbillServiceController {
         String[] mgtKeyList = new String[] { "20221108-BOOT002", "20220218-BOOT004", "20220218-BOOT005" };
 
         try {
-            CashbillInfo[] cashbillInfos = cashbillService.getInfos(CorpNum, mgtKeyList);
+            CashbillInfo[] cashbillInfos = cashbillService.getInfos(CorpNum, mgtKeyList, UserID);
             m.addAttribute("CashbillInfos", cashbillInfos);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -486,7 +543,7 @@ public class CashbillServiceController {
         String mgtKey = "20230102-BOOT006";
 
         try {
-            Cashbill cashbill = cashbillService.getDetailInfo(CorpNum, mgtKey);
+            Cashbill cashbill = cashbillService.getDetailInfo(CorpNum, mgtKey, UserID);
             m.addAttribute("Cashbill", cashbill);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -557,7 +614,7 @@ public class CashbillServiceController {
 
         try {
             CBSearchResult searchResult = cashbillService.search(CorpNum, DType, SDate, EDate, State, TradeType,
-                    TradeUsage, TradeOpt, TaxationType, QString, Page, PerPage, Order, FranchiseTaxRegID);
+                    TradeUsage, TradeOpt, TaxationType, QString, Page, PerPage, Order, FranchiseTaxRegID, UserID);
             m.addAttribute("SearchResult", searchResult);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -735,7 +792,7 @@ public class CashbillServiceController {
         String receiver = "test@test.com";
 
         try {
-            Response response = cashbillService.sendEmail(CorpNum, mgtKey, receiver);
+            Response response = cashbillService.sendEmail(CorpNum, mgtKey, receiver, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -748,7 +805,7 @@ public class CashbillServiceController {
     @RequestMapping(value = "sendSMS", method = RequestMethod.GET)
     public String sendSMS(Model m) {
         /**
-         * 현금영수증과 관련된 안내 SMS(단문) 문자를 재전송하는 함수로, 팝빌 사이트 [문자·팩스] > [문자] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
+         * 현금영수증과 관련된 안내 SMS(단문) 문자를 재전송하는 함수로, 팝빌 사이트 [문자] > [결과] > [전송결과] 메뉴에서 전송결과를 확인 할 수 있습니다.
          * - 메시지는 최대 90byte까지 입력 가능하고, 초과한 내용은 자동으로 삭제되어 전송합니다. (한글 최대 45자)
          * - 함수 호출 시 포인트가 과금됩니다. (전송실패시 환불처리)
          * - https://developers.popbill.com/reference/cashbill/java/api/etc#SendSMS
@@ -767,7 +824,7 @@ public class CashbillServiceController {
         String contents = "현금영수증 문자메시지 전송 테스트입니다.";
 
         try {
-            Response response = cashbillService.sendSMS(CorpNum, mgtKey, sender, receiver, contents);
+            Response response = cashbillService.sendSMS(CorpNum, mgtKey, sender, receiver, contents, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -780,7 +837,7 @@ public class CashbillServiceController {
     @RequestMapping(value = "sendFAX", method = RequestMethod.GET)
     public String sendFAX(Model m) {
         /**
-         * 현금영수증을 팩스로 전송하는 함수로, 팝빌 사이트 [문자·팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
+         * 현금영수증을 팩스로 전송하는 함수로, 팝빌 사이트 [팩스] > [결과] > [전송결과] 메뉴에서 전송결과를 확인 할 수 있습니다.
          * - 함수 호출 시 포인트가 과금됩니다. (전송실패시 환불처리)
          * - https://developers.popbill.com/reference/cashbill/java/api/etc#SendFAX
          */
@@ -795,7 +852,7 @@ public class CashbillServiceController {
         String receiver = "010111222";
 
         try {
-            Response response = cashbillService.sendFAX(CorpNum, mgtKey, sender, receiver);
+            Response response = cashbillService.sendFAX(CorpNum, mgtKey, sender, receiver, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -819,7 +876,7 @@ public class CashbillServiceController {
         String mgtKey = "20230102-BOOT007";
 
         try {
-            Response response = cashbillService.assignMgtKey(CorpNum, itemKey, mgtKey);
+            Response response = cashbillService.assignMgtKey(CorpNum, itemKey, mgtKey, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -838,7 +895,7 @@ public class CashbillServiceController {
         Map<String, Boolean> emailSendConfigs = new HashMap<String, Boolean>();
 
         try {
-            EmailSendConfig[] Configs = cashbillService.listEmailConfig(CorpNum);
+            EmailSendConfig[] Configs = cashbillService.listEmailConfig(CorpNum, UserID);
 
             for (EmailSendConfig emailSendConfig : Configs) {
                 emailSendConfigs.put(emailSendConfig.getEmailType(), emailSendConfig.getSendYN());
@@ -871,7 +928,7 @@ public class CashbillServiceController {
         Boolean sendYN = true;
 
         try {
-            Response response = cashbillService.updateEmailConfig(CorpNum, emailType, sendYN);
+            Response response = cashbillService.updateEmailConfig(CorpNum, emailType, sendYN, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -889,7 +946,7 @@ public class CashbillServiceController {
          */
 
         try {
-            float unitCost = cashbillService.getUnitCost(CorpNum);
+            float unitCost = cashbillService.getUnitCost(CorpNum, UserID);
             m.addAttribute("Result", unitCost);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -907,7 +964,7 @@ public class CashbillServiceController {
          */
 
         try {
-            ChargeInfo chrgInfo = cashbillService.getChargeInfo(CorpNum);
+            ChargeInfo chrgInfo = cashbillService.getChargeInfo(CorpNum, UserID);
             m.addAttribute("ChargeInfo", chrgInfo);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);

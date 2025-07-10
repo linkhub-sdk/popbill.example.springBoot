@@ -7,7 +7,7 @@
   *
   * <테스트 연동개발 준비사항>
   * 1) 발신번호 사전등록을 합니다. (등록방법은 사이트/API 두가지 방식이 있습니다.)
- *    - 1. 팝빌 사이트 로그인 > [문자/팩스] > [문자] > [발신번호 사전등록] 메뉴에서 등록
+ *    - 1. 팝빌 사이트 로그인 > [문자] > [관리] > [발신번호 관리] 메뉴에서 등록
  *    - 2. getSenderNumberMgtURL API를 통해 반환된 URL을 이용하여 발신번호 등록
  */
 package com.popbill.example.controller;
@@ -63,10 +63,10 @@ public class MessageServiceController {
          */
 
         // 확인할 발신번호
-        String Sender = "070-4304-2991";
+        String senderNumber = "070-4304-2991";
 
         try {
-            Response response = messageService.checkSenderNumber(CorpNum, Sender);
+            Response response = messageService.checkSenderNumber(CorpNum, senderNumber, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -103,7 +103,7 @@ public class MessageServiceController {
          */
 
         try {
-            SenderNumber[] senderNumberList = messageService.getSenderNumberList(CorpNum);
+            SenderNumber[] senderNumberList = messageService.getSenderNumberList(CorpNum, UserID);
             m.addAttribute("SenderNumberList", senderNumberList);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -714,7 +714,7 @@ public class MessageServiceController {
         String receiptNum = "022022111000000012";
 
         try {
-            Response response = messageService.cancelReserve(CorpNum, receiptNum);
+            Response response = messageService.cancelReserve(CorpNum, receiptNum, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -735,7 +735,7 @@ public class MessageServiceController {
         String requestNum = "";
 
         try {
-            Response response = messageService.cancelReserveRN(CorpNum, requestNum);
+            Response response = messageService.cancelReserveRN(CorpNum, requestNum, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -758,7 +758,7 @@ public class MessageServiceController {
         String receiveNum = "";
 
         try {
-            Response response = messageService.cancelReservebyRCV(CorpNum, receiptNum, receiveNum);
+            Response response = messageService.cancelReservebyRCV(CorpNum, receiptNum, receiveNum, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -783,7 +783,7 @@ public class MessageServiceController {
 
 
         try {
-            Response response = messageService.cancelReserveRNbyRCV(CorpNum, requestNum, receiveNum);
+            Response response = messageService.cancelReserveRNbyRCV(CorpNum, requestNum, receiveNum, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -806,7 +806,7 @@ public class MessageServiceController {
         String receiptNum = "022100616000000003";
 
         try {
-            SentMessage[] sentMessages = messageService.getMessages(CorpNum, receiptNum);
+            SentMessage[] sentMessages = messageService.getMessages(CorpNum, receiptNum, UserID);
             m.addAttribute("SentMessages", sentMessages);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -829,7 +829,7 @@ public class MessageServiceController {
         String requestNum = "";
 
         try {
-            SentMessage[] sentMessages = messageService.getMessagesRN(CorpNum, requestNum);
+            SentMessage[] sentMessages = messageService.getMessagesRN(CorpNum, requestNum, UserID);
             m.addAttribute("SentMessages", sentMessages);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -891,7 +891,7 @@ public class MessageServiceController {
 
         try {
             MSGSearchResult response = messageService.search(CorpNum, SDate, EDate, State, Item, ReserveYN, SenderOnly,
-                    Page, PerPage, Order, QString);
+                    Page, PerPage, Order, QString, UserID);
             m.addAttribute("SearchResult", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -928,7 +928,7 @@ public class MessageServiceController {
          */
 
         try {
-            AutoDeny[] autoDenyList = messageService.getAutoDenyList(CorpNum);
+            AutoDeny[] autoDenyList = messageService.getAutoDenyList(CorpNum, UserID);
             m.addAttribute("AutoDenyList", autoDenyList);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -946,7 +946,7 @@ public class MessageServiceController {
          */
 
         try {
-            AutoDenyNumberInfo checkAutoDeny = messageService.checkAutoDenyNumber(CorpNum);
+            AutoDenyNumberInfo checkAutoDeny = messageService.checkAutoDenyNumber(CorpNum, UserID);
             m.addAttribute("CheckAutoDeny", checkAutoDeny);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -967,7 +967,7 @@ public class MessageServiceController {
         MessageType msgType = MessageType.SMS;
 
         try {
-            float unitCost = messageService.getUnitCost(CorpNum, msgType);
+            float unitCost = messageService.getUnitCost(CorpNum, msgType, UserID);
             m.addAttribute("Result", unitCost);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -988,7 +988,7 @@ public class MessageServiceController {
         MessageType msgType = MessageType.SMS;
 
         try {
-            ChargeInfo chrgInfo = messageService.getChargeInfo(CorpNum, msgType);
+            ChargeInfo chrgInfo = messageService.getChargeInfo(CorpNum, msgType, UserID);
             m.addAttribute("ChargeInfo", chrgInfo);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);

@@ -7,7 +7,7 @@
   *
   * <테스트 연동개발 준비사항>
   * 1) 발신번호 사전등록을 합니다. (등록방법은 사이트/API 두가지 방식이 있습니다.)
-  *    - 1. 팝빌 사이트 로그인 > [문자/팩스] > [팩스] > [발신번호 사전등록] 메뉴에서 등록
+  *    - 1. 팝빌 사이트 로그인 > [팩스] > [관리] > [발신번호 관리] 메뉴에서 등록
   *    - 2. getSenderNumberMgtURL API를 통해 반환된 URL을 이용하여 발신번호 등록
   */
 package com.popbill.example.controller;
@@ -60,10 +60,10 @@ public class FaxServiceController {
          */
 
         // 확인할 발신번호
-        String Sender = "070-4304-2991";
+        String SenderNumber = "070-4304-2991";
 
         try {
-            Response response = faxService.checkSenderNumber(CorpNum, Sender);
+            Response response = faxService.checkSenderNumber(CorpNum, SenderNumber, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -100,7 +100,7 @@ public class FaxServiceController {
          */
 
         try {
-            SenderNumber[] senderNumberList = faxService.getSenderNumberList(CorpNum);
+            SenderNumber[] senderNumberList = faxService.getSenderNumberList(CorpNum, UserID);
             m.addAttribute("SenderNumberList", senderNumberList);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -256,7 +256,6 @@ public class FaxServiceController {
         try {
             targetStream = new FileInputStream(file);
         } catch (FileNotFoundException e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
 
@@ -310,6 +309,9 @@ public class FaxServiceController {
         // 발신번호
         // 팝빌에 등록되지 않은 번호를 입력하는 경우 '원발신번호'로 팩스 전송됨
         String sendNum = "07043042991";
+
+        // 발신자명
+        String SenderName = "발신자명";
 
         // 수신자 정보 (최대 1000건)
         Receiver[] receivers = new Receiver[2];
@@ -365,8 +367,8 @@ public class FaxServiceController {
         String requestNum = "20221012-request";
 
         try {
-            String receiptNum = faxService.sendFAXBinary(CorpNum, sendNum, receivers, fileList, reserveDT, UserID,
-                    adsYN, title, requestNum);
+            String receiptNum = faxService.sendFAXBinary(CorpNum, sendNum, SenderName, receivers, fileList, reserveDT,
+                    UserID, adsYN, title, requestNum);
             m.addAttribute("Result", receiptNum);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -605,7 +607,7 @@ public class FaxServiceController {
         String receiptNum = "022021803102600001";
 
         try {
-            Response response = faxService.cancelReserve(CorpNum, receiptNum);
+            Response response = faxService.cancelReserve(CorpNum, receiptNum, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -626,7 +628,7 @@ public class FaxServiceController {
         String requestNum = "";
 
         try {
-            Response response = faxService.cancelReserveRN(CorpNum, requestNum);
+            Response response = faxService.cancelReserveRN(CorpNum, requestNum, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -649,7 +651,7 @@ public class FaxServiceController {
         String receiptNum = "022100616261900001";
 
         try {
-            FaxResult[] faxResults = faxService.getFaxResult(CorpNum, receiptNum);
+            FaxResult[] faxResults = faxService.getFaxResult(CorpNum, receiptNum, UserID);
             m.addAttribute("FaxResults", faxResults);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -672,7 +674,7 @@ public class FaxServiceController {
         String requestNum = "";
 
         try {
-            FaxResult[] faxResults = faxService.getFaxResultRN(CorpNum, requestNum);
+            FaxResult[] faxResults = faxService.getFaxResultRN(CorpNum, requestNum, UserID);
             m.addAttribute("FaxResults", faxResults);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -728,7 +730,7 @@ public class FaxServiceController {
 
         try {
             FAXSearchResult response = faxService.search(CorpNum, SDate, EDate, State, ReserveYN, SenderOnly, Page,
-                    PerPage, Order, QString);
+                    PerPage, Order, QString, UserID);
             m.addAttribute("SearchResult", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -758,7 +760,7 @@ public class FaxServiceController {
     }
 
     @RequestMapping(value = "getPreviewURL", method = RequestMethod.GET)
-    public String getPrevewURL(Model m) {
+    public String getPreviewURL(Model m) {
         /**
          * 팩스 변환결과 확인 팝업 URL을 반환하며, 팩스전송을 위한 TIF 포맷 변환 완료 후 호출 할 수 있습니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
@@ -788,7 +790,7 @@ public class FaxServiceController {
         try {
              // 수신번호 유형, 일반 / 지능 중 택 1
             String receiveNumType = "지능";
-            float unitCost = faxService.getUnitCost(CorpNum, receiveNumType);
+            float unitCost = faxService.getUnitCost(CorpNum, receiveNumType, UserID);
             m.addAttribute("Result", unitCost);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -808,7 +810,7 @@ public class FaxServiceController {
         try {
             // 수신번호 유형, 일반 / 지능 중 택 1
             String receiveNumType = "일반";
-            ChargeInfo chrgInfo = faxService.getChargeInfo(CorpNum, receiveNumType);
+            ChargeInfo chrgInfo = faxService.getChargeInfo(CorpNum, receiveNumType, UserID);
             m.addAttribute("ChargeInfo", chrgInfo);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);

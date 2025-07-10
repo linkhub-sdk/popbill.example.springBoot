@@ -30,6 +30,9 @@ public class AccountCheckServiceController {
     // 팝빌회원 사업자번호
     private String CorpNum = "1234567890";
 
+    // 팝빌회원 아이디
+    private String UserID = "testkorea";
+
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String home(Locale locale, Model model) {
         return "AccountCheck/index";
@@ -50,7 +53,7 @@ public class AccountCheckServiceController {
         String AccountNumber = "";
 
         try {
-            AccountCheckInfo accountInfo = accountCheckService.CheckAccountInfo(CorpNum, BankCode, AccountNumber);
+            AccountCheckInfo accountInfo = accountCheckService.CheckAccountInfo(CorpNum, BankCode, AccountNumber, UserID);
             m.addAttribute("AccountInfo", accountInfo);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -87,7 +90,8 @@ public class AccountCheckServiceController {
         String IdentityNum = "";
 
         try {
-            DepositorCheckInfo depositorCheckInfo = accountCheckService.CheckDepositorInfo(CorpNum, BankCode, AccountNumber, IdentityNumType, IdentityNum);
+            DepositorCheckInfo depositorCheckInfo = accountCheckService.CheckDepositorInfo(CorpNum, BankCode,
+                    AccountNumber, IdentityNumType, IdentityNum, UserID);
             m.addAttribute("DepositorCheckInfo", depositorCheckInfo);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -109,7 +113,7 @@ public class AccountCheckServiceController {
         String ServiceType = "성명";
 
         try {
-            float unitCost = accountCheckService.getUnitCost(CorpNum,ServiceType);
+            float unitCost = accountCheckService.getUnitCost(CorpNum, ServiceType, UserID);
             m.addAttribute("Result", unitCost);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -131,7 +135,7 @@ public class AccountCheckServiceController {
         String ServiceType = "성명";
 
         try {
-            ChargeInfo chrgInfo = accountCheckService.getChargeInfo(CorpNum, ServiceType);
+            ChargeInfo chrgInfo = accountCheckService.getChargeInfo(CorpNum, ServiceType, UserID);
             m.addAttribute("ChargeInfo", chrgInfo);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
