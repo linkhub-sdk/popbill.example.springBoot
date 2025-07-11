@@ -13,7 +13,7 @@
 			<legend th:text="${#request?.requestURI}"></legend>
 			<div class="fieldset4">
 				<form id="corpnum_form" method="GET" th:action="@{checkCorpNum}">
-					<input class="txtCorpNum left" id="CorpNum" name="CorpNum"
+					<input class="txtCorpNum left" id="CheckCorpNum" name="CheckCorpNum"
 						placeholder="사업자번호 기재" tabindex=1
 						/ th:value="${CorpState?.corpNum}" type="text">
 					<p class="find_btn find_btn01 hand" onclick="search()" tabindex=2>조회</p>

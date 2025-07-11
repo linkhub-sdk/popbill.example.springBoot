@@ -308,10 +308,10 @@ public class EasyFinBankServiceController {
         String AccountNumber = "2070064401302";
 
         // 시작일자, 날짜형식(yyyyMMdd)
-        String SDate = "20230102";
+        String SDate = "20250711";
 
         // 종료일자, 닐짜형식(yyyyMMdd)
-        String EDate = "20230131";
+        String EDate = "20250731";
 
         try {
             String jobID = easyFinBankService.requestJob(CorpNum, BankCode, AccountNumber, SDate, EDate, UserID);
@@ -333,7 +333,7 @@ public class EasyFinBankServiceController {
          */
 
         // 수집요청(requestJob)시 반환받은 작업아이디
-        String jobID = "022021814000000010";
+        String jobID = "022025071100000010";
 
         try {
             EasyFinBankJobState jobState = easyFinBankService.getJobState(CorpNum, jobID, UserID);
@@ -413,7 +413,7 @@ public class EasyFinBankServiceController {
          */
 
         // 수집 요청시 발급받은 작업아이디
-        String jobID = "022021814000000010";
+        String jobID = "022025071100000010";
 
         // 거래유형 배열 ("I" 와 "O" 중 선택, 다중 선택 가능)
         // └ I = 입금 , O = 출금 , 미입력 시 전체조회
@@ -446,7 +446,7 @@ public class EasyFinBankServiceController {
 
         // 메모를 저장할 거래내역 아이디
         // └ 거래내역 조회(Seach API) 함수의 반환값인 EasyFinBankSearchDetail 의 tid를 통해 확인 가능
-        String TID = "02110251200000000420211231000001";
+        String TID = "02110251200000000420250711000001";
 
         // 거래내역 메모
         String Memo = "Memo테스트";

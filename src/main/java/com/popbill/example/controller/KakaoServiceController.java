@@ -270,12 +270,12 @@ public class KakaoServiceController {
 
         // 예약전송일시, 형태(yyyyMMddHHmmss)
         // - 분단위 전송, 미입력 시 즉시 전송
-        String sndDT = "20230116180000";
+        String sndDT = "";
 
         // 전송요청번호
         // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
-        String requestNum = "20230116_ats_02";
+        String requestNum = "20250711_ats_02";
 
         // 알림톡 버튼정보를 템플릿 신청시 기재한 버튼정보와 동일하게 전송하는 경우 null 처리.
         KakaoButton[] btns = null;
@@ -1394,7 +1394,7 @@ public class KakaoServiceController {
          */
 
         // 카카오톡 예약전송 접수시 팝빌로부터 반환받은 접수번호
-        String receiptNum = "022021810443200001";
+        String receiptNum = "022025071143200001";
 
         try {
             Response response = kakaoService.cancelReserve(CorpNum, receiptNum, UserID);
@@ -1460,7 +1460,7 @@ public class KakaoServiceController {
          */
 
         // 카카오톡 예약전송 접수시 파트너가 할당한 전송요청 번호
-        String requestNum = "20230116_ats_02";
+        String requestNum = "20250711_ats_02";
 
         // 카카오톡 예약전송 접수시 팝빌로 요청한 수신번호
         String receiveNum = "";
@@ -1536,10 +1536,10 @@ public class KakaoServiceController {
          */
 
         // 시작일자, 날짜형식(yyyyMMdd)
-        String SDate = "20230102";
+        String SDate = "20250711";
 
         // 종료일자, 날짜형식(yyyyMMdd)
-        String EDate = "20230131";
+        String EDate = "20250731";
 
         // 전송상태 배열 ("0" , "1" , "2" , "3" , "4" , "5" 중 선택, 다중 선택 가능)
         // └ 0 = 전송대기 , 1 = 전송중 , 2 = 전송성공 , 3 = 대체문자 전송 , 4 = 전송실패 , 5 = 전송취소

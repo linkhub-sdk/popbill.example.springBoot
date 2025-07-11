@@ -46,10 +46,10 @@ public class BizInfoCheckServiceController {
          */
 
         // 조회할 사업자번호
-        String CorpNum = "6798700433";
+        String CheckCorpNum = "6798700433";
 
         try {
-            BizCheckInfo bizInfo = bizInfoCheckService.CheckBizInfo(CorpNum, CorpNum, UserID);
+            BizCheckInfo bizInfo = bizInfoCheckService.CheckBizInfo(CorpNum, CheckCorpNum, UserID);
             m.addAttribute("BizInfo", bizInfo);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);

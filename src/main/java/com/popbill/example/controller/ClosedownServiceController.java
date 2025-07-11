@@ -39,22 +39,20 @@ public class ClosedownServiceController {
     }
 
     @RequestMapping(value = "checkCorpNum", method = RequestMethod.GET)
-    public String checkCorpNum(@RequestParam(required = false) String CorpNum, Model m) {
+    public String checkCorpNum(@RequestParam(required = false) String CheckCorpNum, Model m) {
         /**
          * 사업자번호 1건에 대한 사업자등록상태 (휴폐업) 를 확인합니다.
          * - https://developers.popbill.com/reference/closedown/java/api/check#CheckCorpNum
          */
 
-        if (CorpNum != null && !CorpNum.equals("")) {
+        if (CheckCorpNum != null && !CheckCorpNum.equals("")) {
             try {
-                CorpState corpState = closedownService.CheckCorpNum(CorpNum, CorpNum, UserID);
+                CorpState corpState = closedownService.CheckCorpNum(CorpNum, CheckCorpNum, UserID);
                 m.addAttribute("CorpState", corpState);
             } catch (PopbillException e) {
                 m.addAttribute("Exception", e);
                 return "exception";
             }
-        } else {
-
         }
 
         return "Closedown/checkCorpNum";

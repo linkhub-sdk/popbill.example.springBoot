@@ -68,10 +68,10 @@ public class HTTaxinvoiceServiceController {
         String DType = "S";
 
         // 시작일자, 날짜형식(yyyyMMdd)
-        String SDate = "20230102";
+        String SDate = "20250711";
 
         // 종료일자, 닐짜형식(yyyyMMdd)
-        String EDate = "20230131";
+        String EDate = "20250731";
 
         try {
             String jobID = htTaxinvoiceService.requestJob(CorpNum, TIType, DType, SDate, EDate, UserID);
@@ -250,7 +250,7 @@ public class HTTaxinvoiceServiceController {
          */
 
         // 전자세금계산서 국세청승인번호
-        String ntsconfirmNum = "202201058888888800000071";
+        String ntsconfirmNum = "202507118888888800000071";
 
         try {
             HTTaxinvoice taxinvoiceInfo = htTaxinvoiceService.getTaxinvoice(CorpNum, ntsconfirmNum, UserID);
@@ -271,7 +271,7 @@ public class HTTaxinvoiceServiceController {
          */
 
         // 전자세금계산서 국세청승인번호
-        String ntsconfirmNum = "202201058888888800000071";
+        String ntsconfirmNum = "202507118888888800000071";
 
         try {
             HTTaxinvoiceXMLResponse xmlResponse = htTaxinvoiceService.getXML(CorpNum, ntsconfirmNum, UserID);
@@ -295,7 +295,7 @@ public class HTTaxinvoiceServiceController {
          */
 
         // 조회할 전자세금계산서 국세청승인번호
-        String NTSConfirmNum = "202201058888888800000071";
+        String NTSConfirmNum = "202507118888888800000071";
 
         try {
             String url = htTaxinvoiceService.getPopUpURL(CorpNum, NTSConfirmNum, UserID);
@@ -319,7 +319,7 @@ public class HTTaxinvoiceServiceController {
          */
 
         // 조회할 전자세금계산서 국세청승인번호
-        String NTSConfirmNum = "202201058888888800000071";
+        String NTSConfirmNum = "202507118888888800000071";
 
         try {
             String url = htTaxinvoiceService.getPrintURL(CorpNum, NTSConfirmNum, UserID);

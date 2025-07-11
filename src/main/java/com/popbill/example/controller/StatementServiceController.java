@@ -62,7 +62,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        String mgtKey = "20230102-BOOT001";
+        String mgtKey = "20250711-BOOT001";
 
         String isUseStr;
 
@@ -93,13 +93,13 @@ public class StatementServiceController {
         statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        statement.setMgtKey("20230102-BOOT001");
+        statement.setMgtKey("20250711-BOOT001");
 
         // 맞춤양식코드, 미기재시 기본양식으로 처리
         statement.setFormCode("");
 
         // 작성일자, 형태 yyyyMMdd
-        statement.setWriteDate("20230102");
+        statement.setWriteDate("20250711");
 
         // {과세, 영세, 면세} 중 기재
         statement.setTaxType("과세");
@@ -223,7 +223,7 @@ public class StatementServiceController {
         StatementDetail detail = new StatementDetail();    // 상세항목(품목) 배열
 
         detail.setSerialNum((short) 1);                    // 일련번호, 1부터 순차기재
-        detail.setPurchaseDT("20230102");                  // 거래일자
+        detail.setPurchaseDT("20250711");                  // 거래일자
         detail.setItemName("품명");                         // 품목명
         detail.setSpec("규격");                             // 규격
         detail.setQty("1");                                // 수량
@@ -236,7 +236,7 @@ public class StatementServiceController {
 
         detail = new StatementDetail();                    // 상세항목(품목) 배열
         detail.setSerialNum((short) 2);                    // 일련번호 1부터 순차기재
-        detail.setPurchaseDT("20230102");                  // 거래일자
+        detail.setPurchaseDT("20250711");                  // 거래일자
         detail.setItemName("품명");                         // 품목명
         detail.setSpec("규격");                             // 규격
         detail.setQty("1");                                // 수량
@@ -279,13 +279,13 @@ public class StatementServiceController {
         statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        statement.setMgtKey("20230102-BOOT001");
+        statement.setMgtKey("20250711-BOOT001");
 
         // 맞춤양식코드, 미기재시 기본양식으로 처리
         statement.setFormCode("");
 
         // 작성일자, 형태 yyyyMMdd
-        statement.setWriteDate("20230113");
+        statement.setWriteDate("20250711");
 
         // {과세, 영세, 면세} 중 기재
         statement.setTaxType("과세");
@@ -409,7 +409,7 @@ public class StatementServiceController {
         StatementDetail detail = new StatementDetail();    // 상세항목(품목) 배열
 
         detail.setSerialNum((short) 1);                    // 일련번호, 1부터 순차기재
-        detail.setPurchaseDT("20230102");                  // 거래일자
+        detail.setPurchaseDT("20250711");                  // 거래일자
         detail.setItemName("품명");                         // 품목명
         detail.setSpec("규격");                             // 규격
         detail.setQty("1");                                // 수량
@@ -422,7 +422,7 @@ public class StatementServiceController {
 
         detail = new StatementDetail();                    // 상세항목(품목) 배열
         detail.setSerialNum((short) 2);                    // 일련번호 1부터 순차기재
-        detail.setPurchaseDT("20230102");                  // 거래일자
+        detail.setPurchaseDT("20250711");                  // 거래일자
         detail.setItemName("품명");                         // 품목명
         detail.setSpec("규격");                             // 규격
         detail.setQty("1");                                // 수량
@@ -455,7 +455,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        String mgtKey = "20230102-BOOT002";
+        String mgtKey = "20250711-BOOT002";
 
         // 전자명세서 정보 객체
         Statement statement = new Statement();
@@ -470,7 +470,7 @@ public class StatementServiceController {
         statement.setFormCode("");
 
         // 작성일자, 형태 yyyyMmdd
-        statement.setWriteDate("20230102");
+        statement.setWriteDate("20250711");
 
         // {과세, 영세, 면세} 중 기재
         statement.setTaxType("과세");
@@ -594,7 +594,7 @@ public class StatementServiceController {
         StatementDetail detail = new StatementDetail();    // 상세항목(품목) 배열
 
         detail.setSerialNum((short) 1);                    // 일련번호, 1부터 순차기재
-        detail.setPurchaseDT("20230102");                  // 거래일자
+        detail.setPurchaseDT("20250711");                  // 거래일자
         detail.setItemName("품명");                         // 품목명
         detail.setSpec("규격");                             // 규격
         detail.setQty("1");                                // 수량
@@ -607,7 +607,7 @@ public class StatementServiceController {
 
         detail = new StatementDetail();                    // 상세항목(품목) 배열
         detail.setSerialNum((short) 2);                    // 일련번호 1부터 순차기재
-        detail.setPurchaseDT("20230102");                  // 거래일자
+        detail.setPurchaseDT("20250711");                  // 거래일자
         detail.setItemName("품명");                         // 품목명
         detail.setSpec("규격");                             // 규격
         detail.setQty("1");                                // 수량
@@ -643,7 +643,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20230102-BOOT002";
+        String mgtKey = "20250711-BOOT002";
 
         // 메모
         String memo = "발행메모";
@@ -675,7 +675,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20230102-BOOT002";
+        String mgtKey = "20250711-BOOT002";
 
         // 메모
         String memo = "발행취소 메모";
@@ -704,7 +704,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20230102-BOOT002";
+        String mgtKey = "20250711-BOOT002";
 
         try {
             Response response = statementService.delete(CorpNum, itemCode, mgtKey, UserID);
@@ -729,7 +729,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20230102-BOOT001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             StatementInfo statementInfo = statementService.getInfo(CorpNum, itemCode, mgtKey, UserID);
@@ -754,7 +754,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호 배열(최대 1000건)
-        String[] MgtKeyList = new String[]{"20230102-BOOT001", "20230102-BOOT002"};
+        String[] MgtKeyList = new String[]{"20250711-BOOT001", "20250711-BOOT002"};
 
         try {
             StatementInfo[] statementInfos = statementService.getInfos(CorpNum, itemCode, MgtKeyList, UserID);
@@ -778,7 +778,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20230102-BOOT001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             Statement statement = statementService.getDetailInfo(CorpNum, itemCode, mgtKey, UserID);
@@ -804,10 +804,10 @@ public class StatementServiceController {
         String DType = "W";
 
         // 시작일자, 날짜형식(yyyyMMdd)
-        String SDate = "20230102";
+        String SDate = "20250711";
 
         // 종료일자, 날짜형식(yyyyMMdd)
-        String EDate = "20230131";
+        String EDate = "20250731";
 
         // 전자명세서 상태코드 배열 (2,3번째 자리에 와일드카드(*) 사용 가능)
         // - 미입력시 전체조회
@@ -854,7 +854,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20230102-BOOT001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             StatementLog[] statementLogs = statementService.getLogs(CorpNum, itemCode, mgtKey, UserID);
@@ -901,7 +901,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20230102-BOOT001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             String url = statementService.getPopUpURL(CorpNum, itemCode, mgtKey, UserID);
@@ -926,7 +926,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20230102-BOOT001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             String url = statementService.getViewURL(CorpNum, itemCode, mgtKey, UserID);
@@ -953,7 +953,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20230102-BOOT001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             String url = statementService.getPrintURL(CorpNum, itemCode, mgtKey, UserID);
@@ -979,7 +979,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20230102-BOOT001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             String url = statementService.getEPrintURL(CorpNum, itemCode, mgtKey, UserID);
@@ -1004,7 +1004,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 문서번호 배열, 최대 100건
-        String[] mgtKeyList = new String[]{"20230102-BOOT001", "20230102-BOOT002"};
+        String[] mgtKeyList = new String[]{"20250711-BOOT001", "20250711-BOOT002"};
 
         try {
             String url = statementService.getMassPrintURL(CorpNum, itemCode, mgtKeyList, UserID);
@@ -1029,7 +1029,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20230102-BOOT001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             String url = statementService.getMailURL(CorpNum, itemCode, mgtKey, UserID);
@@ -1072,7 +1072,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20230102-BOOT002";
+        String mgtKey = "20250711-BOOT002";
 
         // 첨부파일 표시명
         String displayName = "첨부파일.jpg";
@@ -1111,7 +1111,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20230102-BOOT002";
+        String mgtKey = "20250711-BOOT002";
 
         // getFiles()로 해당 파일의 attachedFile 필드값 기재.
         String FileID = "";
@@ -1139,7 +1139,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20230102-BOOT002";
+        String mgtKey = "20250711-BOOT002";
 
         try {
             AttachedFile[] attachedFiles = statementService.getFiles(CorpNum, itemCode, mgtKey, UserID);
@@ -1163,7 +1163,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20230102-BOOT001";
+        String mgtKey = "20250711-BOOT001";
 
         // 수신자 이메일주소
         String receiver = "test@test.com";
@@ -1192,7 +1192,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20230102-BOOT001";
+        String mgtKey = "20250711-BOOT001";
 
         // 발신번호
         String sender = "07043042991";
@@ -1226,7 +1226,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20230102-BOOT001";
+        String mgtKey = "20250711-BOOT001";
 
         // 발신자 번호
         String sender = "07043042991";
@@ -1263,13 +1263,13 @@ public class StatementServiceController {
         statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        statement.setMgtKey("20230102-BOOT003");
+        statement.setMgtKey("20250711-BOOT003");
 
         // 맞춤양식코드, 미기재시 기본양식으로 처리
         statement.setFormCode("");
 
         // 작성일자, 형태 yyyyMmdd
-        statement.setWriteDate("20220218");
+        statement.setWriteDate("20250711");
 
         // {과세, 영세, 면세} 중 기재
         statement.setTaxType("과세");
@@ -1393,7 +1393,7 @@ public class StatementServiceController {
         StatementDetail detail = new StatementDetail();    // 상세항목(품목) 배열
 
         detail.setSerialNum((short) 1);                    // 일련번호, 1부터 순차기재
-        detail.setPurchaseDT("20230102");                  // 거래일자
+        detail.setPurchaseDT("20250711");                  // 거래일자
         detail.setItemName("품명");                        // 품목명
         detail.setQty("1");                                // 수량
         detail.setSupplyCost("200000");                    // 공급가액
@@ -1403,7 +1403,7 @@ public class StatementServiceController {
 
         detail = new StatementDetail();                    // 상세항목(품목) 배열
         detail.setSerialNum((short) 2);                    // 일련번호 1부터 순차기재
-        detail.setPurchaseDT("20230102");                  // 거래일자
+        detail.setPurchaseDT("20250711");                  // 거래일자
         detail.setItemName("품명");                        // 품목명
         detail.setQty("1");                                // 수량
         detail.setSupplyCost("200000");                    // 공급가액
@@ -1439,13 +1439,13 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20230102-BOOT001";
+        String mgtKey = "20250711-BOOT001";
 
         // 첨부할 전자명세서 유형 코드
         int subItemCode = 121;
 
         // 첨부할 전자명세서 문서번호
-        String subMgtKey = "20230102-BOOT002";
+        String subMgtKey = "20250711-BOOT002";
 
         try {
             Response response = statementService.attachStatement(CorpNum, itemCode, mgtKey, subItemCode, subMgtKey,
@@ -1470,13 +1470,13 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 전자명세서 문서번호
-        String mgtKey = "20230102-BOOT001";
+        String mgtKey = "20250711-BOOT001";
 
         // 첨부해제할 전자명세서 유형 코드
         int subItemCode = 121;
 
         // 첨부해제할 전자명세서 문서번호
-        String subMgtKey = "20220218-BOOT002";
+        String subMgtKey = "20250711-BOOT002";
 
         try {
             Response response = statementService.detachStatement(CorpNum, itemCode, mgtKey, subItemCode, subMgtKey,
