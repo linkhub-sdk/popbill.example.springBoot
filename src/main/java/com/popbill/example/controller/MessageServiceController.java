@@ -311,8 +311,8 @@ public class MessageServiceController {
         msg1.setSenderName("발신자1");         // 발신자명
         msg1.setReceiver("010111222");       // 수신번호
         msg1.setReceiverName("수신자1");       // 수신자명
-        msg1.setContent("메시지 내용1");        // 메시지내용
-        msg1.setSubject("장문 메시지 제목");      // 문자제목
+        msg1.setContent("메시지 내용1");        // 메시지 내용
+        msg1.setSubject("장문 메시지 제목");      // 메시지 제목
         msg1.setInterOPRefKey("20250711-LMS001");    // 파트너 지정키
         messages[0] = msg1;
 
@@ -437,7 +437,7 @@ public class MessageServiceController {
         msg1.setReceiver("010111222");       // 수신번호
         msg1.setReceiverName("수신자1");     // 수신자명
         msg1.setContent("메시지 내용1");     // 메시지내용
-        msg1.setSubject("멀티 메시지 제목"); // 문자제목
+        msg1.setSubject("멀티 메시지 제목"); // 메시지 제목
         msg1.setInterOPRefKey("20250711-MMS001");    // 파트너 지정키
         messages[0] = msg1;
 
@@ -570,7 +570,7 @@ public class MessageServiceController {
         msg1.setReceiver("010111222");       // 수신번호
         msg1.setReceiverName("수신자1");     // 수신자명
         msg1.setContent("메시지 내용1");     // 메시지내용
-        msg1.setSubject("멀티 메시지 제목"); // 문자제목
+        msg1.setSubject("멀티 메시지 제목"); // 메시지 제목
         msg1.setInterOPRefKey("20250711-MMS001");    // 파트너 지정키
         messages[0] = msg1;
 
@@ -685,7 +685,7 @@ public class MessageServiceController {
         // [동보전송시 필수] 메시지 제목, 개별 전송정보에 메시지 제목이 없는 경우 적용
         String subject = "장문문자 제목";
 
-        // [동보전송시 필수] 문자메시지 내용, 개별 전송정보에 메시지 내용이 없는 경우 적용
+        // [동보전송시 필수] 메시지 내용, 개별 전송정보에 메시지 내용이 없는 경우 적용
         String content = "문자메시지 내용";
 
         // 문자 정보, 최대 1000건.
@@ -913,7 +913,7 @@ public class MessageServiceController {
         // 페이지당 표시할 목록 건수 (최대 1000건)
         int PerPage = 20;
 
-        // 문자 접수일시를 기준으로 하는 목록 정렬 방향 ("D" , "A" 중 택 1)
+        // 문자 접수일시를 기준으로 하는 목록 정렬 방향, ("D" , "A" 중 택 1)
         // └ D = 내림차순(기본값) , A = 오름차순
         String Order = "D";
 

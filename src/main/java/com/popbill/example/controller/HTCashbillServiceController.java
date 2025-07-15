@@ -141,7 +141,7 @@ public class HTCashbillServiceController {
         // 목록 페이지번호 (기본값 = 1)
         int Page = 1;
 
-        // 페이지당 목록 건수 (기본값 = 500 , 최대 = 1000)
+        // 페이지당 표시할 목록 건수 (기본값 = 500 , 최대 = 1000)
         int PerPage = 10;
 
         // 목록 정렬 방향, "D" / "A" 중 택 1
@@ -381,6 +381,6 @@ public class HTCashbillServiceController {
             return "exception";
         }
 
-        return "HTTaxinvoice/GetFlatRateState";
+        return "HTCashbill/GetFlatRateState";
     }
 }

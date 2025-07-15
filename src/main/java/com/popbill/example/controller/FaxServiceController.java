@@ -142,26 +142,21 @@ public class FaxServiceController {
 
         // 전송 예약일시, null인 경우 즉시전송
         Date reserveDT = null;
-        // SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-        // try {
-        //    reserveDT = format.parse("20250711140000");
-        // } catch (ParseException e) {
-        //    e.printStackTrace();
-        // }
 
-        // 광고팩스 전송여부
+        // 광고팩스 전송여부 , true / false 중 택 1
+        // └ true = 광고 , false = 일반
+        // └ 미입력 시 기본값 false 처리
         Boolean adsYN = false;
 
         // 팩스제목
         String title = "팩스 제목";
 
         // 요청번호
-        // 파트너가 전송 건에 대해 관리번호를 생성하여 관리하는 경우 사용.
+        // 파트너가 접수 단위를 식별하기 위해 할당하는 관리번호
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
 
         try {
-
             String receiptNum = faxService.sendFAX(CorpNum, sendNum, receiveNum, receiveName, files, reserveDT, UserID,
                     adsYN, title, requestNum);
             m.addAttribute("Result", receiptNum);
@@ -191,15 +186,15 @@ public class FaxServiceController {
         Receiver[] receivers = new Receiver[2];
 
         Receiver receiver1 = new Receiver();
-        receiver1.setReceiveName("수신자1");        // 수신자명
-        receiver1.setReceiveNum("010111222");     // 수신팩스번호
-        receiver1.setInterOPRefKey("20250711-FAX001");  // 파트너 지정키
+        receiver1.setReceiveNum("010111222"); // 팩스 단말기 번호 또는 인터넷 팩스 번호
+        receiver1.setReceiveName("수신자1"); // 수신자명
+        receiver1.setInterOPRefKey("20250711-FAX001"); // 파트너 지정키
         receivers[0] = receiver1;
 
         Receiver receiver2 = new Receiver();
-        receiver2.setReceiveName("수신자2");        // 수신자명
-        receiver2.setReceiveNum("010333444");     // 수신팩스번호
-        receiver2.setInterOPRefKey("20250711-FAX002");  // 파트너 지정키
+        receiver2.setReceiveNum("010333444"); // 팩스 단말기 번호 또는 인터넷 팩스 번호
+        receiver2.setReceiveName("수신자2"); // 수신자명
+        receiver2.setInterOPRefKey("20250711-FAX002"); // 파트너 지정키
         receivers[1] = receiver2;
 
         // 파일 목록
@@ -224,7 +219,7 @@ public class FaxServiceController {
         String title = "팩스 동보전송 제목";
 
         // 요청번호
-        // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당하는 식별번호.
+        // 파트너가 접수 단위를 식별하기 위해 할당하는 관리번호
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
 
@@ -256,7 +251,7 @@ public class FaxServiceController {
         String receiveNum = "010111222";
 
         // 수신자명
-        String receiveName = "수신자 명칭";
+        String receiveName = "수신자명";
 
         // 전송할 File InputStream 생성을 위한 샘플코드.
         File file = new File(getClass().getClassLoader().getResource("static/image/nonbg_statement.pdf").toURI());
@@ -271,10 +266,10 @@ public class FaxServiceController {
         FaxUploadFile[] fileList = new FaxUploadFile[1];
         FaxUploadFile uf = new FaxUploadFile();
 
-        // 파일명
+        // 팩스로 전송할 파일명
         uf.fileName = "test.pdf";
 
-        // 파일의 바이너리 데이터
+        // 팩스로 전송할 파일의 바이너리 데이터
         uf.fileData = targetStream;
 
         fileList[0] = uf;
@@ -291,7 +286,7 @@ public class FaxServiceController {
         String title = "팩스 제목";
 
         // 요청번호
-        // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당하는 식별번호.
+        // 파트너가 접수 단위를 식별하기 위해 할당하는 관리번호
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
 
@@ -325,15 +320,15 @@ public class FaxServiceController {
         Receiver[] receivers = new Receiver[2];
 
         Receiver receiver1 = new Receiver();
-        receiver1.setReceiveName("수신자1");        // 수신자명
-        receiver1.setReceiveNum("010111222");     // 수신팩스번호
-        receiver1.setInterOPRefKey("20250711-FAXBinary01");  // 파트너 지정키
+        receiver1.setReceiveNum("010111222"); // 팩스 단말기 번호 또는 인터넷 팩스 번호
+        receiver1.setReceiveName("수신자1"); // 수신자명
+        receiver1.setInterOPRefKey("20250711-FAXBinary01"); // 파트너 지정키
         receivers[0] = receiver1;
 
         Receiver receiver2 = new Receiver();
-        receiver2.setReceiveName("수신자2");        // 수신자명
-        receiver2.setReceiveNum("010333444");     // 수신팩스번호
-        receiver2.setInterOPRefKey("20250711-FAXBinary02");  // 파트너 지정키
+        receiver2.setReceiveNum("010333444"); // 팩스 단말기 번호 또는 인터넷 팩스 번호
+        receiver2.setReceiveName("수신자2");  // 수신자명
+        receiver2.setInterOPRefKey("20250711-FAXBinary02"); // 파트너 지정키
         receivers[1] = receiver2;
 
         // 전송할 File InputStream 생성을 위한 샘플코드.
@@ -349,10 +344,10 @@ public class FaxServiceController {
         FaxUploadFile[] fileList = new FaxUploadFile[1];
         FaxUploadFile uf = new FaxUploadFile();
 
-        // 파일명
+        // 팩스로 전송할 파일명
         uf.fileName = "test.pdf";
 
-        // 파일의 바이너리 데이터
+        // 팩스로 전송할 파일의 바이너리 데이터
         uf.fileData = targetStream;
 
         fileList[0] = uf;
@@ -369,7 +364,7 @@ public class FaxServiceController {
         String title = "팩스 동보전송 제목";
 
         // 요청번호
-        // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당하는 식별번호.
+        // 파트너가 접수 단위를 식별하기 위해 할당하는 관리번호
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "20250711-request";
 
@@ -396,7 +391,7 @@ public class FaxServiceController {
          */
 
         // 원본 팩스 접수번호
-        String orgReceiptNum = "022025071102600001";
+        String orgReceiptNum = "025071110411800001";
 
         // 발신번호, 공백처리시 기존전송정보로 재전송
         String sendNum = "07043042991";
@@ -417,7 +412,7 @@ public class FaxServiceController {
         String title = "팩스 재전송 제목";
 
         // 요청번호
-        // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당하는 식별번호.
+        // 파트너가 접수 단위를 식별하기 위해 할당하는 관리번호
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
 
@@ -442,7 +437,7 @@ public class FaxServiceController {
          */
 
         // 원본 팩스 접수번호
-        String orgReceiptNum = "022100616261900001";
+        String orgReceiptNum = "025071110411800001";
 
         // 발신번호, 공백처리시 기존전송정보로 재전송
         String sendNum = "07043042991";
@@ -450,22 +445,22 @@ public class FaxServiceController {
         // 발신자명, 공백처리시 기존전송정보로 재전송
         String senderName = "발신자명";
 
-        // 팩스수신정보를 기존전송정보와 동일하게 재전송하는 경우, receivers 변수 null 처리
+        // 수신자 정보, 팩스수신정보를 기존전송정보와 동일하게 재전송하는 경우, receivers 변수 null 처리
         Receiver[] receivers = null;
 
-        // 팩스수신정보를 기존전송정보와 다르게 재전송하는 경우, 아래의 코드 적용 (최대 1000건)
+        // 수신자 정보, 팩스수신정보를 기존전송정보와 다르게 재전송하는 경우, 아래의 코드 적용 (최대 1000건)
         // Receiver[] receivers = new Receiver[2];
 
         // Receiver receiver1 = new Receiver();
-        // receiver1.setReceiveName("수신자1");      // 수신자명
-        // receiver1.setReceiveNum("010111222");     // 수신팩스번호
-        // receiver1.setInterOPRefKey("20250711-reFAX01");  // 파트너 지정키
+        // receiver1.setReceiveNum("010111222"); // 팩스 단말기 번호 또는 인터넷 팩스 번호
+        // receiver1.setReceiveName("수신자1"); // 수신자명
+        // receiver1.setInterOPRefKey("20221006-reFAX01"); // 파트너 지정키
         // receivers[0] = receiver1;
 
         // Receiver receiver2 = new Receiver();
-        // receiver2.setReceiveName("수신자2");      // 수신자명
-        // receiver2.setReceiveNum("010333444");     // 수신팩스번호
-        // receiver2.setInterOPRefKey("20250711-reFAX02");  // 파트너 지정키
+        // receiver2.setReceiveNum("010333444"); // 팩스 단말기 번호 또는 인터넷 팩스 번호
+        // receiver2.setReceiveName("수신자2"); // 수신자명
+        // receiver2.setInterOPRefKey("20221006-reFAX02"); // 파트너 지정키
         // receivers[1] = receiver2;
 
         // 전송 예약일시, null인 경우 즉시전송
@@ -475,7 +470,7 @@ public class FaxServiceController {
         String title = "팩스 재전송(동보) 제목";
 
         // 요청번호
-        // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당하는 식별번호.
+        // 파트너가 접수 단위를 식별하기 위해 할당하는 관리번호
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
 
@@ -500,7 +495,7 @@ public class FaxServiceController {
          */
 
         // 요청번호
-        // 파트너가 전송 건에 대해 관리번호를 생성하여 관리하는 경우 사용.
+        // 파트너가 접수 단위를 식별하기 위해 할당하는 관리번호
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
 
@@ -540,15 +535,14 @@ public class FaxServiceController {
     @RequestMapping(value = "resendFAXRN_Multi", method = RequestMethod.GET)
     public String resendFAXRN_Multi(Model m) {
         /**
-         * 파트너가 할당한 전송요청 번호를 통해 다수건의 팩스를 재전송합니다. (최대 전송파일 개수: 20개) (최대 1,000건)
-         * - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
-         * - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
-         * - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
+         * 파트너가 할당한 요청번호를 통해 다수건의 팩스를 재전송합니다. (최대 1,000건)
+         * 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
+         * 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
          * - https://developers.popbill.com/reference/fax/java/api/send#ResendFAXRNMulti
          */
 
-        // 재전송 팩스의 전송요청번호
-        // 파트너가 전송 건에 대해 관리번호를 생성하여 관리하는 경우 사용.
+        // 요청번호
+        // 파트너가 접수 단위를 식별하기 위해 할당하는 관리번호
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
 
@@ -565,15 +559,15 @@ public class FaxServiceController {
         // Receiver[] receivers = new Receiver[2];
 
         // Receiver receiver1 = new Receiver();
-        // receiver1.setReceiveName("수신자1");      // 수신자명
-        // receiver1.setReceiveNum("010111222");    // 수신팩스번호
-        // receiver1.setInterOPRefKey("20250711-reFAXRN01");  // 파트너 지정키
+        // receiver1.setReceiveNum("010111222"); // 팩스 단말기 번호 또는 인터넷 팩스 번호
+        // receiver1.setReceiveName("수신자1"); // 수신자명
+        // receiver1.setInterOPRefKey("20221006-reFAX01"); // 파트너 지정키
         // receivers[0] = receiver1;
 
         // Receiver receiver2 = new Receiver();
-        // receiver2.setReceiveName("수신자2");      // 수신자명
-        // receiver2.setReceiveNum("010333444");    // 수신팩스번호
-        // receiver2.setInterOPRefKey("20250711-reFAXRN02");  // 파트너 지정키
+        // receiver2.setReceiveNum("010333444"); // 팩스 단말기 번호 또는 인터넷 팩스 번호
+        // receiver2.setReceiveName("수신자2"); // 수신자명
+        // receiver2.setInterOPRefKey("20221006-reFAX02"); // 파트너 지정키
         // receivers[1] = receiver2;
 
         // 전송 예약일시, null인 경우 즉시전송
@@ -793,9 +787,10 @@ public class FaxServiceController {
          * - https://developers.popbill.com/reference/fax/java/common-api/point#GetUnitCost
          */
 
+        // 수신번호 유형, 일반 / 지능 중 택 1
+        String receiveNumType = "지능";
+
         try {
-             // 수신번호 유형, 일반 / 지능 중 택 1
-            String receiveNumType = "지능";
             float unitCost = faxService.getUnitCost(CorpNum, receiveNumType, UserID);
             m.addAttribute("Result", unitCost);
         } catch (PopbillException e) {
@@ -813,9 +808,10 @@ public class FaxServiceController {
          * - https://developers.popbill.com/reference/fax/java/common-api/point#GetChargeInfo
          */
 
+        // 수신번호 유형, 일반 / 지능 중 택 1
+        String receiveNumType = "일반";
+
         try {
-            // 수신번호 유형, 일반 / 지능 중 택 1
-            String receiveNumType = "일반";
             ChargeInfo chrgInfo = faxService.getChargeInfo(CorpNum, receiveNumType, UserID);
             m.addAttribute("ChargeInfo", chrgInfo);
         } catch (PopbillException e) {

@@ -59,12 +59,10 @@ public class HTTaxinvoiceServiceController {
          * - https://developers.popbill.com/reference/httaxinvoice/java/api/job#RequestJob
          */
 
-        // 전자세금계산서 유형 (SELL , BUY , TRUSTEE 중 택 1)
-        // - SELL = 매출 , BUY = 매입 , TRUSTEE = 수탁
-        QueryType queryType = QueryType.BUY;
+        // 전자세금계산서 유형, SELL-매출, BUY-매입, TRUSTEE-수탁
+        QueryType queryType = QueryType.SELL;
 
-        // 조회할 일자 유형 ("W" , "I" , "S" 중 택 1)
-        // - W = 작성일자 , I = 발행일자 , S = 전송일자
+        // 조회할 일자 유형, W-작성일자, I-발행일자, S-전송일자
         String DType = "S";
 
         // 검색 시작일자, 날짜형식(yyyyMMdd)
@@ -136,29 +134,31 @@ public class HTTaxinvoiceServiceController {
         String jobID = "";
 
         // 세금계산서 문서형태 ("N" 와 "M" 중 선택, 다중 선택 가능)
-        // └ N = 일반 , M = 수정 , 미입력 시 전체조회
-        String[] Type = { "N", "M" };
+        // └ N = 일반 , M = 수정
+        // - 미입력 시 전체조회
+        String[] Type = {"N", "M"};
 
         // 과세형태 ("T" , "N" , "Z" 중 선택, 다중 선택 가능)
-        // └ T = 과세, N = 면세, Z = 영세 , 미입력 시 전체조회
-        String[] TaxType = { "T", "Z", "N" };
+        // └ T = 과세, N = 면세, Z = 영세
+        // - 미입력 시 전체조회
+        String[] TaxType = {"T", "Z", "N"};
 
         // 영수/청구 ("R" , "C", "N" 중 선택, 다중 선택 가능)
-        // └ R = 영수, C = 청구, N = 없음, 미입력 시 전체조회
-        String[] PurposeType = { "R", "C", "N" };
+        // └ R = 영수, C = 청구, N = 없음
+        // - 미입력 시 전체조회
+        String[] PurposeType = {"R", "C", "N"};
 
-        // 종사업장번호 유무
-        // - null = 전체 , 0 = 없음, 1 = 있음
+        // 종사업장번호 유무 (null , "0" , "1" 중 택 1)
+        // - null = 전체조회 , 0 = 없음, 1 = 있음
         String TaxRegIDYN = null;
 
         // 종사업장번호의 주체 ("S" , "B" , "T" 중 택 1)
-        // └ S = 공급자 , B = 공급받는자 , T = 수탁자
-        // - 미입력시 전체조회
+        // - S = 공급자 , B = 공급받는자 , T = 수탁자
         String TaxRegIDType = "S";
 
         // 종사업장번호
-        // 다수기재시 콤마(",")로 구분하여 구성 ex ) "0001,0002"
-        // - 미입력시 전체조회
+        // - 다수기재 시 콤마(",")로 구분. ex) "0001,0002"
+        // - 미입력 시 전체조회
         String TaxRegID = "";
 
         // 목록 페이지번호 (기본값 = 1)
@@ -201,29 +201,31 @@ public class HTTaxinvoiceServiceController {
         String jobID = "";
 
         // 세금계산서 문서형태 ("N" 와 "M" 중 선택, 다중 선택 가능)
-        // └ N = 일반 , M = 수정 , 미입력 시 전체조회
-        String[] Type = { "N", "M" };
+        // └ N = 일반 , M = 수정
+        // - 미입력 시 전체조회
+        String[] Type = {"N", "M"};
 
         // 과세형태 ("T" , "N" , "Z" 중 선택, 다중 선택 가능)
-        // └ T = 과세, N = 면세, Z = 영세 , 미입력 시 전체조회
-        String[] TaxType = { "T", "Z", "N" };
+        // └ T = 과세, N = 면세, Z = 영세
+        // - 미입력 시 전체조회
+        String[] TaxType = {"T", "Z", "N"};
 
         // 영수/청구 ("R" , "C", "N" 중 선택, 다중 선택 가능)
-        // └ R = 영수, C = 청구, N = 없음, 미입력 시 전체조회
-        String[] PurposeType = { "R", "C", "N" };
+        // └ R = 영수, C = 청구, N = 없음
+        // - 미입력 시 전체조회
+        String[] PurposeType = {"R", "C", "N"};
 
-        // 종사업장번호 유무
-        // - null = 전체 , 0 = 없음, 1 = 있음
+        // 종사업장번호 유무 (null , "0" , "1" 중 택 1)
+        // - null = 전체조회 , 0 = 없음, 1 = 있음
         String TaxRegIDYN = null;
 
         // 종사업장번호의 주체 ("S" , "B" , "T" 중 택 1)
-        // └ S = 공급자 , B = 공급받는자 , T = 수탁자
-        // - 미입력시 전체조회
+        // - S = 공급자 , B = 공급받는자 , T = 수탁자
         String TaxRegIDType = "S";
 
         // 종사업장번호
-        // 다수기재시 콤마(",")로 구분하여 구성 ex ) "0001,0002"
-        // - 미입력시 전체조회
+        // - 다수기재 시 콤마(",")로 구분. ex) "0001,0002"
+        // - 미입력 시 전체조회
         String TaxRegID = "";
 
         // 조회 검색어, 거래처 상호 / 사업자번호 (사업자) / 주민등록번호 (개인) / "9999999999999" (외국인) 중 검색하고자 하는 정보 입력

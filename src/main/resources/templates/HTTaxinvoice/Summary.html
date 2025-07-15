@@ -13,12 +13,9 @@
 			<legend th:text="${#request?.requestURI}"></legend>
 			<ul>
 				<li>count (수집 건수) : <span th:text="${SummaryResult.count}"></span></li>
-				<li>supplyCostTotal (공급가액 합계) : <span
-					th:text="${SummaryResult.supplyCostTotal}"></span></li>
-				<li>taxTotal (세액 합계) : <span
-					th:text="${SummaryResult.taxTotal}"></span></li>
-				<li>amountTotal (총계) : <span
-					th:text="${SummaryResult.amountTotal}"></span></li>
+				<li>supplyCostTotal (공급가액 합계) : <span th:text="${SummaryResult.supplyCostTotal}"></span></li>
+				<li>taxTotal (세액 합계) : <span th:text="${SummaryResult.taxTotal}"></span></li>
+				<li>amountTotal (총계 (공급가액 합계+세액 합계)) : <span th:text="${SummaryResult.amountTotal}"></span></li>
 			</ul>
 		</fieldset>
 	</div>

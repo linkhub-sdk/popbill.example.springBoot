@@ -19,8 +19,8 @@
 					<li>taxType (과세형태) : <span th:text="${Taxinvoice.taxType}"></span></li>
 					<li>chargeDirection (과금방향) : <span th:text="${Taxinvoice.chargeDirection}"></span></li>
 					<li>serialNum (일련번호) : <span th:text="${Taxinvoice.serialNum}"></span></li>
-					<li>kwon (권) : <span th:text="${Taxinvoice.kwon}"></span></li>
-					<li>ho (호) : <span th:text="${Taxinvoice.ho}"></span></li>
+					<li>kwon (책번호 "권" 항목) : <span th:text="${Taxinvoice.kwon}"></span></li>
+					<li>ho (책번호 "호" 항목) : <span th:text="${Taxinvoice.ho}"></span></li>
 					<li>writeDate (작성일자) : <span th:text="${Taxinvoice.writeDate}"></span></li>
 					<li>purposeType (영수/청구) : <span th:text="${Taxinvoice.purposeType}"></span></li>
 					<li>supplyCostTotal (공급가액 합계) : <span th:text="${Taxinvoice.supplyCostTotal}"></span></li>
@@ -84,8 +84,8 @@
 
 					<li>modifyCode (수정 사유코드) : <span th:text="${Taxinvoice.modifyCode}"></span></li>
 					<li>orgNTSConfirmNum (당초 국세청승인번호) : <span th:text="${Taxinvoice.orgNTSConfirmNum}"></span></li>
-					<li>businessLicenseYN (사업자등록증 첨부 여부) : <span th:text="${Taxinvoice.businessLicenseYN}"></span></li>
-					<li>bankBookYN (통장사본 첨부 여부) : <span th:text="${Taxinvoice.bankBookYN}"></span></li>
+					<li>businessLicenseYN (팝빌에 등록된 사업자등록증 첨부 여부) : <span th:text="${Taxinvoice.businessLicenseYN}"></span></li>
+					<li>bankBookYN (팝빌에 등록된 통장사본 첨부 여부) : <span th:text="${Taxinvoice.bankBookYN}"></span></li>
 				</ul>
 				<fieldset class="fieldset3"
 					th:each="TaxinvoiceDetail : ${Taxinvoice.detailList}">

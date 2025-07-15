@@ -82,7 +82,7 @@ public class StatementServiceController {
     public String registIssue(Model m) {
         /**
          * 작성된 전자명세서 데이터를 팝빌에 저장과 동시에 발행하여, "발행완료" 상태로 처리합니다.
-         * - 팝빌 사이트 [전자명세서] > [관리] > [환경설정] 메뉴의 발행시 자동승인 옵션 설정을 통해 전자명세서를 "발행완료" 상태가 아닌 "승인대기" 상태로 발행 처리 할 수 있습니다.
+         * 팝빌 사이트 [ 전자명세서 > 관리 > 환경설정 ] 메뉴의 "발행시 자동승인" 옵션 설정을 통해 전자명세서를 "발행완료" 상태가 아닌 "승인대기" 상태로 발행 처리 할 수 있습니다.
          * - https://developers.popbill.com/reference/statement/java/api/issue#RegistIssue
          */
 
@@ -93,7 +93,7 @@ public class StatementServiceController {
         statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        statement.setMgtKey("20250711-BOOT001");
+        statement.setMgtKey("20250711-MVC001");
 
         // 맞춤양식 코드, 미기재시 기본양식으로 처리
         statement.setFormCode("");
@@ -164,6 +164,9 @@ public class StatementServiceController {
         // 발신자 메일주소
         statement.setSenderEmail("test@test.com");
 
+        // 발신자 팩스번호
+        statement.setSenderFAX("");
+
         /*********************************************************************
          *                            수신자 정보
          *********************************************************************/
@@ -205,6 +208,9 @@ public class StatementServiceController {
         // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         // 실제 거래처의 메일주소가 기재되지 않도록 주의
         statement.setReceiverEmail("");
+
+        // 수신자 팩스번호
+        statement.setReceiverFAX("");
 
         // 팝빌에 등록된 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
@@ -295,7 +301,7 @@ public class StatementServiceController {
         statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        statement.setMgtKey("20250711-BOOT001");
+        statement.setMgtKey("20250711-MVC001");
 
         // 맞춤양식 코드, 미기재시 기본양식으로 처리
         statement.setFormCode("");
@@ -366,6 +372,9 @@ public class StatementServiceController {
         // 발신자 메일주소
         statement.setSenderEmail("test@test.com");
 
+        // 발신자 팩스번호
+        statement.setSenderFAX("");
+
         /*********************************************************************
          *                            수신자 정보
          *********************************************************************/
@@ -407,6 +416,9 @@ public class StatementServiceController {
         // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         // 실제 거래처의 메일주소가 기재되지 않도록 주의
         statement.setReceiverEmail("");
+
+        // 수신자 팩스번호
+        statement.setReceiverFAX("");
 
         // 팝빌에 등록된 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
@@ -495,7 +507,7 @@ public class StatementServiceController {
         statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        statement.setMgtKey("20250711-BOOT002");
+        statement.setMgtKey("20250711-MVC001");
 
         // 맞춤양식 코드, 미기재시 기본양식으로 처리
         statement.setFormCode("");
@@ -566,6 +578,9 @@ public class StatementServiceController {
         // 발신자 메일주소
         statement.setSenderEmail("test@test.com");
 
+        // 발신자 팩스번호
+        statement.setSenderFAX("");
+
         /*********************************************************************
          *                            수신자 정보
          *********************************************************************/
@@ -607,6 +622,9 @@ public class StatementServiceController {
         // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         // 실제 거래처의 메일주소가 기재되지 않도록 주의
         statement.setReceiverEmail("");
+
+        // 수신자 팩스번호
+        statement.setReceiverFAX("");
 
         // 팝빌에 등록된 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
@@ -679,9 +697,7 @@ public class StatementServiceController {
     public String issue(Model m) {
         /**
          * "임시저장" 상태의 전자명세서를 발행하여, "발행완료" 상태로 처리합니다.
-         * - 팝빌 사이트 [전자명세서] > [관리] > [환경설정] 메뉴의 발행시 자동승인 옵션 설정을 통해
-         * - 전자명세서를 "발행완료" 상태가 아닌 "승인대기" 상태로 발행 처리 할 수 있습니다.
-         * - 전자명세서 발행 함수 호출시 수신자에게 발행 안내 메일이 발송됩니다.
+         * 팝빌 사이트 [ 전자명세서 > 관리 > 환경설정 ] 메뉴의 "발행시 자동승인" 옵션 설정을 통해 전자명세서를 "발행완료" 상태가 아닌 "승인대기" 상태로 발행 처리 할 수 있습니다.
          * - https://developers.popbill.com/reference/statement/java/api/issue#Issue
          */
 
@@ -742,7 +758,6 @@ public class StatementServiceController {
         /**
          * 삭제 가능한 상태의 전자명세서를 삭제합니다.
          * - 삭제 가능한 상태: "임시저장", "취소", "승인거부", "발행취소"
-         * - 전자명세서를 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
          * - https://developers.popbill.com/reference/statement/java/api/issue#Delete
          */
 
@@ -917,8 +932,10 @@ public class StatementServiceController {
     @RequestMapping(value = "getURL", method = RequestMethod.GET)
     public String getURL(Model m) {
         /**
-         * 로그인 상태로 팝빌 사이트의 전자명세서 문서함 메뉴에 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * 전자명세서 문서함의 팝업 URL을 반환합니다.
+         * - 권장 사이즈 : width = 1,280px (최소 1,000px) / height = 800px
+         * - 반환되는 URL은 30초 동안만 사용이 가능합니다.
+         * - 반환되는 URL은 팝빌회원의 로그인 세션을 포함하고 있으니 사용에 유의하여 주시기 바랍니다.
          * - https://developers.popbill.com/reference/statement/java/api/info#GetURL
          */
 
@@ -1139,18 +1156,18 @@ public class StatementServiceController {
         String displayName = "첨부파일.jpg";
 
         // 파일 데이터
-        InputStream stream = getClass().getClassLoader().getResourceAsStream("static/image/test.jpg");
+        InputStream fileData = getClass().getClassLoader().getResourceAsStream("static/image/test.jpg");
 
         try {
-            Response response = statementService.attachFile(CorpNum, itemCode, mgtKey, displayName, stream, UserID);
+            Response response = statementService.attachFile(CorpNum, itemCode, mgtKey, displayName, fileData, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
             return "exception";
         } finally {
-            if (stream != null)
+            if (fileData != null)
                 try {
-                    stream.close();
+                    fileData.close();
                 } catch (IOException e) {
                 }
         }
@@ -1221,7 +1238,7 @@ public class StatementServiceController {
         // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 파트너가 할당한 문서번호
+        // 메일 재전송할 전자명세서 문서번호
         String mgtKey = "20250711-BOOT001";
 
         // 수신자 메일주소
@@ -1317,7 +1334,7 @@ public class StatementServiceController {
         statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        statement.setMgtKey("20250711-BOOT001");
+        statement.setMgtKey("20250711-MVC001");
 
         // 맞춤양식 코드, 미기재시 기본양식으로 처리
         statement.setFormCode("");
@@ -1388,6 +1405,9 @@ public class StatementServiceController {
         // 발신자 메일주소
         statement.setSenderEmail("test@test.com");
 
+        // 발신자 팩스번호
+        statement.setSenderFAX("");
+
         /*********************************************************************
          *                            수신자 정보
          *********************************************************************/
@@ -1429,6 +1449,9 @@ public class StatementServiceController {
         // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         // 실제 거래처의 메일주소가 기재되지 않도록 주의
         statement.setReceiverEmail("");
+
+        // 수신자 팩스번호
+        statement.setReceiverFAX("");
 
         // 팝빌에 등록된 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)

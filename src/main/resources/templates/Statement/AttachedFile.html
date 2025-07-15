@@ -14,7 +14,7 @@
 			<fieldset class="fieldset2" th:each="AttachedFile : ${AttachedFiles}">
 				<ul>
 					<li>serialNum (첨부파일 일련번호) : <span th:text="${AttachedFile.serialNum}"></span></li>
-					<li>attachedFile (첨부파일 삭제시 사용) : <span th:text="${AttachedFile.attachedFile}"></span></li>
+					<li>attachedFile (팝빌이 할당한 파일 식별번호) : <span th:text="${AttachedFile.attachedFile}"></span></li>
 					<li>displayName (파일명) : <span th:text="${AttachedFile.displayName}"></span></li>
 					<li>regDT (첨부일시) : <span th:text="${AttachedFile.regDT}"></span></li>
 				</ul>

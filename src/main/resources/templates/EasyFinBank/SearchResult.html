@@ -21,13 +21,13 @@
 					<li>pageNum (페이지 번호) : <span th:text="${SearchResult.pageNum}"></span></li>
 					<li>pageCount (페이지 개수) : <span th:text="${SearchResult.pageCount}"></span></li>
 					<li>lastScrapDT (최종 조회일시) : <span th:text="${SearchResult.lastScrapDT}"></span></li>
-					<li>balance (현재잔액) : <span th:text="${SearchResult.balance}"></span></li>
+					<li>balance (현재 잔액) : <span th:text="${SearchResult.balance}"></span></li>
 				</ul>
 
 				<fieldset class="fieldset3"
 					th:each="SearchInfo, index : ${SearchResult.list}">
 					<legend>
-						거래내역 [<span th:text="${index.index + 1}"></span>/ <span
+						거래내역 조회 목록 [<span th:text="${index.index + 1}"></span>/ <span
 							th:text="${index.size}"></span>]
 					</legend>
 					<ul>

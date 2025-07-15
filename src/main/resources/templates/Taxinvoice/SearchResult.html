@@ -25,7 +25,7 @@
 				<fieldset class="fieldset3"
 					th:each="SearchInfo, index : ${SearchResult.list}">
 					<legend>
-						세금계산서 요약정보[ <span th:text="${index.index + 1}"></span> / <span
+						세금계산서 상태/요약정보 [ <span th:text="${index.index + 1}"></span> / <span
 							th:text="${index.size}"></span> ]
 					</legend>
 					<ul>
@@ -49,7 +49,7 @@
 						<li>ntssendDT (국세청 전송일시) : <span th:text="${SearchInfo.NTSSendDT}"></span></li>
 						<li>ntsresultDT (국세청 결과 수신일시) : <span th:text="${SearchInfo.NTSResultDT}"></span></li>
 						<li>ntssendErrCode (결과코드) : <span th:text="${SearchInfo.NTSSendErrCode}"></span></li>
-						<li>modifyCode (수정사유코드) : <span th:text="${SearchInfo.modifyCode}"></span></li>
+						<li>modifyCode (수정세금계산서 발행시 입력한 사유코드) : <span th:text="${SearchInfo.modifyCode}"></span></li>
 						<li>interOPYN (연동문서 여부) : <span th:text="${SearchInfo.interOPYN}"></span></li>
 						<li>invoicerCorpName (공급자 상호) : <span th:text="${SearchInfo.invoicerCorpName}"></span></li>
 						<li>invoicerCorpNum (공급자 사업자번호) : <span th:text="${SearchInfo.invoicerCorpNum}"></span></li>

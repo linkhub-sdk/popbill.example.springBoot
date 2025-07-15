@@ -18,13 +18,13 @@
 					<li>message (응답 메시지) : <span th:text="${SearchResult.message}"></span></li>
 					<li>total (총 검색결과 건수) : <span th:text="${SearchResult.total}"></span></li>
 					<li>perPage (페이지당 목록 건수) : <span th:text="${SearchResult.perPage}"></span></li>
-					<li>pageNum (페이지번호) : <span th:text="${SearchResult.pageNum}"></span></li>
-					<li>pageCount (페이지수) : <span th:text="${SearchResult.pageCount}"></span></li>
+					<li>pageNum (페이지 번호) : <span th:text="${SearchResult.pageNum}"></span></li>
+					<li>pageCount (페이지 개수) : <span th:text="${SearchResult.pageCount}"></span></li>
 				</ul>
 
 				<fieldset class="fieldset3" th:each="SearchInfo, index : ${SearchResult.list}">
 					<legend>
-						현금영수증 요약정보[ <span th:text="${index.index + 1}"></span> / <span th:text="${index.size}"></span> ]
+						현금영수증 상태/요약정보 [ <span th:text="${index.index + 1}"></span> / <span th:text="${index.size}"></span> ]
 					</legend>
 					<ul>
 						<li>itemKey (팝빌에서 현금영수증 관리 목적으로 할당한 식별번호) : <span th:text="${SearchInfo.itemKey}"></span></li>
