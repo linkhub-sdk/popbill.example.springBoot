@@ -76,7 +76,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         String isUseStr;
 
@@ -166,7 +166,7 @@ public class TaxinvoiceServiceController {
          ****************************************************************************/
 
         // 공급자 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        taxinvoice.setInvoicerMgtKey("20250711-MVC001");
+        taxinvoice.setInvoicerMgtKey("20250711-BOOT001");
 
         // 공급자 사업자번호 (하이픈 '-' 제외 10 자리)
         taxinvoice.setInvoicerCorpNum(CorpNum);
@@ -384,7 +384,7 @@ public class TaxinvoiceServiceController {
 
         // 제출아이디, 대량 발행 접수를 구별하는 식별키
         // └ 최대 36자리 영문, 숫자, '-' 조합으로 구성
-        String SubmitID = "20250711-MVC-BULK";
+        String SubmitID = "20250711-BOOT-BULK";
 
         // 전자세금계산서 목록, 최대 100건.
         List<Taxinvoice> TaxinvoiceList = new ArrayList<Taxinvoice>();
@@ -746,7 +746,7 @@ public class TaxinvoiceServiceController {
          ****************************************************************************/
 
         // 공급자 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합하여 사업자별로 중복되지 않도록 구성
-        taxinvoice.setInvoicerMgtKey("20250711-MVC002");
+        taxinvoice.setInvoicerMgtKey("20250711-BOOT002");
 
         // 공급자 사업자번호
         taxinvoice.setInvoicerCorpNum(CorpNum);
@@ -946,7 +946,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC002";
+        String mgtKey = "20250711-BOOT002";
 
         // 수정할 전자세금계산서 정보
         Taxinvoice taxinvoice = new Taxinvoice();
@@ -1010,7 +1010,7 @@ public class TaxinvoiceServiceController {
          ****************************************************************************/
 
         // 공급자 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합하여 사업자별로 중복되지 않도록 구성
-        taxinvoice.setInvoicerMgtKey("20250711-MVC002");
+        taxinvoice.setInvoicerMgtKey("20250711-BOOT002");
 
         // 공급자 사업자번호
         taxinvoice.setInvoicerCorpNum(CorpNum);
@@ -1211,7 +1211,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC002";
+        String mgtKey = "20250711-BOOT002";
 
         // 세금계산서 상태 이력을 관리하기 위한 메모
         String memo = "발행 메모";
@@ -1249,7 +1249,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20220218-MVC001";
+        String mgtKey = "20220218-BOOT001";
 
         // 세금계산서 상태 이력을 관리하기 위한 메모
         String memo = "발행취소 메모";
@@ -1390,7 +1390,7 @@ public class TaxinvoiceServiceController {
          ****************************************************************************/
 
         // [역발행시 필수] 공급받는자 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        taxinvoice.setInvoiceeMgtKey("20220218-MVC003");
+        taxinvoice.setInvoiceeMgtKey("20220218-BOOT003");
 
         // 공급받는자 유형, [사업자, 개인, 외국인] 중 기재
         taxinvoice.setInvoiceeType("사업자");
@@ -1526,7 +1526,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.BUY;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC004";
+        String mgtKey = "20250711-BOOT004";
 
         // 세금계산서 상태 이력을 관리하기 위한 메모
         String memo = "역발행 요청 메모";
@@ -1554,7 +1554,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.BUY;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC004";
+        String mgtKey = "20250711-BOOT004";
 
         // 세금계산서 상태 이력을 관리하기 위한 메모
         String memo = "역발행 취소 메모";
@@ -1581,7 +1581,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC005";
+        String mgtKey = "20250711-BOOT005";
 
         // 세금계산서 상태 이력을 관리하기 위한 메모
         String memo = "역발행 거부 메모";
@@ -1610,7 +1610,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             Response response = taxinvoiceService.delete(CorpNum, keyType, mgtKey, UserID);
@@ -1635,7 +1635,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC002";
+        String mgtKey = "20250711-BOOT002";
 
         try {
             Response response = taxinvoiceService.sendToNTS(CorpNum, keyType, mgtKey, UserID);
@@ -1661,7 +1661,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC002";
+        String mgtKey = "20250711-BOOT002";
 
         try {
             TaxinvoiceInfo taxinvoiceInfo = taxinvoiceService.getInfo(CorpNum, keyType, mgtKey, UserID);
@@ -1687,7 +1687,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 문서번호 목록 (최대 1000건)
-        String[] MgtKeyList = new String[]{"20250711-MVC001", "20250711-MVC002"};
+        String[] MgtKeyList = new String[]{"20250711-BOOT001", "20250711-BOOT002"};
 
         try {
             TaxinvoiceInfo[] taxinvoiceInfos = taxinvoiceService.getInfos(CorpNum, keyType, MgtKeyList, UserID);
@@ -1711,7 +1711,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC002";
+        String mgtKey = "20250711-BOOT002";
 
         try {
             Taxinvoice taxinvoice = taxinvoiceService.getDetailInfo(CorpNum, keyType, mgtKey, UserID);
@@ -1735,7 +1735,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC002";
+        String mgtKey = "20250711-BOOT002";
 
         try {
             TaxinvoiceXML taxinvoiceXML = taxinvoiceService.getXML(CorpNum, keyType, mgtKey, UserID);
@@ -1869,7 +1869,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC002";
+        String mgtKey = "20250711-BOOT002";
 
         try {
             TaxinvoiceLog[] taxinvoiceLogs = taxinvoiceService.getLogs(CorpNum, keyType, mgtKey, UserID);
@@ -1922,7 +1922,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             String url = taxinvoiceService.getPopUpURL(CorpNum, keyType, mgtKey, UserID);
@@ -1950,7 +1950,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             String url = taxinvoiceService.getViewURL(CorpNum, keyType, mgtKey, UserID);
@@ -1977,7 +1977,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             String url = taxinvoiceService.getPrintURL(CorpNum, keyType, mgtKey, UserID);
@@ -2004,7 +2004,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             String url = taxinvoiceService.getEPrintURL(CorpNum, keyType, mgtKey, UserID);
@@ -2032,7 +2032,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 문서번호 목록, 최대 100건
-        String[] MgtKeyList = new String[]{"20250711-MVC001", "20250711-MVC002"};
+        String[] MgtKeyList = new String[]{"20250711-BOOT001", "20250711-BOOT002"};
 
         try {
             String url = taxinvoiceService.getMassPrintURL(CorpNum, keyType, MgtKeyList, UserID);
@@ -2059,7 +2059,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             String url = taxinvoiceService.getMailURL(CorpNum, keyType, mgtKey, UserID);
@@ -2084,7 +2084,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             String url = taxinvoiceService.getPDFURL(CorpNum, keyType, mgtKey, UserID);
@@ -2130,7 +2130,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC002";
+        String mgtKey = "20250711-BOOT002";
 
         // 파일명
         String DisplayName = "첨부파일.jpg";
@@ -2168,7 +2168,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC002";
+        String mgtKey = "20250711-BOOT002";
 
         // 팝빌이 할당한 파일 식별번호
         // 첨부파일 목록 확인(getFiles API) 함수의 리턴 값 중 attachedFile 필드값 기재.
@@ -2196,7 +2196,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC002";
+        String mgtKey = "20250711-BOOT002";
 
         try {
             AttachedFile[] attachedFiles = taxinvoiceService.getFiles(CorpNum, keyType, mgtKey, UserID);
@@ -2220,7 +2220,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         // 수신자 메일주소
         String Receiver = "test@test.com";
@@ -2249,7 +2249,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         // 발신번호
         String Sender = "07043042991";
@@ -2283,7 +2283,7 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         // 발신번호
         String Sender = "07043042991";
@@ -2313,13 +2313,13 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         // 첨부할 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int subItemCode = 121;
 
         // 첨부할 전자명세서 문서번호
-        String subMgtKey = "20250711-MVC002";
+        String subMgtKey = "20250711-BOOT002";
 
         try {
             Response response = taxinvoiceService.attachStatement(CorpNum, keyType, mgtKey, subItemCode, subMgtKey,
@@ -2344,14 +2344,14 @@ public class TaxinvoiceServiceController {
         MgtKeyType keyType = MgtKeyType.SELL;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         // 첨부해제할 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표],
         // [126 - 영수증]
         int subItemCode = 121;
 
         // 첨부해제할 전자명세서 문서번호
-        String subMgtKey = "20250711-MVC002";
+        String subMgtKey = "20250711-BOOT002";
 
         try {
             Response response = taxinvoiceService.detachStatement(CorpNum, keyType, mgtKey, subItemCode, subMgtKey,
@@ -2379,7 +2379,7 @@ public class TaxinvoiceServiceController {
         String itemKey = "022021718272000001";
 
         // 파트너가 할당한 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        String mgtKey = "20250711-MVC007";
+        String mgtKey = "20250711-BOOT007";
 
         try {
             Response response = taxinvoiceService.assignMgtKey(CorpNum, keyType, itemKey, mgtKey, UserID);

@@ -486,7 +486,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 파트너가 할당한 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        String mgtKey = "20250711-MVC002";
+        String mgtKey = "20250711-BOOT002";
 
         // 전자명세서 정보
         Statement statement = new Statement();
@@ -495,7 +495,7 @@ public class StatementServiceController {
         statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        statement.setMgtKey("20250711-MVC002");
+        statement.setMgtKey("20250711-BOOT002");
 
         // 맞춤양식 코드, 미기재시 기본양식으로 처리
         statement.setFormCode("");
@@ -689,7 +689,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         // 전자명세서 상태 이력을 관리하기 위한 메모
         String memo = "발행메모";
@@ -721,7 +721,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC002";
+        String mgtKey = "20250711-BOOT002";
 
         // 전자명세서 상태 이력을 관리하기 위한 메모
         String memo = "발행취소 메모";
@@ -750,7 +750,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC002";
+        String mgtKey = "20250711-BOOT002";
 
         try {
             Response response = statementService.delete(CorpNum, itemCode, mgtKey, UserID);
@@ -775,7 +775,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             StatementInfo statementInfo = statementService.getInfo(CorpNum, itemCode, mgtKey, UserID);
@@ -800,7 +800,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 문서번호 목록 (최대 1000건)
-        String[] MgtKeyList = new String[]{"20250711-MVC001", "20250711-MVC002"};
+        String[] MgtKeyList = new String[]{"20250711-BOOT001", "20250711-BOOT002"};
 
         try {
             StatementInfo[] statementInfos = statementService.getInfos(CorpNum, itemCode, MgtKeyList, UserID);
@@ -824,7 +824,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             Statement statement = statementService.getDetailInfo(CorpNum, itemCode, mgtKey, UserID);
@@ -901,7 +901,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             StatementLog[] statementLogs = statementService.getLogs(CorpNum, itemCode, mgtKey, UserID);
@@ -950,7 +950,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             String url = statementService.getPopUpURL(CorpNum, itemCode, mgtKey, UserID);
@@ -978,7 +978,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             String url = statementService.getViewURL(CorpNum, itemCode, mgtKey, UserID);
@@ -1006,7 +1006,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             String url = statementService.getPrintURL(CorpNum, itemCode, mgtKey, UserID);
@@ -1033,7 +1033,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             String url = statementService.getEPrintURL(CorpNum, itemCode, mgtKey, UserID);
@@ -1061,7 +1061,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 문서번호 목록, 최대 100건
-        String[] mgtKeyList = new String[]{"20250711-MVC001", "20250711-MVC002"};
+        String[] mgtKeyList = new String[]{"20250711-BOOT001", "20250711-BOOT002"};
 
         try {
             String url = statementService.getMassPrintURL(CorpNum, itemCode, mgtKeyList, UserID);
@@ -1088,7 +1088,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         try {
             String url = statementService.getMailURL(CorpNum, itemCode, mgtKey, UserID);
@@ -1133,7 +1133,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC002";
+        String mgtKey = "20250711-BOOT002";
 
         // 파일명
         String displayName = "첨부파일.jpg";
@@ -1170,7 +1170,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC002";
+        String mgtKey = "20250711-BOOT002";
 
         // 팝빌이 할당한 파일 식별번호
         // 첨부파일 목록 확인(GetFiles API) 함수의 리턴 값 중 attachedFile 필드값 기재.
@@ -1198,7 +1198,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC002";
+        String mgtKey = "20250711-BOOT002";
 
         try {
             AttachedFile[] attachedFiles = statementService.getFiles(CorpNum, itemCode, mgtKey, UserID);
@@ -1222,7 +1222,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         // 수신자 메일주소
         String receiver = "test@test.com";
@@ -1250,7 +1250,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         // 발신번호
         String sender = "07043042991";
@@ -1283,7 +1283,7 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         // 발신번호
         String sender = "07043042991";
@@ -1317,7 +1317,7 @@ public class StatementServiceController {
         statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        statement.setMgtKey("20250711-MVC001");
+        statement.setMgtKey("20250711-BOOT001");
 
         // 맞춤양식 코드, 미기재시 기본양식으로 처리
         statement.setFormCode("");
@@ -1514,13 +1514,13 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         // 첨부할 전자전자명세서 문서 유형
         int subItemCode = 121;
 
         // 첨부할 전자명세서 문서번호
-        String subMgtKey = "20250711-MVC002";
+        String subMgtKey = "20250711-BOOT002";
 
         try {
             Response response = statementService.attachStatement(CorpNum, itemCode, mgtKey, subItemCode, subMgtKey,
@@ -1545,13 +1545,13 @@ public class StatementServiceController {
         int itemCode = 121;
 
         // 파트너가 할당한 문서번호
-        String mgtKey = "20250711-MVC001";
+        String mgtKey = "20250711-BOOT001";
 
         // 첨부해제할 전자전자명세서 문서 유형
         int subItemCode = 121;
 
         // 첨부해제할 전자명세서 문서번호
-        String subMgtKey = "20250711-MVC002";
+        String subMgtKey = "20250711-BOOT002";
 
         try {
             Response response = statementService.detachStatement(CorpNum, itemCode, mgtKey, subItemCode, subMgtKey,
