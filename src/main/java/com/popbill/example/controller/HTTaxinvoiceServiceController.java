@@ -61,20 +61,20 @@ public class HTTaxinvoiceServiceController {
 
         // 전자세금계산서 유형 (SELL , BUY , TRUSTEE 중 택 1)
         // - SELL = 매출 , BUY = 매입 , TRUSTEE = 수탁
-        QueryType TIType = QueryType.BUY;
+        QueryType queryType = QueryType.BUY;
 
         // 조회할 일자 유형 ("W" , "I" , "S" 중 택 1)
         // - W = 작성일자 , I = 발행일자 , S = 전송일자
         String DType = "S";
 
-        // 시작일자, 날짜형식(yyyyMMdd)
+        // 검색 시작일자, 날짜형식(yyyyMMdd)
         String SDate = "20250711";
 
-        // 종료일자, 닐짜형식(yyyyMMdd)
+        // 검색 종료일자, 닐짜형식(yyyyMMdd)
         String EDate = "20250731";
 
         try {
-            String jobID = htTaxinvoiceService.requestJob(CorpNum, TIType, DType, SDate, EDate, UserID);
+            String jobID = htTaxinvoiceService.requestJob(CorpNum, queryType, DType, SDate, EDate, UserID);
             m.addAttribute("Result", jobID);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
@@ -92,7 +92,7 @@ public class HTTaxinvoiceServiceController {
          * - https://developers.popbill.com/reference/httaxinvoice/java/api/job#GetJobState
          */
 
-        // 수집요청(requestJob)시 반환받은 작업아이디
+        // 작업아이디
         String jobID = "";
 
         try {
@@ -132,18 +132,18 @@ public class HTTaxinvoiceServiceController {
          * - https://developers.popbill.com/reference/httaxinvoice/java/api/search#Search
          */
 
-        // 수집 요청시 발급받은 작업아이디
+        // 작업아이디
         String jobID = "";
 
-        // 문서형태 배열 ("N" 와 "M" 중 선택, 다중 선택 가능)
+        // 세금계산서 문서형태 ("N" 와 "M" 중 선택, 다중 선택 가능)
         // └ N = 일반 , M = 수정 , 미입력 시 전체조회
         String[] Type = { "N", "M" };
 
-        // 과세형태 배열 ("T" , "N" , "Z" 중 선택, 다중 선택 가능)
+        // 과세형태 ("T" , "N" , "Z" 중 선택, 다중 선택 가능)
         // └ T = 과세, N = 면세, Z = 영세 , 미입력 시 전체조회
         String[] TaxType = { "T", "Z", "N" };
 
-        // 발행목적 배열 ("R" , "C", "N" 중 선택, 다중 선택 가능)
+        // 영수/청구 ("R" , "C", "N" 중 선택, 다중 선택 가능)
         // └ R = 영수, C = 청구, N = 없음, 미입력 시 전체조회
         String[] PurposeType = { "R", "C", "N" };
 
@@ -161,16 +161,18 @@ public class HTTaxinvoiceServiceController {
         // - 미입력시 전체조회
         String TaxRegID = "";
 
-        // 페이지번호
+        // 목록 페이지번호 (기본값 = 1)
         int Page = 1;
 
-        // 페이지당 목록 건수
+        // 페이지당 표시할 목록 건수 (기본값 = 500 , 최대 = 1000)
         int PerPage = 10;
 
-        // 정렬방향 D-내림차순, A-오름차순
+        // 목록 정렬 방향
+        // - 수집 요청(requestJob API) 함수 사용시 사용한 DType 값을 기준.
+        // - D = 내림차순(기본값) , A = 오름차순
         String Order = "D";
 
-        // 거래처 상호 / 사업자번호 (사업자) / 주민등록번호 (개인) / "9999999999999" (외국인) 중 검색하고자 하는 정보 입력
+        // 조회 검색어, 거래처 상호 / 사업자번호 (사업자) / 주민등록번호 (개인) / "9999999999999" (외국인) 중 검색하고자 하는 정보 입력
         // - 사업자번호 / 주민등록번호는 하이픈('-')을 제외한 숫자만 입력
         // - 미입력시 전체조회
         String searchString = "";
@@ -191,22 +193,22 @@ public class HTTaxinvoiceServiceController {
     public String summary(Model m) {
         /**
          * 홈택스에서 수집된 전자세금계산서 매입/매출 내역의 합계정보를 제공합니다.
-         * ※ 합계정보 - 수집 건수, 공급가액 합계, 세액 합계, 총계 (공급가액 합계+세액 합계)
+         * - 합계정보 - 수집 건수, 공급가액 합계, 세액 합계, 총계 (공급가액 합계+세액 합계)
          * - https://developers.popbill.com/reference/httaxinvoice/java/api/search#Summary
          */
 
-        // 수집요청(requestJob API) 함수 호출 시 반환받은 작업아이디
+        // 작업아이디
         String jobID = "";
 
-        // 문서형태 배열 ("N" 와 "M" 중 선택, 다중 선택 가능)
+        // 세금계산서 문서형태 ("N" 와 "M" 중 선택, 다중 선택 가능)
         // └ N = 일반 , M = 수정 , 미입력 시 전체조회
         String[] Type = { "N", "M" };
 
-        // 과세형태 배열 ("T" , "N" , "Z" 중 선택, 다중 선택 가능)
+        // 과세형태 ("T" , "N" , "Z" 중 선택, 다중 선택 가능)
         // └ T = 과세, N = 면세, Z = 영세 , 미입력 시 전체조회
         String[] TaxType = { "T", "Z", "N" };
 
-        // 발행목적 배열 ("R" , "C", "N" 중 선택, 다중 선택 가능)
+        // 영수/청구 ("R" , "C", "N" 중 선택, 다중 선택 가능)
         // └ R = 영수, C = 청구, N = 없음, 미입력 시 전체조회
         String[] PurposeType = { "R", "C", "N" };
 
@@ -224,7 +226,7 @@ public class HTTaxinvoiceServiceController {
         // - 미입력시 전체조회
         String TaxRegID = "";
 
-        // 거래처 상호 / 사업자번호 (사업자) / 주민등록번호 (개인) / "9999999999999" (외국인) 중 검색하고자 하는 정보 입력
+        // 조회 검색어, 거래처 상호 / 사업자번호 (사업자) / 주민등록번호 (개인) / "9999999999999" (외국인) 중 검색하고자 하는 정보 입력
         // - 사업자번호 / 주민등록번호는 하이픈('-')을 제외한 숫자만 입력
         // - 미입력시 전체조회
         String searchString = "";
@@ -294,7 +296,7 @@ public class HTTaxinvoiceServiceController {
          * - https://developers.popbill.com/reference/httaxinvoice/java/api/search#GetPopUpURL
          */
 
-        // 조회할 전자세금계산서 국세청승인번호
+        // 전자세금계산서 국세청승인번호
         String NTSConfirmNum = "202507118888888800000071";
 
         try {
@@ -318,7 +320,7 @@ public class HTTaxinvoiceServiceController {
          * - https://developers.popbill.com/reference/httaxinvoice/java/api/search#GetPrintURL
          */
 
-        // 조회할 전자세금계산서 국세청승인번호
+        // 전자세금계산서 국세청승인번호
         String NTSConfirmNum = "202507118888888800000071";
 
         try {
@@ -396,10 +398,10 @@ public class HTTaxinvoiceServiceController {
          * - https://developers.popbill.com/reference/httaxinvoice/java/api/cert#RegistDeptUser
          */
 
-        // 홈택스에서 생성한 전자세금계산서 부서사용자 아이디
+        // 전자세금계산서 전용 부서사용자 아이디
         String deptUserID = "userid";
 
-        // 홈택스에서 생성한 전자세금계산서 부서사용자 비밀번호
+        // 전자세금계산서 전용 부서사용자 비밀번호
         String deptUserPWD = "passwd";
 
         try {

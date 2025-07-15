@@ -51,7 +51,7 @@ public class EasyFinBankServiceController {
          * - https://developers.popbill.com/reference/easyfinbank/java/api/manage#RegistBankAccount
          */
 
-        // 계좌정보 클래스 인스턴스 생성
+        // 계좌 정보
         EasyFinBankAccountForm bankInfo = new EasyFinBankAccountForm();
 
         // 은행 기관코드
@@ -60,7 +60,7 @@ public class EasyFinBankServiceController {
         // 계좌번호 하이픈('-') 제외
         bankInfo.setAccountNumber("");
 
-        // 계좌비밀번호
+        // 계좌 비밀번호
         bankInfo.setAccountPWD("");
 
         // 계좌유형, "법인" / "개인" 중 택 1
@@ -116,7 +116,7 @@ public class EasyFinBankServiceController {
         // 계좌번호 하이픈('-') 제외
         String AccountNumber = "";
 
-        // 계좌정보 클래스 인스턴스 생성
+        // 수정할 계좌 정보
         UpdateEasyFinBankAccountForm BankAccountInfo = new UpdateEasyFinBankAccountForm();
 
         // 계좌비밀번호
@@ -227,7 +227,7 @@ public class EasyFinBankServiceController {
         // 계좌번호 하이픈('-') 제외
         String AccountNumber = "";
 
-        // 해지유형, "일반"
+        // 정액제 해지 구분, "일반"
         // 일반(일반해지) – 이용중인 정액제 기간 만료 후 해지
         String CloseType = "일반";
 
@@ -307,10 +307,10 @@ public class EasyFinBankServiceController {
         // 계좌번호
         String AccountNumber = "2070064401302";
 
-        // 시작일자, 날짜형식(yyyyMMdd)
+        // 검색 시작일자, 날짜형식(yyyyMMdd)
         String SDate = "20250711";
 
-        // 종료일자, 닐짜형식(yyyyMMdd)
+        // 검색 종료일자, 닐짜형식(yyyyMMdd)
         String EDate = "20250731";
 
         try {
@@ -374,23 +374,23 @@ public class EasyFinBankServiceController {
         // 수집 요청시 발급받은 작업아이디
         String jobID = "023011609000000019";
 
-        // 거래유형 배열 ("I" 와 "O" 중 선택, 다중 선택 가능)
+        // 거래유형 ("I" 와 "O" 중 선택, 다중 선택 가능)
         // └ I = 입금 , O = 출금 , 미입력 시 전체조회
         String[] TradeType = {"I", "O"};
 
-        // "입·출금액" / "메모" / "비고" 중 검색하고자 하는 값 입력
-        // - 메모 = 거래내역 메모저장(SaveMemo)을 사용하여 저장한 값
+        // 조회 검색어, "입·출금액" / "거래내역 메모" / "비고" 중 검색하고자 하는 값 입력
+        // - 거랜매역 메모 = 거래내역 메모저장(SaveMemo)을 사용하여 저장한 값
         // - 비고 = EasyFinBankSearchDetail의 remark1, remark2, remark3 값
         // - 미입력시 전체조회
         String SearchString = "";
 
-        // 페이지번호
+        // 목록 페이지번호
         int Page = 1;
 
-        // 페이지당 목록 건수
+        // 페이지당 표시할 목록 건수
         int PerPage = 10;
 
-        // 정렬방향 D-내림차순, A-오름차순
+        // 목록 정렬 방향 D-내림차순, A-오름차순
         String Order = "D";
 
         try {
@@ -415,12 +415,12 @@ public class EasyFinBankServiceController {
         // 수집 요청시 발급받은 작업아이디
         String jobID = "022025071100000010";
 
-        // 거래유형 배열 ("I" 와 "O" 중 선택, 다중 선택 가능)
+        // 거래유형 ("I" 와 "O" 중 선택, 다중 선택 가능)
         // └ I = 입금 , O = 출금 , 미입력 시 전체조회
         String[] TradeType = {"I", "O"};
 
-        // "입·출금액" / "메모" / "비고" 중 검색하고자 하는 값 입력
-        // - 메모 = 거래내역 메모저장(SaveMemo)을 사용하여 저장한 값
+        // 조회 검색어, "입·출금액" / "거래내역 메모" / "비고" 중 검색하고자 하는 값 입력
+        // - 거래내역 메모 = 거래내역 메모저장(SaveMemo)을 사용하여 저장한 값
         // - 비고 = EasyFinBankSearchDetail의 remark1, remark2, remark3 값
         // - 미입력시 전체조회
         String SearchString = "";
@@ -495,7 +495,7 @@ public class EasyFinBankServiceController {
         // 은행 기관코드
         String BankCode = "";
 
-        // 계좌번호
+        // 은행 계좌번호
         String AccountNumber = "";
 
         try {

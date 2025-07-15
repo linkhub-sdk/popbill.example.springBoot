@@ -41,7 +41,9 @@ public class ClosedownServiceController {
     @RequestMapping(value = "checkCorpNum", method = RequestMethod.GET)
     public String checkCorpNum(@RequestParam(required = false) String CheckCorpNum, Model m) {
         /**
-         * 사업자번호 1건에 대한 사업자등록상태 (휴폐업) 를 확인합니다.
+         * 사업자번호 1건에 대해 실시간으로 사업자등록상태를 확인합니다.
+         * 팝빌 서비스의 안정적인 제공을 위하여 동시호출이 제한될 수 있습니다.
+         * 동시에 100건 이상 요청하는 경우 대량 조회를 이용하시는 것을 권장합니다.
          * - https://developers.popbill.com/reference/closedown/java/api/check#CheckCorpNum
          */
 
@@ -65,7 +67,7 @@ public class ClosedownServiceController {
          * - https://developers.popbill.com/reference/closedown/java/api/check#CheckCorpNums
          */
 
-        // 조회할 사업자번호 배열, 최대 1000건
+        // 사업자번호 목록, 최대 1000건
         String[] CorpNumList = new String[]{"1234567890", "6798700433"};
 
         try {
@@ -100,7 +102,7 @@ public class ClosedownServiceController {
     @RequestMapping(value = "getChargeInfo", method = RequestMethod.GET)
     public String chargeInfo(Model m) {
         /**
-         * 팝빌 사업자등록상태조회 (휴폐업조회) API 서비스 과금정보를 확인합니다.
+         * 팝빌 사업자등록상태조회 API 서비스 과금정보를 확인합니다.
          * - https://developers.popbill.com/reference/closedown/java/common-api/point#GetChargeInfo
          */
 

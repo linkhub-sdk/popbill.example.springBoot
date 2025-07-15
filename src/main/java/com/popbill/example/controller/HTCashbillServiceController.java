@@ -60,10 +60,10 @@ public class HTCashbillServiceController {
         // 현금영수증 유형, SELL-매출, BUY-매입
         QueryType queryType = QueryType.SELL;
 
-        // 시작일자, 날짜형식(yyyyMMdd)
+        // 검색 시작일자, 날짜형식(yyyyMMdd)
         String SDate = "20250711";
 
-        // 종료일자, 날짜형식(yyyyMMdd)
+        // 검색 종료일자, 날짜형식(yyyyMMdd)
         String EDate = "20250731";
 
         try {
@@ -85,8 +85,8 @@ public class HTCashbillServiceController {
          * - https://developers.popbill.com/reference/htcashbill/java/api/job#GetJobState
          */
 
-        // 수집요청(requestJob)시 반환받은 작업아이디
-        String jobID = "";
+        // 작업아이디
+        String jobID = "025071112000000002";
 
         try {
             HTCashbillJobState jobState = htCashbillService.getJobState(CorpNum, jobID, UserID);
@@ -125,26 +125,26 @@ public class HTCashbillServiceController {
          * - https://developers.popbill.com/reference/htcashbill/java/api/search#Search
          */
 
-        // 수집요청(requestJob API) 함수 호출 시 반환받은 작업아이디
+        // 작업아이디
         String jobID = "";
 
-        // 거래구분 배열 ("P" 와 "C" 중 선택, 다중 선택 가능)
+        // 현금영수증 거래구분 ("P" 와 "C" 중 선택, 다중 선택 가능)
         // └ P = 소득공제용 , C = 지출증빙용
         // - 미입력 시 전체조회
         String[] TradeUsage = {"P", "C"};
 
-        // 문서형태 배열 ("N" 와 "C" 중 선택, 다중 선택 가능)
+        // 현금영수증 문서형태 ("N" 와 "C" 중 선택, 다중 선택 가능)
         // └ N = 일반 현금영수증 , C = 취소현금영수증
         // - 미입력 시 전체조회
         String[] TradeType = {"N", "C"};
 
-        // 페이지번호 (기본값 = 1)
+        // 목록 페이지번호 (기본값 = 1)
         int Page = 1;
 
         // 페이지당 목록 건수 (기본값 = 500 , 최대 = 1000)
         int PerPage = 10;
 
-        // 정렬방향, "D" / "A" 중 택 1
+        // 목록 정렬 방향, "D" / "A" 중 택 1
         // └ D = 내림차순(기본값) , A = 오름차순
         String Order = "D";
 
@@ -168,15 +168,15 @@ public class HTCashbillServiceController {
          * - https://developers.popbill.com/reference/htcashbill/java/api/search#Summary
          */
 
-        // 수집요청(requestJob API) 함수 호출 시 반환받은 작업아이디
+        // 작업아이디
         String jobID = "";
 
-        // 거래구분 배열 ("P" 와 "C" 중 선택, 다중 선택 가능)
+        // 현금영수증 거래구분 ("P" 와 "C" 중 선택, 다중 선택 가능)
         // └ P = 소득공제용 , C = 지출증빙용
         // - 미입력 시 전체조회
         String[] TradeUsage = {"P", "C"};
 
-        // 문서형태 배열 ("N" 와 "C" 중 선택, 다중 선택 가능)
+        // 현금영수증 문서형태 ("N" 와 "C" 중 선택, 다중 선택 가능)
         // └ N = 일반 현금영수증 , C = 취소현금영수증
         // - 미입력 시 전체조회
         String[] TradeType = { "N", "C" };
@@ -256,10 +256,10 @@ public class HTCashbillServiceController {
          * - https://developers.popbill.com/reference/htcashbill/java/api/cert#RegistDeptUser
          */
 
-        // 홈택스에서 생성한 현금영수증 부서사용자 아이디
+        // 현금영수증 전용 부서사용자 아이디
         String deptUserID = "userid";
 
-        // 홈택스에서 생성한 현금영수증 부서사용자 비밀번호
+        // 현금영수증 전용 부서사용자 비밀번호
         String deptUserPWD = "passwd";
 
         try {

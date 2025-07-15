@@ -12,10 +12,8 @@
 		<fieldset class="fieldset1">
 			<legend th:text="${#request?.requestURI}"></legend>
 			<ul>
-				<li>CSH_ISSUE (메일 전송 여부) : <span
+				<li>CSH_ISSUE (전송 여부) : <span
 					th:text="${EmailSendConfigs.get('CSH_ISSUE')}"></span></li>
-				<li>CSH_CANCEL (메일 전송 여부) : <span
-					th:text="${EmailSendConfigs.get('CSH_CANCEL')}"></span></li>
 			</ul>
 		</fieldset>
 	</div>

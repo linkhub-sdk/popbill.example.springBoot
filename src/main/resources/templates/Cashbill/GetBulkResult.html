@@ -16,10 +16,10 @@
 				<ul>
 					<li>code (응답코드) : <span th:text="${BulkResult.code}"></span></li>
 					<li>message (응답메시지) : <span th:text="${BulkResult.message}"></span></li>
-					<li>submitID (제출아이디) : <span th:text="${BulkResult.submitID}"></span></li>
-					<li>submitCount (발행 접수건수) : <span th:text="${BulkResult.submitCount}"></span></li>
-					<li>successCount (발행 성공건수) : <span th:text="${BulkResult.successCount}"></span></li>
-					<li>failCount (발행 실패건수) : <span th:text="${BulkResult.failCount}"></span></li>
+					<li>submitID (접수 시점에 고객사에서 할당한 제출아이디) : <span th:text="${BulkResult.submitID}"></span></li>
+					<li>submitCount (현금영수증 접수 건수) : <span th:text="${BulkResult.submitCount}"></span></li>
+					<li>successCount (현금영수증 발행 성공 건수) : <span th:text="${BulkResult.successCount}"></span></li>
+					<li>failCount (현금영수증 발행 실패 건수) : <span th:text="${BulkResult.failCount}"></span></li>
 					<li>txState (접수상태) : <span th:text="${BulkResult.txState}"></span></li>
 					<li>txResultCode (접수 결과코드) : <span th:text="${BulkResult.txResultCode}"></span></li>
 					<li>txStartDT (발행처리 시작일시) : <span th:text="${BulkResult.txStartDT}"></span></li>
@@ -32,7 +32,7 @@
 			<fieldset class="fieldset2"
 				th:each="CashbillInfo, index : ${BulkResult.issueResult}">
 				<legend>
-					issueResult[<span th:text="${index.index + 1}"></span> / <span th:text="${index.size}"></span>]
+					발행결과 [<span th:text="${index.index + 1}"></span> / <span th:text="${index.size}"></span>]
 				</legend>
 				<ul>
 					<li>code (응답코드) : <span th:text="${CashbillInfo.code}"></span></li>

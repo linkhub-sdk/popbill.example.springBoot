@@ -15,8 +15,7 @@
 				th:each="senderInfo : ${SenderNumberList}">
 				<ul>
 					<li>number (발신번호) : <span th:text="${senderInfo.number}"></span></li>
-					<li>representYN (대표번호 지정여부) : <span
-						th:text="${senderInfo.representYN }"></span></li>
+					<li>representYN (대표번호 지정여부) : <span th:text="${senderInfo.representYN }"></span></li>
 					<li>state (등록상태) : <span th:text="${senderInfo.state}"></span></li>
 					<li>memo (메모) : <span th:text="${senderInfo.memo}"></span></li>
 				</ul>

@@ -52,7 +52,7 @@ public class BaseServiceServiceController {
          * - https://developers.popbill.com/reference/taxinvoice/java/common-api/member#CheckIsMember
          */
 
-        // 조회할 사업자번호, '-' 제외 10자리
+        // 팝빌회원 사업자번호, '-' 제외 10자리
         String corpNum = "1234567890";
 
         try {
@@ -109,10 +109,10 @@ public class BaseServiceServiceController {
          * - https://developers.popbill.com/reference/taxinvoice/java/common-api/point#GetUseHistory
          */
 
-        // 조회 기간의 시작일자 (형식 : yyyyMMdd)
+        // 검색 시작일자 (형식 : yyyyMMdd)
         String SDate = "20250711";
 
-        // 조회 기간의 종료일자 (형식 : yyyyMMdd)
+        // 검색 종료일자 (형식 : yyyyMMdd)
         String EDate = "20250731";
 
         // 목록 페이지번호 (기본값 1)
@@ -146,10 +146,10 @@ public class BaseServiceServiceController {
          * - https://developers.popbill.com/reference/taxinvoice/java/common-api/point#GetPaymentHistory
          */
 
-        // 조회 기간의 시작일자 (형식 : yyyyMMdd)
+        // 검색 시작일자 (형식 : yyyyMMdd)
         String SDate = "20250711";
 
-        // 조회 기간의 종료일자 (형식 : yyyyMMdd)
+        // 검색 종료일자 (형식 : yyyyMMdd)
         String EDate = "20250731";
 
         // 목록 페이지번호 (기본값 1)
@@ -201,6 +201,7 @@ public class BaseServiceServiceController {
          * - https://developers.popbill.com/reference/taxinvoice/java/common-api/point#Refund
          */
 
+        // 환불신청 객체정보
         RefundForm refundForm = new RefundForm();
 
         // 담당자명
@@ -242,12 +243,13 @@ public class BaseServiceServiceController {
          * - https://developers.popbill.com/reference/taxinvoice/java/common-api/point#PaymentRequest
          */
 
+        // 입금신청 객체정보
         PaymentForm paymentForm = new PaymentForm();
 
         // 담당자명
         paymentForm.setSettlerName("담당자명");
 
-        // 담당자 이메일
+        // 담당자 메일
         paymentForm.setSettlerEmail("test@test.com");
 
         // 담당자 휴대폰
@@ -279,7 +281,7 @@ public class BaseServiceServiceController {
          */
 
         // 정산코드
-        String settleCode = "202507110000000010";
+        String settleCode = "202507110000000013";
 
         try {
             PaymentHistory paymentHistory = taxinvoiceService.getSettleResult(CorpNum, settleCode, UserID);
@@ -302,7 +304,7 @@ public class BaseServiceServiceController {
          * - https://developers.popbill.com/reference/taxinvoice/java/common-api/point#GetPartnerURL
          */
 
-        // CHRG : 포인트 충전
+        // 고정값 : "CHRG"
         String TOGO = "CHRG";
 
         try {
@@ -319,8 +321,10 @@ public class BaseServiceServiceController {
     @RequestMapping(value = "getAccessURL", method = RequestMethod.GET)
     public String getAccessURL(Model m) throws PopbillException {
         /**
-         * 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * 팝빌 회원 로그인 상태의 팝업 URL을 반환합니다.
+         * - 권장 사이즈 : width = 1,280px (최소 1,000px) / height = 800px
+         * - 반환되는 URL은 30초 동안만 사용이 가능합니다.
+         * - 반환되는 URL은 팝빌회원의 로그인 세션을 포함하고 있으니 사용에 유의하여 주시기 바랍니다.
          * - https://developers.popbill.com/reference/taxinvoice/java/common-api/member#GetAccessURL
          */
 
@@ -405,15 +409,16 @@ public class BaseServiceServiceController {
          * - https://developers.popbill.com/reference/taxinvoice/java/common-api/member#JoinMember
          */
 
+        // 연동회원 객체정보
         JoinForm joinInfo = new JoinForm();
 
         // 아이디, 6자 이상 50자 미만
         joinInfo.setID("testkorea0328");
 
-        // 팝빌회원 비밀번호 (8자 이상 20자 이하) 영문, 숫자, 특수문자 조합
+        // 비밀번호 (8자 이상 20자 이하) 영문, 숫자, 특수문자 조합
         joinInfo.setPassword("password123!@#");
 
-        // 연동신청 시 팝빌에서 발급받은 링크아이디
+        // 파트너 링크아이디
         joinInfo.setLinkID(LinkID);
 
         // 사업자번호 (하이픈 '-' 제외 10 자리)
@@ -437,10 +442,10 @@ public class BaseServiceServiceController {
         // 담당자 성명, 최대 100자
         joinInfo.setContactName("담당자 성명");
 
-        // 담당자 이메일, 최대 100자
+        // 담당자 메일, 최대 100자
         joinInfo.setContactEmail("test@test.com");
 
-        // 담당자 연락처, 최대 20자
+        // 담당자 휴대폰, 최대 20자
         joinInfo.setContactTEL("02-999-9999");
 
         try {
@@ -500,21 +505,22 @@ public class BaseServiceServiceController {
          * - https://developers.popbill.com/reference/taxinvoice/java/common-api/member#UpdateContact
          */
 
+        // 담당자 객체정보
         ContactInfo contactInfo = new ContactInfo();
 
-        // 담당자 아이디, 6자 이상 50자 이하
+        // 아이디, 6자 이상 50자 미만
         contactInfo.setId("testid");
 
         // 담당자 성명, 최대 100자
         contactInfo.setPersonName("담당자 수정 테스트");
 
-        // 담당자 연락처, 최대 20자
+        // 담당자 휴대폰, 최대 20자
         contactInfo.setTel("070-1234-1234");
 
-        // 담당자 이메일, 최대 100자
+        // 담당자 메일, 최대 100자
         contactInfo.setEmail("test1234@test.com");
 
-        // 담당자 조회권한, 1 - 개인권한 / 2 - 읽기권한 / 3 - 회사권한
+        // 권한, 1 - 개인권한 / 2 - 읽기권한 / 3 - 회사권한
         contactInfo.setSearchRole(3);
 
         try {
@@ -535,24 +541,25 @@ public class BaseServiceServiceController {
          * - https://developers.popbill.com/reference/taxinvoice/java/common-api/member#RegistContact
          */
 
+        // 담당자 객체정보
         ContactInfo contactInfo = new ContactInfo();
 
-        // 담당자 아이디, 6자 이상 50자 이하
+        // 아이디, 6자 이상 50자 미만
         contactInfo.setId("testid");
 
-        // 담당자 비밀번호 (8자 이상 20자 이하) 영문, 숫자, 특수문자 조합
+        // 비밀번호 (8자 이상 20자 이하) 영문, 숫자, 특수문자 조합
         contactInfo.setPassword("password123!@#");
 
         // 담당자 성명, 최대 100자
-        contactInfo.setPersonName("담당자 수정 테스트");
+        contactInfo.setPersonName("담당자 성명");
 
-        // 담당자 연락처, 최대 20자
+        // 담당자 휴대폰, 최대 20자
         contactInfo.setTel("070-1234-1234");
 
-        // 담당자 이메일, 최대 100자
+        // 담당자 메일, 최대 100자
         contactInfo.setEmail("test1234@test.com");
 
-        // 담당자 조회권한, 1 - 개인권한 / 2 - 읽기권한 / 3 - 회사권한
+        // 권한, 1 - 개인권한 / 2 - 읽기권한 / 3 - 회사권한
         contactInfo.setSearchRole(3);
 
         try {
@@ -604,6 +611,28 @@ public class BaseServiceServiceController {
         return "getCorpInfo";
     }
 
+    @RequestMapping(value = "quitMember", method = RequestMethod.GET)
+    public String quitMember(Model m) {
+        /**
+         * 팝빌 연동회원을 탈퇴 처리합니다.
+         *  - 관리자를 포함한 모든 담당자가 일괄 삭제 처리됩니다.
+         *  - https://developers.popbill.com/reference/taxinvoice/java/common-api/member#QuitMember
+         */
+
+        // 회원 탈퇴 사유
+        String quitReason = "탈퇴 테스트 입니다";
+
+        try {
+            Response response = taxinvoiceService.quitMember(CorpNum, quitReason, UserID);
+            m.addAttribute("Response", response);
+        } catch (PopbillException e) {
+            m.addAttribute("Exception", e);
+            return "exception";
+        }
+
+        return "response";
+    }
+
     @RequestMapping(value = "updateCorpInfo", method = RequestMethod.GET)
     public String updateCorpInfo(Model m) throws PopbillException {
         /**
@@ -611,6 +640,7 @@ public class BaseServiceServiceController {
          * - https://developers.popbill.com/reference/taxinvoice/java/common-api/member#UpdateCorpInfo
          */
 
+        // 회사 객체정보
         CorpInfo corpInfo = new CorpInfo();
 
         // 대표자 성명, 최대 100자
@@ -639,28 +669,6 @@ public class BaseServiceServiceController {
         return "response";
     }
 
-    @RequestMapping(value = "quitMember", method = RequestMethod.GET)
-    public String quitMember(Model m) {
-        /**
-         * 팝빌 연동회원을 탈퇴 처리합니다.
-         *  - 관리자를 포함한 모든 담당자가 일괄 삭제 처리됩니다.
-         *  - https://developers.popbill.com/reference/taxinvoice/java/common-api/member#QuitMember
-         */
-
-        // 회원 탈퇴 사유
-        String quitReason = "테스트 탈퇴 사유";
-
-        try {
-            Response response = taxinvoiceService.quitMember(CorpNum, quitReason, UserID);
-            m.addAttribute("Response", response);
-        } catch (PopbillException e) {
-            m.addAttribute("Exception", e);
-            return "exception";
-        }
-
-        return "response";
-    }
-
     @RequestMapping(value = "getRefundInfo", method = RequestMethod.GET)
     public String getRefundInfo(Model m) {
         /**
@@ -669,7 +677,7 @@ public class BaseServiceServiceController {
          */
 
         // 환불코드
-        String refundCode = "023040000017";
+        String refundCode = "025070000028";
 
         try {
             RefundHistory response = taxinvoiceService.getRefundInfo(CorpNum, refundCode, UserID);
@@ -707,7 +715,7 @@ public class BaseServiceServiceController {
          * - https://developers.popbill.com/reference/taxinvoice/java/common-api/member#DeleteContact
          */
 
-        // 담당자 아이디
+        // 삭제할 담당자 아이디
         String contactID = "";
 
         try {

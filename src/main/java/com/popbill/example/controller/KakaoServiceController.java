@@ -71,8 +71,10 @@ public class KakaoServiceController {
     @RequestMapping(value = "getPlusFriendMgtURL", method = RequestMethod.GET)
     public String getPlusFriendMgtURL(Model m) {
         /**
-         * 비즈니스 채널을 등록하고 내역을 확인하는 비즈니스 채널 관리 페이지 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * 비즈니스 채널을 등록하는 팝업 URL을 반환합니다.
+         * - 권장 사이즈 : width = 1,200px (최소 1,000px) / height = 750px
+         * - 반환되는 URL은 30초 동안만 사용이 가능합니다.
+         * - 반환되는 URL에서만 유효한 세션을 포함하고 있습니다.
          * - https://developers.popbill.com/reference/kakaotalk/java/api/channel#GetPlusFriendMgtURL
          */
 
@@ -109,6 +111,7 @@ public class KakaoServiceController {
     public String checkSenderNumber(Model m) {
         /**
          * 카카오톡 발신번호 등록여부를 확인합니다.
+         * 발신번호 상태가 '승인'인 경우에만 리턴값 Response 의 변수 'code'가 1로 반환됩니다.
          * - https://developers.popbill.com/reference/kakaotalk/java/api/sendnum#CheckSenderNumber
          */
 
@@ -129,8 +132,10 @@ public class KakaoServiceController {
     @RequestMapping(value = "getSenderNumberMgtURL", method = RequestMethod.GET)
     public String getSenderNumberMgtURL(Model m) {
         /**
-         * 발신번호를 등록하고 내역을 확인하는 카카오톡 발신번호 관리 페이지 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * 대체문자 전송 발신번호를 등록하는 팝업 URL을 반환합니다.
+         * - 권장 사이즈 : width = 1,200px (최소 1,000px) / height = 800px
+         * - 반환되는 URL은 30초 동안만 사용이 가능합니다.
+         * - 반환되는 URL에서만 유효한 세션을 포함하고 있습니다.
          * - https://developers.popbill.com/reference/kakaotalk/java/api/sendnum#GetSenderNumberMgtURL
          */
 
@@ -166,8 +171,10 @@ public class KakaoServiceController {
     @RequestMapping(value = "getATSTemplateMgtURL", method = RequestMethod.GET)
     public String getATSTemplateMgtURL(Model m) {
         /**
-         * 알림톡 템플릿을 신청하고 승인심사 결과를 확인하며 등록 내역을 확인하는 알림톡 템플릿 관리 페이지 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * 알림톡 템플릿 등록하는 팝업 URL을 반환합니다.
+         * - 권장 사이즈 : width = 1,200px (최소 1,000px) / height = 800px
+         * - 반환되는 URL은 30초 동안만 사용이 가능합니다.
+         * - 반환되는 URL에서만 유효한 세션을 포함하고 있습니다.
          * - https://developers.popbill.com/reference/kakaotalk/java/api/template#GetATSTemplateMgtURL
          */
 
@@ -189,7 +196,7 @@ public class KakaoServiceController {
          * - https://developers.popbill.com/reference/kakaotalk/java/api/template#GetATSTemplate
          */
 
-        // 확인할 알림톡 템플릿 코드
+        // 템플릿 코드
         String templateCode = "022070000353";
 
         try {
@@ -207,7 +214,6 @@ public class KakaoServiceController {
     public String listATSTemplate(Model m) {
         /**
          * 승인된 알림톡 템플릿 목록을 확인합니다.
-         * - 반환항목중 템플릿코드(templateCode)는 알림톡 전송시 사용됩니다.
          * - https://developers.popbill.com/reference/kakaotalk/java/api/template#ListATSTemplate
          */
 
@@ -226,8 +232,10 @@ public class KakaoServiceController {
     public String sendATS_one(Model m) {
         /**
          * 승인된 템플릿의 내용을 작성하여 1건의 알림톡 전송을 팝빌에 접수합니다.
-         * - 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
-         * - 전송실패 시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
+         * 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
+         * 승인된 템플릿과 일치하지 않는 내용(알림톡 내용, 버튼 목록)을 입력하는 경우 '전송실패' 처리됩니다.
+         * 팝빌 서비스의 안정적인 제공을 위하여 동시호출이 제한될 수 있습니다.
+         * 동시에 1,000건 이상 요청하는 경우 동보전송 또는 대량전송으로 이용하시는 것을 권장합니다.
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#SendATSOne
          */
 
@@ -236,7 +244,7 @@ public class KakaoServiceController {
         //   팝빌사이트에서 승인된 알림톡 템플릿 코드를  확인 가능.
         String templateCode = "022070000338";
 
-        // 팝빌에 사전 등록된 발신번호
+        // 발신번호
         // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
         // altSendType = '' 일 경우, null 또는 공백 처리
         // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
@@ -254,7 +262,7 @@ public class KakaoServiceController {
         // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
         String altSubject = "대체문자 제목1234";
 
-        // 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+        // 대체문자 내용, 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
         // └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
         String altContent = "대체문자 내용";
 
@@ -263,19 +271,19 @@ public class KakaoServiceController {
         String altSendType = "C";
 
         // 수신번호
-        String receiverNum = "";
+        String receiverNum = "01022223333";
 
         // 수신자명
         String receiverName = "수신자명";
 
-        // 예약전송일시, 형태(yyyyMMddHHmmss)
+        // 전송 예약일시, 형태(yyyyMMddHHmmss)
         // - 분단위 전송, 미입력 시 즉시 전송
         String sndDT = "";
 
-        // 전송요청번호
+        // 요청번호
         // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
-        String requestNum = "20250711_ats_02";
+        String requestNum = "";
 
         // 알림톡 버튼정보를 템플릿 신청시 기재한 버튼정보와 동일하게 전송하는 경우 null 처리.
         KakaoButton[] btns = null;
@@ -308,8 +316,8 @@ public class KakaoServiceController {
     public String sendATS_multi(Model m) {
         /**
          * 승인된 템플릿의 내용을 작성하여 다수건의 알림톡 전송을 팝빌에 접수하며, 수신자 별로 개별 내용을 전송합니다. (최대 1,000건)
-         * - 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
-         * - 전송실패 시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
+         * 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
+         * 승인된 템플릿과 일치하지 않는 내용(알림톡 내용, 버튼 목록)을 입력하는 경우 '전송실패' 처리됩니다.
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#SendATSMulti
          */
 
@@ -318,7 +326,7 @@ public class KakaoServiceController {
         //   팝빌사이트에서 승인된 알림톡 템플릿 코드를  확인 가능.
         String templateCode = "022070000338";
 
-        // 팝빌에 사전 등록된 발신번호
+        // 발신번호
         // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
         // altSendType = '' 일 경우, null 또는 공백 처리
         // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
@@ -328,7 +336,7 @@ public class KakaoServiceController {
         // null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         String altSendType = "C";
 
-        // 카카오톡 전송 정보 배열, 최대 1000건
+        // 전송정보, 최대 1000건
         KakaoReceiver[] receivers = new KakaoReceiver[3];
 
         for (int i = 0; i < 3; i++) {
@@ -369,16 +377,16 @@ public class KakaoServiceController {
             receivers[i] = message;
         }
 
-        // 예약전송일시, 형태(yyyyMMddHHmmss)
+        // 전송 예약일시, 형태(yyyyMMddHHmmss)
         // - 분단위 전송, 미입력 시 즉시 전송
         String sndDT = "";
 
-        // 전송요청번호
+        // 요청번호
         // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
 
-        // 알림톡 버튼정보를 템플릿 신청시 기재한 버튼정보와 동일하게 전송하는 경우 null 처리.
+        // 버튼 목록, 알림톡 버튼정보를 템플릿 신청시 기재한 버튼정보와 동일하게 전송하는 경우 null 처리.
         KakaoButton[] btns = null;
 
         // 알림톡 버튼 URL에 #{템플릿변수}를 기재한경우 템플릿변수 영역을 변경하여 버튼정보 구성
@@ -408,8 +416,8 @@ public class KakaoServiceController {
     public String sendATS_same(Model m) {
         /**
          * 승인된 템플릿 내용을 작성하여 다수건의 알림톡 전송을 팝빌에 접수하며, 모든 수신자에게 동일 내용을 전송합니다. (최대 1,000건)
-         * - 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
-         * - 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
+         * 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
+         * 승인된 템플릿과 일치하지 않는 내용(알림톡 내용, 버튼 목록)을 입력하는 경우 '전송실패' 처리됩니다.
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#SendATSSame
          */
 
@@ -418,7 +426,7 @@ public class KakaoServiceController {
         //   팝빌사이트에서 승인된 알림톡 템플릿 코드를  확인 가능.
         String templateCode = "022070000338";
 
-        // 팝빌에 사전 등록된 발신번호
+        // 발신번호
         // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
         // altSendType = '' 일 경우, null 또는 공백 처리
         // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
@@ -436,7 +444,7 @@ public class KakaoServiceController {
         // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
         // String altSubject = "대체문자 제목";
 
-        // 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+        // 대체문자 내용, 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
         // └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
         String altContent = "대체문자 내용";
 
@@ -444,7 +452,7 @@ public class KakaoServiceController {
         // null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         String altSendType = "C";
 
-        // 카카오톡 수신정보 배열, 최대 1000건
+        // 전송정보, 최대 1000건
         KakaoReceiver[] receivers = new KakaoReceiver[2];
 
         for (int i = 0; i < 2; i++) {
@@ -455,16 +463,16 @@ public class KakaoServiceController {
             receivers[i] = message;
         }
 
-        // 예약전송일시, 형태(yyyyMMddHHmmss)
+        // 전송 예약일시, 형태(yyyyMMddHHmmss)
         // - 분단위 전송, 미입력 시 즉시 전송
         String sndDT = "";
 
-        // 전송요청번호
+        // 요청번호
         // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
 
-        // 알림톡 버튼정보를 템플릿 신청시 기재한 버튼정보와 동일하게 전송하는 경우 null 처리.
+        // 버튼 목록, 알림톡 버튼정보를 템플릿 신청시 기재한 버튼정보와 동일하게 전송하는 경우 null 처리.
         KakaoButton[] btns = null;
 
         // 알림톡 버튼 URL에 #{템플릿변수}를 기재한경우 템플릿변수 영역을 변경하여 버튼정보 구성
@@ -495,14 +503,16 @@ public class KakaoServiceController {
         /**
          * 텍스트로 구성된 1건의 친구톡 전송을 팝빌에 접수합니다.
          * - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
-         * - 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
+         * 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
+         * 팝빌 서비스의 안정적인 제공을 위하여 동시호출이 제한될 수 있습니다.
+         * 동시에 1,000건 이상 요청하는 경우 동보전송 또는 대량전송으로 이용하시는 것을 권장합니다.
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#SendFTSOne
          */
 
-        // 팝빌에 등록된 비즈니스 채널 아이디
+        // 검색용 아이디
         String plusFriendID = "@팝빌";
 
-        // 팝빌에 사전 등록된 발신번호
+        // 발신번호
         // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
         // altSendType = '' 일 경우, null 또는 공백 처리
         // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
@@ -517,7 +527,7 @@ public class KakaoServiceController {
         // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
         String altSubject = "대체문자 제목";
 
-        // 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+        // 대체문자 내용, 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
         // └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
         String altContent = "대체문자 내용";
 
@@ -525,7 +535,7 @@ public class KakaoServiceController {
         // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         String altSendType = "C";
 
-        // 친구톡 버튼 배열, 최대 5개
+        // 버튼 목록, 최대 5개
         KakaoButton[] btns = new KakaoButton[2];
 
         KakaoButton button = new KakaoButton();
@@ -550,7 +560,7 @@ public class KakaoServiceController {
         // 수신자명
         String receiverName = "수신자명";
 
-        // 예약전송일시, 형태(yyyyMMddHHmmss)
+        // 전송 예약일시, 형태(yyyyMMddHHmmss)
         // - 분단위 전송, 미입력 시 즉시 전송
         String sndDT = "";
 
@@ -559,7 +569,7 @@ public class KakaoServiceController {
         // - 미입력 시 기본값 false 처리
         Boolean adsYN = false;
 
-        // 전송요청번호
+        // 요청번호
         // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
@@ -582,14 +592,14 @@ public class KakaoServiceController {
         /**
          * 텍스트로 구성된 다수건의 친구톡 전송을 팝빌에 접수하며, 수신자 별로 개별 내용을 전송합니다. (최대 1,000건)
          * - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
-         * - 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
+         * 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#SendFTSMulti
          */
 
-        // 팝빌에 등록된 비즈니스 채널 아이디
+        // 검색용 아이디
         String plusFriendID = "@팝빌";
 
-        // 팝빌에 사전 등록된 발신번호
+        // 발신번호
         // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
         // altSendType = '' 일 경우, null 또는 공백 처리
         // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
@@ -599,7 +609,7 @@ public class KakaoServiceController {
         // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         String altSendType = "C";
 
-        // 카카오톡 수신정보 배열, 최대 1000건
+        // 전송정보, 최대 1000건
         KakaoReceiver[] receivers = new KakaoReceiver[3];
         for (int i = 0; i < 3; i++) {
             KakaoReceiver message = new KakaoReceiver();
@@ -634,7 +644,7 @@ public class KakaoServiceController {
             receivers[i] = message;
         }
 
-        // 예약전송일시, 형태(yyyyMMddHHmmss)
+        // 전송 예약일시, 형태(yyyyMMddHHmmss)
         // - 분단위 전송, 미입력 시 즉시 전송
         String sndDT = "";
 
@@ -643,7 +653,7 @@ public class KakaoServiceController {
         // - 미입력 시 기본값 false 처리
         Boolean adsYN = false;
 
-        // 전송요청번호
+        // 요청번호
         // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
@@ -669,10 +679,10 @@ public class KakaoServiceController {
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#SendFTSSame
          */
 
-        // 팝빌에 등록된 비즈니스 채널 아이디
+        // 검색용 아이디
         String plusFriendID = "@팝빌";
 
-        // 팝빌에 사전 등록된 발신번호
+        // 발신번호
         // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
         // altSendType = '' 일 경우, null 또는 공백 처리
         // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
@@ -687,7 +697,7 @@ public class KakaoServiceController {
         // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
         String altSubject = "대체문자 동보제목";
 
-        // 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+        // 대체문자 내용, 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
         // └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
         String altContent = "대체문자 내용";
 
@@ -695,7 +705,7 @@ public class KakaoServiceController {
         // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         String altSendType = "C";
 
-        // 카카오톡 수신정보 배열, 최대 1000건
+        // 전송정보, 최대 1000건
         KakaoReceiver[] receivers = new KakaoReceiver[2];
         for (int i = 0; i < 2; i++) {
             KakaoReceiver message = new KakaoReceiver();
@@ -704,7 +714,7 @@ public class KakaoServiceController {
             receivers[i] = message;
         }
 
-        // 친구톡 버튼 배열, 최대 5개
+        // 버튼 목록, 최대 5개
         KakaoButton[] btns = new KakaoButton[2];
 
         KakaoButton button = new KakaoButton();
@@ -723,7 +733,7 @@ public class KakaoServiceController {
         button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
         btns[1] = button;
 
-        // 예약전송일시, 형태(yyyyMMddHHmmss)
+        // 전송 예약일시, 형태(yyyyMMddHHmmss)
         // - 분단위 전송, 미입력 시 즉시 전송
         String sndDT = "";
 
@@ -732,7 +742,7 @@ public class KakaoServiceController {
         // - 미입력 시 기본값 false 처리
         Boolean adsYN = false;
 
-        // 전송요청번호
+        // 요청번호
         // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
@@ -754,15 +764,17 @@ public class KakaoServiceController {
         /**
          * 이미지가 첨부된 1건의 친구톡 전송을 팝빌에 접수합니다.
          * - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
-         * - 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
+         * 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
          * - 대체문자의 경우, 포토문자(MMS) 형식은 지원하고 있지 않습니다.
+         * 팝빌 서비스의 안정적인 제공을 위하여 동시호출이 제한될 수 있습니다.
+         * 동시에 1,000건 이상 요청하는 경우 동보전송 또는 대량전송으로 이용하시는 것을 권장합니다.
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#SendFMSOne
          */
 
-        // 팝빌에 등록된 비즈니스 채널 아이디
+        // 검색용 아이디
         String plusFriendID = "@팝빌";
 
-        // 팝빌에 사전 등록된 발신번호
+        // 발신번호
         // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
         // altSendType = '' 일 경우, null 또는 공백 처리
         // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
@@ -775,7 +787,7 @@ public class KakaoServiceController {
         // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
         String altSubject = "친구톡 이미지 대체문자 제목";
 
-        // 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+        // 대체문자 내용, 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
         // └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
         String altContent = "[친구톡이미지 대체문자]\n\n" + "친구톡 이미지 대체문자 내용입니다.\n" + "대체문자를 친구톡 메시지 내용 그대로 전송할 수 있습니다.\n"
                 + "또는 대체문자 내용을 작송하여 전송할 수도 있습니다.\n" + "하지만 대체문자 내용이 길어지게 되면 LMS 로 전송될 수 있습니다.\n\n"
@@ -785,7 +797,7 @@ public class KakaoServiceController {
         // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         String altSendType = "A";
 
-        // 친구톡 버튼 배열, 최대 5개
+        // 버튼 목록, 최대 5개
         KakaoButton[] btns = new KakaoButton[2];
 
         KakaoButton button = new KakaoButton();
@@ -810,7 +822,7 @@ public class KakaoServiceController {
         // 수신자명
         String receiverName = "수신자명";
 
-        // 예약전송일시, 형태(yyyyMMddHHmmss)
+        // 전송 예약일시, 형태(yyyyMMddHHmmss)
         // - 분단위 전송, 미입력 시 즉시 전송
         String sndDT = "";
 
@@ -819,7 +831,7 @@ public class KakaoServiceController {
         // - 미입력 시 기본값 false 처리
         Boolean adsYN = false;
 
-        // 첨부이미지 파일 경로
+        // 전송 이미지 파일
         // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px
         // 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
         File file = new File("C:/Users/Public/Pictures/Image.jpg");
@@ -829,7 +841,7 @@ public class KakaoServiceController {
         // - 미입력시 첨부된 이미지를 링크 기능 없이 표시
         String imageURL = "http://test.popbill.com";
 
-        // 전송요청번호
+        // 요청번호
         // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
@@ -856,10 +868,10 @@ public class KakaoServiceController {
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#SendFMSMulti
          */
 
-        // 팝빌에 등록된 비즈니스 채널 아이디
+        // 검색용 아이디
         String plusFriendID = "@팝빌";
 
-        // 팝빌에 사전 등록된 발신번호
+        // 발신번호
         // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
         // altSendType = '' 일 경우, null 또는 공백 처리
         // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
@@ -869,7 +881,7 @@ public class KakaoServiceController {
         // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         String altSendType = "C";
 
-        // 카카오톡 수신정보 배열, 최대 1000건
+        // 전송정보, 최대 1000건
         KakaoReceiver[] receivers = new KakaoReceiver[3];
         for (int i = 0; i < 3; i++) {
             KakaoReceiver message = new KakaoReceiver();
@@ -903,7 +915,7 @@ public class KakaoServiceController {
         }
 
         // 수신자별 동일 버튼 정보
-        // 친구톡 버튼 배열, 최대 5개
+        // 버튼 목록, 최대 5개
         KakaoButton[] btns = new KakaoButton[2];
 
         KakaoButton button = new KakaoButton();
@@ -922,7 +934,7 @@ public class KakaoServiceController {
         button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
         btns[1] = button;
 
-        // 예약전송일시, 형태(yyyyMMddHHmmss)
+        // 전송 예약일시, 형태(yyyyMMddHHmmss)
         // - 분단위 전송, 미입력 시 즉시 전송
         String sndDT = "";
 
@@ -931,7 +943,7 @@ public class KakaoServiceController {
         // - 미입력 시 기본값 false 처리
         Boolean adsYN = false;
 
-        // 첨부이미지 파일 경로
+        // 전송 이미지 파일
         // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px
         // 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
         File file = new File("C:/Users/Public/Pictures/Image.jpg");
@@ -941,7 +953,7 @@ public class KakaoServiceController {
         // - 미입력시 첨부된 이미지를 링크 기능 없이 표시
         String imageURL = "http://test.popbill.com";
 
-        // 전송요청번호
+        // 요청번호
         // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
@@ -968,10 +980,10 @@ public class KakaoServiceController {
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#SendFMSSame
          */
 
-        // 팝빌에 등록된 비즈니스 채널 아이디
+        // 검색용 아이디
         String plusFriendID = "@팝빌";
 
-        // 팝빌에 사전 등록된 발신번호
+        // 발신번호
         // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
         // altSendType = '' 일 경우, null 또는 공백 처리
         // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
@@ -986,7 +998,7 @@ public class KakaoServiceController {
         // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
         String altSubject = "대체문자 제목";
 
-        // 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+        // 대체문자 내용, 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
         // └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
         String altContent = "대체문자 내용";
 
@@ -994,7 +1006,7 @@ public class KakaoServiceController {
         // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         String altSendType = "C";
 
-        // 카카오톡 수신정보 배열, 최대 1000건
+        // 전송정보, 최대 1000건
         KakaoReceiver[] receivers = new KakaoReceiver[2];
         for (int i = 0; i < 2; i++) {
             KakaoReceiver message = new KakaoReceiver();
@@ -1004,7 +1016,7 @@ public class KakaoServiceController {
         }
 
         // 수신자별 동일 버튼 정보
-        // 친구톡 버튼 배열, 최대 5개
+        // 버튼 목록, 최대 5개
         KakaoButton[] btns = new KakaoButton[2];
 
         KakaoButton button = new KakaoButton();
@@ -1023,7 +1035,7 @@ public class KakaoServiceController {
         button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
         btns[1] = button;
 
-        // 예약전송일시, 형태(yyyyMMddHHmmss)
+        // 전송 예약일시, 형태(yyyyMMddHHmmss)
         // - 분단위 전송, 미입력 시 즉시 전송
         String sndDT = "";
 
@@ -1032,7 +1044,7 @@ public class KakaoServiceController {
         // - 미입력 시 기본값 false 처리
         Boolean adsYN = false;
 
-        // 첨부이미지 파일 경로
+        // 전송 이미지 파일
         // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px
         // 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
         File file = new File("C:/Users/Public/Pictures/Image.jpg");
@@ -1042,7 +1054,7 @@ public class KakaoServiceController {
         // - 미입력시 첨부된 이미지를 링크 기능 없이 표시
         String imageURL = "http://test.popbill.com";
 
-        // 전송요청번호
+        // 요청번호
         // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
@@ -1071,10 +1083,10 @@ public class KakaoServiceController {
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#SendFMSBinaryOne
          */
 
-        // 팝빌에 등록된 비즈니스 채널 아이디
+        // 검색용 아이디
         String plusFriendID = "@팝빌";
 
-        // 팝빌에 사전 등록된 발신번호
+        // 발신번호
         // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
         // altSendType = '' 일 경우, null 또는 공백 처리
         // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
@@ -1087,7 +1099,7 @@ public class KakaoServiceController {
         // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
         String altSubject = "친구톡 이미지 대체문자 제목";
 
-        // 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+        // 대체문자 내용, 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
         // └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
         String altContent = "[친구톡이미지 대체문자]\n\n" + "친구톡 이미지 대체문자 내용입니다.\n" + "대체문자를 친구톡 메시지 내용 그대로 전송할 수 있습니다.\n"
                 + "또는 대체문자 내용을 작송하여 전송할 수도 있습니다.\n" + "하지만 대체문자 내용이 길어지게 되면 LMS 로 전송될 수 있습니다.\n\n"
@@ -1097,7 +1109,7 @@ public class KakaoServiceController {
         // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         String altSendType = "A";
 
-        // 친구톡 버튼 배열, 최대 5개
+        // 버튼 목록, 최대 5개
         KakaoButton[] btns = new KakaoButton[2];
 
         KakaoButton button = new KakaoButton();
@@ -1122,7 +1134,7 @@ public class KakaoServiceController {
         // 수신자명
         String receiverName = "수신자명";
 
-        // 예약전송일시, 형태(yyyyMMddHHmmss)
+        // 전송 예약일시, 형태(yyyyMMddHHmmss)
         // - 분단위 전송, 미입력 시 즉시 전송
         String sndDT = "";
 
@@ -1131,7 +1143,7 @@ public class KakaoServiceController {
         // - 미입력 시 기본값 false 처리
         Boolean adsYN = false;
 
-        // 첨부이미지 파일 경로
+        // 전송 이미지 파일
         // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px
         // 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
         File file = new File("C:/Users/Public/Pictures/Image.jpg");
@@ -1146,7 +1158,7 @@ public class KakaoServiceController {
         // - 미입력시 첨부된 이미지를 링크 기능 없이 표시
         String imageURL = "http://test.popbill.com";
 
-        // 전송요청번호
+        // 요청번호
         // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
@@ -1173,10 +1185,10 @@ public class KakaoServiceController {
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#SendFMSBinaryMulti
          */
 
-        // 팝빌에 등록된 비즈니스 채널 아이디
+        // 검색용 아이디
         String plusFriendID = "@팝빌";
 
-        // 팝빌에 사전 등록된 발신번호
+        // 발신번호
         // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
         // altSendType = '' 일 경우, null 또는 공백 처리
         // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
@@ -1186,7 +1198,7 @@ public class KakaoServiceController {
         // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         String altSendType = "C";
 
-        // 카카오톡 수신정보 배열, 최대 1000건
+        // 전송정보, 최대 1000건
         KakaoReceiver[] receivers = new KakaoReceiver[3];
         for (int i = 0; i < 3; i++) {
             KakaoReceiver message = new KakaoReceiver();
@@ -1220,7 +1232,7 @@ public class KakaoServiceController {
         }
 
         // 수신자별 동일 버튼 정보
-        // 친구톡 버튼 배열, 최대 5개
+        // 버튼 목록, 최대 5개
         KakaoButton[] btns = new KakaoButton[2];
 
         KakaoButton button = new KakaoButton();
@@ -1239,7 +1251,7 @@ public class KakaoServiceController {
         button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
         btns[1] = button;
 
-        // 예약전송일시, 형태(yyyyMMddHHmmss)
+        // 전송 예약일시, 형태(yyyyMMddHHmmss)
         // - 분단위 전송, 미입력 시 즉시 전송
         String sndDT = "";
 
@@ -1248,7 +1260,7 @@ public class KakaoServiceController {
         // - 미입력 시 기본값 false 처리
         Boolean adsYN = false;
 
-        // 첨부이미지 파일 경로
+        // 전송 이미지 파일
         // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px
         // 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
         File file = new File("C:/Users/Public/Pictures/Image.jpg");
@@ -1263,7 +1275,7 @@ public class KakaoServiceController {
         // - 미입력시 첨부된 이미지를 링크 기능 없이 표시
         String imageURL = "http://test.popbill.com";
 
-        // 전송요청번호
+        // 요청번호
         // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
@@ -1290,10 +1302,10 @@ public class KakaoServiceController {
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#SendFMSBinarySame
          */
 
-        // 팝빌에 등록된 비즈니스 채널 아이디
+        // 검색용 아이디
         String plusFriendID = "@팝빌";
 
-        // 팝빌에 사전 등록된 발신번호
+        // 발신번호
         // altSendType = 'C' / 'A' 일 경우, 대체문자를 전송할 발신번호
         // altSendType = '' 일 경우, null 또는 공백 처리
         // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
@@ -1308,7 +1320,7 @@ public class KakaoServiceController {
         // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
         String altSubject = "대체문자 제목";
 
-        // 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+        // 대체문자 내용, 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
         // └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
         String altContent = "대체문자 내용";
 
@@ -1316,7 +1328,7 @@ public class KakaoServiceController {
         // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
         String altSendType = "C";
 
-        // 카카오톡 수신정보 배열, 최대 1000건
+        // 전송정보, 최대 1000건
         KakaoReceiver[] receivers = new KakaoReceiver[2];
         for (int i = 0; i < 2; i++) {
             KakaoReceiver message = new KakaoReceiver();
@@ -1326,7 +1338,7 @@ public class KakaoServiceController {
         }
 
         // 수신자별 동일 버튼 정보
-        // 친구톡 버튼 배열, 최대 5개
+        // 버튼 목록, 최대 5개
         KakaoButton[] btns = new KakaoButton[2];
 
         KakaoButton button = new KakaoButton();
@@ -1345,7 +1357,7 @@ public class KakaoServiceController {
         button.setTg("out"); // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
         btns[1] = button;
 
-        // 예약전송일시, 형태(yyyyMMddHHmmss)
+        // 전송 예약일시, 형태(yyyyMMddHHmmss)
         // - 분단위 전송, 미입력 시 즉시 전송
         String sndDT = "";
 
@@ -1354,7 +1366,7 @@ public class KakaoServiceController {
         // - 미입력 시 기본값 false 처리
         Boolean adsYN = false;
 
-        // 첨부이미지 파일 경로
+        // 전송 이미지 파일
         // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px
         // 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
         File file = new File("C:/Users/Public/Pictures/Image.jpg");
@@ -1369,7 +1381,7 @@ public class KakaoServiceController {
         // - 미입력시 첨부된 이미지를 링크 기능 없이 표시
         String imageURL = "http://test.popbill.com";
 
-        // 전송요청번호
+        // 요청번호
         // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 할당한 식별번호.
         // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
         String requestNum = "";
@@ -1393,7 +1405,7 @@ public class KakaoServiceController {
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#CancelReserve
          */
 
-        // 카카오톡 예약전송 접수시 팝빌로부터 반환받은 접수번호
+        // 팝빌에서 할당한 접수번호
         String receiptNum = "022025071143200001";
 
         try {
@@ -1414,10 +1426,10 @@ public class KakaoServiceController {
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#CancelReservebyRCV
          */
 
-        // 카카오톡 예약전송 접수시 팝빌로부터 반환 받은 접수번호
+        // 팝빌에서 할당한 접수번호
         String receiptNum = "023011611093900001";
 
-        // 카카오톡 예약전송 접수시 팝빌로 요청한 수신번호
+        // 예약전송 수신번호
         String receiveNum = "";
 
         try {
@@ -1438,7 +1450,7 @@ public class KakaoServiceController {
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#CancelReserveRN
          */
 
-        // 카카오톡 예약전송 접수시 파트너가 할당한 전송요청 번호
+        // 파트너가 할당한 요청번호
         String requestNum = "";
 
         try {
@@ -1459,10 +1471,10 @@ public class KakaoServiceController {
          * - https://developers.popbill.com/reference/kakaotalk/java/api/send#CancelReserveRNbyRCV
          */
 
-        // 카카오톡 예약전송 접수시 파트너가 할당한 전송요청 번호
+        // 파트너가 할당한 요청번호
         String requestNum = "20250711_ats_02";
 
-        // 카카오톡 예약전송 접수시 팝빌로 요청한 수신번호
+        // 예약전송 수신번호
         String receiveNum = "";
 
         try {
@@ -1535,18 +1547,18 @@ public class KakaoServiceController {
          * - https://developers.popbill.com/reference/kakaotalk/java/api/info#Search
          */
 
-        // 시작일자, 날짜형식(yyyyMMdd)
+        // 검색 시작일자, 날짜형식(yyyyMMdd)
         String SDate = "20250711";
 
-        // 종료일자, 날짜형식(yyyyMMdd)
+        // 검색 종료일자, 날짜형식(yyyyMMdd)
         String EDate = "20250731";
 
-        // 전송상태 배열 ("0" , "1" , "2" , "3" , "4" , "5" 중 선택, 다중 선택 가능)
+        // 전송상태 ("0" , "1" , "2" , "3" , "4" , "5" 중 선택, 다중 선택 가능)
         // └ 0 = 전송대기 , 1 = 전송중 , 2 = 전송성공 , 3 = 대체문자 전송 , 4 = 전송실패 , 5 = 전송취소
         // - 미입력 시 전체조회
         String[] State = {"0", "1", "2", "3", "4"};
 
-        // 검색대상 배열 ("ATS", "FTS", "FMS" 중 선택, 다중 선택 가능)
+        // 검색대상 ("ATS", "FTS", "FMS" 중 선택, 다중 선택 가능)
         // └ ATS = 알림톡 , FTS = 친구톡(텍스트) , FMS = 친구톡(이미지)
         // - 미입력 시 전체조회
         String[] Item = {"ATS", "FTS", "FMS"};
@@ -1571,7 +1583,7 @@ public class KakaoServiceController {
         // └ D = 내림차순(기본값) , A = 오름차순
         String Order = "D";
 
-        // 조회하고자 하는 수신자명
+        // 조회 검색어(수신자명)
         // - 미입력시 전체조회
         String QString = "";
 
@@ -1590,8 +1602,10 @@ public class KakaoServiceController {
     @RequestMapping(value = "getSentListURL", method = RequestMethod.GET)
     public String getSentListURL(Model m) {
         /**
-         * 카카오톡 전송내역을 확인하는 페이지의 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * 카카오톡 전송내역 팝업 URL을 반환합니다.
+         * - 권장 사이즈 : width = 1,350px (최소 1,000px) / height = 800px
+         * - 반환되는 URL은 30초 동안만 사용이 가능합니다.
+         * - 반환되는 URL에서만 유효한 세션을 포함하고 있습니다.
          * - https://developers.popbill.com/reference/kakaotalk/java/api/info#GetSentListURL
          */
 
@@ -1613,7 +1627,7 @@ public class KakaoServiceController {
          * - https://developers.popbill.com/reference/kakaotalk/java/common-api/point#GetUnitCost
          */
 
-        // 카카오톡 전송유형, ATS-알림톡, FTS-친구톡 텍스트, FMS-친구톡 이미지
+        // 카카오톡 유형, ATS-알림톡, FTS-친구톡 텍스트, FMS-친구톡 이미지
         KakaoType kakaoType = KakaoType.ATS;
 
         try {
@@ -1634,7 +1648,7 @@ public class KakaoServiceController {
          * - https://developers.popbill.com/reference/kakaotalk/java/common-api/point#GetChargeInfo
          */
 
-        // 카카오톡 전송유형, ATS-알림톡, FTS-친구톡 텍스트, FMS-친구톡 이미지
+        // 카카오톡 유형, ATS-알림톡, FTS-친구톡 텍스트, FMS-친구톡 이미지
         KakaoType kakaoType = KakaoType.ATS;
 
         try {

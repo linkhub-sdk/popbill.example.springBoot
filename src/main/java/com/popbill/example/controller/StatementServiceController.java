@@ -58,10 +58,10 @@ public class StatementServiceController {
          * - https://developers.popbill.com/reference/statement/java/api/info#CheckMgtKeyInUse
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
+        // 파트너가 할당한 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
         String mgtKey = "20250711-BOOT001";
 
         String isUseStr;
@@ -86,28 +86,28 @@ public class StatementServiceController {
          * - https://developers.popbill.com/reference/statement/java/api/issue#RegistIssue
          */
 
-        // 전자명세서 정보 객체
+        // 전자명세서 정보
         Statement statement = new Statement();
 
-        // 명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
         statement.setMgtKey("20250711-BOOT001");
 
-        // 맞춤양식코드, 미기재시 기본양식으로 처리
+        // 맞춤양식 코드, 미기재시 기본양식으로 처리
         statement.setFormCode("");
 
         // 작성일자, 형태 yyyyMMdd
         statement.setWriteDate("20250711");
 
-        // {과세, 영세, 면세} 중 기재
+        // 과세형태, {과세, 영세, 면세} 중 기재
         statement.setTaxType("과세");
 
-        // {영수, 청구, 없음} 중 기재
+        // 영수/청구, {영수, 청구, 없음} 중 기재
         statement.setPurposeType("영수");
 
-        // 기재상 일련번호 항목
+        // 일련번호
         statement.setSerialNum("123");
 
         // 세액 합계
@@ -119,7 +119,7 @@ public class StatementServiceController {
         // 합계금액. 공급가액 + 세액
         statement.setTotalAmount("440000");
 
-        // 기재상 비고 항목
+        // 비고
         statement.setRemark1("비고1");
         statement.setRemark2("비고2");
         statement.setRemark3("비고3");
@@ -137,8 +137,8 @@ public class StatementServiceController {
         // 발신자 상호
         statement.setSenderCorpName("발신자 상호");
 
-        // 발신자 대표자 성명
-        statement.setSenderCEOName("발신자 대표자 성명");
+        // 발신자 대표자성명
+        statement.setSenderCEOName("발신자 대표자성명");
 
         // 발신자 주소
         statement.setSenderAddr("발신자 주소");
@@ -149,16 +149,19 @@ public class StatementServiceController {
         // 발신자 종목
         statement.setSenderBizClass("업종");
 
-        // 발신자 담당자 성명
-        statement.setSenderContactName("발신자 담당자 성명");
+        // 발신자 성명
+        statement.setSenderContactName("발신자 성명");
 
-        // 발신자 담당자 연락처
+        // 발신자 부서명
+        statement.setSenderDeptName("발신자 부서명");
+
+        // 발신자 연락처
         statement.setSenderTEL("070-7070-0707");
 
-        // 발신자 담당자 휴대폰번호
+        // 발신자 휴대전화
         statement.setSenderHP("010-000-2222");
 
-        // 발신자 담당자 메일주소
+        // 발신자 메일주소
         statement.setSenderEmail("test@test.com");
 
         /*********************************************************************
@@ -168,11 +171,14 @@ public class StatementServiceController {
         // 수신자 사업자번호
         statement.setReceiverCorpNum("8888888888");
 
+        // 수신자 종사업장 식별번호
+        statement.setReceiverTaxRegID("");
+
         // 수신자 상호
         statement.setReceiverCorpName("수신자 상호");
 
-        // 수신자 대표자 성명
-        statement.setReceiverCEOName("수신자 대표자 성명");
+        // 수신자 대표자성명
+        statement.setReceiverCEOName("수신자 대표자성명");
 
         // 수신자 주소
         statement.setReceiverAddr("수신자 주소");
@@ -183,20 +189,29 @@ public class StatementServiceController {
         // 수신자 종목
         statement.setReceiverBizClass("수신자 종목");
 
-        // 수신자 담당자 성명
-        statement.setReceiverContactName("수신자 담당자 성명");
+        // 수신자 성명
+        statement.setReceiverContactName("수신자 성명");
+
+        // 수신자 부서명
+        statement.setReceiverDeptName("수신자 부서명");
+
+        // 수신자 연락처
+        statement.setReceiverTEL("");
+
+        // 수신자 휴대전화
+        statement.setReceiverHP("");
 
         // 수신자 메일주소
         // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         // 실제 거래처의 메일주소가 기재되지 않도록 주의
         statement.setReceiverEmail("");
 
-        // 사업자등록증 첨부 여부 (true / false 중 택 1)
+        // 팝빌에 등록된 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBusinessLicenseYN(false);
 
-        // 통장사본 첨부 여부 (true / false 중 택 1)
+        // 팝빌에 등록된 통장사본 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBankBookYN(false);
@@ -224,7 +239,7 @@ public class StatementServiceController {
 
         detail.setSerialNum((short) 1);                    // 일련번호, 1부터 순차기재
         detail.setPurchaseDT("20250711");                  // 거래일자
-        detail.setItemName("품명");                         // 품목명
+        detail.setItemName("품명");                         // 품명
         detail.setSpec("규격");                             // 규격
         detail.setQty("1");                                // 수량
         detail.setUnit("200000");                          // 단가
@@ -237,7 +252,7 @@ public class StatementServiceController {
         detail = new StatementDetail();                    // 상세항목(품목) 배열
         detail.setSerialNum((short) 2);                    // 일련번호 1부터 순차기재
         detail.setPurchaseDT("20250711");                  // 거래일자
-        detail.setItemName("품명");                         // 품목명
+        detail.setItemName("품명");                         // 품명
         detail.setSpec("규격");                             // 규격
         detail.setQty("1");                                // 수량
         detail.setUnit("200000");                          // 단가
@@ -247,10 +262,11 @@ public class StatementServiceController {
 
         statement.getDetailList().add(detail);
 
+        // 전자명세서 상태 이력을 관리하기 위한 메모
         String Memo = "전자명세서 즉시발행 메모";
 
         // 발행 안내 메일 제목
-        // - 미입력 시 팝빌에서 지정한  이메일 제목으로 전송
+        // - 미입력 시 팝빌에서 지정한  메일 제목으로 전송
         String emailSubject = "";
 
         try {
@@ -272,28 +288,28 @@ public class StatementServiceController {
          * - https://developers.popbill.com/reference/statement/java/api/issue#Register
          */
 
-        // 전자명세서 정보 객체
+        // 전자명세서 정보
         Statement statement = new Statement();
 
-        // 명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
         statement.setMgtKey("20250711-BOOT001");
 
-        // 맞춤양식코드, 미기재시 기본양식으로 처리
+        // 맞춤양식 코드, 미기재시 기본양식으로 처리
         statement.setFormCode("");
 
         // 작성일자, 형태 yyyyMMdd
         statement.setWriteDate("20250711");
 
-        // {과세, 영세, 면세} 중 기재
+        // 과세형태, {과세, 영세, 면세} 중 기재
         statement.setTaxType("과세");
 
-        // {영수, 청구, 없음} 중 기재
+        // 영수/청구, {영수, 청구, 없음} 중 기재
         statement.setPurposeType("영수");
 
-        // 기재상 일련번호 항목
+        // 일련번호
         statement.setSerialNum("123");
 
         // 세액 합계
@@ -305,7 +321,7 @@ public class StatementServiceController {
         // 합계금액. 공급가액 + 세액
         statement.setTotalAmount("440000");
 
-        // 기재상 비고 항목
+        // 비고
         statement.setRemark1("비고1");
         statement.setRemark2("비고2");
         statement.setRemark3("비고3");
@@ -323,8 +339,8 @@ public class StatementServiceController {
         // 발신자 상호
         statement.setSenderCorpName("발신자 상호");
 
-        // 발신자 대표자 성명
-        statement.setSenderCEOName("발신자 대표자 성명");
+        // 발신자 대표자성명
+        statement.setSenderCEOName("발신자 대표자성명");
 
         // 발신자 주소
         statement.setSenderAddr("발신자 주소");
@@ -335,16 +351,19 @@ public class StatementServiceController {
         // 발신자 종목
         statement.setSenderBizClass("업종");
 
-        // 발신자 담당자 성명
-        statement.setSenderContactName("발신자 담당자 성명");
+        // 발신자 성명
+        statement.setSenderContactName("발신자 성명");
 
-        // 발신자 담당자 연락처
+        // 발신자 부서명
+        statement.setSenderDeptName("발신자 부서명");
+
+        // 발신자 연락처
         statement.setSenderTEL("070-7070-0707");
 
-        // 발신자 담당자 휴대폰번호
+        // 발신자 휴대전화
         statement.setSenderHP("010-000-2222");
 
-        // 발신자 담당자 메일주소
+        // 발신자 메일주소
         statement.setSenderEmail("test@test.com");
 
         /*********************************************************************
@@ -354,11 +373,14 @@ public class StatementServiceController {
         // 수신자 사업자번호
         statement.setReceiverCorpNum("8888888888");
 
+        // 수신자 종사업장 식별번호
+        statement.setReceiverTaxRegID("");
+
         // 수신자 상호
         statement.setReceiverCorpName("수신자 상호");
 
-        // 수신자 대표자 성명
-        statement.setReceiverCEOName("수신자 대표자 성명");
+        // 수신자 대표자성명
+        statement.setReceiverCEOName("수신자 대표자성명");
 
         // 수신자 주소
         statement.setReceiverAddr("수신자 주소");
@@ -369,20 +391,29 @@ public class StatementServiceController {
         // 수신자 종목
         statement.setReceiverBizClass("수신자 종목");
 
-        // 수신자 담당자 성명
-        statement.setReceiverContactName("수신자 담당자 성명");
+        // 수신자 성명
+        statement.setReceiverContactName("수신자 성명");
+
+        // 수신자 부서명
+        statement.setReceiverDeptName("수신자 부서명");
+
+        // 수신자 연락처
+        statement.setReceiverTEL("");
+
+        // 수신자 휴대전화
+        statement.setReceiverHP("");
 
         // 수신자 메일주소
         // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         // 실제 거래처의 메일주소가 기재되지 않도록 주의
-        statement.setReceiverEmail("test@receiver.com");
+        statement.setReceiverEmail("");
 
-        // 사업자등록증 첨부 여부 (true / false 중 택 1)
+        // 팝빌에 등록된 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBusinessLicenseYN(false);
 
-        // 통장사본 첨부 여부 (true / false 중 택 1)
+        // 팝빌에 등록된 통장사본 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBankBookYN(false);
@@ -410,7 +441,7 @@ public class StatementServiceController {
 
         detail.setSerialNum((short) 1);                    // 일련번호, 1부터 순차기재
         detail.setPurchaseDT("20250711");                  // 거래일자
-        detail.setItemName("품명");                         // 품목명
+        detail.setItemName("품명");                         // 품명
         detail.setSpec("규격");                             // 규격
         detail.setQty("1");                                // 수량
         detail.setUnit("200000");                          // 단가
@@ -423,7 +454,7 @@ public class StatementServiceController {
         detail = new StatementDetail();                    // 상세항목(품목) 배열
         detail.setSerialNum((short) 2);                    // 일련번호 1부터 순차기재
         detail.setPurchaseDT("20250711");                  // 거래일자
-        detail.setItemName("품명");                         // 품목명
+        detail.setItemName("품명");                         // 품명
         detail.setSpec("규격");                             // 규격
         detail.setQty("1");                                // 수량
         detail.setUnit("200000");                          // 단가
@@ -451,34 +482,34 @@ public class StatementServiceController {
          * - https://developers.popbill.com/reference/statement/java/api/issue#Update
          */
 
-        // 명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        String mgtKey = "20250711-BOOT002";
+        // 파트너가 할당한 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
+        String mgtKey = "20250711-MVC002";
 
-        // 전자명세서 정보 객체
+        // 전자명세서 정보
         Statement statement = new Statement();
 
-        // 명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
-        // statement.setItemCode((short) 121);
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        // statement.setMgtKey(mgtKey);
+        statement.setMgtKey("20250711-MVC002");
 
-        // 맞춤양식코드, 미기재시 기본양식으로 처리
+        // 맞춤양식 코드, 미기재시 기본양식으로 처리
         statement.setFormCode("");
 
-        // 작성일자, 형태 yyyyMmdd
+        // 작성일자, 형태 yyyyMMdd
         statement.setWriteDate("20250711");
 
-        // {과세, 영세, 면세} 중 기재
+        // 과세형태, {과세, 영세, 면세} 중 기재
         statement.setTaxType("과세");
 
-        // {영수, 청구, 없음} 중 기재
+        // 영수/청구, {영수, 청구, 없음} 중 기재
         statement.setPurposeType("영수");
 
-        // 기재상 일련번호 항목
+        // 일련번호
         statement.setSerialNum("123");
 
         // 세액 합계
@@ -490,7 +521,7 @@ public class StatementServiceController {
         // 합계금액. 공급가액 + 세액
         statement.setTotalAmount("440000");
 
-        // 기재상 비고 항목
+        // 비고
         statement.setRemark1("비고1");
         statement.setRemark2("비고2");
         statement.setRemark3("비고3");
@@ -508,11 +539,11 @@ public class StatementServiceController {
         // 발신자 상호
         statement.setSenderCorpName("발신자 상호");
 
-        // 발신자 대표자 성명
-        statement.setSenderCEOName("발신자 대표자 성명_수정");
+        // 발신자 대표자성명
+        statement.setSenderCEOName("발신자 대표자성명");
 
         // 발신자 주소
-        statement.setSenderAddr("발신자 주소_수정");
+        statement.setSenderAddr("발신자 주소");
 
         // 발신자 업태
         statement.setSenderBizType("업태");
@@ -520,16 +551,19 @@ public class StatementServiceController {
         // 발신자 종목
         statement.setSenderBizClass("업종");
 
-        // 발신자 담당자 성명
-        statement.setSenderContactName("발신자 담당자 성명");
+        // 발신자 성명
+        statement.setSenderContactName("발신자 성명");
 
-        // 발신자 담당자 연락처
+        // 발신자 부서명
+        statement.setSenderDeptName("발신자 부서명");
+
+        // 발신자 연락처
         statement.setSenderTEL("070-7070-0707");
 
-        // 발신자 담당자 휴대폰번호
+        // 발신자 휴대전화
         statement.setSenderHP("010-000-2222");
 
-        // 발신자 담당자 메일주소
+        // 발신자 메일주소
         statement.setSenderEmail("test@test.com");
 
         /*********************************************************************
@@ -539,11 +573,14 @@ public class StatementServiceController {
         // 수신자 사업자번호
         statement.setReceiverCorpNum("8888888888");
 
+        // 수신자 종사업장 식별번호
+        statement.setReceiverTaxRegID("");
+
         // 수신자 상호
         statement.setReceiverCorpName("수신자 상호");
 
-        // 수신자 대표자 성명
-        statement.setReceiverCEOName("수신자 대표자 성명");
+        // 수신자 대표자성명
+        statement.setReceiverCEOName("수신자 대표자성명");
 
         // 수신자 주소
         statement.setReceiverAddr("수신자 주소");
@@ -554,20 +591,29 @@ public class StatementServiceController {
         // 수신자 종목
         statement.setReceiverBizClass("수신자 종목");
 
-        // 수신자 담당자 성명
-        statement.setReceiverContactName("수신자 담당자 성명");
+        // 수신자 성명
+        statement.setReceiverContactName("수신자 성명");
+
+        // 수신자 부서명
+        statement.setReceiverDeptName("수신자 부서명");
+
+        // 수신자 연락처
+        statement.setReceiverTEL("");
+
+        // 수신자 휴대전화
+        statement.setReceiverHP("");
 
         // 수신자 메일주소
         // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         // 실제 거래처의 메일주소가 기재되지 않도록 주의
-        statement.setReceiverEmail("test@receiver.com");
+        statement.setReceiverEmail("");
 
-        // 사업자등록증 첨부 여부 (true / false 중 택 1)
+        // 팝빌에 등록된 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBusinessLicenseYN(false);
 
-        // 통장사본 첨부 여부 (true / false 중 택 1)
+        // 팝빌에 등록된 통장사본 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBankBookYN(false);
@@ -595,7 +641,7 @@ public class StatementServiceController {
 
         detail.setSerialNum((short) 1);                    // 일련번호, 1부터 순차기재
         detail.setPurchaseDT("20250711");                  // 거래일자
-        detail.setItemName("품명");                         // 품목명
+        detail.setItemName("품명");                         // 품명
         detail.setSpec("규격");                             // 규격
         detail.setQty("1");                                // 수량
         detail.setUnit("200000");                          // 단가
@@ -608,7 +654,7 @@ public class StatementServiceController {
         detail = new StatementDetail();                    // 상세항목(품목) 배열
         detail.setSerialNum((short) 2);                    // 일련번호 1부터 순차기재
         detail.setPurchaseDT("20250711");                  // 거래일자
-        detail.setItemName("품명");                         // 품목명
+        detail.setItemName("품명");                         // 품명
         detail.setSpec("규격");                             // 규격
         detail.setQty("1");                                // 수량
         detail.setUnit("200000");                          // 단가
@@ -639,17 +685,17 @@ public class StatementServiceController {
          * - https://developers.popbill.com/reference/statement/java/api/issue#Issue
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 전자명세서 문서번호
-        String mgtKey = "20250711-BOOT002";
+        // 파트너가 할당한 문서번호
+        String mgtKey = "20250711-MVC001";
 
-        // 메모
+        // 전자명세서 상태 이력을 관리하기 위한 메모
         String memo = "발행메모";
 
         // 전자명세서 발행 안내메일 제목
-        // - 미입력시 팝빌에서 지정한 이메일 제목으로 전송
+        // - 미입력시 팝빌에서 지정한 메일 제목으로 전송
         String emailSubject = "테스트";
 
         try {
@@ -671,13 +717,13 @@ public class StatementServiceController {
          * - https://developers.popbill.com/reference/statement/java/api/issue#Cancel
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 전자명세서 문서번호
-        String mgtKey = "20250711-BOOT002";
+        // 파트너가 할당한 문서번호
+        String mgtKey = "20250711-MVC002";
 
-        // 메모
+        // 전자명세서 상태 이력을 관리하기 위한 메모
         String memo = "발행취소 메모";
 
         try {
@@ -700,11 +746,11 @@ public class StatementServiceController {
          * - https://developers.popbill.com/reference/statement/java/api/issue#Delete
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 전자명세서 문서번호
-        String mgtKey = "20250711-BOOT002";
+        // 파트너가 할당한 문서번호
+        String mgtKey = "20250711-MVC002";
 
         try {
             Response response = statementService.delete(CorpNum, itemCode, mgtKey, UserID);
@@ -725,11 +771,11 @@ public class StatementServiceController {
          * - https://developers.popbill.com/reference/statement/java/api/info#GetInfo
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 전자명세서 문서번호
-        String mgtKey = "20250711-BOOT001";
+        // 파트너가 할당한 문서번호
+        String mgtKey = "20250711-MVC001";
 
         try {
             StatementInfo statementInfo = statementService.getInfo(CorpNum, itemCode, mgtKey, UserID);
@@ -750,11 +796,11 @@ public class StatementServiceController {
          * - https://developers.popbill.com/reference/statement/java/api/info#GetInfos
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 전자명세서 문서번호 배열(최대 1000건)
-        String[] MgtKeyList = new String[]{"20250711-BOOT001", "20250711-BOOT002"};
+        // 문서번호 목록 (최대 1000건)
+        String[] MgtKeyList = new String[]{"20250711-MVC001", "20250711-MVC002"};
 
         try {
             StatementInfo[] statementInfos = statementService.getInfos(CorpNum, itemCode, MgtKeyList, UserID);
@@ -774,11 +820,11 @@ public class StatementServiceController {
          * - https://developers.popbill.com/reference/statement/java/api/info#GetDetailInfo
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 전자명세서 문서번호
-        String mgtKey = "20250711-BOOT001";
+        // 파트너가 할당한 문서번호
+        String mgtKey = "20250711-MVC001";
 
         try {
             Statement statement = statementService.getDetailInfo(CorpNum, itemCode, mgtKey, UserID);
@@ -799,36 +845,37 @@ public class StatementServiceController {
          * - https://developers.popbill.com/reference/statement/java/api/info#Search
          */
 
-        // 일자 유형 ("R" , "W" , "I" 중 택 1)
+        // 검색일자 유형 ("R" , "W" , "I" 중 택 1)
         // └ R = 등록일자 , W = 작성일자 , I = 발행일자
         String DType = "W";
 
-        // 시작일자, 날짜형식(yyyyMMdd)
+        // 검색 시작일자, 날짜형식(yyyyMMdd)
         String SDate = "20250711";
 
-        // 종료일자, 날짜형식(yyyyMMdd)
+        // 검색 종료일자, 날짜형식(yyyyMMdd)
         String EDate = "20250731";
 
-        // 전자명세서 상태코드 배열 (2,3번째 자리에 와일드카드(*) 사용 가능)
+        // 전자명세서 상태코드 (2,3번째 자리에 와일드카드(*) 사용 가능)
         // - 미입력시 전체조회
         String[] State = {"100", "2**", "3**", "4**"};
 
-        // 전자명세서 문서유형 배열 (121 , 122 , 123 , 124 , 125 , 126 중 선택. 다중 선택 가능)
+        // 전자명세서 문서유형 (121 , 122 , 123 , 124 , 125 , 126 중 선택. 다중 선택 가능)
         // 121 = 명세서 , 122 = 청구서 , 123 = 견적서
         // 124 = 발주서 , 125 = 입금표 , 126 = 영수증
         int[] ItemCode = {121, 122, 123, 124, 125, 126};
 
-        // 통합검색어, 거래처 상호명 또는 거래처 사업자번호로 조회
+        // 조회 검색어(거래처 상호/사업자번호)
         // - 미입력시 전체조회
         String QString = "";
 
-        // 페이지 번호
+        // 목록 페이지번호
         int Page = 1;
 
-        // 페이지당 목록 건수, 최대 1000건
+        // 페이지당 표시할 목록 건수, 최대 1000건
         int PerPage = 20;
 
-        // 정렬방향, A-오름차순, D-내림차순
+        // 조회 기준일자 유형을 기준으로 하는 목록 정렬 방향
+        // - D = 내림차순(기본값) , A = 오름차순
         String Order = "D";
 
         try {
@@ -850,11 +897,11 @@ public class StatementServiceController {
          * - https://developers.popbill.com/reference/statement/java/api/info#GetLogs
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 전자명세서 문서번호
-        String mgtKey = "20250711-BOOT001";
+        // 파트너가 할당한 문서번호
+        String mgtKey = "20250711-MVC001";
 
         try {
             StatementLog[] statementLogs = statementService.getLogs(CorpNum, itemCode, mgtKey, UserID);
@@ -875,7 +922,7 @@ public class StatementServiceController {
          * - https://developers.popbill.com/reference/statement/java/api/info#GetURL
          */
 
-        // TBOX : 임시문서함 , SBOX : 발행문서함
+        // 접근 메뉴, TBOX : 임시문서함 , SBOX : 발행문서함
         String TOGO = "SBOX";
 
         try {
@@ -892,16 +939,18 @@ public class StatementServiceController {
     @RequestMapping(value = "getPopUpURL", method = RequestMethod.GET)
     public String getPopUpURL(Model m) {
         /**
-         * 전자명세서 1건의 상세 정보 페이지의 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * 전자명세서 1건의 팝업 URL을 반환합니다.
+         * - 권장 사이즈 : width = 1,250px (최소 975px) / height = 800px
+         * - 반환되는 URL은 30초 동안만 사용이 가능합니다.
+         * - 반환되는 URL에서만 유효한 세션을 포함하고 있습니다.
          * - https://developers.popbill.com/reference/statement/java/api/view#GetPopUpURL
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 전자명세서 문서번호
-        String mgtKey = "20250711-BOOT001";
+        // 파트너가 할당한 문서번호
+        String mgtKey = "20250711-MVC001";
 
         try {
             String url = statementService.getPopUpURL(CorpNum, itemCode, mgtKey, UserID);
@@ -917,16 +966,19 @@ public class StatementServiceController {
     @RequestMapping(value = "getViewURL", method = RequestMethod.GET)
     public String getViewURL(Model m) {
         /**
-         * 팝빌 사이트와 동일한 전자명세서 1건의 상세 정보 페이지(사이트 상단, 좌측 메뉴 및 버튼 제외)의 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * 전자명세서 1건의 팝업 URL을 반환합니다.
+         * - 권장 사이즈 : width = 1,250px (최소 975px) / height = 800px
+         * - 페이지 상/하단에 기능 버튼이 존재하지 않습니다.
+         * - 반환되는 URL은 30초 동안만 사용이 가능합니다.
+         * - 반환되는 URL에서만 유효한 세션을 포함하고 있습니다.
          * - https://developers.popbill.com/reference/statement/java/api/view#GetViewURL
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 전자명세서 문서번호
-        String mgtKey = "20250711-BOOT001";
+        // 파트너가 할당한 문서번호
+        String mgtKey = "20250711-MVC001";
 
         try {
             String url = statementService.getViewURL(CorpNum, itemCode, mgtKey, UserID);
@@ -943,17 +995,18 @@ public class StatementServiceController {
     @RequestMapping(value = "getPrintURL", method = RequestMethod.GET)
     public String getPrintURL(Model m) {
         /**
-         * 전자명세서 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환하며, 페이지내에서 인쇄 설정값을 "공급자" / "공급받는자" / "공급자+공급받는자"용 중 하나로 지정할 수 있습니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - 전자명세서의 공급자는 "발신자", 공급받는자는 "수신자"를 나타내는 용어입니다.
+         * 전자명세서 1건의 공급자 인쇄 팝업 URL을 반환합니다.
+         * - 권장 사이즈 : width = 900px / height = 730px
+         * - 반환되는 URL은 30초 동안만 사용이 가능합니다.
+         * - 반환되는 URL에서만 유효한 세션을 포함하고 있습니다.
          * - https://developers.popbill.com/reference/statement/java/api/view#GetPrintURL
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 전자명세서 문서번호
-        String mgtKey = "20250711-BOOT001";
+        // 파트너가 할당한 문서번호
+        String mgtKey = "20250711-MVC001";
 
         try {
             String url = statementService.getPrintURL(CorpNum, itemCode, mgtKey, UserID);
@@ -969,17 +1022,18 @@ public class StatementServiceController {
     @RequestMapping(value = "getEPrintURL", method = RequestMethod.GET)
     public String getEPrintURL(Model m) {
         /**
-         * "공급받는자" 용 세금계산서 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - 전자명세서의 공급받는자는 "수신자"를 나타내는 용어입니다.
+         * 전자명세서 1건의 공급받는자 인쇄 팝업 URL을 반환합니다.
+         * - 권장 사이즈 : width = 900px / height = 730px
+         * - 반환되는 URL은 30초 동안만 사용이 가능합니다.
+         * - 반환되는 URL에서만 유효한 세션을 포함하고 있습니다.
          * - https://developers.popbill.com/reference/statement/java/api/view#GetEPrintURL
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 전자명세서 문서번호
-        String mgtKey = "20250711-BOOT001";
+        // 파트너가 할당한 문서번호
+        String mgtKey = "20250711-MVC001";
 
         try {
             String url = statementService.getEPrintURL(CorpNum, itemCode, mgtKey, UserID);
@@ -995,16 +1049,19 @@ public class StatementServiceController {
     @RequestMapping(value = "getMassPrintURL", method = RequestMethod.GET)
     public String getMassPrintURL(Model m) {
         /**
-         * 다수건의 전자명세서를 인쇄하기 위한 페이지의 팝업 URL을 반환합니다. (최대 100건)
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * 전자명세서 다건의 인쇄 팝업 URL을 반환합니다.
+         * - 권장 사이즈 : width = 900px / height = 730px
+         * - 1회 호출에 최대 100건까지 인쇄가 가능합니다.
+         * - 반환되는 URL은 30초 동안만 사용이 가능합니다.
+         * - 반환되는 URL에서만 유효한 세션을 포함하고 있습니다.
          * - https://developers.popbill.com/reference/statement/java/api/view#GetMassPrintURL
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 문서번호 배열, 최대 100건
-        String[] mgtKeyList = new String[]{"20250711-BOOT001", "20250711-BOOT002"};
+        // 문서번호 목록, 최대 100건
+        String[] mgtKeyList = new String[]{"20250711-MVC001", "20250711-MVC002"};
 
         try {
             String url = statementService.getMassPrintURL(CorpNum, itemCode, mgtKeyList, UserID);
@@ -1020,16 +1077,18 @@ public class StatementServiceController {
     @RequestMapping(value = "getMailURL", method = RequestMethod.GET)
     public String getMailURL(Model m) {
         /**
-         * 전자명세서 안내메일의 상세보기 링크 URL을 반환합니다.
-         * - 함수 호출로 반환 받은 URL에는 유효시간이 없습니다.
+         * 전자명세서 발행 안내 메일의 '보기' 버튼 URL을 반환합니다.
+         * - 권장 사이즈 : width = 1,250px (최소 975px) / height = 800px
+         * - 반환되는 URL은 유효기간 제한 없이 사용할 수 있습니다.
+         * - 반환되는 URL에서만 유효한 세션을 포함하고 있습니다.
          * - https://developers.popbill.com/reference/statement/java/api/view#GetMailURL
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 전자명세서 문서번호
-        String mgtKey = "20250711-BOOT001";
+        // 파트너가 할당한 문서번호
+        String mgtKey = "20250711-MVC001";
 
         try {
             String url = statementService.getMailURL(CorpNum, itemCode, mgtKey, UserID);
@@ -1045,8 +1104,10 @@ public class StatementServiceController {
     @RequestMapping(value = "getSealURL", method = RequestMethod.GET)
     public String getSealURL(Model m) {
         /**
-         * 전자명세서에 첨부할 인감, 사업자등록증, 통장사본을 등록하는 페이지의 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * 전자명세서에 첨부될 인감, 사업자등록증, 통장사본을 등록하는 팝업 URL을 반환합니다.
+         * - 권장 사이즈 : width = 600px / height = 755px
+         * - 반환되는 URL은 30초 동안만 사용이 가능합니다.
+         * - 반환되는 URL에서만 유효한 세션을 포함하고 있습니다.
          * - https://developers.popbill.com/reference/statement/java/api/etc#GetSealURL
          */
 
@@ -1068,17 +1129,16 @@ public class StatementServiceController {
          * - https://developers.popbill.com/reference/statement/java/api/etc#AttachFile
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 전자명세서 문서번호
-        String mgtKey = "20250711-BOOT002";
+        // 파트너가 할당한 문서번호
+        String mgtKey = "20250711-MVC002";
 
-        // 첨부파일 표시명
+        // 파일명
         String displayName = "첨부파일.jpg";
 
-        // 첨부할 파일의 InputStream. 예제는 resource에 테스트파일을 참조함.
-        // FileInputStream으로 처리하는 것을 권함.
+        // 파일 데이터
         InputStream stream = getClass().getClassLoader().getResourceAsStream("static/image/test.jpg");
 
         try {
@@ -1103,17 +1163,17 @@ public class StatementServiceController {
     public String deleteFile(Model m) {
         /**
          * "임시저장" 상태의 전자명세서에 첨부된 1개의 파일을 삭제합니다.
-         * - 파일을 식별하는 파일아이디는 첨부파일 목록 확인(GetFiles API) 함수의 응답항목 중 파일아이디(AttachedFile) 값을 통해 확인할 수 있습니다.
          * - https://developers.popbill.com/reference/statement/java/api/etc#DeleteFile
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 전자명세서 문서번호
-        String mgtKey = "20250711-BOOT002";
+        // 파트너가 할당한 문서번호
+        String mgtKey = "20250711-MVC002";
 
-        // getFiles()로 해당 파일의 attachedFile 필드값 기재.
+        // 팝빌이 할당한 파일 식별번호
+        // 첨부파일 목록 확인(GetFiles API) 함수의 리턴 값 중 attachedFile 필드값 기재.
         String FileID = "";
 
         try {
@@ -1131,15 +1191,14 @@ public class StatementServiceController {
     public String getFiles(Model m) {
         /**
          * 전자명세서에 첨부된 파일목록을 확인합니다.
-         * - 응답항목 중 파일아이디(AttachedFile) 항목은 파일삭제(DeleteFile API) 함수 호출 시 이용할 수 있습니다.
          * - https://developers.popbill.com/reference/statement/java/api/etc#GetFiles
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 전자명세서 문서번호
-        String mgtKey = "20250711-BOOT002";
+        // 파트너가 할당한 문서번호
+        String mgtKey = "20250711-MVC002";
 
         try {
             AttachedFile[] attachedFiles = statementService.getFiles(CorpNum, itemCode, mgtKey, UserID);
@@ -1159,13 +1218,13 @@ public class StatementServiceController {
          * - https://developers.popbill.com/reference/statement/java/api/etc#SendEmail
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 전자명세서 문서번호
-        String mgtKey = "20250711-BOOT001";
+        // 파트너가 할당한 문서번호
+        String mgtKey = "20250711-MVC001";
 
-        // 수신자 이메일주소
+        // 수신자 메일주소
         String receiver = "test@test.com";
 
         try {
@@ -1182,17 +1241,16 @@ public class StatementServiceController {
     @RequestMapping(value = "sendSMS", method = RequestMethod.GET)
     public String sendSMS(Model m) {
         /**
-         * 전자명세서와 관련된 안내 SMS(단문) 문자를 재전송하는 함수로, 팝빌 사이트 [문자] > [결과] > [전송결과] 메뉴에서 전송결과를 확인 할 수 있습니다.
-         * - 메시지는 최대 90byte까지 입력 가능하고, 초과한 내용은 자동으로 삭제되어 전송합니다. (한글 최대 45자)
-         * - 함수 호출시 포인트가 과금됩니다.
+         * 전자명세서와 관련된 안내 SMS(단문) 문자를 재전송하는 함수로, 팝빌 사이트 [ 문자 > 결과 > 전송결과 ] 메뉴에서 전송결과를 확인할 수 있습니다.
+         * 메시지는 최대 90byte까지 입력 가능하고, 초과한 내용은 자동으로 삭제되어 전송합니다. (한글 최대 45자)
          * - https://developers.popbill.com/reference/statement/java/api/etc#SendSMS
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 전자명세서 문서번호
-        String mgtKey = "20250711-BOOT001";
+        // 파트너가 할당한 문서번호
+        String mgtKey = "20250711-MVC001";
 
         // 발신번호
         String sender = "07043042991";
@@ -1200,7 +1258,7 @@ public class StatementServiceController {
         // 수신번호
         String receiver = "010111222";
 
-        // 문자 전송 내용 (90Byte 초과시 길이가 조정되어 전송)
+        // 메시지 내용 (90Byte 초과한 내용은 자동으로 삭제되어 전송)
         String contents = "전자명세서 문자메시지 전송 테스트입니다.";
 
         try {
@@ -1217,21 +1275,20 @@ public class StatementServiceController {
     @RequestMapping(value = "sendFAX", method = RequestMethod.GET)
     public String sendFAX(Model m) {
         /**
-         * 전자명세서를 팩스로 전송하는 함수로, 팝빌 사이트 [팩스] > [결과] > [전송결과] 메뉴에서 전송결과를 확인 할 수 있습니다.
-         * - 함수 호출시 포인트가 과금됩니다.
+         * 전자명세서를 팩스로 전송하는 함수로, 팝빌 사이트 [ 팩스 > 결과 > 전송결과 ] 메뉴에서 전송결과를 확인할 수 있습니다.
          * - https://developers.popbill.com/reference/statement/java/api/etc#SendFAX
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
-        // 전자명세서 문서번호
-        String mgtKey = "20250711-BOOT001";
+        // 파트너가 할당한 문서번호
+        String mgtKey = "20250711-MVC001";
 
-        // 발신자 번호
+        // 발신번호
         String sender = "07043042991";
 
-        // 수신자 팩스번호
+        // 수신번호
         String receiver = "070111222";
 
         try {
@@ -1249,35 +1306,32 @@ public class StatementServiceController {
     public String FAXSend(Model m) {
         /**
          * 전자명세서를 팩스로 전송하는 함수로, 팝빌에 데이터를 저장하는 과정이 없습니다.
-         * - 팝빌 사이트 [팩스] > [결과] > [전송결과] 메뉴에서 전송결과를 확인 할 수 있습니다.
-         * - 함수 호출시 포인트가 과금됩니다.
-         * - 팩스 발행 요청시 작성한 문서번호는 팩스전송 파일명으로 사용됩니다.
-         * - 팩스 전송결과를 확인하기 위해서는 선팩스 전송 요청 시 반환받은 접수번호를 이용하여 팩스 API의 전송결과 확인 (GetFaxDetail API) 함수를 이용하면 됩니다.
+         * 팝빌 사이트 [ 팩스 > 결과 > 전송결과 ] 메뉴에서 전송결과를 확인할 수 있습니다.
          * - https://developers.popbill.com/reference/statement/java/api/etc#FAXSend
          */
 
-        // 전자명세서 정보 객체
+        // 전자명세서 정보
         Statement statement = new Statement();
 
-        // 명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        statement.setMgtKey("20250711-BOOT003");
+        statement.setMgtKey("20250711-MVC001");
 
-        // 맞춤양식코드, 미기재시 기본양식으로 처리
+        // 맞춤양식 코드, 미기재시 기본양식으로 처리
         statement.setFormCode("");
 
-        // 작성일자, 형태 yyyyMmdd
+        // 작성일자, 형태 yyyyMMdd
         statement.setWriteDate("20250711");
 
-        // {과세, 영세, 면세} 중 기재
+        // 과세형태, {과세, 영세, 면세} 중 기재
         statement.setTaxType("과세");
 
-        // {영수, 청구, 없음} 중 기재
+        // 영수/청구, {영수, 청구, 없음} 중 기재
         statement.setPurposeType("영수");
 
-        // 기재상 일련번호 항목
+        // 일련번호
         statement.setSerialNum("123");
 
         // 세액 합계
@@ -1289,7 +1343,7 @@ public class StatementServiceController {
         // 합계금액. 공급가액 + 세액
         statement.setTotalAmount("440000");
 
-        // 기재상 비고 항목
+        // 비고
         statement.setRemark1("비고1");
         statement.setRemark2("비고2");
         statement.setRemark3("비고3");
@@ -1307,8 +1361,8 @@ public class StatementServiceController {
         // 발신자 상호
         statement.setSenderCorpName("발신자 상호");
 
-        // 발신자 대표자 성명
-        statement.setSenderCEOName("발신자 대표자 성명");
+        // 발신자 대표자성명
+        statement.setSenderCEOName("발신자 대표자성명");
 
         // 발신자 주소
         statement.setSenderAddr("발신자 주소");
@@ -1319,16 +1373,19 @@ public class StatementServiceController {
         // 발신자 종목
         statement.setSenderBizClass("업종");
 
-        // 발신자 담당자 성명
-        statement.setSenderContactName("발신자 담당자 성명");
+        // 발신자 성명
+        statement.setSenderContactName("발신자 성명");
 
-        // 발신자 담당자 연락처
+        // 발신자 부서명
+        statement.setSenderDeptName("발신자 부서명");
+
+        // 발신자 연락처
         statement.setSenderTEL("070-7070-0707");
 
-        // 발신자 담당자 휴대폰번호
+        // 발신자 휴대전화
         statement.setSenderHP("010-000-2222");
 
-        // 발신자 담당자 메일주소
+        // 발신자 메일주소
         statement.setSenderEmail("test@test.com");
 
         /*********************************************************************
@@ -1338,11 +1395,14 @@ public class StatementServiceController {
         // 수신자 사업자번호
         statement.setReceiverCorpNum("8888888888");
 
+        // 수신자 종사업장 식별번호
+        statement.setReceiverTaxRegID("");
+
         // 수신자 상호
         statement.setReceiverCorpName("수신자 상호");
 
-        // 수신자 대표자 성명
-        statement.setReceiverCEOName("수신자 대표자 성명");
+        // 수신자 대표자성명
+        statement.setReceiverCEOName("수신자 대표자성명");
 
         // 수신자 주소
         statement.setReceiverAddr("수신자 주소");
@@ -1353,20 +1413,29 @@ public class StatementServiceController {
         // 수신자 종목
         statement.setReceiverBizClass("수신자 종목");
 
-        // 수신자 담당자 성명
-        statement.setReceiverContactName("수신자 담당자 성명");
+        // 수신자 성명
+        statement.setReceiverContactName("수신자 성명");
+
+        // 수신자 부서명
+        statement.setReceiverDeptName("수신자 부서명");
+
+        // 수신자 연락처
+        statement.setReceiverTEL("");
+
+        // 수신자 휴대전화
+        statement.setReceiverHP("");
 
         // 수신자 메일주소
         // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
         // 실제 거래처의 메일주소가 기재되지 않도록 주의
-        statement.setReceiverEmail("test@receiver.com");
+        statement.setReceiverEmail("");
 
-        // 사업자등록증 첨부 여부 (true / false 중 택 1)
+        // 팝빌에 등록된 사업자등록증 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBusinessLicenseYN(false);
 
-        // 통장사본 첨부 여부 (true / false 중 택 1)
+        // 팝빌에 등록된 통장사본 첨부 여부 (true / false 중 택 1)
         // └ true = 첨부 , false = 미첨부(기본값)
         // - 팝빌 사이트 또는 인감 및 첨부문서 등록 팝업 URL (GetSealURL API) 함수를 이용하여 등록
         statement.setBankBookYN(false);
@@ -1394,27 +1463,33 @@ public class StatementServiceController {
 
         detail.setSerialNum((short) 1);                    // 일련번호, 1부터 순차기재
         detail.setPurchaseDT("20250711");                  // 거래일자
-        detail.setItemName("품명");                        // 품목명
+        detail.setItemName("품명");                         // 품명
+        detail.setSpec("규격");                             // 규격
         detail.setQty("1");                                // 수량
+        detail.setUnit("200000");                          // 단가
         detail.setSupplyCost("200000");                    // 공급가액
         detail.setTax("20000");                            // 세액
+        detail.setRemark("비고1");                          // 비고
 
         statement.getDetailList().add(detail);
 
         detail = new StatementDetail();                    // 상세항목(품목) 배열
         detail.setSerialNum((short) 2);                    // 일련번호 1부터 순차기재
         detail.setPurchaseDT("20250711");                  // 거래일자
-        detail.setItemName("품명");                        // 품목명
+        detail.setItemName("품명");                         // 품명
+        detail.setSpec("규격");                             // 규격
         detail.setQty("1");                                // 수량
+        detail.setUnit("200000");                          // 단가
         detail.setSupplyCost("200000");                    // 공급가액
         detail.setTax("20000");                            // 세액
+        detail.setRemark("비고1");                          // 비고
 
         statement.getDetailList().add(detail);
 
-        // 팩스전송 발신번호
+        // 발신번호
         String sendNum = "07043042991";
 
-        // 수신팩스번호
+        // 수신번호
         String receiveNum = "00111222";
 
         try {
@@ -1435,17 +1510,17 @@ public class StatementServiceController {
          * - https://developers.popbill.com/reference/statement/java/api/etc#AttachStatement
          */
 
-        // 전자명세서 유형 코드
+        // 전자전자명세서 문서 유형
         int itemCode = 121;
 
-        // 전자명세서 문서번호
-        String mgtKey = "20250711-BOOT001";
+        // 파트너가 할당한 문서번호
+        String mgtKey = "20250711-MVC001";
 
-        // 첨부할 전자명세서 유형 코드
+        // 첨부할 전자전자명세서 문서 유형
         int subItemCode = 121;
 
         // 첨부할 전자명세서 문서번호
-        String subMgtKey = "20250711-BOOT002";
+        String subMgtKey = "20250711-MVC002";
 
         try {
             Response response = statementService.attachStatement(CorpNum, itemCode, mgtKey, subItemCode, subMgtKey,
@@ -1466,17 +1541,17 @@ public class StatementServiceController {
          * - https://developers.popbill.com/reference/statement/java/api/etc#DetachStatement
          */
 
-        // 전자명세서 유형 코드
+        // 전자전자명세서 문서 유형
         int itemCode = 121;
 
-        // 전자명세서 문서번호
-        String mgtKey = "20250711-BOOT001";
+        // 파트너가 할당한 문서번호
+        String mgtKey = "20250711-MVC001";
 
-        // 첨부해제할 전자명세서 유형 코드
+        // 첨부해제할 전자전자명세서 문서 유형
         int subItemCode = 121;
 
         // 첨부해제할 전자명세서 문서번호
-        String subMgtKey = "20250711-BOOT002";
+        String subMgtKey = "20250711-MVC002";
 
         try {
             Response response = statementService.detachStatement(CorpNum, itemCode, mgtKey, subItemCode, subMgtKey,
@@ -1519,16 +1594,14 @@ public class StatementServiceController {
         /**
          * 전자명세서 관련 메일 항목에 대한 발송설정을 수정합니다.
          * - https://developers.popbill.com/reference/statement/java/api/etc#UpdateEmailConfig
-         *
-         * 메일전송유형
-         * - SMT_ISSUE : 수신자에게 전자명세서가 발행 되었음을 알려주는 메일입니다.
-         * - SMT_ACCEPT : 발신자에게 전자명세서가 승인 되었음을 알려주는 메일입니다.
-         * - SMT_DENY : 발신자에게 전자명세서가 거부 되었음을 알려주는 메일입니다.
-         * - SMT_CANCEL : 수신자에게 전자명세서가 취소 되었음을 알려주는 메일입니다.
-         * - SMT_CANCEL_ISSUE : 수신자에게 전자명세서가 발행취소 되었음을 알려주는 메일입니다.
          */
 
         // 메일 전송 유형
+        // SMT_ISSUE : 수신자에게 전자명세서가 발행 되었음을 알려주는 메일입니다.
+        // SMT_ACCEPT : 발신자에게 전자명세서가 승인 되었음을 알려주는 메일입니다.
+        // SMT_DENY : 발신자에게 전자명세서가 거부 되었음을 알려주는 메일입니다.
+        // SMT_CANCEL : 수신자에게 전자명세서가 취소 되었음을 알려주는 메일입니다.
+        // SMT_CANCEL_ISSUE : 수신자에게 전자명세서가 발행취소 되었음을 알려주는 메일입니다.
         String emailType = "SMT_ISSUE";
 
         // 전송 여부 (true = 전송, false = 미전송)
@@ -1552,7 +1625,7 @@ public class StatementServiceController {
          * - https://developers.popbill.com/reference/statement/java/common-api/point#GetUnitCost
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
         try {
@@ -1573,7 +1646,7 @@ public class StatementServiceController {
          * - https://developers.popbill.com/reference/statement/java/common-api/point#GetChargeInfo
          */
 
-        // 전자명세서 유형 코드, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
+        // 전자명세서 문서 유형, [121 - 거래명세서], [122 - 청구서], [123 - 견적서], [124 - 발주서], [125 - 입금표], [126 - 영수증]
         int itemCode = 121;
 
         try {
