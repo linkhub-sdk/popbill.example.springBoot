@@ -24,7 +24,7 @@
 				<fieldset class="fieldset3"
 					th:each="PaymentHistory, index : ${PaymentHistoryResult.list}">
 					<legend>
-						결제내역 정보[ <span th:text="${index.index + 1}"></span> / <span
+						결제내역 [ <span th:text="${index.index + 1}"></span> / <span
 							th:text="${index.size}"></span> ]
 					</legend>
 					<ul>

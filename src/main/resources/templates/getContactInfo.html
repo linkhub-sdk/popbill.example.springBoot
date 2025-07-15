@@ -14,15 +14,13 @@
 			<fieldset class="fieldset2">
 				<ul>
 					<li>id (아이디) : <span th:text="${ContactInfo.id}"></span></li>
-					<li>personName (담당자 성명) : <span
-						th:text="${ContactInfo.personName}"></span></li>
-					<li>email (이메일) : <span th:text="${ContactInfo.email}"></span></li>
-					<li>tel (연락처) : <span th:text="${ContactInfo.tel}"></span></li>
+					<li>personName (담당자 성명) : <span th:text="${ContactInfo.personName}"></span></li>
+					<li>tel (담당자 휴대폰) : <span th:text="${ContactInfo.tel}"></span></li>
+					<li>email (담당자 메일) : <span th:text="${ContactInfo.email}"></span></li>
 					<li>regDT (등록일시) : <span th:text="${ContactInfo.regDT}"></span></li>
-					<li>searchRole (권한) : <span
-						th:text="${ContactInfo.searchRole}"></span></li>
+					<li>searchRole (권한) : <span th:text="${ContactInfo.searchRole}"></span></li>
 					<li>mgrYN (역할) : <span th:text="${ContactInfo.mgrYN}"></span></li>
-					<li>state (상태) : <span th:text="${ContactInfo.state}"></span></li>
+					<li>state (계정상태) : <span th:text="${ContactInfo.state}"></span></li>
 				</ul>
 			</fieldset>
 		</fieldset>
