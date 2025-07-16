@@ -93,7 +93,7 @@ public class StatementServiceController {
         statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        statement.setMgtKey("20250711-MVC001");
+        statement.setMgtKey("20250711-BOOT001");
 
         // 맞춤양식 코드, 미기재시 기본양식으로 처리
         statement.setFormCode("");
@@ -301,7 +301,7 @@ public class StatementServiceController {
         statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        statement.setMgtKey("20250711-MVC001");
+        statement.setMgtKey("20250711-BOOT001");
 
         // 맞춤양식 코드, 미기재시 기본양식으로 처리
         statement.setFormCode("");
@@ -507,7 +507,7 @@ public class StatementServiceController {
         statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        statement.setMgtKey("20250711-MVC001");
+        statement.setMgtKey("20250711-BOOT001");
 
         // 맞춤양식 코드, 미기재시 기본양식으로 처리
         statement.setFormCode("");
@@ -1334,7 +1334,7 @@ public class StatementServiceController {
         statement.setItemCode((short) 121);
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        statement.setMgtKey("20250711-MVC001");
+        statement.setMgtKey("20250711-BOOT001");
 
         // 맞춤양식 코드, 미기재시 기본양식으로 처리
         statement.setFormCode("");

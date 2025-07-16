@@ -85,7 +85,7 @@ public class CashbillServiceController {
         Cashbill cashbill = new Cashbill();
 
         // 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        cashbill.setMgtKey("20250711-MVC001");
+        cashbill.setMgtKey("20250711-BOOT001");
 
         // 거래일시, 날짜(yyyyMMddHHmmss)
         // 당일, 전일만 가능
@@ -188,7 +188,7 @@ public class CashbillServiceController {
 
         // 제출아이디
         // └ 최대 36자리 영문, 숫자, '-' 조합으로 구성
-        String SubmitID = "20250711-MVC-BULK";
+        String SubmitID = "20250711-BOOT-BULK";
 
         // 현금영수증 목록, 최대 100건.
         List<Cashbill> cashbillList = new ArrayList<Cashbill>();
@@ -351,7 +351,7 @@ public class CashbillServiceController {
          */
 
         // 파트너가 할당한 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        String mgtKey = "20250711-MVC005";
+        String mgtKey = "20250711-BOOT005";
 
         // 당초 국세청승인번호 - 상태확인(getInfo API) 함수를 통해 confirmNum 값 기재
         String orgConfirmNum = "TB0000009";
@@ -428,7 +428,7 @@ public class CashbillServiceController {
          */
 
         // 파트너가 할당한 문서번호, 1~24자리 (숫자, 영문, '-', '_') 조합으로 사업자 별로 중복되지 않도록 구성
-        String mgtKey = "20250711-MVC006";
+        String mgtKey = "20250711-BOOT006";
 
         // 당초 국세청승인번호 - 상태확인(getInfo API) 함수를 통해 confirmNum 값 기재
         String orgConfirmNum = "820116333";
@@ -528,7 +528,7 @@ public class CashbillServiceController {
          */
 
         // 문서번호 목록 (최대 1000건)
-        String[] mgtKeyList = new String[] { "20250711-MVC003", "20250711-MVC004", "20250711-MVC005" };
+        String[] mgtKeyList = new String[] { "20250711-BOOT003", "20250711-BOOT004", "20250711-BOOT005" };
 
         try {
             CashbillInfo[] cashbillInfos = cashbillService.getInfos(CorpNum, mgtKeyList, UserID);
@@ -742,7 +742,7 @@ public class CashbillServiceController {
          */
 
         // 인쇄할 현금영수증 문서번호, 최대 100건
-        String[] mgtKeyList = new String[] { "20250711-MVC001", "20250711-MVC003", "20250711-MVC004" };
+        String[] mgtKeyList = new String[] { "20250711-BOOT001", "20250711-BOOT003", "20250711-BOOT004" };
 
         try {
             String url = cashbillService.getMassPrintURL(CorpNum, mgtKeyList, UserID);
