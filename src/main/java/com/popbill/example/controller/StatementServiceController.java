@@ -1597,7 +1597,7 @@ public class StatementServiceController {
         Map<String, Boolean> emailSendConfigs = new HashMap<String, Boolean>();
 
         try {
-            EmailSendConfig[] Configs = statementService.listEmailConfig(CorpNum);
+            EmailSendConfig[] Configs = statementService.listEmailConfig(CorpNum, UserID);
 
             for(EmailSendConfig emailSendConfig : Configs) {
                 emailSendConfigs.put(emailSendConfig.getEmailType(), emailSendConfig.getSendYN());
