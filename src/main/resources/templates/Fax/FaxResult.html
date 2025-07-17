@@ -22,10 +22,6 @@
 					<li>receiveNumType (수신번호 유형) : <span th:text="${FaxResult.receiveNumType}"></span></li>
 					<li>receiveName (수신자명) : <span th:text="${FaxResult.receiveName}"></span></li>
 					<li>title (팩스제목) : <span th:text="${FaxResult.title}"></span></li>
-					<li>sendPageCnt (전체 페이지수) : <span th:text="${FaxResult.sendPageCnt}"></span></li>
-					<li>successPageCnt (성공 페이지수) : <span th:text="${FaxResult.successPageCnt}"></span></li>
-					<li>failPageCnt (실패 페이지수) : <span th:text="${FaxResult.failPageCnt}"></span></li>
-					<li>cancelPageCnt (취소 페이지수) : <span th:text="${FaxResult.cancelPageCnt}"></span></li>
 					<li>reserveDT (예약일시) : <span th:text="${FaxResult.reserveDT}"></span></li>
 					<li>receiptDT (접수일시) : <span th:text="${FaxResult.receiptDT}"></span></li>
 					<li>sendDT (전송일시) : <span th:text="${FaxResult.sendDT}"></span></li>
@@ -34,6 +30,10 @@
 					<li>receiptNum (팩스 전송요청시 팝빌로부터 반환 받은 접수번호) : <span th:text="${FaxResult.receiptNum}"></span></li>
 					<li>requestNum (팩스 전송요청시 파트너가 할당한 요청번호) : <span th:text="${FaxResult.requestNum}"></span></li>
 					<li>interOPRefKey (파트너 지정키) : <span th:text="${FaxResult.interOPRefKey}"></span></li>
+					<li>sendPageCnt (전체 페이지수) : <span th:text="${FaxResult.sendPageCnt}"></span></li>
+					<li>successPageCnt (성공 페이지수) : <span th:text="${FaxResult.successPageCnt}"></span></li>
+					<li>failPageCnt (실패 페이지수) : <span th:text="${FaxResult.failPageCnt}"></span></li>
+					<li>cancelPageCnt (취소 페이지수) : <span th:text="${FaxResult.cancelPageCnt}"></span></li>
 					<li>chargePageCnt (과금 페이지수) : <span th:text="${FaxResult.chargePageCnt}"></span></li>
 					<li>refundPageCnt (환불 페이지수) : <span th:text="${FaxResult.refundPageCnt}"></span></li>
 					<li>tiffFileSize (변환파일용량 (단위:byte)) : <span th:text="${FaxResult.tiffFileSize}"></span></li>
