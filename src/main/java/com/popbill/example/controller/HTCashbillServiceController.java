@@ -252,18 +252,21 @@ public class HTCashbillServiceController {
     @RequestMapping(value = "registDeptUser", method = RequestMethod.GET)
     public String registDeptUser(Model m) {
         /**
-         * 팝빌에 부서사용자를 등록합니다.
+         * 팝빌에 현금영수증 전용 부서사용자를 등록합니다.
          * - https://developers.popbill.com/reference/htcashbill/java/api/cert#RegistDeptUser
          */
 
-        // 현금영수증 전용 부서사용자 아이디
+        // 부서사용자 아이디
         String deptUserID = "userid";
 
-        // 현금영수증 전용 부서사용자 비밀번호
+        // 부서사용자 비밀번호
         String deptUserPWD = "passwd";
 
+        // 부서사용자 대표자 주민번호
+        String identityNum = "";
+
         try {
-            Response response = htCashbillService.registDeptUser(CorpNum, deptUserID, deptUserPWD, UserID);
+            Response response = htCashbillService.registDeptUser(CorpNum, deptUserID, deptUserPWD, identityNum, UserID);
             m.addAttribute("Response", response);
         } catch (PopbillException e) {
             m.addAttribute("Exception", e);
